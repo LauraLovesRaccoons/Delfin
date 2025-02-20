@@ -1,22 +1,22 @@
 #version: "3.1"
+name: "${APP_NAME}"
 services:
   #webapp:
   db:
     image: "${MYSQL_IMAGE}"
-    container_name: "${MYSQL_CONTAINER_NAME}"
-    restart: always
+    container_name: "${COMPOSE_PROJECT_NAME}${MYSQL_CONTAINER_EXTENSION}"
+    restart: "${MYSQL_RESTART}"
     environment:
       MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
       MYSQL_DATABASE: "${MYSQL_DATABASE}"
       MYSQL_USER: "${MYSQL_USER}"
       MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
-      
     ports:
       - "${MYSQL_PORTS}"
   phpmyadmin:
     image: "${PMA_IMAGE}"
-    container_name: "${PMA_CONTAINER_NAME}"
-    restart: always
+    container_name: "${COMPOSE_PROJECT_NAME}${PMA_CONTAINER_EXTENSION}"
+    restart: "${PMA_RESTART}"
     environment:
       PMA_HOST: "${PMA_HOST}"
       PMA_USER: "${PMA_USER}"
