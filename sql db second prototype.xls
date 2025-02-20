@@ -16,10 +16,10 @@ Categories table														/
 														/
 *** mir hun:	0 = (Eidel)	1 = Madame	2 = Monsieur	3 = Madame, Monsieur	4 = Iel (Neutre)	5 = Docteur (Utiliser Allocation Spéciale)	6 = Zukunft 							/
 						bei submit, ALERT	(nett visibel an der gui)							/
-														/
-														/
-														/
-														/
+Employee table														/
+Access with hashed password and token														/
+Admin table														/
+idem + access to everything														/
 														/
 													*	/
 /	/	/	/	/	/	/	/	/	/	/	/	/	/	/
