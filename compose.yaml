@@ -1,24 +1,28 @@
-version: "3.1"
+#version: "3.1"
 services:
+  #webapp:
+    #environment:
+      #- DEBUG=true
+      #- env_file: ".env"
   db:
-    image: mysql
-    container_name: db
+    image: "${MYSQL_IMAGE}"
+    container_name: "${MYSQL_CONTAINER_NAME}"
     restart: always
     environment:
-      MYSQL_DATABASE: delfin_db
-      MYSQL_ROOT_PASSWORD: root #! EXPOSED
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
     ports:
-      - "3308:3306"
+      - "${MYSQL_PORTS}"
   phpmyadmin:
-    image: phpmyadmin:latest
-    #image: arm64v8/phpmyadmin:latest
+    image: "${PMA_IMAGE}"
+    container_name: "${PMA_CONTAINER_NAME}"
     restart: always
     environment:
-      PMA_HOST: db
-      PMA_USER: root      #! EXPOSED
-      PMA_PASSWORD: root  #! EXPOSED
+      PMA_HOST: "${PMA_HOST}"
+      PMA_USER: "${PMA_USER}"
+      PMA_PASSWORD: "${PMA_PASSWORD}"
     ports:
-      - "8080:80"
+      - "${PMA_PORTS}"
   #php-apache-environment:
     #container_name: php-apache
     #environment:
