@@ -1,25 +1,25 @@
-DB 2 tables														
-														
-User table														
-	id	Hidden	Allocation	Nom	Nom Coupon-réponse	Nom2	Fonction	Adresse1	Adresse2	Allocation Spéciale	E-Mail	Notes	connection zu dem anderen tableau	
-	(always append)	Boolean	Integer	String	Str	Str	Str	Str	Str	Str	Str	LONGTEXT		
-		default false	0 = naicht							NULL DEFAULT				
-		notzer stierft?	urieden/geschlechter iwert gui select list											
-			***											
-														
-Categories table														
-	id	Disable	CatA	CatB	CatC	CatD	CatE	CatF	CatG	CatH	CatI	CatJ	???	
-	(always append)	Boolean	Boolean	Boolean	Boo	Boo	Boo	Boo	Boo	Boo	Boo	Boo		
-		default false												
-		falls true, notzer gett ausgeschalt	kritt properen numm an der gui	idem	idem	idem	idem	idem	idem	idem	idem	idem		
-		(registrationen bleiwen awer)												
-														
-*** mir hun:	0 = (Eidel)	1 = Madame	2 = Monsieur	3 = Madame, Monsieur	4 = Iel (Neutre)	5 = Docteur (Utiliser Allocation Spéciale)	6 = Zukunft 							
-						bei submit, ALERT	(nett visibel an der gui)							
-														
-														
-														
-														
-														
-														
-														
+DB 2 tables														/
+														/
+User table														/
+	id	Hidden	Allocation	Nom	Nom Coupon-réponse	Nom2	Fonction	Adresse1	Adresse2	Allocation Spéciale	E-Mail	Notes	connection zu dem anderen tableau	/
+	(always append)	Boolean	Integer	String	Str	Str	Str	Str	Str	Str	Str	LONGTEXT		/
+		default false	0 = naicht							NULL DEFAULT				/
+		notzer stierft?	urieden/geschlechter iwert gui select list											/
+			***											/
+														/
+Categories table														/
+	id	Disable	CatA	CatB	CatC	CatD	CatE	CatF	CatG	CatH	CatI	CatJ	???	/
+	(always append)	Boolean	Boolean	Boolean	Boo	Boo	Boo	Boo	Boo	Boo	Boo	Boo		/
+		default false												/
+		falls true, notzer gett ausgeschalt	kritt properen numm an der gui	idem	idem	idem	idem	idem	idem	idem	idem	idem		/
+		(registrationen bleiwen awer)												/
+														/
+*** mir hun:	0 = (Eidel)	1 = Madame	2 = Monsieur	3 = Madame, Monsieur	4 = Iel (Neutre)	5 = Docteur (Utiliser Allocation Spéciale)	6 = Zukunft 							/
+						bei submit, ALERT	(nett visibel an der gui)							/
+														/
+														/
+														/
+														/
+														/
+													*	/
+/	/	/	/	/	/	/	/	/	/	/	/	/	/	/
