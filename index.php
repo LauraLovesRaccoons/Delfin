@@ -27,6 +27,10 @@
 
 <!--  -->
 
+<!-- THIS SHOULD LOAD FROM THE ENV AT A LATER POINT -->
+
+<h1>This doesn't load from the .env file YET!</h1>
+
 <?php
 // Database connection parameters
 $dbIpAndPort = "localhost:3308";
