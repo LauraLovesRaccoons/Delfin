@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Desktop First (sorry everyone)
+
+body {
+  // https://coolors.co/contrast-checker/0c1730-d4cacf
+  background-color: #d4cacf;
+  color: #0c1730;
+  font-size: 1.2rem;
+}
+
+// header navbar
+header {
+  a {
+    text-decoration: none;
+    color: #1cafb4;
+  }
+}
+
+// footer
+footer {
+  a {
+    text-decoration: none;
+    color: #e61eec;
+  }
+}

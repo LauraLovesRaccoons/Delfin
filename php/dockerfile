@@ -1,0 +1,5 @@
+FROM php:8.2-apache
+
+# install docker's php extension : mysqli
+RUN docker-php-ext-install mysqli
+
