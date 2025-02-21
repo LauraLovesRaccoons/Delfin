@@ -23,17 +23,20 @@ services:
       PMA_PASSWORD: "${PMA_PASSWORD}"
     ports:
       - "${PMA_PORTS}"
-  #php-apache-environment:
-    #container_name: php-apache
+  php-apache-environment:
+    image: "php:apache"
+    container_name: php-apache
+    restart: always
     #environment:
       #- max_upload=100M
     #build:
       #context: ./php
       #dockerfile: dockerfile
-    #volumes:
+    # volumes:
       #- ./php/src:/var/www/html/ #Path to folder in windows : Path to folder in Linux
-    #ports:
-      #- 8000-8010:8000-8010
+    ports:
+      - 8000:8000
+      # - 8000-8010:8000-8010
   #wordpress:
     #image: wordpress:latest
     #restart: always
@@ -46,6 +49,8 @@ services:
       #WORDPRESS_DB_NAME: wordpress
     #volumes:
       #- wordpress:/var/www/html
-#volumes:
-  #db:
+volumes:
+  db:
+  phpmyadmin:
+  php-apache-environment:
   #wordpress:
