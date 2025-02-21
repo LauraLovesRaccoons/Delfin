@@ -33,7 +33,8 @@
 
 <?php
 // Database connection parameters
-$dbIpAndPort = "localhost:3308";
+$dbIpAndPort = "localhost:3306";
+// $dbIpAndPort = "localhost:3308";
 $username = "delphinus";
 $password = "Inia_geoffrensis";
 // $username = "-delphinus";
