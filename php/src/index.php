@@ -33,8 +33,10 @@
 
 <?php
 // Database connection parameters
-$dbIpAndPort = "localhost:3306";
-// $dbIpAndPort = "localhost:3308";
+// this is only for xampp apache!
+// $dbIpAndPort = "localhost:3306";
+// // $dbIpAndPort = "localhost:3308";
+$serviceMysql = "mysql";                      // from compose.yaml !
 $username = "delphinus";
 $password = "Inia_geoffrensis";
 // $username = "-delphinus";
@@ -45,7 +47,7 @@ $dbname = "delfin_db";
 // $dbname = "FAKE_NAME";
 
 // Create connection
-$db = mysqli_connect($dbIpAndPort, $username, $password, $dbname);
+$db = mysqli_connect($serviceMysql, $username, $password, $dbname);
 
 if($db){
     echo "Connection works!";
