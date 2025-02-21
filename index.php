@@ -8,3 +8,59 @@
 <!-- Import a file -> stop the script if problem return an error -->
 <?php require 'footer.html';?>
 <!--  Import a file -> warning of issue, script continues to run -->
+
+
+
+<!-- test -->
+ <br />
+ <br /><br /><br />
+ <br />
+ <p>hello</p>
+ <br />
+<h1>
+    TEST Divison
+</h1>
+
+<br />
+<br /><br /><br />
+<br />
+
+<!--  -->
+
+<?php
+// Database connection parameters
+$dbIpAndPort = "localhost:3308";
+$username = "delphinus";
+$password = "Inia_geoffrensis";
+// $username = "-delphinus";
+// $password = "-Inia_geoffrensis";
+// $username = "root";
+// $password = "root";
+$dbname = "delfin_db";
+// $dbname = "FAKE_NAME";
+
+// Create connection
+$db = mysqli_connect($dbIpAndPort, $username, $password, $dbname);
+
+if($db){
+    echo "Connection works!";
+    $query = "SELECT * FROM Books";
+
+    $results = mysqli_query($db, $query);
+
+    $books = mysqli_fetch_all($results, MYSQLI_ASSOC);
+
+    mysqli_close($db);
+}else{
+    echo "Problem connection to the DB <br>";
+}
+
+?>
+
+
+<!--  -->
+
+
+
+<!--  -->
+
