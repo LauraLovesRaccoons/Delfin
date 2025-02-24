@@ -16,7 +16,9 @@ services:
   phpmyadmin:
     image: "${PMA_IMAGE}"
     container_name: "${COMPOSE_PROJECT_NAME}${PMA_CONTAINER_EXTENSION}"
-    restart: "${PMA_RESTART}"
+    restart: "${PMA_RESTART}"   #
+    profiles:
+      - "pma"   #!  docker compose --profile pma up ;; to enable the service
     environment:
       PMA_HOST: "mysql"         #! must be named after the service
       PMA_USER: "${PMA_USER}"
@@ -26,7 +28,7 @@ services:
   php-apache:
     image: "${PHP_IMAGE}"
     container_name: "${COMPOSE_PROJECT_NAME}${PHP_CONTAINER_EXTENSION}"
-    #restart: always
+    restart: "${PHP_RESTART}"
     environment:
       - max_upload=10M            #
     volumes:
