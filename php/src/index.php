@@ -80,3 +80,19 @@ echo 'This application is called ' .$_ENV["APP_NAME"] . '!';
 
 <!--  -->
 
+
+<!--  -->
+<br /><br /><br /><br />
+<p>hash test</p>
+<?php
+echo hash('sha256', 'The quick brown fox jumped over the lazy dog.');
+?>
+<p>hash test end</p>
+<br /><br /><br /><br />
+<!--  -->
+
+
+
+
+
+
