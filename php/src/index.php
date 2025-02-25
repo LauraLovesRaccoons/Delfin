@@ -67,6 +67,8 @@ if($db){
 
 <!--  -->
 <br /><br /><br /><br />
+<a href="https://www.youtube.com/watch?v=L5E2HSHrDjw&t=302s">tutorial video</a>
+<br /><br /><br /><br />
 <p>.env reading</p>
 
 <?php
