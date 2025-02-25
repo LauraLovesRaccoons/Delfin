@@ -66,8 +66,15 @@ if($db){
 
 
 <!--  -->
+<br /><br /><br /><br />
+<p>.env reading</p>
 
-
+<?php
+var_dump(getenv('APP_NAME'));
+echo 'This application is called ' .$_ENV["APP_NAME"] . '!';
+?>
+<br />
+<br />
 
 <!--  -->
 
