@@ -50,7 +50,7 @@ $dbname = "delfin_db";
 $db = mysqli_connect($serviceMysql, $username, $password, $dbname);
 
 if($db){
-    echo "Connection works!";
+    echo "Database ass aktiv <br>";
     $query = "SELECT * FROM Books";
 
     $results = mysqli_query($db, $query);
@@ -59,7 +59,7 @@ if($db){
 
     mysqli_close($db);
 }else{
-    echo "Problem connection to the DB <br>";
+    echo "Database huet ee Problem <br>";
 }
 
 ?>
