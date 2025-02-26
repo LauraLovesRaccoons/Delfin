@@ -27,42 +27,8 @@
 
 <!--  -->
 
-<!-- THIS SHOULD LOAD FROM THE ENV AT A LATER POINT -->
 
-<h1>This doesn't load from the .env file YET!</h1>
-
-<?php
-// Database connection parameters
-// this is only for xampp apache!
-// $dbIpAndPort = "localhost:3306";
-// // $dbIpAndPort = "localhost:3308";
-$serviceMysql = "mysql";                      // from compose.yaml !
-$username = "delphinus";
-$password = "Inia_geoffrensis";
-// $username = "-delphinus";
-// $password = "-Inia_geoffrensis";
-// $username = "root";
-// $password = "root";
-$dbname = "delfin_db";
-// $dbname = "FAKE_NAME";
-
-// Create connection
-$db = mysqli_connect($serviceMysql, $username, $password, $dbname);
-
-if($db){
-    echo "Database ass aktiv <br>";
-    $query = "SELECT * FROM Books";
-
-    $results = mysqli_query($db, $query);
-
-    $books = mysqli_fetch_all($results, MYSQLI_ASSOC);
-
-    mysqli_close($db);
-}else{
-    echo "Database huet ee Problem <br>";
-}
-
-?>
+<?php require 'db_connect.php';?>
 
 
 <!--  -->
