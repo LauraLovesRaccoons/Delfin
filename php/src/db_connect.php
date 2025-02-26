@@ -23,20 +23,18 @@ $dbname = "delfin_db";
 
 // Create connection to DB
 mysqli_report(MYSQLI_REPORT_OFF);           // this allows the upcoming @ to supress warnings from the user
-    $db = @mysqli_connect($serviceMysql, $username, $password, $dbname);    // @ means surpress error message
-    if (!$db) {
-        // error_log(mysqli_connect_error());
-        echo "Datenbank huet een Problem <br>";
-    }
-    elseif($db){
-        echo "Datenbank ass aktiv <br>";
-    }
-    else{
-        echo "Een Dëcken Hardware Problem mam Server <br>";
-    }
+$db = @mysqli_connect($serviceMysql, $username, $password, $dbname);    // @ means surpress error message
+if (!$db) {
+    // error_log(mysqli_connect_error());
+    echo "Datenbank huet een Problem <br>";
+} elseif ($db) {
+    echo "Datenbank ass aktiv <br>";
+} else {
+    echo "Een Dëcken Hardware Problem mam Server <br>";
+}
 
-    
-if($db){
+
+if ($db) {
     echo "TEST <br>";
     $query = "SELECT * FROM Books";
 

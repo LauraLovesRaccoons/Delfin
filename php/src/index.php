@@ -1,22 +1,22 @@
 <!-- Import a file -> stop the script if problem return an error -->
-<?php require 'header.html';?>
+<?php require 'header.html'; ?>
 <!--  Import a file -> warning of issue, script continues to run -->
 
 
 
 
 <!-- Import a file -> stop the script if problem return an error -->
-<?php require 'footer.html';?>
+<?php require 'footer.html'; ?>
 <!--  Import a file -> warning of issue, script continues to run -->
 
 
 
 <!-- test -->
- <br />
- <br /><br /><br />
- <br />
- <p>hello</p>
- <br />
+<br />
+<br /><br /><br />
+<br />
+<p>hello</p>
+<br />
 <h1>
     TEST Divison
 </h1>
@@ -28,7 +28,7 @@
 <!--  -->
 
 
-<?php require 'db_connect.php';?>
+<?php require 'db_connect.php'; ?>
 
 
 <!--  -->
@@ -39,7 +39,7 @@
 
 <?php
 var_dump(getenv('APP_NAME'));
-echo 'This application is called ' .$_ENV["APP_NAME"] . '!';
+echo 'This application is called ' . $_ENV["APP_NAME"] . '!';
 ?>
 <br />
 <br />
@@ -56,9 +56,3 @@ echo hash('sha256', 'The quick brown fox jumped over the lazy dog.');
 <p>hash test end</p>
 <br /><br /><br /><br />
 <!--  -->
-
-
-
-
-
-
