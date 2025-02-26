@@ -21,8 +21,7 @@ $dbname = "delfin_db";
 // $dbname = "FAKE_NAME";
 
 
-// Create connection
-// try{
+// Create connection to DB
 mysqli_report(MYSQLI_REPORT_OFF);           // this allows the upcoming @ to supress warnings from the user
     $db = @mysqli_connect($serviceMysql, $username, $password, $dbname);    // @ means surpress error message
     if (!$db) {
