@@ -50,7 +50,7 @@ $dbname = "delfin_db";
 $db = mysqli_connect($serviceMysql, $username, $password, $dbname);
 
 if($db){
-    echo "Connection works!";
+    echo "Database ass aktiv <br>";
     $query = "SELECT * FROM Books";
 
     $results = mysqli_query($db, $query);
@@ -59,15 +59,40 @@ if($db){
 
     mysqli_close($db);
 }else{
-    echo "Problem connection to the DB <br>";
+    echo "Database huet ee Problem <br>";
 }
 
 ?>
 
 
 <!--  -->
+<br /><br /><br /><br />
+<a href="https://www.youtube.com/watch?v=L5E2HSHrDjw&t=302s">tutorial video</a>
+<br /><br /><br /><br />
+<p>.env reading</p>
 
+<?php
+var_dump(getenv('APP_NAME'));
+echo 'This application is called ' .$_ENV["APP_NAME"] . '!';
+?>
+<br />
+<br />
+
+<!--  -->
 
 
 <!--  -->
+<br /><br /><br /><br />
+<p>hash test</p>
+<?php
+echo hash('sha256', 'The quick brown fox jumped over the lazy dog.');
+?>
+<p>hash test end</p>
+<br /><br /><br /><br />
+<!--  -->
+
+
+
+
+
 
