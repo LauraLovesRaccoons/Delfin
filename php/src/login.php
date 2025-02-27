@@ -26,7 +26,7 @@ if (isset($_POST['submit_button'])) {
         $result = mysqli_query($db, $query);        // $db ; function call ?????
         $user = mysqli_fetch_assoc($result);
 
-        $passwordVerify = password_verify($password, $user['password']);
+        $passwordVerify = password_verify($password, $user['password']);    // db password must be hashed
 
         if ($passwordVerify) {
             $_SESSION['id'] = $user['id'];
