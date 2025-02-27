@@ -27,9 +27,11 @@
 
 <!--  -->
 
-
-<?php include 'db_connect.php'; ?>
-
+<!-- optional for testing purposes -->
+<?php include 'functions.php';
+db_connect();
+?>
+<!-- optional for testing purposes -->
 
 <!--  -->
 <br /><br /><br /><br />
