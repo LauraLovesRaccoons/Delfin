@@ -18,6 +18,7 @@ if (isset($_POST['submit_button'])) {
             echo $error . "<br>";
         }
     } else {
+        require 'db_connect.php';
         $_SESSION['username'] = $_POST['username'];
         header('location: delfin.php');
     }
