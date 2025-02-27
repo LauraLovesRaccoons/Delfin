@@ -1,3 +1,4 @@
 <?php
-mysqli_close($db);  // closes the database connection
+require 'functions.php';
+db_close($db);
 ?>

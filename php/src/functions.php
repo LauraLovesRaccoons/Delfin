@@ -2,7 +2,13 @@
 
 // $db= false;     // setup
 
-function logout() {}
+function logout()
+{
+    session_start();
+    session_destroy();
+    // header('Location: index.php');
+    // exit();
+}
 
 function db_connect()
 {
@@ -14,7 +20,7 @@ function db_connect()
     mysqli_report(MYSQLI_REPORT_OFF);           // this allows the upcoming @ to supress warnings from the user
     $db = @mysqli_connect($serviceMysql, $username, $password, $dbname);    // @ means surpress error message
     if (!$db) {
-    //     // // error_log(mysqli_connect_error());
+        //     // // error_log(mysqli_connect_error());
         echo "Datenbank huet een Problem <br>";
     } elseif ($db) {
         echo "Datenbank ass aktiv <br>";
@@ -24,8 +30,13 @@ function db_connect()
     return $db; // this gives me the cannot modify header information warning
 }
 
-function db_close($db){
-    mysqli_close($db);  // closes the database connection
-    echo "CLOSED DB CONNECTION";
+function db_close($db)
+{
+    if ($db) {
+        mysqli_close($db);  // closes the database connection
+        // echo "Closed the Database Connection";
+    }
+    // else{
+    //     echo "There was NO Database Connection";
+    // }
 }
-

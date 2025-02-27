@@ -1,7 +1,7 @@
 <?php
-session_start();
-session_destroy();
-// include('db_close.php');
-header('Location: index.php');
-exit();
+ob_start();
+require('functions.php');
+// // $db=db_connect();
+// $db=db_close($db);  // this will throw an error that will get skipped ; since the line above is commented out
+logout();
 ?>
