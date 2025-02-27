@@ -26,6 +26,9 @@ if (isset($_POST['submit_button'])) {
         $result = mysqli_query($db, $query);        // $db ; function call ?????
         $user = mysqli_fetch_assoc($result);
 
+        // closing db for security reasons
+        db_close($db);
+        // 
         $passwordVerify = password_verify($password, $user['password']);    // db password must be hashed
 
         if ($passwordVerify) {
