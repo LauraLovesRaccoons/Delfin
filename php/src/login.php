@@ -1,9 +1,14 @@
 <?php
+
+require 'functions.php';
+
 session_start();
 if (isset($_POST['submit_button'])) {
     // there is no signup so we don't care about a potentional mismatch with stripped tags
     $username = strip_tags(trim($_POST['username']));
     $password = strip_tags(trim($_POST['password']));
+    // $username = $_POST['username'];
+    // $password = $_POST['password'];
     $errors = [];
     if (empty($username)) {
         $errors['username'] = "<p style='color: red' >A username is required</p>";
@@ -13,13 +18,15 @@ if (isset($_POST['submit_button'])) {
     }
     if (empty($errors)) {
         // DB is currently hardcoded ; because header error
-        $db = mysqli_connect('mysql', 'delphinus', 'Inia_geoffrensis', 'delfin_db');
+        // $db = mysqli_connect('mysql', 'delphinus', 'Inia_geoffrensis', 'delfin_db');
+        $db = db_connect();   // function   // also using the variable $db
         $query = "SELECT * FROM Accounts WHERE username='$username'";
-        $result = mysqli_query($db, $query);
+        $result = mysqli_query($db, $query);        // $db ; function call ?????
         $user = mysqli_fetch_assoc($result);
+        $password = mysqli_fetch_assoc($result);
         $passwordVerify = password_verify($password, $user['password']);
 
-        if ($passwordVerify) {
+        if (!$passwordVerify) {
             $_SESSION['id'] = $user['id'];
             header("location: delfin.php");
             exit();
