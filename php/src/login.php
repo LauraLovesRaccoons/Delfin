@@ -30,7 +30,7 @@ if (isset($_POST['submit_button'])) {
             header("location: delfin.php");
             exit();
         } else {
-            echo "Username or Password incorrect";
+            echo "Username or Password incorrect <br />";
             var_dump($user['password']);
         }
     }
