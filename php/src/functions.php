@@ -6,8 +6,8 @@ function logout()
 {
     session_start();
     session_destroy();
-    // header('Location: index.php');
-    // exit();
+    header('Location: index.php');
+    exit();
 }
 
 function db_connect()
