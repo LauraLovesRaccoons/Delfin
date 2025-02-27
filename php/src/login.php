@@ -32,7 +32,7 @@ if (isset($_POST['submit_button'])) {
         $passwordVerify = password_verify($password, $user['password']);    // db password must be hashed
 
         if ($passwordVerify) {
-            $_SESSION['id'] = $user['id'];
+            $_SESSION['username'] = $user['username'];
             header("location: delfin.php");
             exit();
         } else {
