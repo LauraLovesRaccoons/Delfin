@@ -10,7 +10,7 @@ if(isset($_SESSION['username']))
 {
     echo "Welcome: $_SESSION[username]";
 }else {
-    header("location: index.php");
+    header("location: index.php");  // this requires a session from login
 }
 
 
@@ -21,6 +21,8 @@ if(isset($_SESSION['username']))
 
 
 <h1>LOGGED IN</h1>
+<br />
+<h1>This needs a session from login to work</h1>
 <?php
 // if (!isset($_SESSION['loggedin'])) {
 //     header('Location: index.html');

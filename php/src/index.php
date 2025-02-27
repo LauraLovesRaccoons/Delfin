@@ -49,7 +49,9 @@ echo 'This application is called ' . $_ENV["APP_NAME"] . '!';
 <br />
 
 <!--  -->
-
+<br /><br /><br /><br />
+<a href="generate_hash.php">Generate Hash</a>
+<br /><br /><br /><br />
 
 <!--  -->
 <br /><br /><br /><br />

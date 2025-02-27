@@ -9,7 +9,7 @@ if (isset($_POST['submit_button'])) {
     // there is no signup so we don't care about a potentional mismatch with stripped tags
     $username = strip_tags(trim($_POST['username']));
     $password = strip_tags(trim($_POST['password']));
-    var_dump($password);
+    // var_dump($password);
     // hashing
     // $password = password_hash("$password", PASSWORD_DEFAULT);
     // var_dump($password);
@@ -34,7 +34,7 @@ if (isset($_POST['submit_button'])) {
             exit();
         } else {
             echo "Username or Password incorrect <br />";
-            var_dump($user['password']);
+            // var_dump($user['password']);
         }
     }
 }
