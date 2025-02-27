@@ -33,6 +33,7 @@ if (isset($_POST['submit_button'])) {
             exit();
         } else {
             echo "Username or password incorrect";
+            var_dump($user['password']);
         }
     }
 }
