@@ -25,7 +25,6 @@ if (isset($_POST['submit_button'])) {
         $query = "SELECT * FROM Accounts WHERE username='$username'";
         $result = mysqli_query($db, $query);        // $db ; function call ?????
         $user = mysqli_fetch_assoc($result);
-        $password = mysqli_fetch_assoc($result);
         $passwordVerify = password_verify($password, $user['password']);
 
         if ($passwordVerify) {
