@@ -56,3 +56,5 @@ echo hash('sha256', 'The quick brown fox jumped over the lazy dog.');
 <p>hash test end</p>
 <br /><br /><br /><br />
 <!--  -->
+
+
