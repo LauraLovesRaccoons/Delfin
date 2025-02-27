@@ -19,8 +19,6 @@ if (isset($_POST['submit_button'])) {
         $errors['password'] = "<p style='color: red' >A password is required</p>";
     }
     if (empty($errors)) {
-        // DB is currently hardcoded ; because header error
-        // $db = mysqli_connect('mysql', 'delphinus', 'Inia_geoffrensis', 'delfin_db');
         $db = db_connect();   // function   // also using the variable $db
         $query = "SELECT * FROM Accounts WHERE username='$username'";
         $result = mysqli_query($db, $query);        // $db ; function call ?????
@@ -32,7 +30,7 @@ if (isset($_POST['submit_button'])) {
             header("location: delfin.php");
             exit();
         } else {
-            echo "Username or password incorrect";
+            echo "Username or Password incorrect";
             var_dump($user['password']);
         }
     }
