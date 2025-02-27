@@ -1,5 +1,7 @@
 <?php
 
+ob_start();     // output buffer removes header warnings : output buffer
+
 require 'functions.php';
 
 session_start();
@@ -26,7 +28,7 @@ if (isset($_POST['submit_button'])) {
         $password = mysqli_fetch_assoc($result);
         $passwordVerify = password_verify($password, $user['password']);
 
-        if (!$passwordVerify) {
+        if ($passwordVerify) {
             $_SESSION['id'] = $user['id'];
             header("location: delfin.php");
             exit();
