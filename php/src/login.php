@@ -5,22 +5,27 @@ if (isset($_POST['submit_button'])) {
     $username = strip_tags(trim($_POST['username']));
     $password = strip_tags(trim($_POST['password']));
     $errors = [];
-
-    if (empty($_POST['username'])) {
-        $errors[] = "Username can not be empty";
+    if (empty($username)) {
+        $errors['username'] = "<p style='color: red' >A username is required</p>";
     }
-    if (empty($_POST['password'])) {
-        $errors[] = "Password can not be empty";
+    if (empty($password)) {
+        $errors['password'] = "<p style='color: red' >A password is required</p>";
     }
+    if (empty($errors)) {
+        // DB is currently hardcoded ; because header error
+        $db = mysqli_connect('mysql', 'delphinus', 'Inia_geoffrensis', 'delfin_db');
+        $query = "SELECT * FROM Accounts WHERE username='$username'";
+        $result = mysqli_query($db, $query);
+        $user = mysqli_fetch_assoc($result);
+        $passwordVerify = password_verify($password, $user['password']);
 
-    if (!empty($errors)) {
-        foreach ($errors as  $error) {
-            echo $error . "<br>";
+        if ($passwordVerify) {
+            $_SESSION['id'] = $user['id'];
+            header("location: delfin.php");
+            exit();
+        } else {
+            echo "Username or password incorrect";
         }
-    } else {
-        // require 'db_connect.php';
-        $_SESSION['username'] = $_POST['username'];
-        header('location: delfin.php');
     }
 }
 ?>
@@ -29,8 +34,8 @@ if (isset($_POST['submit_button'])) {
 
 
 <!-- <form method="POST"> -->
-    <!-- required field is just for GUI ; it's back end verfied -->
-    <!-- <label for="username"></label>
+<!-- required field is just for GUI ; it's back end verfied -->
+<!-- <label for="username"></label>
     <input type="text" name="username" id="username" placeholder="Usernum" required>
     <label for="password"></label>
     <input type="password" name="password" id="password" placeholder="********" required>
@@ -40,11 +45,11 @@ if (isset($_POST['submit_button'])) {
 
 <form method="POST">
     <label for="username"></label>
-    <?php if(isset($errors['username'])) echo $errors['username'];?>
-    <input type="text" name="username" id="" placeholder="Usernum" >
+    <?php if (isset($errors['username'])) echo $errors['username']; ?>
+    <input type="text" name="username" id="" placeholder="Usernum">
     <label for="password"></label>
-    <?php if(isset($errors['password'])) echo $errors['password'];?>
-    <input type="password" name="password" id="" placeholder="********" >
+    <?php if (isset($errors['password'])) echo $errors['password']; ?>
+    <input type="password" name="password" id="" placeholder="********">
     <input type="submit" value="Log in" name="submit_button" id="">
 </form>
 
