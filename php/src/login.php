@@ -9,8 +9,10 @@ if (isset($_POST['submit_button'])) {
     // there is no signup so we don't care about a potentional mismatch with stripped tags
     $username = strip_tags(trim($_POST['username']));
     $password = strip_tags(trim($_POST['password']));
-    // $username = $_POST['username'];
-    // $password = $_POST['password'];
+    var_dump($password);
+    // hashing
+    // $password = password_hash("$password", PASSWORD_DEFAULT);
+    // var_dump($password);
     $errors = [];
     if (empty($username)) {
         $errors['username'] = "<p style='color: red' >A username is required</p>";
@@ -23,6 +25,7 @@ if (isset($_POST['submit_button'])) {
         $query = "SELECT * FROM Accounts WHERE username='$username'";
         $result = mysqli_query($db, $query);        // $db ; function call ?????
         $user = mysqli_fetch_assoc($result);
+
         $passwordVerify = password_verify($password, $user['password']);
 
         if ($passwordVerify) {
