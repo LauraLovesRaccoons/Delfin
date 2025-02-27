@@ -17,6 +17,8 @@
 <br />
 <p>hello</p>
 <br />
+<br /><a href="login.php">LOGIN PAGE</a><br />
+<br />
 <h1>
     TEST Divison
 </h1>
