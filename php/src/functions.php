@@ -41,18 +41,16 @@ function db_close_delfin($db)
     // }
 }
 
-function session_checker_delfin(){
-    if(isset($_POST['logout_button']))
+function session_checker_delfin()
 {
-    unset($_SESSION['username']);
-    header("location: logout.php");
-}
+    if (isset($_POST['logout_button'])) {
+        unset($_SESSION['username']);
+        header("location: logout.php");
+    }
 
-if(isset($_SESSION['username']))
-{
-    echo "Welcome: $_SESSION[username]";
-}else {
-    header("location: index.php");  // this requires a session from login
+    if (isset($_SESSION['username'])) {
+        echo "Welcome: $_SESSION[username]";
+    } else {
+        header("location: index.php");  // this requires a session from login
+    }
 }
-}
-
