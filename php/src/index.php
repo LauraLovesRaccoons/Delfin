@@ -65,3 +65,16 @@ echo hash('sha256', 'The quick brown fox jumped over the lazy dog.');
 <!-- Import a file -> stop the script if problem return an error -->
 <?php require 'footer.html'; ?>
 <!--  Import a file -> warning of issue, script continues to run -->
+
+<?php
+echo getenv('APP_NAME');
+//echo "<h1>getenv('APP_NAME')</h1>";
+?>
+<br /><br /><br /><br />
+<h1><?= getenv('APP_NAME'); ?></h1>
+<br /><br /><br /><br />
+
+<?php
+echo "<h1> 000 " . getenv('APP_NAME') . " 000 </h1>";
+
+
