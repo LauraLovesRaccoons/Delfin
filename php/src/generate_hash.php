@@ -1,6 +1,5 @@
 <?php
 
-
 session_start();
 if (isset($_POST['submit_button'])) {
     echo "<br /><h1>Generate a Hash for your Password</h1><br />";
@@ -15,6 +14,9 @@ if (isset($_POST['submit_button'])) {
 
 ?>
 
+
+<?php require 'header.html'; ?>
+
 <form method="POST">
     <label for="password"></label>
     <?php if (isset($errors['password'])) echo $errors['password']; ?>
@@ -27,3 +29,7 @@ if (isset($_POST['submit_button'])) {
 <br /><br /><br /><br />
 <a href="index.php">Go Back</a>
 <br /><br /><br /><br />
+
+
+
+<?php require 'footer.html'; ?>
