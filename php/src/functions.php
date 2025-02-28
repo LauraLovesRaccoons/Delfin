@@ -12,10 +12,16 @@ function logout_delfin()
 
 function db_connect_delfin()
 {
-    $serviceMysql = "mysql";                      // from compose.yaml !
-    $username = "delphinus";
-    $password = "Inia_geoffrensis";
-    $dbname = "delfin_db";
+    // $serviceMysql = "mysql";                      // from compose.yaml !
+    // $username = "delphinus";
+    // $password = "Inia_geoffrensis";
+    // $dbname = "delfin_db";
+
+    $serviceMysql = getenv('MYSQL_SERVICE_NAME');   // from compose.yaml !
+    $username = getenv('MYSQL_USER');
+    $password = getenv('MYSQL_PASSWORD');
+    $dbname = getenv('MYSQL_DATABASE');
+
     // Create connection to DB
     mysqli_report(MYSQLI_REPORT_OFF);           // this allows the upcoming @ to supress warnings from the user
     $db = @mysqli_connect($serviceMysql, $username, $password, $dbname);    // @ means surpress error message
