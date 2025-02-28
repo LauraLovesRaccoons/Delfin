@@ -28,7 +28,8 @@
 
 <!-- optional for testing purposes -->
 <?php include 'functions.php';
-db_connect_delfin();
+$db = db_connect_delfin();
+db_close_delfin($db);
 ?>
 <!-- optional for testing purposes -->
 
