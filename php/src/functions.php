@@ -40,3 +40,18 @@ function db_close($db)
     //     echo "There was NO Database Connection";
     // }
 }
+
+function session_checker(){
+    if(isset($_POST['logout_button']))
+{
+    unset($_SESSION['username']);
+    header("location: logout.php");
+}
+
+if(isset($_SESSION['username']))
+{
+    echo "Welcome: $_SESSION[username]";
+}else {
+    header("location: index.php");  // this requires a session from login
+}
+}
