@@ -11,8 +11,8 @@ services:
       MYSQL_DATABASE: "${MYSQL_DATABASE}"
       MYSQL_USER: "${MYSQL_USER}"
       MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
-    ports:
-      - "${MYSQL_PORTS}"
+    # ports:                # same docker container, so
+    #   - "${MYSQL_PORTS}"  # no need to expose the port(s)
   phpmyadmin:
     image: "${PMA_IMAGE}"
     container_name: "${COMPOSE_PROJECT_NAME}${PMA_CONTAINER_EXTENSION}"
