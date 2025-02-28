@@ -22,9 +22,20 @@ if (isset($_POST['submit_button'])) {
     }
     if (empty($errors)) {
         $db = db_connect_delfin();   // function   // also using the variable $db
-        $query = "SELECT * FROM Accounts WHERE username='$username'";
-        $result = mysqli_query($db, $query);        // $db ; function call ?????
-        $user = mysqli_fetch_assoc($result);
+
+        // SLQ query with password's hash fetch
+
+        // unsafe SQL query
+        // $query = "SELECT * FROM Accounts WHERE username='$username'";
+        // $result = mysqli_query($db, $query);        // $db ; function call ?????
+        // $user = mysqli_fetch_assoc($result);
+
+        // SQL Injection protection
+        $stmt = $db->prepare("SELECT * FROM Accounts WHERE username = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
 
         // closing db for security reasons
         db_close_delfin($db);
