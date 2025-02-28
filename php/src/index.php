@@ -5,9 +5,6 @@
 
 
 
-<!-- Import a file -> stop the script if problem return an error -->
-<?php require 'footer.html'; ?>
-<!--  Import a file -> warning of issue, script continues to run -->
 
 
 
@@ -64,3 +61,6 @@ echo hash('sha256', 'The quick brown fox jumped over the lazy dog.');
 <!--  -->
 
 
+<!-- Import a file -> stop the script if problem return an error -->
+<?php require 'footer.html'; ?>
+<!--  Import a file -> warning of issue, script continues to run -->

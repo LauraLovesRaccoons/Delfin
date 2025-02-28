@@ -22,10 +22,13 @@ function db_connect_delfin()
     if (!$db) {
         //     // // error_log(mysqli_connect_error());
         echo "Datenbank huet een Problem <br>";
+        echo "<script>console.log('Datenbank huet een Problem');</script>";
     } elseif ($db) {
         echo "Datenbank ass aktiv <br>";
+        echo "<script>console.log('Datenbank ass aktiv');</script>";
     } else {
         echo "Een Dëcken Hardware Problem mam Server <br>";
+        echo "<script>console.log('Een Dëcken Hardware Problem mam Server');</script>";
     }
     return $db; // this gives me the cannot modify header information warning
 }
@@ -35,10 +38,11 @@ function db_close_delfin($db)
     if ($db) {
         mysqli_close($db);  // closes the database connection
         // echo "Closed the Database Connection";
+        echo "<script>console.log('Closed the Database Connection');</script>";
+    } else {
+        // echo "There was NO Database Connection";
+        echo "<script>console.log('There was NO Database Connection');</script>";
     }
-    // else{
-    //     echo "There was NO Database Connection";
-    // }
 }
 
 function session_checker_delfin()
@@ -49,7 +53,7 @@ function session_checker_delfin()
     }
 
     if (isset($_SESSION['username'])) {
-        echo "Welcome: $_SESSION[username]";
+        echo "Welcome: $_SESSION[username] <script>console.log('Welcome: $_SESSION[username]');</script>";
     } else {
         header("location: index.php");  // this requires a session from login
     }
