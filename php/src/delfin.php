@@ -8,6 +8,9 @@ session_checker_delfin();
 ?>
 
 
+<?php require 'header.html'; ?>
+
+
 
 
 <h1>LOGGED IN</h1>
@@ -20,8 +23,9 @@ session_checker_delfin();
 // }
 ?>
 
-<h2>:farewell:</h2>
+<!-- <h2>:farewell:</h2>
 <form method="post">
     <input type="submit" value="log out" name="logout_button">
-</form>
+</form> -->
 
+<?php require 'footer.html'; ?>
