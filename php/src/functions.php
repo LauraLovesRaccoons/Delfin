@@ -2,7 +2,7 @@
 
 // $db= false;     // setup
 
-function logout()
+function logout_delfin()
 {
     session_start();
     session_destroy();
@@ -10,7 +10,7 @@ function logout()
     exit();
 }
 
-function db_connect()
+function db_connect_delfin()
 {
     $serviceMysql = "mysql";                      // from compose.yaml !
     $username = "delphinus";
@@ -30,7 +30,7 @@ function db_connect()
     return $db; // this gives me the cannot modify header information warning
 }
 
-function db_close($db)
+function db_close_delfin($db)
 {
     if ($db) {
         mysqli_close($db);  // closes the database connection
@@ -39,4 +39,19 @@ function db_close($db)
     // else{
     //     echo "There was NO Database Connection";
     // }
+}
+
+function session_checker_delfin(){
+    if(isset($_POST['logout_button']))
+{
+    unset($_SESSION['username']);
+    header("location: logout.php");
+}
+
+if(isset($_SESSION['username']))
+{
+    echo "Welcome: $_SESSION[username]";
+}else {
+    header("location: index.php");  // this requires a session from login
+}
 }

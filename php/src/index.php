@@ -31,7 +31,7 @@
 
 <!-- optional for testing purposes -->
 <?php include 'functions.php';
-db_connect();
+db_connect_delfin();
 ?>
 <!-- optional for testing purposes -->
 

@@ -1,17 +1,7 @@
 <?php session_start();
 
-if(isset($_POST['logout_button']))
-{
-    unset($_SESSION['username']);
-    header("location: logout.php");
-}
-
-if(isset($_SESSION['username']))
-{
-    echo "Welcome: $_SESSION[username]";
-}else {
-    header("location: index.php");  // this requires a session from login
-}
+require "functions.php";
+session_checker_delfin();
 
 
 
