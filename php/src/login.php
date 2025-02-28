@@ -21,13 +21,13 @@ if (isset($_POST['submit_button'])) {
         $errors['password'] = "<p style='color: red' >A password is required</p>";
     }
     if (empty($errors)) {
-        $db = db_connect();   // function   // also using the variable $db
+        $db = db_connect_delfin();   // function   // also using the variable $db
         $query = "SELECT * FROM Accounts WHERE username='$username'";
         $result = mysqli_query($db, $query);        // $db ; function call ?????
         $user = mysqli_fetch_assoc($result);
 
         // closing db for security reasons
-        db_close($db);
+        db_close_delfin($db);
         // 
         $passwordVerify = password_verify($password, $user['password']);    // db password must be hashed
 
