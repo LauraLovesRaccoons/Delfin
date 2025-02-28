@@ -1,7 +1,6 @@
 #version: "3.1"
 name: "${APP_NAME}"
 services:
-  #webapp:
   mysql:
     image: "${MYSQL_IMAGE}"
     container_name: "${COMPOSE_PROJECT_NAME}${MYSQL_CONTAINER_EXTENSION}"
@@ -13,6 +12,8 @@ services:
       MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
     # ports:                # same docker container, so
     #   - "${MYSQL_PORTS}"  # no need to expose the port(s)
+    networks:
+      - delfin_network
   phpmyadmin:
     image: "${PMA_IMAGE}"
     container_name: "${COMPOSE_PROJECT_NAME}${PMA_CONTAINER_EXTENSION}"
@@ -26,6 +27,8 @@ services:
       PMA_PASSWORD: "${MYSQL_ROOT_PASSWORD}"  # 
     ports:
       - "${PMA_PORTS}"
+    networks:
+      - delfin_network
   php-apache:
     image: "${PHP_IMAGE}"
     container_name: "${COMPOSE_PROJECT_NAME}${PHP_CONTAINER_EXTENSION}"
@@ -37,6 +40,8 @@ services:
     ports:
       - "${PHP_PORTS}"            #
       # - 8000-8010:8000-8010
+    networks:
+      - delfin_network
     build:
       context: ./php
       dockerfile: dockerfile    # extensions install
@@ -59,3 +64,8 @@ volumes:
   phpmyadmin:
   php-apache-environment:
   #wordpress:
+
+networks:
+  delfin_network:
+    driver: bridge
+
