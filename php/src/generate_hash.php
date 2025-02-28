@@ -7,7 +7,7 @@ if (isset($_POST['submit_button'])) {
     echo "<br /><h1>This is your password which is sql query safe ; might be different from the inputed one!!!</h1><br />";
     var_dump($password);
     $password = password_hash("$password", PASSWORD_DEFAULT);
-    echo "<br /><h1>This should be entered into the databse!!!</h1><br />";
+    echo "<br /><h1>This should be entered into the database!!!</h1><br />";
     var_dump($password);
     echo "<br /><br /><br />---<br /><br /><br />";
 }
