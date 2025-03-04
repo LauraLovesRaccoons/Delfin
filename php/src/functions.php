@@ -7,6 +7,9 @@ function logout_delfin()
     session_start();
     session_unset();
     session_destroy();
+    // cookie removal on client
+    setcookie("PHPSESSID", "", time() - 999999, "/");
+    // since there is a session start there always is a cookie session present ; unless someone messes with the cookie or the browser blocks them
     header('Location: index.php');
     exit();
 }
