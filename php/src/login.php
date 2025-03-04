@@ -3,8 +3,12 @@
 ob_start();     // output buffer removes header warnings : output buffer
 
 require 'functions.php';
+// echo ini_get("session.gc_maxlifetime");
+// ini_set("session.gc_maxlifetime", 60);
+// echo ini_get("session.gc_maxlifetime");
+session_start([
+]);
 
-session_start();
 if (isset($_POST['submit_button'])) {
     // there is no signup so we don't care about a potentional mismatch with stripped tags
     $username = strip_tags(trim($_POST['username']));
