@@ -47,6 +47,7 @@ RUN docker-php-ext-install mysqli
 # RUN composer init
 
 
+#!
 # install the docker packages from composer.json
 # doesn't work in windows
 # RUN composer install
