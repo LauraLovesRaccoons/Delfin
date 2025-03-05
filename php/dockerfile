@@ -22,9 +22,9 @@ RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y libzip-dev git && \
     docker-php-ext-install zip
 
-# Increase max upload size to 100MB
-RUN echo "upload_max_filesize=100M" > /usr/local/etc/php/conf.d/upload_large_dumps.ini && \
-echo "post_max_size=100M" >> /usr/local/etc/php/conf.d/upload_large_dumps.ini
+# # Increase max upload size to 100MB
+# RUN echo "upload_max_filesize=100M" > /usr/local/etc/php/conf.d/upload_large_dumps.ini && \
+# echo "post_max_size=100M" >> /usr/local/etc/php/conf.d/upload_large_dumps.ini
 
 
 # https://github.com/rimelek/docker-php/tree/master/common/bin
