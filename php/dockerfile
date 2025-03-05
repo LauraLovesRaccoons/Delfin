@@ -1,8 +1,12 @@
 FROM php:8.2-apache
 
-# install docker's php extension : mysqli
-# RUN docker-php-ext-install mysqli
+# # install docker's php extension : mysqli
+# # RUN docker-php-ext-install mysqli
+# install docker's php extension : mysqli : pdo_mysql
 RUN docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable pdo_mysql
+
+# # work directory assign
+# WORKDIR /var/www/html
 
 # composer package manager install
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
@@ -11,6 +15,8 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
 # RUN mv composer.phar /usr/local/bin/composer
 RUN apt-get update && apt-get upgrade -y
 # composer package manager installed
+
+#
 
 # Easily install PHP extensions in Docker containers
 RUN apt-get install -y libzip-dev git && \
@@ -28,4 +34,6 @@ RUN composer require fpdf/fpdf
 RUN composer require setasign/fpdi
 RUN composer require setasign/fpdi-fpdf
 
+
+# https://getcomposer.org/doc/01-basic-usage.md
 
