@@ -46,3 +46,8 @@ RUN apt-get install -y libzip-dev git && \
 
 # RUN composer init
 
+
+# install the docker packages from composer.json
+# doesn't work in windows
+RUN composer install
+
