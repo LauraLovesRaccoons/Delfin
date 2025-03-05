@@ -13,19 +13,41 @@ require "functions.php";
 
 
 
-<h1>LOGGED IN</h1>
+<h1>TEST EXTENSIONS</h1>
 <br />
-<h1>This needs a session from login to work</h1>
+<h1> </h1>
 <?php
-// if (!isset($_SESSION['loggedin'])) {
-//     header('Location: index.html');
-//     exit;
-// }
-?>
+require 'vendor/autoload.php';
 
-<!-- <h2>:farewell:</h2>
-<form method="post">
-    <input type="submit" value="log out" name="logout_button">
-</form> -->
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+try {
+    // Create new instance
+    $mail = new PHPMailer(true);
+
+    // Set up SMTP settings (if needed)
+    $mail->isSMTP();
+    $mail->Host = 'smtp.example.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'user@example.com';
+    $mail->Password = 'password';
+
+    // Send mail
+    $mail->setFrom('from@example.com', 'Mailer');
+    $mail->addAddress('to@example.com', 'User');
+
+    $mail->Subject = 'Hello World';
+    $mail->Body = 'This is a test email.';
+
+    if ($mail->send()) {
+        echo 'Email sent successfully.';
+    } else {
+        echo 'Error sending email: ' . $mail->error;
+    }
+} catch (Exception $e) {
+    echo 'Message could not be sent. Mailer Error: ' . $e->getMessage();
+}
+?>
 
 <?php require 'footer.html'; ?>

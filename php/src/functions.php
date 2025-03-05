@@ -2,15 +2,17 @@
 
 // $db= false;     // setup
 
-session_name("delfin-session-cookie");  // if function is always called before session_start (which is included in all the functions) ; then this will always be the cookie name
+$session_name = "delfin-session-cookie";  //! name req----.......
+session_name("$session_name");  //! name req----.......
+// if function is always called before session_start (which is included in all the functions) ; then this will always be the cookie name
 
-function logout_delfin()
+function logout_delfin($session_name)
 {
     session_start();
     session_unset();
     session_destroy();
     // cookie removal on client
-    setcookie("delfin-session-cookie", "", time() - 999999, "/");
+    setcookie($session_name, "", time() - 999999, "/");   //! must use the same name as the session name
     // since there is a session start there always is a cookie session present ; unless someone messes with the cookie or the browser blocks them
     header('Location: index.php');
     exit();
