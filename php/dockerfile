@@ -44,5 +44,5 @@ RUN composer require setasign/fpdi-fpdf
 
 
 
-# RUN docker init
+# RUN composer init
 
