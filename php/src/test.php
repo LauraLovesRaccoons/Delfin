@@ -1,7 +1,7 @@
 <?php 
 
 require "functions.php";
-session_checker_delfin();
+
 
 
 
