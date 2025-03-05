@@ -2,8 +2,8 @@
 
 // $db= false;     // setup
 
-$session_name = "delfin-session-cookie";  //! name req----.......
-session_name("$session_name");  //! name req----.......
+$session_name = "delfin-session-cookie";    // prettier name
+session_name("$session_name");              // now this is the cookie's name
 // if function is always called before session_start (which is included in all the functions) ; then this will always be the cookie name
 
 function logout_delfin($session_name)
