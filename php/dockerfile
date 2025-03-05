@@ -21,3 +21,11 @@ RUN echo "upload_max_filesize=100M" > /usr/local/etc/php/conf.d/upload_large_dum
 echo "post_max_size=100M" >> /usr/local/etc/php/conf.d/upload_large_dumps.ini
 
 
+# https://github.com/rimelek/docker-php/tree/master/common/bin
+
+RUN composer require phpmailer/phpmailer
+RUN composer require fpdf/fpdf
+RUN composer require setasign/fpdi
+RUN composer require setasign/fpdi-fpdf
+
+
