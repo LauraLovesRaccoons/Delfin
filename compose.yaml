@@ -34,7 +34,7 @@ services:
     container_name: "${COMPOSE_PROJECT_NAME}${PHP_CONTAINER_EXTENSION}"
     restart: "${PHP_RESTART}"
     environment:
-      - max_upload=10M            # 
+      - max_upload=100M           # 
     env_file:
       - .env                      # those are used in functions.php
     volumes:
