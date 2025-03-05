@@ -9,10 +9,10 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable pdo_mys
 # WORKDIR /var/www/html
 
 # composer package manager install
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
-    php composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
-    php -r "unlink('composer-setup.php');"
-# RUN mv composer.phar /usr/local/bin/composer
+# RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
+#     php composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
+#     php -r "unlink('composer-setup.php');"
+# # RUN mv composer.phar /usr/local/bin/composer
 RUN apt-get update && apt-get upgrade -y
 # composer package manager installed
 
@@ -36,4 +36,13 @@ RUN composer require setasign/fpdi-fpdf
 
 
 # https://getcomposer.org/doc/01-basic-usage.md
+
+
+# https://www.youtube.com/watch?v=1eH43qVMCOU
+
+# https://packagist.org/
+
+
+
+# RUN docker init
 
