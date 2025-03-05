@@ -85,6 +85,24 @@ echo "<h1> 000 " . getenv('APP_NAME') . " 000 </h1>";
 ?>
 
 
+<br /><br /><br /><br />
+<?php
+// // require 'vendor/autoload.php';
+// use setasign\Fpdi\Fpdi;
+// $pdf = new Fpdi();
+// $pdf->AddPage();
+// $pdf->setSourceFile("pdf/1.pdf");
+// $tplIdx = $pdf->importPage(1);
+// $pdf->useTemplate($tplIdx, 10, 10, 200);
+// $pdf->Output();
+
+
+?>
+<br /><br /><br /><br />
+
+<h6>BLANK</h6>
+<br />
+
 
 
 <!--  -->

@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+// session_start();
 if (isset($_POST['submit_button'])) {
     echo "<br /><h1>Generate a Hash for your Password</h1><br />";
     $password = strip_tags(trim($_POST['password']));
