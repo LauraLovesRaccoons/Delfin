@@ -1,7 +1,7 @@
 # Mac
 .DS_Store
 # .env use .env.example for reference
-.env
+# .env
 # added by composer
 /vendor/
 #
