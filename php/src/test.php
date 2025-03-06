@@ -23,6 +23,10 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
+
+// junk code 
+// ! DO NOT USE
+
 try {
     // Create new instance
     $mail = new PHPMailer(true);
