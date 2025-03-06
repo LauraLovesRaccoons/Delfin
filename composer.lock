@@ -4,8 +4,62 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f5298c2b2de9d9391c43738ad2814751",
+    "content-hash": "58741393d08b653e1b404ca0dc3b9c9a",
     "packages": [
+        {
+            "name": "ddn/sapp",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dealfonso/sapp.git",
+                "reference": "e96567de7a9826912223304e613092e2640611c2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dealfonso/sapp/zipball/e96567de7a9826912223304e613092e2640611c2",
+                "reference": "e96567de7a9826912223304e613092e2640611c2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ddn\\sapp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Carlos A.",
+                    "email": "caralla@upv.es"
+                }
+            ],
+            "description": "Simple and Agnostic PDF Parser (SAPP): Edit, manipulate and sign PDF documents usign PHP",
+            "keywords": [
+                "electronic signature",
+                "pdf",
+                "php",
+                "sign",
+                "signature"
+            ],
+            "support": {
+                "issues": "https://github.com/dealfonso/sapp/issues",
+                "source": "https://github.com/dealfonso/sapp/tree/main"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.me/caralla",
+                    "type": "custom"
+                }
+            ],
+            "time": "2024-12-19T18:32:34+00:00"
+        },
         {
             "name": "fpdf/fpdf",
             "version": "1.86.0",
@@ -258,7 +312,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "ddn/sapp": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {},
