@@ -2,47 +2,46 @@
 name: "${APP_NAME}"
 services:
   mysql:
-    image: "${MYSQL_IMAGE}"
-    container_name: "${COMPOSE_PROJECT_NAME}${MYSQL_CONTAINER_EXTENSION}"
-    restart: "${MYSQL_RESTART}"
+    image: "mysql"
+    container_name: "${COMPOSE_PROJECT_NAME}_MYSQL"
+    restart: "always"
     environment:
       MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
       MYSQL_DATABASE: "${MYSQL_DATABASE}"
       MYSQL_USER: "${MYSQL_USER}"
       MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
-    # ports:                # same docker container, so
-    #   - "${MYSQL_PORTS}"  # no need to expose the port(s)
+    # ports:            # same docker container, so
+    #   - "3306:3306"   # no need to expose the port(s)
     networks:
       - delfin_network
   phpmyadmin:
-    image: "${PMA_IMAGE}"
-    container_name: "${COMPOSE_PROJECT_NAME}${PMA_CONTAINER_EXTENSION}"
-    restart: "${PMA_RESTART}"   # 
+    image: "phpmyadmin:latest"          #! x64
+    # image: "arm64v8/phpmyadmin:latest"  #! ARM
+    container_name: "${COMPOSE_PROJECT_NAME}_PMA"
+    restart: "no"   # more infos at profile
     profiles:
-      - "pma"   #  docker compose --profile pma up ;; to enable the service
+      - "pma"       # docker compose --profile pma up ; to enable the service
     environment:
-      PMA_HOST: "${MYSQL_SERVICE_NAME}"        # must be named after the service
-      PMA_USER: "${PMA_USER}"
-      # PMA_PASSWORD: "${PMA_PASSWORD}"       # 
-      PMA_PASSWORD: "${MYSQL_ROOT_PASSWORD}"  # 
+      PMA_HOST: "${MYSQL_SERVICE_NAME}"       # must be named after the service
+      PMA_USER: "root"                        # MUST be root
+      PMA_PASSWORD: "${MYSQL_ROOT_PASSWORD}"  # MYSQL_ROOT_PASSWORD
     ports:
-      - "${PMA_PORTS}"
+      - "8080:80"   # port 8080 external
     networks:
       - delfin_network
   php-apache:
-    image: "${PHP_IMAGE}"
-    container_name: "${COMPOSE_PROJECT_NAME}${PHP_CONTAINER_EXTENSION}"
-    restart: "${PHP_RESTART}"
+    image: "php:8.2-apache"
+    container_name: "${COMPOSE_PROJECT_NAME}_PHP-APACHE"
+    restart: "always"
     environment:
-      - max_upload=100M           # 
+      - max_upload=100M               # 100 MB
     env_file:
-      - .env                      # those are used in functions.php
+      - .env                          # those are used in functions.php
     volumes:
       - ./php/src:/var/www/html/      # Path to folder in windows : Path to folder in Linux
-      - ./vendor:/var/www/html/vendor # composer vendor folder
+      - ./vendor:/var/www/html/vendor # composer -> vendor folder
     ports:
-      - "${PHP_PORTS}"            # 
-      # - 8000-8010:8000-8010
+      - "80:80"   # port 80 external
     networks:
       - delfin_network
     build:
