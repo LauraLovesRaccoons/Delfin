@@ -5,38 +5,16 @@ RUN docker-php-ext-install mysqli
 # # install docker's php extension : mysqli : pdo_mysql
 # RUN docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable pdo_mysql
 
-# # work directory assign
-# WORKDIR /var/www/html
-
-# composer package manager install
-# RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
-#     php composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
-#     php -r "unlink('composer-setup.php');"
-# # RUN mv composer.phar /usr/local/bin/composer
-# RUN apt-get update && apt-get upgrade -y
-# composer package manager installed
-
-#
-
-# # Easily install PHP extensions in Docker containers
-# RUN apt-get install -y libzip-dev git && \
-#     docker-php-ext-install zip
-
-# # Increase max upload size to 100MB
-# RUN echo "upload_max_filesize=100M" > /usr/local/etc/php/conf.d/upload_large_dumps.ini && \
-# echo "post_max_size=100M" >> /usr/local/etc/php/conf.d/upload_large_dumps.ini
+#! composer is handled with the batch file since we're in Windows
+# RUN composer install
 
 
-# https://github.com/rimelek/docker-php/tree/master/common/bin
-
-# RUN composer require phpmailer/phpmailer
-# RUN composer require fpdf/fpdf
-# RUN composer require setasign/fpdi
-# RUN composer require setasign/fpdi-fpdf
 
 
-# https://getcomposer.org/doc/01-basic-usage.md
 
+
+
+# NOTES:
 
 # https://www.youtube.com/watch?v=1eH43qVMCOU
 
@@ -47,8 +25,11 @@ RUN docker-php-ext-install mysqli
 # RUN composer init
 
 
-#!
+
 # install the docker packages from composer.json
 # doesn't work in windows
-# RUN composer install
+# 
+
+# # in existing project or changes
+# RUN composer update
 
