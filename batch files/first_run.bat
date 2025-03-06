@@ -5,7 +5,7 @@ ECHO --------------------------------
 cd ../
 docker compose --profile pma up -d --build
 
-start cmd /k composer install
+start cmd /c "composer install && timeout /t 10"
 
 timeout /t 10
 docker compose --profile pma stop

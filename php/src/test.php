@@ -25,6 +25,7 @@ use PHPMailer\PHPMailer\Exception;
 try {
     // Create new instance
     $mail = new PHPMailer(true);
+    echo "$mail <br />";
 
     // Set up SMTP settings (if needed)
     $mail->isSMTP();
