@@ -38,7 +38,8 @@ services:
     env_file:
       - .env                      # those are used in functions.php
     volumes:
-      - ./php/src:/var/www/html/  # Path to folder in windows : Path to folder in Linux
+      - ./php/src:/var/www/html/      # Path to folder in windows : Path to folder in Linux
+      - ./vendor:/var/www/html/vendor # composer vendor folder
     ports:
       - "${PHP_PORTS}"            # 
       # - 8000-8010:8000-8010
