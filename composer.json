@@ -5,7 +5,8 @@
         "phpmailer/phpmailer": "^6.9",
         "fpdf/fpdf": "^1.86",
         "setasign/fpdi": "^2.6",
-        "setasign/fpdf": "^1.8"
+        "setasign/fpdf": "^1.8",
+        "ddn/sapp": "dev-main"
     },
     "autoload": {
         "psr-4": {
