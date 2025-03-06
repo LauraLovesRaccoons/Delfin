@@ -6,6 +6,9 @@ $session_name = "delfin-session-cookie";    // prettier name
 session_name("$session_name");              // now this is the cookie's name
 // if function is always called before session_start (which is included in all the functions) ; then this will always be the cookie name
 
+// Load Composer's autoloader
+require 'vendor/autoload.php';
+
 function logout_delfin($session_name)
 {
     session_start();

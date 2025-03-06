@@ -17,9 +17,10 @@ require "functions.php";
 <br />
 <h1> </h1>
 <?php
-require 'vendor/autoload.php';
+
 
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 try {
