@@ -20,12 +20,7 @@ function logout_delfin($session_name)
 
 function db_connect_delfin()
 {
-    // $serviceMysql = "mysql";                      // from compose.yaml !
-    // $username = "delphinus";
-    // $password = "Inia_geoffrensis";
-    // $dbname = "delfin_db";
-
-    $serviceMysql = getenv('MYSQL_SERVICE_NAME');   // from compose.yaml !
+    $serviceMysql = getenv('MYSQL_SERVICE_NAME');   // (from compose.yaml) -> .env
     $username = getenv('MYSQL_USER');
     $password = getenv('MYSQL_PASSWORD');
     $dbname = getenv('MYSQL_DATABASE');
