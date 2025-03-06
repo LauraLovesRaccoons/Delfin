@@ -36,17 +36,17 @@ services:
     environment:
       - max_upload=100M               # 100 MB
     env_file:
-      - .env                          # those are used in functions.php
+      - .env                          # those are used in php with getenv('varNameHere')
     volumes:
-      - ./php/src:/var/www/html/      # Path to folder in windows : Path to folder in Linux
-      - ./vendor:/var/www/html/vendor # composer -> vendor folder
+      - ./php/src:/var/www/html/          # Path to folder in windows : Path to folder in Linux
+      - ./php/vendor:/var/www/html/vendor # composer -> vendor folder
     ports:
       - "80:80"   # port 80 external
     networks:
       - delfin_network
     build:
-      context: ./php
-      dockerfile: dockerfile    # extensions install
+      context: "./"
+      dockerfile: "dockerfile"  # extensions install
 
   #wordpress:
     #image: wordpress:latest
