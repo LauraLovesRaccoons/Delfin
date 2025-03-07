@@ -133,6 +133,7 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
         $mail->Body = $emailBody;
         $mail->send();
         echo 'Message has been sent';
+        $mail->SmtpClose();     // close the connection ; Very Smort -> stonks
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }

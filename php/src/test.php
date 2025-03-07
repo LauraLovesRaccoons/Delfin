@@ -24,7 +24,7 @@ require "functions.php";
 // 
 $emailSender = 'laura.hornick@petange.lu';
 $emailSenderName = 'TEST WOMAN';
-$emailRecipient = 'holaura@protonmail.com';    // external disabled atm
+$emailRecipient = 'holaura@protonmail.com';    // external requires proper configured mail server
 $emailRecipientName = 'RECEIVER';
 $emailSubject = 'TEST EMAIL';
 $emailBody = 'This is a test email';
@@ -34,8 +34,12 @@ send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipien
 
 
 
-
 ?>
+
+<br /><br /><br />
+<h1> ADD A LOGGER THAT REGISTERS ALL FAILED SEND MESSAGES ; EXCEPTIONS IN THE FUNCTION </h1>
+<br /><br /><br />
+
 
 <?php require 'footer.html'; ?>
 
