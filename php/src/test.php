@@ -24,7 +24,7 @@ require "functions.php";
 // 
 $emailSender = 'laura.hornick@petange.lu';
 $emailSenderName = 'TEST WOMAN';
-$emailRecipient = 'frank.merges@petange.lu';    // external disabled atm
+$emailRecipient = 'laura.hornick@petange.lu';    // external disabled atm
 $emailRecipientName = 'RECEIVER';
 $emailSubject = 'TEST EMAIL';
 $emailBody = 'This is a test email';
