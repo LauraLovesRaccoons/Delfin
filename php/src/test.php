@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require "functions.php";
 
@@ -17,37 +17,33 @@ require "functions.php";
 <br />
 <h1> </h1>
 <?php
-require 'vendor/autoload.php';
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
-try {
-    // Create new instance
-    $mail = new PHPMailer(true);
 
-    // Set up SMTP settings (if needed)
-    $mail->isSMTP();
-    $mail->Host = 'smtp.example.com';
-    $mail->SMTPAuth = true;
-    $mail->Username = 'user@example.com';
-    $mail->Password = 'password';
 
-    // Send mail
-    $mail->setFrom('from@example.com', 'Mailer');
-    $mail->addAddress('to@example.com', 'User');
+// 
+$emailSender = 'noreply-laura.hornick@petange.lu';
+$emailSenderName = 'DO NOT REPLY - LAURA HORNICK';
+$emailRecipient = 'holaura@protonmail.com';    // external requires proper configured mail server
+$emailRecipientName = 'RECEIVER';
+$emailSubject = 'TEST EMAIL Petange Intern';
+$emailBody = '<h2>Intern verschéckten Test Email, net entwäerten a keen Handlungsbedarf.</h2> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 🦆 <br> <br> <br> 北京烤鴨 <br>';
+$emailAttachement = 'favicon.ico';
+// 
+send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement);
 
-    $mail->Subject = 'Hello World';
-    $mail->Body = 'This is a test email.';
 
-    if ($mail->send()) {
-        echo 'Email sent successfully.';
-    } else {
-        echo 'Error sending email: ' . $mail->error;
-    }
-} catch (Exception $e) {
-    echo 'Message could not be sent. Mailer Error: ' . $e->getMessage();
-}
+
 ?>
 
+<br /><br /><br />
+<h1> ADD A LOGGER THAT REGISTERS ALL FAILED SEND MESSAGES ; EXCEPTIONS IN THE FUNCTION </h1>
+<br /><br /><br />
+
+
 <?php require 'footer.html'; ?>
+
+
+<?php
+// debug_test_env_delfin();
+?>
