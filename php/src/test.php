@@ -13,7 +13,8 @@ require "functions.php";
 
 
 
-<h1>TEST EXTENSIONS</h1>
+<h1>BE PATIENT !    - MUST DISPLAY ON THE PREVIOUS PAGE </h1>
+<h1>ESPECIALLY IF MAILS ARE FAILING TO SEND</h1>
 <br />
 <h1> </h1>
 <?php
@@ -47,3 +48,29 @@ send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipien
 <?php
 // debug_test_env_delfin();
 ?>
+
+
+<br />
+<hr />
+<br />
+
+<br /><br /><br /><br /><br /><br />
+<h2>TESTING error logging simulated loop from an array</h2>
+<br /><br /><br />
+<?php
+// echo "<script>console.log('TEST LOOP');</script>";
+// echo "<br />";
+// $emailRecipient = 'laura.hornick@petange.lu';
+// send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement);
+// echo "<br />";
+// $emailRecipient = 'laura.hornick@petange.lu';
+// send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement);
+// echo "<br />";
+// $emailRecipient = 'laura.hornick@petange.lu';
+// send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement);
+// echo "<br />";
+?>
+<br />
+<hr />
+<br />
+
