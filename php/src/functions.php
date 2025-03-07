@@ -116,6 +116,9 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
                 )
             );
         }
+        $mail->Encoding = 'base64';     // not exactly sure but it might help with the character set
+        $mail->CharSet = "UTF-8";       // this makes symbols commonly used in Luxembourg work
+
         $mail->Host = getenv('SMTP_SERVER');        // Internal Company Mail Server might need ip address instead of domain name
         $mail->Username = getenv('SMTP_USERNAME');  // this doesn't do anything if SMTPAuth is false
         $mail->Password = getenv('SMTP_PASSWORD');  // ditto

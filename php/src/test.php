@@ -22,12 +22,12 @@ require "functions.php";
 
 
 // 
-$emailSender = 'laura.hornick@petange.lu';
-$emailSenderName = 'TEST WOMAN';
-$emailRecipient = 'holaura@protonmail.com';    // external requires proper configured mail server
+$emailSender = 'noreply-laura.hornick@petange.lu';
+$emailSenderName = 'DO NOT REPLY - LAURA HORNICK';
+$emailRecipient = 'laura.hornick@petange.lu';    // external requires proper configured mail server
 $emailRecipientName = 'RECEIVER';
-$emailSubject = 'TEST EMAIL';
-$emailBody = 'This is a test email';
+$emailSubject = 'TEST EMAIL Petange Intern';
+$emailBody = '<h2>Intern verschéckten Test Email, net entwäerten a keen Handlungsbedarf.</h2> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 🦆 <br> <br> <br> 北京烤鴨 <br>';
 $emailAttachement = 'favicon.ico';
 // 
 send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement);
