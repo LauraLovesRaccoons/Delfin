@@ -90,7 +90,8 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
 {
     $mail = new PHPMailer(true);    // true enables exceptions
     try {
-        $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;                  //Enable verbose debug output
+        $mail->isSMTP();                                        //Send using SMTP
         $encryptionType = strtolower(getenv('SMTP_SECURE'));    // forces lowercase
         echo "<script>console.log('.env encryption type in lower case: [ $encryptionType ]');</script>";
         if ($encryptionType == 'tls') {
