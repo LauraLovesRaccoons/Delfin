@@ -104,8 +104,17 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             echo "<script>console.log('encryption type: SSL');</script>";
         } else {
             $mail->SMTPAuth = true;     // password authentication
-            // $mail->SMTPSecure = '';     // which means unencrypted
+            $mail->SMTPSecure = '';     // which means unencrypted
             echo "<script>console.log('encryption type: NONE');</script>";
+            // Chat GPT suggested this
+            // Disable SSL certificate verification
+            $mail->SMTPOptions = array(
+                'ssl' => array(
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                )
+            );
         }
         $mail->Host = getenv('SMTP_SERVER');
         $mail->Username = getenv('SMTP_USERNAME');
@@ -116,8 +125,8 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
         // Recipients
         $mail->setFrom($emailSender, $emailSenderName);
         $mail->addAddress($emailRecipient, $emailRecipientName);
-        // // Attachments
-        // $mail->addAttachment($emailAttachement);
+        // Attachments
+        $mail->addAttachment($emailAttachement);
         // Content
         $mail->isHTML(true);
         $mail->Subject = $emailSubject;
