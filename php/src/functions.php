@@ -9,6 +9,14 @@ session_name("$session_name");              // now this is the cookie's name
 // Load Composer's autoloader
 require 'vendor/autoload.php';
 
+
+function debug_test_env_delfin()
+{
+    echo "<br /><br />";
+    var_dump(getenv());     // shows all environment variables
+    echo "<br /><br />";
+}
+
 function logout_delfin($session_name)
 {
     session_start();

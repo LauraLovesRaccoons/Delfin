@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require "functions.php";
 
@@ -24,24 +24,33 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 # variables for mail server
-$mail = new PHPMailer(true);
+$mail = new PHPMailer(true);    // true enables exceptions
 $mail->isSMTP();
-$mail->SMTPAuth = filter_var(getenv('SMTP_AUTH'), FILTER_VALIDATE_BOOLEAN);
-if (!$mail->SMTPAuth) {
-    $mail->SMTPSecure = '';
+// $mail->SMTPAuth = filter_var(getenv('SMTP_AUTH'), FILTER_VALIDATE_BOOLEAN);
+// if (!$mail->SMTPAuth) {
+//     $mail->SMTPSecure = '';
+// }
+// else {
+    debug_test_env_delfin();
+$twssss = getenv('SMTP_SECURE');
+var_dump($twssss);
+$encryptionType = strtolower(getenv('SMTP_SECURE'));    // forces lowercase
+echo "<script>console.log('encryption type: $encryptionType');</script>";
+var_dump($encryptionType);
+if ($encryptionType == 'encryption type: tls') {
+    $mail->SMTPAuth = true;
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    echo "<script>console.log('TLS');</script>";
+} elseif ($encryptionType == 'encryption type: ssl') {
+    $mail->SMTPAuth = true;
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+    echo "<script>console.log('SSL');</script>";
+} else {
+    $mail->SMTPAuth = false;
+    $mail->SMTPSecure = ''; // which means unencrypted
+    echo "<script>console.log('encryption type: NONE');</script>";
 }
-else {
-    $tls_or_ssl = strtolower(getenv('SMTP_SECURE'));    // forces lowercase
-    if ($tls_or_ssl == 'tls') {
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    }
-    elseif ($tls_or_ssl == 'ssl') {
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-    }
-    else {
-        $mail->SMTPSecure = ''; // this should never happen though
-    }
-}
+// }
 
 $mail->Host = getenv('SMTP_SERVER');
 $mail->Username = getenv('SMTP_USERNAME');
@@ -80,6 +89,7 @@ $mail->Port = getenv('SMTP_PORT');
 // } catch (Exception $e) {
 //     echo 'Message could not be sent. Mailer Error: ' . $e->getMessage();
 // }
-// ?>
+// 
+?>
 
 <?php require 'footer.html'; ?>
