@@ -1,3 +1,4 @@
+@ECHO OFF
 ECHO This Will Take A While
 ECHO --------------------------------
 cd ../
