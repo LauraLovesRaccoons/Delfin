@@ -24,7 +24,7 @@ require "functions.php";
 // 
 $emailSender = 'laura.hornick@petange.lu';
 $emailSenderName = 'TEST WOMAN';
-$emailRecipient = 'laura.hornick@petange.lu';    // external disabled atm
+$emailRecipient = 'holaura@protonmail.com';    // external disabled atm
 $emailRecipientName = 'RECEIVER';
 $emailSubject = 'TEST EMAIL';
 $emailBody = 'This is a test email';
@@ -41,5 +41,5 @@ send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipien
 
 
 <?php
-debug_test_env_delfin();
+// debug_test_env_delfin();
 ?>

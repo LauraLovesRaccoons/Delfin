@@ -90,7 +90,7 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
 {
     $mail = new PHPMailer(true);    // true enables exceptions
     try {
-        $mail->SMTPDebug = SMTP::DEBUG_SERVER;                  //Enable verbose debug output
+        // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                  //Enable verbose debug output
         $mail->isSMTP();                                        //Send using SMTP
         $encryptionType = strtolower(getenv('SMTP_SECURE'));    // forces lowercase
         echo "<script>console.log('.env encryption type in lower case: [ $encryptionType ]');</script>";
@@ -103,10 +103,10 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             echo "<script>console.log('encryption type: SSL');</script>";
         } else {
-            $mail->SMTPAuth = false;     // password authentication DISABELD
+            // Internal Company Mail Server
+            $mail->SMTPAuth = false;    // password authentication DISABELD
             $mail->SMTPSecure = '';     // which means unencrypted
             echo "<script>console.log('encryption type: NONE');</script>";
-            // Chat GPT suggested this
             // Disable SSL certificate verification
             $mail->SMTPOptions = array(
                 'ssl' => array(
@@ -116,9 +116,9 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
                 )
             );
         }
-        $mail->Host = getenv('SMTP_SERVER');
-        $mail->Username = getenv('SMTP_USERNAME');
-        $mail->Password = getenv('SMTP_PASSWORD');
+        $mail->Host = getenv('SMTP_SERVER');        // Internal Company Mail Server might need ip address instead of domain name
+        $mail->Username = getenv('SMTP_USERNAME');  // this doesn't do anything if SMTPAuth is false
+        $mail->Password = getenv('SMTP_PASSWORD');  // ditto
         $mail->Port = intval(getenv('SMTP_PORT'));  // needs to be an integer
         echo "<script>console.log('Debug: [ $mail->Host ]');</script>";
         // var_dump($mail);
