@@ -90,6 +90,7 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
 {
     $mail = new PHPMailer(true);    // true enables exceptions
     try {
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
         $encryptionType = strtolower(getenv('SMTP_SECURE'));    // forces lowercase
         echo "<script>console.log('.env encryption type in lower case: [ $encryptionType ]');</script>";
         if ($encryptionType == 'tls') {
@@ -101,19 +102,21 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             echo "<script>console.log('encryption type: SSL');</script>";
         } else {
-            $mail->SMTPAuth = false;
-            $mail->SMTPSecure = ''; // which means unencrypted
+            $mail->SMTPAuth = true;     // password authentication
+            // $mail->SMTPSecure = '';     // which means unencrypted
             echo "<script>console.log('encryption type: NONE');</script>";
         }
         $mail->Host = getenv('SMTP_SERVER');
         $mail->Username = getenv('SMTP_USERNAME');
         $mail->Password = getenv('SMTP_PASSWORD');
-        $mail->Port = getenv('SMTP_PORT');
+        $mail->Port = intval(getenv('SMTP_PORT'));  // needs to be an integer
+        echo "<script>console.log('Debug: [ $mail->Host ]');</script>";
+        // var_dump($mail);
         // Recipients
         $mail->setFrom($emailSender, $emailSenderName);
         $mail->addAddress($emailRecipient, $emailRecipientName);
-        // Attachments
-        $mail->addAttachment($emailAttachement);
+        // // Attachments
+        // $mail->addAttachment($emailAttachement);
         // Content
         $mail->isHTML(true);
         $mail->Subject = $emailSubject;

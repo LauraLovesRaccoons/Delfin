@@ -22,9 +22,9 @@ require "functions.php";
 
 
 // 
-$emailSender = 'test@email.com';
+$emailSender = 'laura.hornick@petange.lu';
 $emailSenderName = 'TEST WOMAN';
-$emailRecipient = 'receive@email.com';
+$emailRecipient = 'holaura@protonmail.com';
 $emailRecipientName = 'RECEIVER';
 $emailSubject = 'TEST EMAIL';
 $emailBody = 'This is a test email';
@@ -38,3 +38,8 @@ send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipien
 ?>
 
 <?php require 'footer.html'; ?>
+
+
+<?php
+debug_test_env_delfin();
+?>
