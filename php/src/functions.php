@@ -103,7 +103,7 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             echo "<script>console.log('encryption type: SSL');</script>";
         } else {
-            $mail->SMTPAuth = true;     // password authentication
+            $mail->SMTPAuth = false;     // password authentication DISABELD
             $mail->SMTPSecure = '';     // which means unencrypted
             echo "<script>console.log('encryption type: NONE');</script>";
             // Chat GPT suggested this
