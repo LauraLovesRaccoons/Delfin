@@ -26,7 +26,8 @@ require "functions.php";
 $emailSender = 'noreply-laura.hornick@petange.lu';
 $emailSenderName = 'DO NOT REPLY - LAURA HORNICK';
 $emailRecipient = 'holaura@protonmail.com';    // external requires proper configured mail server
-$emailRecipientName = 'RECEIVER';
+// $emailRecipient = 'laura.hornick@petange.lu';
+$emailRecipientName = 'RECEIVER-TEST';
 $emailSubject = 'TEST EMAIL Petange Intern';
 $emailBody = '<h2>Intern verschéckten Test Email, net entwäerten a keen Handlungsbedarf.</h2> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 🦆 <br> <br> <br> 北京烤鴨 <br>';
 $emailAttachement = 'favicon.ico';
@@ -60,7 +61,7 @@ send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipien
 <?php
 echo "<script>console.log('TEST LOOP');</script>";
 echo "<br />";
-$emailRecipient = 'error';
+$emailRecipient = '@';
 $emailRecipientName = 'HACKER';
 send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement);
 // if (strpos($emailRecipient, '@') === false) {

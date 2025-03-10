@@ -88,7 +88,7 @@ function session_checker_delfin()
 // HTML ONLY
 function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement)
 {
-    if (strpos($emailRecipient, '@') || strlen($emailRecipient) < 3 === false) {           // just checking if an @ is present to make the code faster ; and length
+    if (strpos($emailRecipient, '@') === false || strlen($emailRecipient) < 3 ) {   // just checking if an @ is present to make the code faster ; and absolute minimum possible length
         echo "NO EMAIL: $emailRecipientName <br />";
         echo "<script>console.log('NO EMAIL:  " . $emailRecipientName . "');</script>";
     } else {
