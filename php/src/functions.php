@@ -149,3 +149,12 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
         }
     }
 }
+
+function write_log_delfin($logMessage)
+{
+    $timestamp = date("H:i:s d.m.Y");
+    $logFile = fopen("./log/log.txt", "a") or die("Unable to open file!");
+    fwrite($logFile, $timestamp . PHP_EOL . $logMessage . PHP_EOL);
+    fclose($logFile);
+}
+
