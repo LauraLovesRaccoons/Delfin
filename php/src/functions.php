@@ -3,12 +3,9 @@
 // $db= false;     // setup
 
 date_default_timezone_set('Europe/Luxembourg'); //! this isn't meant to change
-$logFileWithPath = "./logs/log.txt";    // makes it easier to change in the future
 
-function globals_delfin()
-{
-    global $logFileWithPath;
-}
+// Global Variables
+$logFileWithPath = "./logs/log.txt";    // global makes sense for this specific use case
 
 $session_name = "delfin-session-cookie";    // prettier name
 session_name("$session_name");              // now this is the cookie's name
