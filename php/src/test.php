@@ -2,6 +2,8 @@
 
 require "functions.php";
 
+// session id handoff
+session_checker_delfin();
 
 
 
@@ -23,8 +25,8 @@ require "functions.php";
 
 
 // 
-$emailSender = 'noreply-laura.hornick@petange.lu';
-$emailSenderName = 'DO NOT REPLY - LAURA HORNICK';
+$emailSender = $_SESSION['email'];
+$emailSenderName = $_SESSION['username'];
 $emailRecipient = 'holaura@protonmail.com';    // external requires proper configured mail server
 // $emailRecipient = 'laura.hornick@petange.lu';
 $emailRecipientName = 'RECEIVER-TEST';

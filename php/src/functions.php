@@ -76,12 +76,13 @@ function session_checker_delfin()
 {
     session_start();    // 
     if (isset($_POST['logout_button'])) {
-        unset($_SESSION['username']);
+        unset($_SESSION['id']);
         header("location: logout.php");
     }
 
-    if (isset($_SESSION['username'])) {
-        echo "Welcome: $_SESSION[username] <script>console.log('Welcome: $_SESSION[username]');</script>";
+    if (isset($_SESSION['id'])) {
+        echo "Welcome: $_SESSION[username] <br/>";
+        echo "<script>console.log('" . $_SESSION['username'] . " - " . $_SESSION['email'] . " - " . $_SESSION['id'] . "');</script>";
     } else {
         header("location: index.php");  // this requires a session from login
     }
@@ -167,4 +168,3 @@ function write_log_delfin($logMessage)
     fwrite($logToFile, PHP_EOL . $timestamp . PHP_EOL . $logMessage . PHP_EOL . $existingContent);
     fclose($logToFile); // yes
 }
-
