@@ -92,6 +92,7 @@ echo "<br />";
 // this works
 
 // Define an array of dummy accounts
+// // $emailRecipient = "NO"; // ensures there always is a string present
 // $dummyAccounts = [
 //     [
 //         'emailRecipient' => 'laura.hornick@petange.lu',
