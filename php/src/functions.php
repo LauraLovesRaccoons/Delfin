@@ -161,7 +161,7 @@ function write_log_delfin($logMessage)
     $timestamp = date("H:i:s d.m.Y");   // i want to create the timestamp at the closest possible time of the logging process
     $logFileWithPath = "./log.txt";     // makes it easier to change in the future
     $existingContent = @file_get_contents($logFileWithPath);    // @file_get_contents surpresses the warning if the file doesn't yet exist, only relevant on first run or after deletion
-    $logToFile = fopen($logFileWithPath, "w") or die("Unable to open file!");   // this also ensures the file is created if it doesn't exist
+    $logToFile = fopen($logFileWithPath, "w") or die("Unable to open loging file!");    // this also ensures the file is created if it doesn't exist
     fwrite($logToFile, PHP_EOL . $timestamp . PHP_EOL . $logMessage . PHP_EOL . $existingContent);
     fclose($logToFile); // yes
 }
