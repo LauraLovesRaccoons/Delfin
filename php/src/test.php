@@ -32,7 +32,8 @@ $emailSubject = 'TEST EMAIL Petange Intern';
 $emailBody = '<h2>Intern verschéckten Test Email, net entwäerten a keen Handlungsbedarf.</h2> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 🦆 <br> <br> <br> 北京烤鴨 <br>';
 $emailAttachement = 'favicon.ico';
 // 
-send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement);
+$RecipientId = 0; // from DB
+send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement, $RecipientId);
 
 
 
@@ -63,7 +64,8 @@ echo "<script>console.log('TEST LOOP');</script>";
 echo "<br />";
 $emailRecipient = '@';
 $emailRecipientName = 'HACKER';
-send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement);
+$RecipientId = 666; // from DB
+send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement, $RecipientId);
 // if (strpos($emailRecipient, '@') === false) {
 //     echo "NO EMAIL: $emailRecipientName <br />";
 //     echo "<script>console.log('NO EMAIL:  " . $emailRecipientName . "');</script>";
