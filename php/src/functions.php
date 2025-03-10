@@ -146,6 +146,7 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             echo "<br />Message failed to send to: <strong>$emailRecipientName</strong> --- <strong>$emailRecipient</strong><br />";
             echo "<script>console.log('Message failed to send to: [ " . $emailRecipientName . " - " . $emailRecipient . " ] ');</script>";
             // echo "<h3>The conosole.log is niche to have but it should write smth into the php logger</h3>";     // conosole FTW -> niche
+            write_log_delfin($emailRecipientName);
         }
     }
 }
