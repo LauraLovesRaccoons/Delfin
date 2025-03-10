@@ -2,6 +2,8 @@
 
 // $db= false;     // setup
 
+date_default_timezone_set('Europe/Luxembourg'); //! this isn't meant to change
+
 $session_name = "delfin-session-cookie";    // prettier name
 session_name("$session_name");              // now this is the cookie's name
 // if function is always called before session_start (which is included in all the functions) ; then this will always be the cookie name
@@ -74,72 +76,95 @@ function session_checker_delfin()
 {
     session_start();    // 
     if (isset($_POST['logout_button'])) {
-        unset($_SESSION['username']);
+        unset($_SESSION['id']);
         header("location: logout.php");
     }
 
-    if (isset($_SESSION['username'])) {
-        echo "Welcome: $_SESSION[username] <script>console.log('Welcome: $_SESSION[username]');</script>";
+    if (isset($_SESSION['id'])) {
+        echo "Welcome: $_SESSION[username] <br/>";
+        echo "<script>console.log('" . $_SESSION['username'] . " - " . $_SESSION['email'] . " - " . $_SESSION['id'] . "');</script>";
     } else {
         header("location: index.php");  // this requires a session from login
     }
 }
 
 // HTML ONLY
-function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement)
+function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement, $RecipientId)
 {
-    $mail = new PHPMailer(true);    // true enables exceptions
-    try {
-        // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                  //Enable verbose debug output
-        $mail->isSMTP();                                        //Send using SMTP
-        $encryptionType = strtolower(getenv('SMTP_SECURE'));    // forces lowercase
-        echo "<script>console.log('.env encryption type in lower case: [ $encryptionType ]');</script>";
-        if ($encryptionType == 'tls') {
-            $mail->SMTPAuth = true;
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            echo "<script>console.log('encryption type: TLS');</script>";
-        } elseif ($encryptionType == 'ssl') {
-            $mail->SMTPAuth = true;
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-            echo "<script>console.log('encryption type: SSL');</script>";
-        } else {
-            // Internal Company Mail Server
-            $mail->SMTPAuth = false;    // password authentication DISABELD
-            $mail->SMTPSecure = '';     // which means unencrypted
-            echo "<script>console.log('encryption type: NONE');</script>";
-            // Disable SSL certificate verification
-            $mail->SMTPOptions = array(
-                'ssl' => array(
-                    'verify_peer' => false,
-                    'verify_peer_name' => false,
-                    'allow_self_signed' => true
-                )
-            );
-        }
-        $mail->Encoding = 'base64';     // not exactly sure but it might help with the character set
-        $mail->CharSet = "UTF-8";       // this makes symbols commonly used in Luxembourg work
+    if (strpos($emailRecipient, '@') === false || strlen($emailRecipient) < 3) {   // just checking if an @ is present to make the code faster ; and absolute minimum possible length
+        echo "NO EMAIL: <strong>$emailRecipientName</strong> - ID: <strong>$RecipientId</strong><br />";
+        echo "<script>console.log('NO EMAIL: [ " . $emailRecipientName . " - ID: $RecipientId ]');</script>";
+        $logMessage = "NO EMAIL: $emailRecipientName - ID: $RecipientId";
+        write_log_delfin($logMessage);
+    } else {
+        $mail = new PHPMailer(true);    // true enables exceptions
+        try {
+            // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                  //Enable verbose debug output
+            $mail->isSMTP();                                        //Send using SMTP
+            $encryptionType = strtolower(getenv('SMTP_SECURE'));    // forces lowercase
+            // echo "<script>console.log('.env encryption type in lower case: [ $encryptionType ]');</script>";
+            if ($encryptionType == 'tls') {
+                $mail->SMTPAuth = true;
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                // echo "<script>console.log('encryption type: TLS');</script>";
+            } elseif ($encryptionType == 'ssl') {
+                $mail->SMTPAuth = true;
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+                // echo "<script>console.log('encryption type: SSL');</script>";
+            } else {
+                // Internal Company Mail Server
+                $mail->SMTPAuth = false;    // password authentication DISABELD
+                $mail->SMTPSecure = '';     // which means unencrypted
+                // echo "<script>console.log('encryption type: NONE');</script>";
+                // Disable SSL certificate verification
+                $mail->SMTPOptions = array(
+                    'ssl' => array(
+                        'verify_peer' => false,
+                        'verify_peer_name' => false,
+                        'allow_self_signed' => true
+                    )
+                );
+            }
+            $mail->Encoding = 'base64';     // not exactly sure but it might help with the character set
+            $mail->CharSet = "UTF-8";       // this makes symbols commonly used in Luxembourg work
 
-        $mail->Host = getenv('SMTP_SERVER');        // Internal Company Mail Server might need ip address instead of domain name
-        $mail->Username = getenv('SMTP_USERNAME');  // this doesn't do anything if SMTPAuth is false
-        $mail->Password = getenv('SMTP_PASSWORD');  // ditto
-        $mail->Port = intval(getenv('SMTP_PORT'));  // needs to be an integer
-        echo "<script>console.log('Debug: [ $mail->Host ]');</script>";
-        // var_dump($mail);
-        // Recipients
-        $mail->setFrom($emailSender, $emailSenderName);
-        $mail->addAddress($emailRecipient, $emailRecipientName);
-        // Attachments
-        $mail->addAttachment($emailAttachement);
-        // Content
-        $mail->isHTML(true);
-        $mail->Subject = $emailSubject;
-        $mail->Body = $emailBody;
-        $mail->send();
-        echo 'Message has been sent';
-        $mail->SmtpClose();     // close the connection ; Very Smort -> stonks
-    } catch (Exception $e) {
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-        echo "<script>console.log('Message failed to send to: [ " . $emailRecipient . " - " . $emailRecipientName . " ] ');</script>";
-        echo "<h3>The conosole.log is niche to have but it should write smth into the php logger</h3>";     // conosole FTW -> niche
+            $mail->Host = getenv('SMTP_SERVER');        // Internal Company Mail Server might need ip address instead of domain name
+            $mail->Username = getenv('SMTP_USERNAME');  // this doesn't do anything if SMTPAuth is false
+            $mail->Password = getenv('SMTP_PASSWORD');  // ditto
+            $mail->Port = intval(getenv('SMTP_PORT'));  // needs to be an integer
+            // echo "<script>console.log('Debug: [ $mail->Host ]');</script>";
+            // // var_dump($mail);
+            // Recipients
+            $mail->setFrom($emailSender, $emailSenderName);
+            $mail->addAddress($emailRecipient, $emailRecipientName);
+            // Attachments
+            $mail->addAttachment($emailAttachement);
+            // Content
+            $mail->isHTML(true);
+            $mail->Subject = $emailSubject;
+            $mail->Body = $emailBody;
+            $mail->send();
+            // echo 'Message has been sent<br />';
+            $mail->SmtpClose();     // close the connection ; Very Smort -> stonks
+        } catch (Exception $e) {
+            // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}<br />";
+            $mailErrorInfo = json_encode($mail->ErrorInfo);         // made it a proper string for console logging
+            echo "<script>console.log($mailErrorInfo);</script>";  // 
+            echo "Message failed to send to: <strong>$emailRecipientName</strong> --- <strong>$emailRecipient</strong> - ID: <strong>$RecipientId</strong><br />";
+            echo "<script>console.log('Message failed to send to: [ " . $emailRecipientName . " - " . $emailRecipient . " - ID: $RecipientId ]');</script>";
+            // echo "<h3>The conosole.log is niche to have but it should write smth into the php logger</h3>";     // conosole FTW -> niche
+            $logMessage = "Message failed to send to: $emailRecipientName --- $emailRecipient - ID: $RecipientId";
+            write_log_delfin($logMessage);
+        }
     }
+}
+
+function write_log_delfin($logMessage)
+{
+    $timestamp = date("H:i:s d.m.Y");   // i want to create the timestamp at the closest possible time of the logging process
+    $logFileWithPath = "./log.txt";     // makes it easier to change in the future
+    $existingContent = @file_get_contents($logFileWithPath);    // @file_get_contents surpresses the warning if the file doesn't yet exist, only relevant on first run or after deletion
+    $logToFile = fopen($logFileWithPath, "w") or die("Unable to open loging file!");    // this also ensures the file is created if it doesn't exist
+    fwrite($logToFile, PHP_EOL . $timestamp . PHP_EOL . $logMessage . PHP_EOL . $existingContent);
+    fclose($logToFile); // yes
 }

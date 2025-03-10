@@ -34,12 +34,14 @@ services:
     container_name: "${COMPOSE_PROJECT_NAME}_PHP-APACHE"
     restart: "always"
     environment:
-      - max_upload=100M               # 100 MB
+      - upload_max_upload=20M         # 20 MB
+      - post_max_size=20M             # 20 MB
     env_file:
       - .env                          # those are used in php with getenv('varNameHere')
     volumes:
-      - ./php/src:/var/www/html/      # Path to folder in windows : Path to folder in Linux
-      - ./vendor:/var/www/html/vendor # composer -> vendor folder
+      - ./php/src:/var/www/html/        # Path to folder in windows : Path to folder in Linux
+      - ./vendor:/var/www/html/vendor   # composer -> vendor folder
+      - ./uploads:/var/www/html/uploads # 
     ports:
       - "80:80"   # port 80 external
     networks:
