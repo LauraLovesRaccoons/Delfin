@@ -13,7 +13,7 @@ require "functions.php";
 
 
 
-<h1>BE PATIENT !    - MUST DISPLAY ON THE PREVIOUS PAGE </h1>
+<h1>BE PATIENT ! - MUST DISPLAY ON THE PREVIOUS PAGE </h1>
 <h1>ESPECIALLY IF MAILS ARE FAILING TO SEND</h1>
 <br />
 <h1> </h1>
@@ -58,11 +58,20 @@ send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipien
 <h2>TESTING error logging simulated loop from an array</h2>
 <br /><br /><br />
 <?php
-// echo "<script>console.log('TEST LOOP');</script>";
-// echo "<br />";
-// $emailRecipient = 'laura.hornick@petange.lu';
-// send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement);
-// echo "<br />";
+echo "<script>console.log('TEST LOOP');</script>";
+echo "<br />";
+$emailRecipient = 'error';
+$emailRecipientName = 'HACKER';
+send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement);
+// if (strpos($emailRecipient, '@') === false) {
+//     echo "NO EMAIL: $emailRecipientName <br />";
+//     echo "<script>console.log('NO EMAIL:  " . $emailRecipientName . "');</script>";
+// } else {
+//     send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement);
+//     echo "<br />";
+// }
+
+echo "<br />";
 // $emailRecipient = 'laura.hornick@petange.lu';
 // send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement);
 // echo "<br />";
@@ -73,4 +82,3 @@ send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipien
 <br />
 <hr />
 <br />
-
