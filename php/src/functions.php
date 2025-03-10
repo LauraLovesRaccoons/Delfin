@@ -155,7 +155,7 @@ function write_log_delfin($logMessage)
 {
     $timestamp = date("H:i:s d.m.Y");
     $logFile = fopen("./log/log.txt", "a") or die("Unable to open file!");
-    fwrite($logFile, $timestamp . PHP_EOL . $logMessage . PHP_EOL);
+    fwrite($logFile, PHP_EOL . $timestamp . PHP_EOL . $logMessage . PHP_EOL);
     fclose($logFile);
 }
 
