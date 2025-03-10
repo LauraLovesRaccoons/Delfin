@@ -2,6 +2,8 @@
 
 // $db= false;     // setup
 
+date_default_timezone_set('Europe/Luxembourg'); //! this isn't meant to change
+
 $session_name = "delfin-session-cookie";    // prettier name
 session_name("$session_name");              // now this is the cookie's name
 // if function is always called before session_start (which is included in all the functions) ; then this will always be the cookie name
@@ -156,9 +158,11 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
 
 function write_log_delfin($logMessage)
 {
+    $logFileWithPath = "./log.txt";   // makes it easier to change in the future
+    $existingContent = file_get_contents($logFileWithPath); // will only throw a warning if the file doesn't exist ; only relevant on the first run
+    $logFile = fopen($logFileWithPath, "w") or die("Unable to open file!");
     $timestamp = date("H:i:s d.m.Y");
-    $logFile = fopen("./log.txt", "a") or die("Unable to open file!");
-    fwrite($logFile, PHP_EOL . $timestamp . PHP_EOL . $logMessage . PHP_EOL);
-    fclose($logFile);
+    fwrite($logFile, PHP_EOL . $timestamp . PHP_EOL . $logMessage . PHP_EOL . $existingContent);
+    fclose($logFile);   // yes
 }
 

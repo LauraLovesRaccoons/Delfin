@@ -38,9 +38,9 @@ send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipien
 
 ?>
 
-<br /><br /><br />
+<!-- <br /><br /><br />
 <h1> ADD A LOGGER THAT REGISTERS ALL FAILED SEND MESSAGES ; EXCEPTIONS IN THE FUNCTION </h1>
-<br /><br /><br />
+<br /><br /><br /> -->
 
 
 <?php require 'footer.html'; ?>
