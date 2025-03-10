@@ -85,3 +85,61 @@ echo "<br />";
 <br />
 <hr />
 <br />
+
+<?php
+
+
+// this works
+
+// Define an array of dummy accounts
+// $dummyAccounts = [
+//     [
+//         'emailRecipient' => 'laura.hornick@petange.lu',
+//         'emailRecipientName' => 'Dummy Recipient 1',
+//         'RecipientId' => 1
+//     ],
+//     [
+//         'emailRecipient' => 'frank.merges@petange.lu',
+//         'emailRecipientName' => 'Dummy Recipient 2',
+//         'RecipientId' => 2
+//     ],
+//     [
+//         'emailRecipient' => 'patrick.wagner@petange.lu',
+//         'emailRecipientName' => 'Dummy Recipient 3',
+//         'RecipientId' => 3
+//     ],
+//     [
+//         'emailRecipient' => 'dummy@example.com',
+//         'emailRecipientName' => 'Dummy Recipient 4 - invalid email',
+//         'RecipientId' => 4
+//     ],
+//     [
+//         'emailRecipient' => '/',
+//         'emailRecipientName' => 'Backslash',
+//         'RecipientId' => 5
+//     ],
+//     [
+//         'emailRecipient' => 'noreply-laura.hornick@petange.lu',
+//         'emailRecipientName' => 'Dummy Recipient 6',
+//         'RecipientId' => 6
+//     ]
+// ];
+
+// // Loop through the array and send emails
+// foreach ($dummyAccounts as $account) {
+//     send_mail_delfin(
+//         $emailSender,
+//         $emailSenderName,
+//         $account['emailRecipient'],
+//         $account['emailRecipientName'],
+//         $emailSubject,
+//         $emailBody,
+//         $emailAttachement,
+//         $account['RecipientId']
+//     );
+// }
+
+
+?>
+
+
