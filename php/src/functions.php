@@ -3,7 +3,7 @@
 // $db= false;     // setup
 
 date_default_timezone_set('Europe/Luxembourg'); //! this isn't meant to change
-$logFileWithPath = "./log.txt";     // makes it easier to change in the future
+$logFileWithPath = "./logs/log.txt";    // makes it easier to change in the future
 
 function globals_delfin()
 {
