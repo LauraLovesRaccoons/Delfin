@@ -89,7 +89,7 @@ function session_checker_delfin()
 function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement)
 {
     if (strpos($emailRecipient, '@') === false || strlen($emailRecipient) < 3 ) {   // just checking if an @ is present to make the code faster ; and absolute minimum possible length
-        echo "NO EMAIL: $emailRecipientName <br />";
+        echo "NO EMAIL: <strong>$emailRecipientName</strong><br />";
         echo "<script>console.log('NO EMAIL:  " . $emailRecipientName . "');</script>";
     } else {
         $mail = new PHPMailer(true);    // true enables exceptions
@@ -97,20 +97,20 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                  //Enable verbose debug output
             $mail->isSMTP();                                        //Send using SMTP
             $encryptionType = strtolower(getenv('SMTP_SECURE'));    // forces lowercase
-            echo "<script>console.log('.env encryption type in lower case: [ $encryptionType ]');</script>";
+            // echo "<script>console.log('.env encryption type in lower case: [ $encryptionType ]');</script>";
             if ($encryptionType == 'tls') {
                 $mail->SMTPAuth = true;
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                echo "<script>console.log('encryption type: TLS');</script>";
+                // echo "<script>console.log('encryption type: TLS');</script>";
             } elseif ($encryptionType == 'ssl') {
                 $mail->SMTPAuth = true;
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-                echo "<script>console.log('encryption type: SSL');</script>";
+                // echo "<script>console.log('encryption type: SSL');</script>";
             } else {
                 // Internal Company Mail Server
                 $mail->SMTPAuth = false;    // password authentication DISABELD
                 $mail->SMTPSecure = '';     // which means unencrypted
-                echo "<script>console.log('encryption type: NONE');</script>";
+                // echo "<script>console.log('encryption type: NONE');</script>";
                 // Disable SSL certificate verification
                 $mail->SMTPOptions = array(
                     'ssl' => array(
@@ -127,8 +127,8 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             $mail->Username = getenv('SMTP_USERNAME');  // this doesn't do anything if SMTPAuth is false
             $mail->Password = getenv('SMTP_PASSWORD');  // ditto
             $mail->Port = intval(getenv('SMTP_PORT'));  // needs to be an integer
-            echo "<script>console.log('Debug: [ $mail->Host ]');</script>";
-            // var_dump($mail);
+            // echo "<script>console.log('Debug: [ $mail->Host ]');</script>";
+            // // var_dump($mail);
             // Recipients
             $mail->setFrom($emailSender, $emailSenderName);
             $mail->addAddress($emailRecipient, $emailRecipientName);
@@ -143,8 +143,9 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             $mail->SmtpClose();     // close the connection ; Very Smort -> stonks
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-            echo "<script>console.log('Message failed to send to: [ " . $emailRecipient . " - " . $emailRecipientName . " ] ');</script>";
-            echo "<h3>The conosole.log is niche to have but it should write smth into the php logger</h3>";     // conosole FTW -> niche
+            echo "<br />Message failed to send to: <strong>$emailRecipientName</strong> --- <strong>$emailRecipient</strong><br />";
+            echo "<script>console.log('Message failed to send to: [ " . $emailRecipientName . " - " . $emailRecipient . " ] ');</script>";
+            // echo "<h3>The conosole.log is niche to have but it should write smth into the php logger</h3>";     // conosole FTW -> niche
         }
     }
 }
