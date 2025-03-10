@@ -146,7 +146,9 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             // echo 'Message has been sent<br />';
             $mail->SmtpClose();     // close the connection ; Very Smort -> stonks
         } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}<br />";
+            // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}<br />";
+            $mailErrorInfo = json_encode($mail->ErrorInfo);         // made it a proper string for console logging
+            echo "<script>console.log($mailErrorInfo);</script>";  // 
             echo "Message failed to send to: <strong>$emailRecipientName</strong> --- <strong>$emailRecipient</strong> - ID: <strong>$RecipientId</strong><br />";
             echo "<script>console.log('Message failed to send to: [ " . $emailRecipientName . " - " . $emailRecipient . " - ID: $RecipientId ]');</script>";
             // echo "<h3>The conosole.log is niche to have but it should write smth into the php logger</h3>";     // conosole FTW -> niche
