@@ -88,9 +88,11 @@ function session_checker_delfin()
 // HTML ONLY
 function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement)
 {
-    if (strpos($emailRecipient, '@') === false || strlen($emailRecipient) < 3 ) {   // just checking if an @ is present to make the code faster ; and absolute minimum possible length
+    if (strpos($emailRecipient, '@') === false || strlen($emailRecipient) < 3) {   // just checking if an @ is present to make the code faster ; and absolute minimum possible length
         echo "NO EMAIL: <strong>$emailRecipientName</strong><br />";
         echo "<script>console.log('NO EMAIL:  " . $emailRecipientName . "');</script>";
+        $logMessage = "NO EMAIL: $emailRecipientName";
+        write_log_delfin($logMessage);
     } else {
         $mail = new PHPMailer(true);    // true enables exceptions
         try {
@@ -146,7 +148,8 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             echo "<br />Message failed to send to: <strong>$emailRecipientName</strong> --- <strong>$emailRecipient</strong><br />";
             echo "<script>console.log('Message failed to send to: [ " . $emailRecipientName . " - " . $emailRecipient . " ] ');</script>";
             // echo "<h3>The conosole.log is niche to have but it should write smth into the php logger</h3>";     // conosole FTW -> niche
-            write_log_delfin($emailRecipientName);
+            $logMessage = "Message failed to send to: $emailRecipientName --- $emailRecipient";
+            write_log_delfin($logMessage);
         }
     }
 }
@@ -154,7 +157,7 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
 function write_log_delfin($logMessage)
 {
     $timestamp = date("H:i:s d.m.Y");
-    $logFile = fopen("./log/log.txt", "a") or die("Unable to open file!");
+    $logFile = fopen("./log.txt", "a") or die("Unable to open file!");
     fwrite($logFile, PHP_EOL . $timestamp . PHP_EOL . $logMessage . PHP_EOL);
     fclose($logFile);
 }
