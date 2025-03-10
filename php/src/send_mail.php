@@ -4,6 +4,8 @@ require "functions.php";
 
 // session id handoff
 session_checker_delfin();
+// run this before writing to the log file, as the older logs are less likely to be needed
+log_too_big_delfin();
 
 
 
