@@ -1,6 +1,6 @@
 <?php
 
-// ob_start();
+ob_start();
 
 require "functions.php";
 
@@ -14,7 +14,9 @@ log_too_big_delfin();
 ?>
 
 
-<?php require 'header.html'; ?>
+<?php 
+include 'header.html';
+ ?>
 
 
 
@@ -50,7 +52,9 @@ send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipien
 <br /><br /><br /> -->
 
 
-<?php require 'footer.html'; ?>
+<?php 
+include 'footer.html';
+ ?>
 
 
 <?php

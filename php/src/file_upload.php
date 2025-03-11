@@ -1,6 +1,6 @@
 <?php
 
-// ob_start();
+ob_start();
 
 require "functions.php";
 
@@ -8,30 +8,37 @@ session_checker_delfin();
 
 
 if (isset($_POST['submit_button'])) {
-  if(!isset($_FILES['fileToUplad'])){
-    echo "<strong>Keen Fichier ausgewielt</strong><br />";
-    // needs to come before the next line to handle custom empty file msg
-  }
-  elseif($_FILES['fileToUpload']['error'] !== UPLOAD_ERR_OK){
-    echo "<strong>Fichier ass iwwert 20MB</strong><br />";
-    // this doesn't work though ; future -> custom error msg
-  }
-  elseif (!empty($_FILES['fileToUpload']['name'])) {
-    $file = $_FILES['fileToUpload'];
-    file_upload_delfin($file);
-    // next part
-    // header('Location: send_mail.php');
-    // exit();
-  } 
+  // if(!isset($_FILES['fileToUplad'])){
+  //   echo "<strong>Keen Fichier ausgewielt</strong><br />";
+  //   // needs to come before the next line to handle custom empty file msg
+  // }
+  // elseif($_FILES['fileToUpload']['error'] !== UPLOAD_ERR_OK){
+  //   echo "<strong>Fichier ass iwwert 20MB</strong><br />";
+  //   // this doesn't work though ; future -> custom error msg
+  // }
+  // elseif (!empty($_FILES['fileToUpload']['name'])) {
+
+  // next part
+  // header('Location: send_mail.php');
+  // exit();
   // else {
   //   echo "<strong>Keen Fichier ausgewielt</strong><br />";
   // }
+  if (empty($_FILES['fileToUpload']['name'])) {
+    echo "<strong>Keen Fichier ausgewielt</strong><br />";
+  } else {
+    $file = $_FILES['fileToUpload'];
+    file_upload_delfin($file);
+    // next part
+    header('Location: send_mail.php');
+    exit();
+  }
 }
 
 
 
 
-require 'header.html';
+include 'header.html';
 
 ?>
 
@@ -49,7 +56,9 @@ require 'header.html';
 <br />
 
 
-<?php require 'footer.html'; ?>
+<?php 
+include 'footer.html';
+ ?>
 
 
 
