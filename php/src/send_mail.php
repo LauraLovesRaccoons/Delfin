@@ -50,8 +50,8 @@ include 'header.html';
 // 
 $emailSender = $_SESSION['email'];
 $emailSenderName = $_SESSION['username'];
-// $emailRecipient = 'holaura@protonmail.com';    // external requires proper configured mail server
-$emailRecipient = 'laura.hornick@petange.lu';
+$emailRecipient = 'holaura@protonmail.com';    // external requires proper configured mail server
+// $emailRecipient = 'laura.hornick@petange.lu';
 $emailRecipientName = 'RECEIVER-TEST';
 $emailSubject = 'TEST EMAIL Petange Intern';
 $emailBody = '<h2>Intern verschéckten Test Email, net entwäerten a keen Handlungsbedarf.</h2> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 🦆 <br> <br> <br> 北京烤鴨 <br>';
