@@ -6,8 +6,7 @@ require 'functions.php';
 // echo ini_get("session.gc_maxlifetime");
 // ini_set("session.gc_maxlifetime", 60);
 // echo ini_get("session.gc_maxlifetime");
-session_start([
-]);
+session_start([]);
 
 if (isset($_POST['submit_button'])) {
     // there is no signup so we don't care about a potentional mismatch with stripped tags
@@ -41,20 +40,25 @@ if (isset($_POST['submit_button'])) {
         $result = $stmt->get_result();
         $user = $result->fetch_assoc();
 
-        // closing db for security reasons
+        // closing db for security (and performance) reasons
         db_close_delfin($db);
         // 
-        $passwordVerify = password_verify($password, $user['password']);    // db password must be hashed
+        if ($user) {
+            $passwordVerify = password_verify($password, $user['password']);    // db password must be hashed
 
-        if ($passwordVerify) {
-            $_SESSION['id'] = $user['id'];
-            $_SESSION['email'] = $user['email'];
-            $_SESSION['username'] = $user['username'];
-            header("location: delfin.php");
-            exit();
-        } else {
-            echo "Email oder Passwuert falsch<br />";
-            // var_dump($user['password']);
+            if ($passwordVerify) {
+                $_SESSION['id'] = $user['id'];
+                $_SESSION['email'] = $user['email'];
+                $_SESSION['username'] = $user['username'];
+                header("location: delfin.php");
+                exit();
+            } else {
+                echo "<strong>Passwuert falsch</strong><br />";
+                // var_dump($user['password']);
+            }
+        }
+        else {
+            echo "<strong>Email falsch</strong><br />";
         }
     }
 }
@@ -85,3 +89,5 @@ if (isset($_POST['submit_button'])) {
 
 
 <?php require 'footer.html'; ?>
+
+

@@ -52,13 +52,13 @@ function db_connect_delfin()
     $db = @mysqli_connect($serviceMysql, $username, $password, $dbname);    // @ means surpress error message
     if (!$db) {
         //     // // error_log(mysqli_connect_error());
-        echo "Datenbank huet een Problem <br>";
+        // echo "Datenbank huet een Problem <br>";
         echo "<script>console.log('Datenbank huet een Problem');</script>";
     } elseif ($db) {
-        echo "Datenbank ass aktiv <br>";
+        // echo "Datenbank ass aktiv <br>";
         echo "<script>console.log('Datenbank ass aktiv');</script>";
     } else {
-        echo "Een Dëcken Hardware Problem mam Server <br>";
+        // echo "Een Dëcken Hardware Problem mam Server <br>";
         echo "<script>console.log('Een Dëcken Hardware Problem mam Server');</script>";
     }
     return $db; // this gives me the cannot modify header information warning
@@ -174,7 +174,8 @@ function write_log_delfin($logMessage)
     fclose($logToFile); // yes
 }
 
-function log_too_big_delfin(){
+function log_too_big_delfin()
+{
     // used since the append thingy in the write_log function requires memory and the bigger the file the more memory it needs; which means the time until it explodes is getting shorter
     $logFWP = $GLOBALS['logFileWithPath'];  // global var
     $maxLogSize = 1 * 1024 * 1024;  // 1MB -> Milton Bradley
@@ -185,16 +186,31 @@ function log_too_big_delfin(){
 }
 
 // requires a session to be set
-function pdf_upload_delfin($file){
+function file_upload_delfin($file)
+{
     $baseUploadDir = $GLOBALS['uploadPath'];    // global var
     $timestamp = time();
-    $targetUploadDir = $baseUploadDir . "/" . $_SESSION['id'] . "/" . $timestamp . "/"; // ensures each upload folder is unique, user id is unique and timestamp is unique ; and if not I'm gonna play the lottery (since the filename would have to also be an exact match)
-    if (!is_dir($targetUploadDir)){
+    $targetUploadDir = $baseUploadDir . "/" . $_SESSION['id'] . "/" . $timestamp . "/"; // ensures each upload folder is unique, user id is unique and timestamp is unique ; and if not I'm gonna play the lottery (since the filename would also have to be an exact match)
+    if (!is_dir($targetUploadDir)) {
         mkdir($targetUploadDir, 0777, true);    // 0777 gives everyone access to it ; for simplicity purposes
     }
+    $targetFile = $targetUploadDir . basename($file["name"]);   // 
+    if (file_exists($targetFile)) {
+        // echo "<strong>Somehow. Somehow, Palpatine returned... and made this file in this folder already exist!</strong><br />";
+        unlink($targetFile);
+    }
+    if(!move_uploaded_file($file['tmp_name'], $targetFile)){
+        echo "<strong>Something went terribly wrong!</strong><br />";
+        return false;
+    }
+    return $targetFile; // now i can use it
+}
 
 
-    // $targetFile = $targetUploadDir . basename($file["name"]);
+function delete_uploads_dir_delfin(){
+    $baseUploadDir = $GLOBALS['uploadPath'];    // global var
+    $UploadDirUserId = $baseUploadDir . "/" . $_SESSION['id'];  // this only targets the current user
+    system("rm -rf ".escapeshellarg($UploadDirUserId)); // forces wipes the entire directory
 }
 
 

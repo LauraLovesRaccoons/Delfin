@@ -5,6 +5,11 @@ RUN docker-php-ext-install mysqli
 # # install docker's php extension : mysqli : pdo_mysql
 # RUN docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable pdo_mysql
 
+# Increase max upload size to 20MB
+RUN echo "upload_max_filesize=20M" > /usr/local/etc/php/conf.d/upload_large_dumps.ini && \
+    echo "post_max_size=20M" >> /usr/local/etc/php/conf.d/dupload_large_dumps.ini
+
+
 #! composer is handled with the batch file since we're in Windows
 # RUN composer install
 

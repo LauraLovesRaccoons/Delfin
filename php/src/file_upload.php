@@ -11,7 +11,12 @@ session_checker_delfin();
 // $uploadOk = 1;
 
 if (isset($_POST['submit_button'])) {
-  pdf_upload_delfin($file);
+  if (!empty($_FILES['fileToUpload']['name'])) {
+    $file = $_FILES['fileToUpload'];
+    file_upload_delfin($file);
+  } else {
+    echo "<strong>Keen Fichier ausgewielt</strong><br />";
+  }
 }
 
 
@@ -29,11 +34,17 @@ require 'header.html';
   <input type="file" name="fileToUpload" id="fileToUpload">
   <br />
   <label for="submit"></label>
-  <input type="submit" value="Upload Image" name="submit_button" id="">
+  <input type="submit" value="Upload File" name="submit_button" id="">
 </form>
 <br />
 
 
 <?php require 'footer.html'; ?>
+
+
+
+<?php
+// delete_uploads_dir_delfin();
+?>
 
 

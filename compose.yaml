@@ -34,8 +34,7 @@ services:
     container_name: "${COMPOSE_PROJECT_NAME}_PHP-APACHE"
     restart: "always"
     environment:
-      - upload_max_upload=20M         # 20 MB
-      - post_max_size=20M             # 20 MB
+      - max_upload = 20M              # refer to the dockerfile
     env_file:
       - .env                          # those are used in php with getenv('varNameHere')
     volumes:
