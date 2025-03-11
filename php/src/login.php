@@ -53,12 +53,12 @@ if (isset($_POST['submit_button'])) {
                 header("location: delfin.php");
                 exit();
             } else {
-                echo "Passwuert falsch<br />";
+                echo "<strong>Passwuert falsch</strong><br />";
                 // var_dump($user['password']);
             }
         }
         else {
-            echo "Email falsch<br />";
+            echo "<strong>Email falsch</strong><br />";
         }
     }
 }
