@@ -32,9 +32,10 @@ if (isset($_POST['submit_button'])) {
     // var_dump($file);
     $targetFile = file_upload_delfin($file);  // now i can use the returned variable from the function
     // var_dump($targetFile);
-    // next part
-    // header('Location: send_mail.php');
-    header('Location: send_mail.php?file=' . urlencode($targetFile));
+    // next part:
+    // header('Location: send_mail.php?file=' . urlencode($targetFile));
+    $_SESSION['targetFile'] = $targetFile;  // save it inside the user's session
+    header('Location: send_mail.php');
     exit();
   }
 }

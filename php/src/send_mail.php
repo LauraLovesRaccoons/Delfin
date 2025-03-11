@@ -6,22 +6,26 @@ require "functions.php";
 
 // session id handoff
 session_checker_delfin();
-// run this before writing to the log file, as the older logs are less likely to be needed
-log_too_big_delfin();
 
 
-if (isset($_GET['file'])) {
-    $targetFile = urldecode($_GET['file']);
-    if (!file_exists($targetFile)) {
-        header("Location: delfin.php"); // redirects if the file doesn't exist
-        exit();
-    }
+
+// if (isset($_GET['file'])) {
+//     $targetFile = urldecode($_GET['file']);
+//     if (!file_exists($targetFile)) {
+//         header("Location: delfin.php"); // redirects if the file doesn't exist
+//         exit();
+//     }
+if (isset($_SESSION['targetFile'])) {
+    $emailAttachement = $_SESSION['targetFile'];
+    unset($_SESSION['targetFile']); // prevents sending duplicate mails
+    // run this before writing to the log file, as the older logs are less likely to be needed
+    log_too_big_delfin();
 } else {
     header("Location: delfin.php");
     exit();
 }
 
-    echo "<h1>The file must be cleared afterwards</h1><br />";
+echo "<h1>The file must be cleared afterwards</h1><br />";
 
 
 ?>
@@ -46,12 +50,12 @@ include 'header.html';
 // 
 $emailSender = $_SESSION['email'];
 $emailSenderName = $_SESSION['username'];
-$emailRecipient = 'holaura@protonmail.com';    // external requires proper configured mail server
-// $emailRecipient = 'laura.hornick@petange.lu';
+// $emailRecipient = 'holaura@protonmail.com';    // external requires proper configured mail server
+$emailRecipient = 'laura.hornick@petange.lu';
 $emailRecipientName = 'RECEIVER-TEST';
 $emailSubject = 'TEST EMAIL Petange Intern';
 $emailBody = '<h2>Intern verschéckten Test Email, net entwäerten a keen Handlungsbedarf.</h2> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 🦆 <br> <br> <br> 北京烤鴨 <br>';
-$emailAttachement = 'favicon.ico';
+// $emailAttachement = 'favicon.ico';
 // 
 $RecipientId = 0; // from DB
 send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement, $RecipientId);
@@ -165,3 +169,19 @@ echo "<br />";
 
 
 ?>
+
+
+
+<br />
+<br />
+<hr />
+<br />
+<br />
+<h1>This php must run at the end!!!</h1>
+<br />
+<?php
+delete_uploads_dir_delfin();
+?>
+
+
+
