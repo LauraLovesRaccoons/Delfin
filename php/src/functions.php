@@ -6,6 +6,7 @@ date_default_timezone_set('Europe/Luxembourg'); //! this isn't meant to change
 
 // Global Variables
 $logFileWithPath = "./logs/log.txt";    // global makes sense for this specific use case
+$uploadPath = "./uploads/";             // global makes sense for this specific use case
 
 $session_name = "delfin-session-cookie";    // prettier name
 session_name("$session_name");              // now this is the cookie's name
@@ -176,10 +177,24 @@ function write_log_delfin($logMessage)
 function log_too_big_delfin(){
     // used since the append thingy in the write_log function requires memory and the bigger the file the more memory it needs; which means the time until it explodes is getting shorter
     $logFWP = $GLOBALS['logFileWithPath'];  // global var
-    $maxLogSize = 20 * 1024 * 1024; // 20MB
+    $maxLogSize = 1 * 1024 * 1024;  // 1MB -> Milton Bradley
     if (file_exists($logFWP) && filesize($logFWP) > $maxLogSize) {
         unlink($logFWP);    // deletes the file
         echo "<script>console.log('Log File was too big and has been deleted');</script>";
     }
 }
+
+// requires a session to be set
+function pdf_upload_delfin($file){
+    $baseUploadDir = $GLOBALS['uploadPath'];    // global var
+    $timestamp = time();
+    $targetUploadDir = $baseUploadDir . "/" . $_SESSION['id'] . "/" . $timestamp . "/"; // ensures each upload folder is unique, user id is unique and timestamp is unique ; and if not I'm gonna play the lottery (since the filename would have to also be an exact match)
+    if (!is_dir($targetUploadDir)){
+        mkdir($targetUploadDir, 0777, true);    // 0777 gives everyone access to it ; for simplicity purposes
+    }
+
+
+    // $targetFile = $targetUploadDir . basename($file["name"]);
+}
+
 
