@@ -2,7 +2,7 @@
 
 require "functions.php";
 
-// session_checker_delfin();
+session_checker_delfin();
 
 
 // $target_dir = $GLOBALS['uploadPath'];   // this is a global var
