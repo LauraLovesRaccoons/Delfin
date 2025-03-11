@@ -2,7 +2,7 @@
 
 require "functions.php";
 
-session_checker_delfin();
+// session_checker_delfin();
 
 
 // $target_dir = $GLOBALS['uploadPath'];   // this is a global var
@@ -11,7 +11,12 @@ session_checker_delfin();
 // $uploadOk = 1;
 
 if (isset($_POST['submit_button'])) {
-  pdf_upload_delfin($file);
+  if (!empty($_FILES['fileToUpload']['name'])) {
+    $file = $_FILES['fileToUpload'];
+    pdf_upload_delfin($file);
+  } else {
+    echo "<strong>Keen Fichier ausgewielt</strong><br />";
+  }
 }
 
 
@@ -35,5 +40,4 @@ require 'header.html';
 
 
 <?php require 'footer.html'; ?>
-
 
