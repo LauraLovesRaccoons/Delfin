@@ -42,6 +42,7 @@ services:
       - ./php/src:/var/www/html/        # Path to folder in windows : Path to folder in Linux
       - ./vendor:/var/www/html/vendor   # composer -> vendor folder
       - ./uploads:/var/www/html/uploads # 
+      - ./logs:/var/www/html/logs       # 
     ports:
       - "80:80"   # port 80 external
     networks:

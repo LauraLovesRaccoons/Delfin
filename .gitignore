@@ -5,5 +5,6 @@
 # added by composer
 /vendor/
 #
-log.txt
+# log.txt # has been moved
 /uploads/
+/logs/

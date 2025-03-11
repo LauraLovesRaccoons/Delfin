@@ -4,6 +4,9 @@
 
 date_default_timezone_set('Europe/Luxembourg'); //! this isn't meant to change
 
+// Global Variables
+$logFileWithPath = "./logs/log.txt";    // global makes sense for this specific use case
+
 $session_name = "delfin-session-cookie";    // prettier name
 session_name("$session_name");              // now this is the cookie's name
 // if function is always called before session_start (which is included in all the functions) ; then this will always be the cookie name
@@ -162,9 +165,21 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
 function write_log_delfin($logMessage)
 {
     $timestamp = date("H:i:s d.m.Y");   // i want to create the timestamp at the closest possible time of the logging process
-    $logFileWithPath = "./log.txt";     // makes it easier to change in the future
-    $existingContent = @file_get_contents($logFileWithPath);    // @file_get_contents surpresses the warning if the file doesn't yet exist, only relevant on first run or after deletion
-    $logToFile = fopen($logFileWithPath, "w") or die("Unable to open loging file!");    // this also ensures the file is created if it doesn't exist
+    // $logFileWithPath = "./log.txt";     // 
+    $logFWP = $GLOBALS['logFileWithPath'];  // global var
+    $existingContent = @file_get_contents($logFWP); // @file_get_contents surpresses the warning if the file doesn't yet exist, only relevant on first run or after deletion
+    $logToFile = fopen($logFWP, "w") or die("Unable to open loging file!"); // this also ensures the file is created if it doesn't exist
     fwrite($logToFile, PHP_EOL . $timestamp . PHP_EOL . $logMessage . PHP_EOL . $existingContent);
     fclose($logToFile); // yes
 }
+
+function log_too_big_delfin(){
+    // used since the append thingy in the write_log function requires memory and the bigger the file the more memory it needs; which means the time until it explodes is getting shorter
+    $logFWP = $GLOBALS['logFileWithPath'];  // global var
+    $maxLogSize = 20 * 1024 * 1024; // 20MB
+    if (file_exists($logFWP) && filesize($logFWP) > $maxLogSize) {
+        unlink($logFWP);    // deletes the file
+        echo "<script>console.log('Log File was too big and has been deleted');</script>";
+    }
+}
+
