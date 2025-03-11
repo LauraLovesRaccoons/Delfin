@@ -6,6 +6,13 @@ require "functions.php";
 
 session_checker_delfin();
 
+if (isset($_SESSION['targetUsersArray'])) {
+  $targetUsersArray = $_SESSION['targetUsersArray'];
+} else {
+  header("Location: delfin.php");
+  exit();
+}
+
 
 if (isset($_POST['submit_button'])) {
   
