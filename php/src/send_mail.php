@@ -1,5 +1,7 @@
 <?php
 
+// ob_start();
+
 require "functions.php";
 
 // session id handoff

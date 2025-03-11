@@ -1,23 +1,33 @@
 <?php
 
+// ob_start();
+
 require "functions.php";
 
 session_checker_delfin();
 
 
-// $target_dir = $GLOBALS['uploadPath'];   // this is a global var
-
-// $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-// $uploadOk = 1;
-
 if (isset($_POST['submit_button'])) {
-  if (!empty($_FILES['fileToUpload']['name'])) {
+  if(!isset($_FILES['fileToUplad'])){
+    echo "<strong>Keen Fichier ausgewielt</strong><br />";
+    // needs to come before the next line to handle custom empty file msg
+  }
+  elseif($_FILES['fileToUpload']['error'] !== UPLOAD_ERR_OK){
+    echo "<strong>Fichier ass iwwert 20MB</strong><br />";
+    // this doesn't work though ; future -> custom error msg
+  }
+  elseif (!empty($_FILES['fileToUpload']['name'])) {
     $file = $_FILES['fileToUpload'];
     file_upload_delfin($file);
-  } else {
-    echo "<strong>Keen Fichier ausgewielt</strong><br />";
-  }
+    // next part
+    // header('Location: send_mail.php');
+    // exit();
+  } 
+  // else {
+  //   echo "<strong>Keen Fichier ausgewielt</strong><br />";
+  // }
 }
+
 
 
 
