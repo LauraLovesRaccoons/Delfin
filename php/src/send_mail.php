@@ -15,11 +15,18 @@ session_checker_delfin();
 //         header("Location: delfin.php"); // redirects if the file doesn't exist
 //         exit();
 //     }
+
+
 if (isset($_SESSION['targetFile'])) {
     $emailAttachement = $_SESSION['targetFile'];
     unset($_SESSION['targetFile']); // prevents sending duplicate mails
     // run this before writing to the log file, as the older logs are less likely to be needed
     log_too_big_delfin();
+}
+// it's better to be sure this hasn't somehow been purged
+if (isset($_SESSION['targetUsersArray'])) {
+    $emailRecipientsArray = $_SESSION['targetUsersArray'];
+    unset($_SESSION['targetUsersArray']); // prevents having a duplicate Array of Users and potentionally sending duplicate mails
 } else {
     header("Location: delfin.php");
     exit();
@@ -40,25 +47,53 @@ include 'header.html';
 
 <!-- <h1>BE PATIENT ! - MUST DISPLAY ON THE PREVIOUS PAGE </h1>
 <h1>ESPECIALLY IF MAILS ARE FAILING TO SEND</h1> -->
-<br />
-<h1> </h1>
+<!-- <br />
+<h1> </h1> -->
 <?php
 
 
 
 
-// 
-$emailSender = $_SESSION['email'];
-$emailSenderName = $_SESSION['username'];
-$emailRecipient = 'holaura@protonmail.com';    // external requires proper configured mail server
-// $emailRecipient = 'laura.hornick@petange.lu';
-$emailRecipientName = 'RECEIVER-TEST';
-$emailSubject = 'TEST EMAIL Petange Intern';
-$emailBody = '<h2>Intern verschéckten Test Email, net entwäerten a keen Handlungsbedarf.</h2> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 🦆 <br> <br> <br> 北京烤鴨 <br>';
-// $emailAttachement = 'favicon.ico';
-// 
-$RecipientId = 0; // from DB
-send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement, $RecipientId);
+// // 
+// $emailSender = $_SESSION['email'];
+// $emailSenderName = $_SESSION['username'];
+// $emailRecipient = 'holaura@protonmail.com';    // external requires proper configured mail server
+// // $emailRecipient = 'laura.hornick@petange.lu';
+// $emailRecipientName = 'RECEIVER-TEST';
+// $emailSubject = 'TEST EMAIL Petange Intern';
+// $emailBody = '<h2>Intern verschéckten Test Email, net entwäerten a keen Handlungsbedarf.</h2> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 🦆 <br> <br> <br> 北京烤鴨 <br>';
+// // $emailAttachement = 'favicon.ico';
+// // 
+// // $RecipientId = 0; // from DB
+// // send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement, $RecipientId);
+// // 
+
+
+
+
+
+// Loop through the array and send emails
+foreach ($emailRecipientsArray as $recipientUser) {
+    $emailSender = $_SESSION['email'];
+    $emailSenderName = $_SESSION['username'];
+    //! function customMessageSubject
+    //! function customMessageBody
+    //! first set the custom msg; just dump everything into the $_SESSION['targetUsersArray'] 
+    $emailSubject = 'TEST EMAIL Petange Intern';
+    $emailBody = '<h2>Intern verschéckten Test Email, net entwäerten a keen Handlungsbedarf.</h2> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 🦆 <br> <br> <br> 北京烤鴨 <br>';
+    //! end of this note
+    send_mail_delfin(
+        $emailSender,
+        $emailSenderName,
+        $recipientUser['emailRecipient'],
+        $recipientUser['emailRecipientName'],
+        $emailSubject,
+        $emailBody,
+        $emailAttachement,
+        $recipientUser['RecipientId']
+    );
+}
+delete_uploads_dir_delfin();    // cleanup
 
 
 
@@ -79,41 +114,91 @@ include 'footer.html';
 ?>
 
 
+<!-- EXAMPLE ARRAY -->
+
+<!-- // $dummyAccounts = [
+//     [
+//         'emailRecipient' => 'laura.hornick@petange.lu',
+//         'emailRecipientName' => 'Dummy Recipient 1',
+//         'RecipientId' => 1   // from database
+//     ],
+//     [
+//         'emailRecipient' => 'frank.merges@petange.lu',
+//         'emailRecipientName' => 'Dummy Recipient 2',
+//         'RecipientId' => 2
+//     ] -->
+
+
+
+
+<br />
+<hr /><br />
+
+<?php
+//! IGNORE THE STUFF BELOW
+?>
+
+
 <br />
 <hr />
 <br />
 
+
+<!-- 
 <br /><br /><br /><br /><br /><br />
 <h2>TESTING error logging simulated loop from an array</h2>
-<br /><br /><br />
+<br /><br /><br /> -->
 <?php
-echo "<script>console.log('TEST LOOP');</script>";
-echo "<br />";
-$emailRecipient = '@';
-$emailRecipientName = 'HACKER';
-$RecipientId = 666; // from DB
-send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement, $RecipientId);
-// if (strpos($emailRecipient, '@') === false) {
-//     echo "NO EMAIL: $emailRecipientName <br />";
-//     echo "<script>console.log('NO EMAIL:  " . $emailRecipientName . "');</script>";
-// } else {
-//     send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement);
-//     echo "<br />";
-// }
+// echo "<script>console.log('TEST LOOP');</script>";
+// echo "<br />";
+// $emailRecipient = '@';
+// $emailRecipientName = 'HACKER';
+// $RecipientId = 666; // from DB
+// send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement, $RecipientId);
+// // if (strpos($emailRecipient, '@') === false) {
+// //     echo "NO EMAIL: $emailRecipientName <br />";
+// //     echo "<script>console.log('NO EMAIL:  " . $emailRecipientName . "');</script>";
+// // } else {
+// //     send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement);
+// //     echo "<br />";
+// // }
 
-echo "<br />";
-// $emailRecipient = 'laura.hornick@petange.lu';
-// send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement);
 // echo "<br />";
-// $emailRecipient = 'laura.hornick@petange.lu';
-// send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement);
-// echo "<br />";
+// // $emailRecipient = 'laura.hornick@petange.lu';
+// // send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement);
+// // echo "<br />";
+// // $emailRecipient = 'laura.hornick@petange.lu';
+// // send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement);
+// // echo "<br />";
 ?>
 <br />
 <hr />
 <br />
 
 <?php
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // this works
@@ -172,16 +257,13 @@ echo "<br />";
 
 
 
-<br />
+<!-- <br />
 <br />
 <hr />
 <br />
 <br />
 <h1>This php must run at the end!!!</h1>
-<br />
+<br /> -->
 <?php
-delete_uploads_dir_delfin();
+// delete_uploads_dir_delfin();
 ?>
-
-
-
