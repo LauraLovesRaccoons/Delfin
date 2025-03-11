@@ -16,11 +16,6 @@ $dummyAccounts = [
         'RecipientId' => 1   // from database
     ],
     [
-        'emailRecipient' => 'frank.merges@petange.lu',
-        'emailRecipientName' => 'Dummy Recipient 2',
-        'RecipientId' => 2
-    ],
-    [
         'emailRecipient' => 'loser@petange.lu',
         'emailRecipientName' => 'LOSER Dummy Recipient',
         'RecipientId' => 3
