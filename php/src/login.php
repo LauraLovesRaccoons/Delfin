@@ -41,7 +41,7 @@ if (isset($_POST['submit_button'])) {
         $result = $stmt->get_result();
         $user = $result->fetch_assoc();
 
-        // closing db for security reasons
+        // closing db for security (and performance) reasons
         db_close_delfin($db);
         // 
         $passwordVerify = password_verify($password, $user['password']);    // db password must be hashed
