@@ -5,11 +5,6 @@ require "functions.php";
 session_checker_delfin();
 
 
-// $target_dir = $GLOBALS['uploadPath'];   // this is a global var
-
-// $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-// $uploadOk = 1;
-
 if (isset($_POST['submit_button'])) {
   if (!empty($_FILES['fileToUpload']['name'])) {
     $file = $_FILES['fileToUpload'];
