@@ -10,19 +10,32 @@ session_checker_delfin();
 log_too_big_delfin();
 
 
+if (isset($_GET['file'])) {
+    $targetFile = urldecode($_GET['file']);
+    if (!file_exists($targetFile)) {
+        header("Location: delfin.php"); // redirects if the file doesn't exist
+        exit();
+    }
+} else {
+    header("Location: delfin.php");
+    exit();
+}
+
+    echo "<h1>The file must be cleared afterwards</h1><br />";
+
 
 ?>
 
 
-<?php 
+<?php
 include 'header.html';
- ?>
+?>
 
 
 
 
-<h1>BE PATIENT ! - MUST DISPLAY ON THE PREVIOUS PAGE </h1>
-<h1>ESPECIALLY IF MAILS ARE FAILING TO SEND</h1>
+<!-- <h1>BE PATIENT ! - MUST DISPLAY ON THE PREVIOUS PAGE </h1>
+<h1>ESPECIALLY IF MAILS ARE FAILING TO SEND</h1> -->
 <br />
 <h1> </h1>
 <?php
@@ -52,9 +65,9 @@ send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipien
 <br /><br /><br /> -->
 
 
-<?php 
+<?php
 include 'footer.html';
- ?>
+?>
 
 
 <?php
@@ -152,5 +165,3 @@ echo "<br />";
 
 
 ?>
-
-

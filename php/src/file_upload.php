@@ -29,9 +29,12 @@ if (isset($_POST['submit_button'])) {
     echo "<strong>Keen Fichier ausgewielt</strong><br />";
   } else {
     $file = $_FILES['fileToUpload'];
-    file_upload_delfin($file);
+    // var_dump($file);
+    $targetFile = file_upload_delfin($file);  // now i can use the returned variable from the function
+    // var_dump($targetFile);
     // next part
-    header('Location: send_mail.php');
+    // header('Location: send_mail.php');
+    header('Location: send_mail.php?file=' . urlencode($targetFile));
     exit();
   }
 }
