@@ -32,7 +32,7 @@ if (isset($_SESSION['targetUsersArray'])) {
     exit();
 }
 
-echo "<h1>The file must be cleared afterwards</h1><br />";
+// echo "<h1>The file must be cleared afterwards</h1><br />";
 
 
 ?>
