@@ -176,7 +176,7 @@ function write_log_delfin($logMessage)
 function log_too_big_delfin(){
     // used since the append thingy in the write_log function requires memory and the bigger the file the more memory it needs; which means the time until it explodes is getting shorter
     $logFWP = $GLOBALS['logFileWithPath'];  // global var
-    $maxLogSize = 20 * 1024 * 1024; // 20MB
+    $maxLogSize = 1 * 1024 * 1024;  // 1MB -> Milton Bradley
     if (file_exists($logFWP) && filesize($logFWP) > $maxLogSize) {
         unlink($logFWP);    // deletes the file
         echo "<script>console.log('Log File was too big and has been deleted');</script>";
