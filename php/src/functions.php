@@ -186,7 +186,7 @@ function log_too_big_delfin()
 }
 
 // requires a session to be set
-function pdf_upload_delfin($file)
+function file_upload_delfin($file)
 {
     $baseUploadDir = $GLOBALS['uploadPath'];    // global var
     $timestamp = time();
@@ -201,9 +201,16 @@ function pdf_upload_delfin($file)
     }
     if(!move_uploaded_file($file['tmp_name'], $targetFile)){
         echo "<strong>Something went terribly wrong!</strong><br />";
+        return false;
     }
-    
-
-
-    // $targetFile = $targetUploadDir . basename($file["name"]);
+    return $targetFile; // now i can use it
 }
+
+
+function delete_uploads_dir_delfin(){
+    $baseUploadDir = $GLOBALS['uploadPath'];    // global var
+    $UploadDirUserId = $baseUploadDir . "/" . $_SESSION['id'];  // this only targets the current user
+    system("rm -rf ".escapeshellarg($UploadDirUserId)); // forces wipes the entire directory
+}
+
+
