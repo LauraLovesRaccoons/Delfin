@@ -85,8 +85,8 @@ function session_checker_delfin()
     }
 
     if (isset($_SESSION['id'])) {
-        echo "Welcome: $_SESSION[username] <br/>";
-        echo "<script>console.log('" . $_SESSION['username'] . " - " . $_SESSION['email'] . " - " . $_SESSION['id'] . "');</script>";
+        // echo "Welcome: $_SESSION[username] <br/>";
+        // echo "<script>console.log('" . $_SESSION['username'] . " - " . $_SESSION['email'] . " - " . $_SESSION['id'] . "');</script>";
     } else {
         header("location: index.php");  // this requires a session from login
     }
