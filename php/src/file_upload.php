@@ -8,6 +8,7 @@ session_checker_delfin();
 
 
 if (isset($_POST['submit_button'])) {
+  
   // if(!isset($_FILES['fileToUplad'])){
   //   echo "<strong>Keen Fichier ausgewielt</strong><br />";
   //   // needs to come before the next line to handle custom empty file msg
@@ -42,18 +43,22 @@ include 'header.html';
 
 ?>
 
-
 <br />
+<h2>Fichier uploaden a verschécken</h2><br />
 <form method="POST" enctype="multipart/form-data">
-
-  <em>Select pdf file to upload:</em><br />
+  <em>Fichier auswielen:</em><br />
   <label for="file"></label>
   <input type="file" name="fileToUpload" id="fileToUpload">
   <br />
   <label for="submit"></label>
-  <input type="submit" value="Upload File" name="submit_button" id="">
+  <input type="submit" value=" Upload File & Send Emails " name="submit_button" id="">
+  <br />
 </form>
+<!-- <br /> -->
+<strong>Kann ee bëssi daueren...</strong><br />
+<em>Ënnert 20MB soss komme Feelermeldungen!</em><br />
 <br />
+
 
 
 <?php 
