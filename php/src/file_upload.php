@@ -15,7 +15,6 @@ if (isset($_SESSION['targetUsersArray'])) {
 
 
 if (isset($_POST['submit_button'])) {
-
   // if(!isset($_FILES['fileToUplad'])){
   //   echo "<strong>Keen Fichier ausgewielt</strong><br />";
   //   // needs to come before the next line to handle custom empty file msg
@@ -32,6 +31,13 @@ if (isset($_POST['submit_button'])) {
   // else {
   //   echo "<strong>Keen Fichier ausgewielt</strong><br />";
   // }
+
+  // store entered text or set default one from the env file  // overkill since the default env message is also set on the next page
+  $emailSubject = isset($_POST['email_subject']) && $_POST['email_subject'] !== '' ? $_POST['email_subject'] : getenv('DEFAULT_EMAIL_SUBJECT');
+  $_SESSION['emailSubject'] = $emailSubject;
+  $emailBody = isset($_POST['email_body']) && $_POST['email_body'] !== '' ? $_POST['email_body'] : getenv('DEFAULT_EMAIL_BODY');
+  $_SESSION['emailBody'] = $emailBody;
+
   if (empty($_FILES['fileToUpload']['name'])) {
     echo "<strong>Keen Fichier ausgewielt</strong><br />";
   } else {
@@ -59,11 +65,12 @@ include 'header.html';
 <form method="POST" enctype="multipart/form-data">
 
   <em>Text personaliséieren?</em><br />
+  <em>Limitt: 500 & 2000 Zeechen</em><br />
   <label for="email_subject"></label>
-  <input type="text" name="email_subject" id="email_subject">
+  <strong>Email Subject: </strong><input type="text" name="email_subject" id="email_subject" maxlength="511" class="char512" placeholder=" Default: <?= getenv('DEFAULT_EMAIL_SUBJECT') ?> " value="<?= $_POST['email_subject'] ?? getenv('DEFAULT_EMAIL_SUBJECT') ?>">
   <br />
-  <label for="email_body"></label>
-  <input type="text" name="email_body" id="email_body">
+  <strong>Email Body: </strong><label for="email_body"></label>
+  <input type="text" name="email_body" id="email_body" maxlength="2047" class="char2048" placeholder=" Default: <?= getenv('DEFAULT_EMAIL_BODY') ?> " value="<?= $_POST['email_body'] ?? getenv('DEFAULT_EMAIL_BODY') ?>">
   <br />
 
   <em>Fichier auswielen:</em><br />
@@ -79,13 +86,6 @@ include 'header.html';
 <em>Ënnert 20MB soss komme Feelermeldungen!</em><br />
 <br />
 
-<br />
-<h1>EMAIL SUBJECT ??? FORM FIELD???? </h1><br />
-<br />
-<h1>preview text box with std text visible and you can manually overwrite it </h1><br />
-<br /><em>Veuillez lire votre invitation fichier.<br />PDF joint</em><br />
-<br />
-<hr />
 <br />
 
 

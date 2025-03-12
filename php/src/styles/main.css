@@ -18,4 +18,12 @@ header a {
 footer a {
   text-decoration: none;
   color: #e61eec;
+}
+
+.char512 {
+  width: 512px;
+}
+
+.char2048 {
+  width: 1024px;
 }/*# sourceMappingURL=main.css.map */

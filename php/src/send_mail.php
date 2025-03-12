@@ -31,6 +31,20 @@ if (isset($_SESSION['targetUsersArray'])) {
     header("Location: delfin.php");
     exit();
 }
+// sets the Subject and Body and loads the default from the env file if it doesn't exist
+if (isset($_SESSION['emailSubject'])){
+    $emailSubject = $_SESSION['emailSubject'];
+    unset($_SESSION['emailSubject']);   // wipe it ditto
+} else {
+    $emailSubject = getenv('DEFAULT_EMAIL_SUBJECT');
+}
+if (isset($_SESSION['emailBody'])){
+    $emailBody = $_SESSION['emailBody'];
+    unset($_SESSION['emailSubject']);   // wipe it ditto
+} else {
+    $emailBody = getenv('DEFAULT_EMAIL_BODY');
+}
+
 
 // echo "<h1>The file must be cleared afterwards</h1><br />";
 
@@ -76,12 +90,12 @@ include 'header.html';
 foreach ($emailRecipientsArray as $recipientUser) {
     $emailSender = $_SESSION['email'];
     $emailSenderName = $_SESSION['username'];
-    //! function customMessageSubject
-    //! function customMessageBody
-    //! first set the custom msg; just dump everything into the $_SESSION['targetUsersArray'] 
-    $emailSubject = 'TEST EMAIL Petange Intern';
-    $emailBody = '<h2>Intern verschéckten Test Email, net entwäerten a keen Handlungsbedarf.</h2> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 🦆 <br> <br> <br> 北京烤鴨 <br>';
-    //! end of this note
+    // // function customMessageSubject
+    // // function customMessageBody
+    // // first set the custom msg; just dump everything into the $_SESSION['targetUsersArray'] 
+    // $emailSubject = 'TEST EMAIL Petange Intern';
+    // $emailBody = '<h2>Intern verschéckten Test Email, net entwäerten a keen Handlungsbedarf.</h2> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 🦆 <br> <br> <br> 北京烤鴨 <br>';
+    // // end of this note
     send_mail_delfin(
         $emailSender,
         $emailSenderName,
