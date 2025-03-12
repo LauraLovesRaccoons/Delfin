@@ -5,8 +5,9 @@
 date_default_timezone_set('Europe/Luxembourg'); //! this isn't meant to change
 
 // Global Variables
-$logFileWithPath = "./logs/log.txt";    // global makes sense for this specific use case
-$uploadPath = "./uploads/";             // global makes sense for this specific use case
+$logBasePath = "./logs/";   // global makes sense for this specific use case
+$logFile = "log.txt";       // ditto
+$uploadPath = "./uploads/"; // global makes sense for this specific use case
 
 $session_name = "delfin-session-cookie";    // prettier name
 session_name("$session_name");              // now this is the cookie's name
@@ -168,10 +169,17 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
 function write_log_delfin($logMessage)
 {
     $timestamp = date("H:i:s d.m.Y");   // i want to create the timestamp at the closest possible time of the logging process
-    // $logFileWithPath = "./log.txt";     // 
-    $logFWP = $GLOBALS['logFileWithPath'];  // global var
-    $existingContent = @file_get_contents($logFWP); // @file_get_contents surpresses the warning if the file doesn't yet exist, only relevant on first run or after deletion
-    $logToFile = fopen($logFWP, "w") or die("Unable to open loging file!"); // this also ensures the file is created if it doesn't exist
+    // // $logFileWithPath = "./log.txt";     // 
+    $logBasePath = $GLOBALS['logBasePath'];  // global var
+    $logDirUserId = $logBasePath . $_SESSION['id']; // 
+    $logFile = $GLOBALS['logFile'];  // global var
+    if (!is_dir($logDirUserId)) {
+        mkdir($logDirUserId, 0777, true);  // Create directory but everyone can access it
+    }
+    $logFileWithPath = $logDirUserId . "/" .  $logFile;
+
+    $existingContent = @file_get_contents($logFileWithPath); // @file_get_contents surpresses the warning if the file doesn't yet exist, only relevant on first run or after deletion
+    $logToFile = fopen($logFileWithPath, "w") or die("Unable to open loging file!"); // this also ensures the file is created if it doesn't exist
     fwrite($logToFile, PHP_EOL . $timestamp . PHP_EOL . $logMessage . PHP_EOL . $existingContent);
     fclose($logToFile); // yes
 }
@@ -179,10 +187,13 @@ function write_log_delfin($logMessage)
 function log_too_big_delfin()
 {
     // used since the append thingy in the write_log function requires memory and the bigger the file the more memory it needs; which means the time until it explodes is getting shorter
-    $logFWP = $GLOBALS['logFileWithPath'];  // global var
+    $logBasePath = $GLOBALS['logBasePath'];  // global var
+    $logDirUserId = $logBasePath . $_SESSION['id']; // 
+    $logFile = $GLOBALS['logFile'];  // global var
+    $logFileWithPath = $logDirUserId . "/" .  $logFile;
     $maxLogSize = 1 * 1024 * 1024;  // 1MB -> Milton Bradley
-    if (file_exists($logFWP) && filesize($logFWP) > $maxLogSize) {
-        unlink($logFWP);    // deletes the file
+    if (file_exists($logFileWithPath) && filesize($logFileWithPath) > $maxLogSize) {
+        unlink($logFileWithPath);    // deletes the file
         echo "<script>console.log('Log File was too big and has been deleted');</script>";
     }
 }
@@ -192,7 +203,7 @@ function file_upload_delfin($file)
 {
     $baseUploadDir = $GLOBALS['uploadPath'];    // global var
     $timestamp = time();
-    $targetUploadDir = $baseUploadDir . "/" . $_SESSION['id'] . "/" . $timestamp . "/"; // ensures each upload folder is unique, user id is unique and timestamp is unique ; and if not I'm gonna play the lottery (since the filename would also have to be an exact match)
+    $targetUploadDir = $baseUploadDir . $_SESSION['id'] . "/" . $timestamp . "/"; // ensures each upload folder is unique, user id is unique and timestamp is unique ; and if not I'm gonna play the lottery (since the filename would also have to be an exact match)
     if (!is_dir($targetUploadDir)) {
         mkdir($targetUploadDir, 0777, true);    // 0777 gives everyone access to it ; for simplicity purposes
     }

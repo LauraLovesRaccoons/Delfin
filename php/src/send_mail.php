@@ -106,6 +106,8 @@ foreach ($emailRecipientsArray as $recipientUser) {
         $emailAttachement,
         $recipientUser['RecipientId']
     );
+    // wait for 1 millisecond ; don't go below that!
+    usleep(1000);   // 1000 microseconds
 }
 delete_uploads_dir_delfin();    // cleanup
 
