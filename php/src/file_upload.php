@@ -61,10 +61,10 @@ include 'header.html';
   <em>Text personaliséieren?</em><br />
   <em>Limitt: 250 & 500 Zeechen</em><br />
   <label for="email_subject"></label>
-  <strong>Email Subject: </strong><input type="text" name="email_subject" id="email_subject" maxlength="255" class="char256" placeholder=" Default: <?= getenv('DEFAULT_EMAIL_SUBJECT') ?> ">
+  <strong>Email Subject: </strong><input type="text" name="email_subject" id="email_subject" maxlength="255" class="char256" placeholder=" Default: <?= getenv('DEFAULT_EMAIL_SUBJECT') ?> " value="<?= $_POST['email_subject'] ?? getenv('DEFAULT_EMAIL_SUBJECT') ?>">
   <br />
   <strong>Email Body: </strong><label for="email_body"></label>
-  <input type="text" name="email_body" id="email_body" maxlength="511" class="char512" placeholder=" Default: <?= getenv('DEFAULT_EMAIL_BODY') ?> ">
+  <input type="text" name="email_body" id="email_body" maxlength="511" class="char512" placeholder=" Default: <?= getenv('DEFAULT_EMAIL_BODY') ?> " value="<?= $_POST['email_body'] ?? getenv('DEFAULT_EMAIL_BODY') ?>">
   <br />
 
   <em>Fichier auswielen:</em><br />
