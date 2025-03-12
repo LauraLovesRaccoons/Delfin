@@ -60,10 +60,10 @@ include 'header.html';
 
   <em>Text personaliséieren?</em><br />
   <label for="email_subject"></label>
-  <input type="text" name="fileToUpload" id="fileToUpload">
+  <input type="text" name="email_subject" id="email_subject">
   <br />
   <label for="email_body"></label>
-  <input type="file" name="fileToUpload" id="fileToUpload">
+  <input type="text" name="email_body" id="email_body">
   <br />
 
   <em>Fichier auswielen:</em><br />
@@ -98,3 +98,4 @@ include 'footer.html';
 <?php
 // delete_uploads_dir_delfin();
 ?>
+
