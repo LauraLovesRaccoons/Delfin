@@ -12,6 +12,8 @@ services:
       MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
     # ports:            # same docker container, so
     #   - "3306:3306"   # no need to expose the port(s)
+    volumes:
+      - mysql_data:/var/lib/mysql
     networks:
       - delfin_network
   phpmyadmin:
@@ -27,6 +29,8 @@ services:
       PMA_PASSWORD: "${MYSQL_ROOT_PASSWORD}"  # MYSQL_ROOT_PASSWORD
     ports:
       - "8080:80"   # port 8080 external
+    volumes:
+      - phpmyadmin_data:/var/lib/pma
     networks:
       - delfin_network
   php-apache:
@@ -64,8 +68,8 @@ services:
       #- wordpress:/var/www/html
 
 volumes:
-  mysql:
-  phpmyadmin:
+  mysql_data:
+  phpmyadmin_data:
   php-apache-environment:
   #wordpress:
 

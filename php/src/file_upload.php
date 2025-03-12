@@ -15,7 +15,7 @@ if (isset($_SESSION['targetUsersArray'])) {
 
 
 if (isset($_POST['submit_button'])) {
-  
+
   // if(!isset($_FILES['fileToUplad'])){
   //   echo "<strong>Keen Fichier ausgewielt</strong><br />";
   //   // needs to come before the next line to handle custom empty file msg
@@ -57,6 +57,15 @@ include 'header.html';
 <br />
 <h2>Fichier uploaden a verschécken</h2><br />
 <form method="POST" enctype="multipart/form-data">
+
+  <em>Text personaliséieren?</em><br />
+  <label for="email_subject"></label>
+  <input type="text" name="email_subject" id="email_subject">
+  <br />
+  <label for="email_body"></label>
+  <input type="text" name="email_body" id="email_body">
+  <br />
+
   <em>Fichier auswielen:</em><br />
   <label for="file"></label>
   <input type="file" name="fileToUpload" id="fileToUpload">
@@ -70,16 +79,23 @@ include 'header.html';
 <em>Ënnert 20MB soss komme Feelermeldungen!</em><br />
 <br />
 
+<br />
+<h1>EMAIL SUBJECT ??? FORM FIELD???? </h1><br />
+<br />
+<h1>preview text box with std text visible and you can manually overwrite it </h1><br />
+<br /><em>Veuillez lire votre invitation fichier.<br />PDF joint</em><br />
+<br />
+<hr />
+<br />
 
 
-<?php 
+<?php
 include 'footer.html';
- ?>
+?>
 
 
 
 <?php
 // delete_uploads_dir_delfin();
 ?>
-
 
