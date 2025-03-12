@@ -9,8 +9,8 @@ session_checker_delfin();
 $dummyAccounts = [
     [
         'fonction' => 'MASTER',
-        'nom1' => 'LAURA',
-        'RecipientId' => 1   // from database
+        'nom' => 'LAURA',
+        'userId' => 1   // from database
     ]
 ];
 
