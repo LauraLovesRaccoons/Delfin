@@ -150,6 +150,8 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             $mail->send();
             // echo 'Message has been sent<br />';
             $mail->SmtpClose();     // close the connection ; Very Smort -> stonks
+            $logMessage = "Email sent to: $emailRecipientName --- $emailRecipient - ID: $RecipientId";
+            write_log_delfin($logMessage);
         } catch (Exception $e) {
             // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}<br />";
             $mailErrorInfo = json_encode($mail->ErrorInfo);         // made it a proper string for console logging
