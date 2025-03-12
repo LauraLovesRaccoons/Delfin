@@ -59,11 +59,12 @@ include 'header.html';
 <form method="POST" enctype="multipart/form-data">
 
   <em>Text personaliséieren?</em><br />
+  <em>Limitt: 250 & 500 Zeechen</em><br />
   <label for="email_subject"></label>
-  <input type="text" name="email_subject" id="email_subject">
+  <strong>Email Subject: </strong><input type="text" name="email_subject" id="email_subject" maxlength="255" class="char256" placeholder="<?= getenv('DEFAULT_EMAIL_SUBJECT') ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
   <br />
-  <label for="email_body"></label>
-  <input type="text" name="email_body" id="email_body">
+  <strong>Email Body: </strong><label for="email_body"></label>
+  <input type="text" name="email_body" id="email_body" maxlength="511" class="char512" placeholder="<?= getenv('DEFAULT_EMAIL_BODY') ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
   <br />
 
   <em>Fichier auswielen:</em><br />
