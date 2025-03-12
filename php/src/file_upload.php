@@ -98,7 +98,7 @@ include 'header.html';
 
   <em>Fichier auswielen:</em><br />
   <label for="file"></label>
-  <input type="file" name="fileToUpload" id="fileToUpload">
+  <input type="file" name="fileToUpload" id="fileToUpload" required>
   <br />
   <label for="submit"></label>
   <input type="submit" value=" Upload File & Send Emails " name="submit_button" id="">
