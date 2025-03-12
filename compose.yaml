@@ -70,7 +70,7 @@ services:
 volumes:
   mysql_data:
   phpmyadmin_data:
-  php-apache-environment:
+  # php-apache-environment:
   #wordpress:
 
 networks:
