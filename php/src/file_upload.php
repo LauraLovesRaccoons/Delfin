@@ -81,13 +81,6 @@ include 'header.html';
 <br />
 
 <br />
-<h1>EMAIL SUBJECT ??? FORM FIELD???? </h1><br />
-<br />
-<h1>preview text box with std text visible and you can manually overwrite it </h1><br />
-<br /><em>Veuillez lire votre invitation fichier.<br />PDF joint</em><br />
-<br />
-<hr />
-<br />
 
 
 <?php
