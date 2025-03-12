@@ -15,7 +15,6 @@ if (isset($_SESSION['targetUsersArray'])) {
 
 
 if (isset($_POST['submit_button'])) {
-
   // if(!isset($_FILES['fileToUplad'])){
   //   echo "<strong>Keen Fichier ausgewielt</strong><br />";
   //   // needs to come before the next line to handle custom empty file msg
@@ -32,6 +31,13 @@ if (isset($_POST['submit_button'])) {
   // else {
   //   echo "<strong>Keen Fichier ausgewielt</strong><br />";
   // }
+
+  // store entered text or set default one from the env file
+  $emailSubject = isset($_POST['email_subject']) && $_POST['email_subject'] !== '' ? $_POST['email_subject'] : getenv('DEFAULT_EMAIL_SUBJECT');
+  $_SESSION['email_subject'] = $emailSubject;
+  $emailBody = isset($_POST['email_body']) && $_POST['email_body'] !== '' ? $_POST['email_body'] : getenv('DEFAULT_EMAIL_BODY');
+  $_SESSION['email_body'] = $emailBody;
+
   if (empty($_FILES['fileToUpload']['name'])) {
     echo "<strong>Keen Fichier ausgewielt</strong><br />";
   } else {
