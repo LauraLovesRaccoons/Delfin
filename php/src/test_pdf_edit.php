@@ -8,19 +8,9 @@ session_checker_delfin();
 
 $dummyAccounts = [
     [
-        'emailRecipient' => 'laura.hornick@petange.lu',
-        'emailRecipientName' => 'Dummy Recipient 1',
+        'fonction' => 'MASTER',
+        'nom1' => 'LAURA',
         'RecipientId' => 1   // from database
-    ],
-    [
-        'emailRecipient' => 'loser@petange.lu',
-        'emailRecipientName' => 'LOSER Dummy Recipient',
-        'RecipientId' => 3
-    ],
-    [
-        'emailRecipient' => 'loser@email.com.lux',
-        'emailRecipientName' => 'LOSER Dummy Recipient',
-        'RecipientId' => 455
     ]
 ];
 
