@@ -102,6 +102,7 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
         $logMessage = "NO EMAIL: $emailRecipientName - ID: $RecipientId";
         write_log_delfin($logMessage);
     } else {
+        usleep(1000);   // 1000 microseconds    // hardcoded 1ms delay ; I'm not removing it!
         $mail = new PHPMailer(true);    // true enables exceptions
         try {
             // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                  //Enable verbose debug output
@@ -225,5 +226,88 @@ function delete_uploads_dir_delfin(){
     $UploadDirUserId = $baseUploadDir . "/" . $_SESSION['id'];  // this only targets the current user
     system("rm -rf ".escapeshellarg($UploadDirUserId)); // forces wipes the entire directory
 }
+
+
+
+// pdf upload
+function upload_pdf_delfin(){
+    if (empty($_FILES['fileToUpload']['name'])) {
+        echo "<strong>Keen Fichier ausgewielt</strong><br />";
+      } elseif (isset($_FILES['fileToUpload'])) {
+    
+        // preparing the file checking
+        $fileNAME = $_FILES['fileToUpload']['name'];
+        $fileMIME = mime_content_type($_FILES['fileToUpload']['tmp_name']); // mime needs tmp_name
+        // var_dump($_FILES['fileToUpload']);
+        // var_dump($fileMIME);
+    
+        // checks the file extension
+        if (!preg_match("/\.pdf$/i", $fileNAME)) {
+          echo "<strong>.PDF obligatoresch</strong><br />";
+        }
+          // checks the file's mime type
+        elseif ($fileMIME === 'application/pdf') {
+          // and continues if valid
+          $file = $_FILES['fileToUpload'];
+          // var_dump($file);
+          $targetFile = file_upload_delfin($file);  // now i can use the returned variable from the function
+          // var_dump($targetFile);
+          // next part:
+          // header('Location: send_mail.php?file=' . urlencode($targetFile));
+          $_SESSION['targetFile'] = $targetFile;  // save it inside the user's session
+          header('Location: send_mail.php');
+          exit();
+        } else {
+          echo "<strong>Muss ee richteg formatéierte PDF Fichier sinn</strong><br />";
+        }
+        // }
+    
+        
+      } else {
+        echo "<strong>Unknown Error Occured</strong><br />";
+      }
+}
+
+
+
+// docX upload
+function upload_docX_delfin(){
+    if (empty($_FILES['fileToUpload']['name'])) {
+        echo "<strong>Keen Fichier ausgewielt</strong><br />";
+      } elseif (isset($_FILES['fileToUpload'])) {
+    
+        // preparing the file checking
+        $fileNAME = $_FILES['fileToUpload']['name'];
+        $fileMIME = mime_content_type($_FILES['fileToUpload']['tmp_name']); // mime needs tmp_name
+        // var_dump($_FILES['fileToUpload']);
+        // var_dump($fileMIME);
+    
+        // checks the file extension
+        if (!preg_match("/\.docx$/i", $fileNAME)) {
+          echo "<strong>.DOXC obligatoresch</strong><br />";
+        }
+          // checks the file's mime type
+        elseif ($fileMIME === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {  // yes this is docX
+          // and continues if valid
+          $file = $_FILES['fileToUpload'];
+          // var_dump($file);
+          $targetFile = file_upload_delfin($file);  // now i can use the returned variable from the function
+          // var_dump($targetFile);
+          // next part:
+          // header('Location: send_mail.php?file=' . urlencode($targetFile));
+          $_SESSION['targetFile'] = $targetFile;  // save it inside the user's session
+          header('Location: send_mail.php');
+          exit();
+        } else {
+          echo "<strong>Muss ee richteg formatéierte DOCX Fichier sinn</strong><br />";
+        }
+        // }
+    
+        
+      } else {
+        echo "<strong>Unknown Error Occured</strong><br />";
+      }
+}
+
 
 
