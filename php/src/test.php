@@ -74,6 +74,9 @@ function convertDocxToPdf($inputDocx, $outputPdf)
     // $output = shell_exec($command);
     // file_put_contents('uploads/convert_log.txt', $output);
     // echo "<pre>$output</pre>"; // Display error output
+    if (file_exists($outputPdf)){
+        unlink($outputPdf);
+    }
     $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir /var/www/html/uploads $inputDocx 2>&1";
     $output = shell_exec($command);
     file_put_contents('/var/www/html/uploads/convert_log.txt', $output);
