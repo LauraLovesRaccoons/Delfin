@@ -45,3 +45,6 @@ ve/bin/pip install -e .[devenv]
 
 
 
+unoserver --daemon
+
+
