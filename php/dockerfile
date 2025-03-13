@@ -14,18 +14,16 @@ RUN echo "upload_max_filesize=20M" > /usr/local/etc/php/conf.d/upload_large_dump
 # RUN composer install
 
 
+# other stuff
 
 RUN apt-get update && apt-get upgrade -y
 
 RUN apt-get install -y libzip-dev git && \
     docker-php-ext-install zip
 
-RUN add-apt-repository ppa:libreoffice/ppa
-RUN apt install libreoffice
-RUN pip install unoserver
-
-RUN apt-get update && apt-get upgrade -y
-
+# RUN add-apt-repository ppa:libreoffice/ppa
+# RUN apt install libreoffice
+# RUN pip install unoserver
 
 
 
