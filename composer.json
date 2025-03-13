@@ -9,7 +9,8 @@
         "ddn/sapp": "dev-main",
         "smalot/pdfparser": "^2.11",
         "enflow/document-replacer": "^3.3",
-        "dompdf/dompdf": "^3.1"
+        "dompdf/dompdf": "^3.1",
+        "shadz3rg/php-stamp": "^0.1.2"
     },
     "autoload": {
         "psr-4": {

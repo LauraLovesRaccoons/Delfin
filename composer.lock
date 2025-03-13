@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "560446006cee273c64fa4e59d544ccbc",
+    "content-hash": "502b707694eea8cbe2a6a900a986e21b",
     "packages": [
         {
             "name": "ddn/sapp",
@@ -59,6 +59,70 @@
                 }
             ],
             "time": "2024-12-19T18:32:34+00:00"
+        },
+        {
+            "name": "doctrine/lexer",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/lexer.git",
+                "reference": "1febd6c3ef84253d7c815bed85fc622ad207a9f8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/lexer/zipball/1febd6c3ef84253d7c815bed85fc622ad207a9f8",
+                "reference": "1febd6c3ef84253d7c815bed85fc622ad207a9f8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Common\\Lexer\\": "lib/Doctrine/Common/Lexer"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "PHP Doctrine Lexer parser library that can be used in Top-Down, Recursive Descent Parsers.",
+            "homepage": "https://www.doctrine-project.org/projects/lexer.html",
+            "keywords": [
+                "annotations",
+                "docblock",
+                "lexer",
+                "parser",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/doctrine/lexer/issues",
+                "source": "https://github.com/doctrine/lexer/tree/1.0.2"
+            },
+            "time": "2019-06-08T11:03:04+00:00"
         },
         {
             "name": "dompdf/dompdf",
@@ -813,6 +877,51 @@
                 }
             ],
             "time": "2025-02-05T13:22:35+00:00"
+        },
+        {
+            "name": "shadz3rg/php-stamp",
+            "version": "0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shadz3rg/PHPStamp.git",
+                "reference": "5f29c5c9a5705681642af8daa64e1bd409202360"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shadz3rg/PHPStamp/zipball/5f29c5c9a5705681642af8daa64e1bd409202360",
+                "reference": "5f29c5c9a5705681642af8daa64e1bd409202360",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/lexer": "1.0.*@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PHPStamp": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oleg",
+                    "email": "ukhardc0r3@gmail.com"
+                }
+            ],
+            "description": "A library for true XSL-way templating of XML-based Office documents. Supports MS Word docx.",
+            "keywords": [
+                "docx",
+                "template",
+                "word"
+            ],
+            "support": {
+                "issues": "https://github.com/shadz3rg/PHPStamp/issues",
+                "source": "https://github.com/shadz3rg/PHPStamp/tree/master"
+            },
+            "time": "2017-08-07T11:58:25+00:00"
         },
         {
             "name": "smalot/pdfparser",
