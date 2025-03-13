@@ -25,7 +25,7 @@ if (isset($_SESSION['targetUsersArray'])) {
 
 
 if (isset($_POST['submit_button'])) {
-  upload_pdf_delfin();
+  upload_docx_delfin();
 }
 
 
