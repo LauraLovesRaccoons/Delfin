@@ -1,5 +1,7 @@
 <?php
 
+use Enflow\DocumentReplacer\Converters\UnoserverConverter;
+
 ob_start();
 
 require "functions.php";
@@ -96,6 +98,12 @@ foreach ($emailRecipientsArray as $recipientUser) {
     // $emailSubject = 'TEST EMAIL Petange Intern';
     // $emailBody = '<h2>Intern verschéckten Test Email, net entwäerten a keen Handlungsbedarf.</h2> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 🦆 <br> <br> <br> 北京烤鴨 <br>';
     // // end of this note
+
+    // replacing docX fields with data
+    // i need a failsafe is some fields aren't present
+    docx_db_fill_delfin();
+    // conert filled in docX to pdf
+
     send_mail_delfin(
         $emailSender,
         $emailSenderName,

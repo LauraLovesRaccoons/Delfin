@@ -16,10 +16,14 @@ session_name("$session_name");              // now this is the cookie's name
 // Load Composer's autoloader
 require 'vendor/autoload.php';
 
-// required for functions
+// required for composer "plugins"
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+
+use Enflow\DocumentReplacer\DocumentReplacer;
+use Enflow\DocumentReplacer\Converters\UnoserverConverter;
+
 
 
 function debug_test_env_delfin()
@@ -213,7 +217,7 @@ function file_upload_delfin($file)
         // echo "<strong>Somehow. Somehow, Palpatine returned... and made this file in this folder already exist!</strong><br />";
         unlink($targetFile);
     }
-    if(!move_uploaded_file($file['tmp_name'], $targetFile)){
+    if (!move_uploaded_file($file['tmp_name'], $targetFile)) {
         echo "<strong>Something went terribly wrong!</strong><br />";
         return false;
     }
@@ -221,93 +225,113 @@ function file_upload_delfin($file)
 }
 
 
-function delete_uploads_dir_delfin(){
+function delete_uploads_dir_delfin()
+{
     $baseUploadDir = $GLOBALS['uploadPath'];    // global var
     $UploadDirUserId = $baseUploadDir . "/" . $_SESSION['id'];  // this only targets the current user
-    system("rm -rf ".escapeshellarg($UploadDirUserId)); // forces wipes the entire directory
+    system("rm -rf " . escapeshellarg($UploadDirUserId)); // forces wipes the entire directory
 }
 
 
 
 // pdf upload
-function upload_pdf_delfin(){
+function upload_pdf_delfin()
+{
     if (empty($_FILES['fileToUpload']['name'])) {
         echo "<strong>Keen Fichier ausgewielt</strong><br />";
-      } elseif (isset($_FILES['fileToUpload'])) {
-    
+    } elseif (isset($_FILES['fileToUpload'])) {
+
         // preparing the file checking
         $fileNAME = $_FILES['fileToUpload']['name'];
         $fileMIME = mime_content_type($_FILES['fileToUpload']['tmp_name']); // mime needs tmp_name
         // var_dump($_FILES['fileToUpload']);
         // var_dump($fileMIME);
-    
+
         // checks the file extension
         if (!preg_match("/\.pdf$/i", $fileNAME)) {
-          echo "<strong>.PDF obligatoresch</strong><br />";
+            echo "<strong>.PDF obligatoresch</strong><br />";
         }
-          // checks the file's mime type
+        // checks the file's mime type
         elseif ($fileMIME === 'application/pdf') {
-          // and continues if valid
-          $file = $_FILES['fileToUpload'];
-          // var_dump($file);
-          $targetFile = file_upload_delfin($file);  // now i can use the returned variable from the function
-          // var_dump($targetFile);
-          // next part:
-          // header('Location: send_mail.php?file=' . urlencode($targetFile));
-          $_SESSION['targetFile'] = $targetFile;  // save it inside the user's session
-          header('Location: send_mail.php');
-          exit();
+            // and continues if valid
+            $file = $_FILES['fileToUpload'];
+            // var_dump($file);
+            $targetFile = file_upload_delfin($file);  // now i can use the returned variable from the function
+            // var_dump($targetFile);
+            // next part:
+            // header('Location: send_mail.php?file=' . urlencode($targetFile));
+            $_SESSION['targetFile'] = $targetFile;  // save it inside the user's session
+            header('Location: send_mail.php');
+            exit();
         } else {
-          echo "<strong>Muss ee richteg formatéierte PDF Fichier sinn</strong><br />";
+            echo "<strong>Muss ee richteg formatéierte PDF Fichier sinn</strong><br />";
         }
         // }
-    
-        
-      } else {
+
+
+    } else {
         echo "<strong>Unknown Error Occured</strong><br />";
-      }
+    }
 }
 
 
 
 // docX upload
-function upload_docX_delfin(){
+function upload_docX_delfin()
+{
     if (empty($_FILES['fileToUpload']['name'])) {
         echo "<strong>Keen Fichier ausgewielt</strong><br />";
-      } elseif (isset($_FILES['fileToUpload'])) {
-    
+    } elseif (isset($_FILES['fileToUpload'])) {
+
         // preparing the file checking
         $fileNAME = $_FILES['fileToUpload']['name'];
         $fileMIME = mime_content_type($_FILES['fileToUpload']['tmp_name']); // mime needs tmp_name
         // var_dump($_FILES['fileToUpload']);
         // var_dump($fileMIME);
-    
+
         // checks the file extension
         if (!preg_match("/\.docx$/i", $fileNAME)) {
-          echo "<strong>.DOXC obligatoresch</strong><br />";
+            echo "<strong>.DOXC obligatoresch</strong><br />";
         }
-          // checks the file's mime type
+        // checks the file's mime type
         elseif ($fileMIME === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {  // yes this is docX
-          // and continues if valid
-          $file = $_FILES['fileToUpload'];
-          // var_dump($file);
-          $targetFile = file_upload_delfin($file);  // now i can use the returned variable from the function
-          // var_dump($targetFile);
-          // next part:
-          // header('Location: send_mail.php?file=' . urlencode($targetFile));
-          $_SESSION['targetFile'] = $targetFile;  // save it inside the user's session
-          header('Location: send_mail.php');
-          exit();
+            // and continues if valid
+            $file = $_FILES['fileToUpload'];
+            // var_dump($file);
+            $targetFile = file_upload_delfin($file);  // now i can use the returned variable from the function
+            // var_dump($targetFile);
+            // next part:
+            // header('Location: send_mail.php?file=' . urlencode($targetFile));
+            $_SESSION['targetFile'] = $targetFile;  // save it inside the user's session
+            header('Location: send_mail.php');
+            exit();
         } else {
-          echo "<strong>Muss ee richteg formatéierte DOCX Fichier sinn</strong><br />";
+            echo "<strong>Muss ee richteg formatéierte DOCX Fichier sinn</strong><br />";
         }
         // }
-    
-        
-      } else {
+
+
+    } else {
         echo "<strong>Unknown Error Occured</strong><br />";
-      }
+    }
 }
 
+
+function docx_db_fill_delfin()
+{
+    DocumentReplacer::template('./uploads/testdocx.docx')
+        ->converter(
+            UnoserverConverter::class,
+            // [
+            //     'interface' => '127.0.0.1',
+            //     'port' => 2002,
+            // ]
+        )
+        ->replace([
+            '${Allocation_Spéciale}' => 'Laura',
+        ])
+        ->save('./uploads/Laura.docx');
+    // with the converter service running it will be .pdf
+}
 
 
