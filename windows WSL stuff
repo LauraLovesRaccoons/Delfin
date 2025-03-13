@@ -1,0 +1,47 @@
+enable Linux Subsystem for Windows feature
+install debian for Microshit Store
+enable sudo in windows dev setting
+ensure Virtulization is on and Hyper-V is disabled
+
+
+run it, my user is laura with pw: laura
+
+sudo apt-get install python-software-properties
+
+sudo apt-get install software-properties-common
+
+
+
+//!
+https://packagist.org/packages/enflow/document-replacer
+
+I switched to Ubuntu (ms store)
+ enflow/document-replacer
+is made for ubuntu
+
+sudo add-apt-repository ppa:libreoffice/ppa
+sudo apt install libreoffice
+    sudo apt-get install python3-pip
+    sudo apt-get install python3-full
+sudo pip install unoserver
+
+
+
+//! don't use
+sudo pip install --break-system-packages unoserver
+sudo pip uninstall --break-system-packages unoserver
+//!
+
+//! chatgpt slop
+python3 -m venv myenv
+source myenv/bin/activate
+pip install unoserver
+//!
+
+<!-- sudo apt install python3-virtualenv
+virtualenv --system-site-packages ve
+ve/bin/pip install -e .[devenv]
+ -->
+
+
+
