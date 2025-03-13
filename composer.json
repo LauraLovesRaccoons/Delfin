@@ -7,7 +7,8 @@
         "setasign/fpdi": "^2.6",
         "setasign/fpdf": "^1.8",
         "ddn/sapp": "dev-main",
-        "smalot/pdfparser": "^2.11"
+        "smalot/pdfparser": "^2.11",
+        "enflow/document-replacer": "^3.3"
     },
     "autoload": {
         "psr-4": {
