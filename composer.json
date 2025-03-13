@@ -8,7 +8,11 @@
         "setasign/fpdf": "^1.8",
         "ddn/sapp": "dev-main",
         "smalot/pdfparser": "^2.11",
-        "enflow/document-replacer": "^3.3"
+        "enflow/document-replacer": "^3.3",
+        "dompdf/dompdf": "^3.1",
+        "shadz3rg/php-stamp": "^0.1.2",
+        "phpoffice/phpword": "^1.3",
+        "nisam/doc-parser": "^0.0.6"
     },
     "autoload": {
         "psr-4": {

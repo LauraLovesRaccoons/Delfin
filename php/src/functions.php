@@ -21,8 +21,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-use Enflow\DocumentReplacer\DocumentReplacer;
-use Enflow\DocumentReplacer\Converters\UnoserverConverter;
+// use Enflow\DocumentReplacer\DocumentReplacer;
+// use Enflow\DocumentReplacer\Converters\UnoserverConverter;
 
 
 
@@ -319,19 +319,21 @@ function upload_docX_delfin()
 
 function docx_db_fill_delfin()
 {
-    DocumentReplacer::template('./uploads/testdocx.docx')
-        ->converter(
-            UnoserverConverter::class,
-            // [
-            //     'interface' => '127.0.0.1',
-            //     'port' => 2002,
-            // ]
-        )
-        ->replace([
-            '${Allocation_Spéciale}' => 'Laura',
-        ])
-        ->save('./uploads/Laura.docx');
-    // with the converter service running it will be .pdf
+    // DocumentReplacer::template('./uploads/testdocx.docx')
+    //     ->converter(
+    //         UnoserverConverter::class,
+    //         // [
+    //         //     'interface' => '127.0.0.1',
+    //         //     // 'interface' => 'localhost',
+    //         //     'port' => 2002,
+    //         //     // 'port' => 8088,
+    //         // ]
+    //     )
+    //     ->replace([
+    //         '${Allocation_Spéciale}' => 'Laura',
+    //     ])
+    //     ->save('./uploads/Laura.pdf');
+    // // with the converter service running it will be .pdf
 }
 
 

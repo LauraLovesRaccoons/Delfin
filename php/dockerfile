@@ -21,6 +21,14 @@ RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y libzip-dev git && \
     docker-php-ext-install zip
 
+# # required for PHPStamp
+# RUN apt-get update && \
+#     apt-get install -y libxslt1-dev zip unzip && \
+#     docker-php-ext-install xsl zip
+
+
+
+
 # RUN add-apt-repository ppa:libreoffice/ppa
 # RUN apt install libreoffice
 # RUN pip install unoserver
@@ -45,4 +53,20 @@ RUN apt-get install -y libzip-dev git && \
 
 # # in existing project or changes
 # RUN composer update
+
+
+# # FROM php:8.2-apache
+# RUN apt-get update && apt-get install -y \
+#     libreoffice \
+#     python3-pip \
+#     unoconv \
+#     && rm -rf /var/lib/apt/lists/*
+# # RUN pip3 install unoserver
+# RUN pip install --break-system-packages unoserver
+# # RUN a2enmod rewrite
+# # EXPOSE 2002
+# # CMD [ "unoserver", "--daemon" ]
+# CMD service apache2 start && unoserver --daemon & apachectl -D FOREGROUND
+
+
 
