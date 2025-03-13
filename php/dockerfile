@@ -21,6 +21,20 @@ RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y libzip-dev git && \
     docker-php-ext-install zip
 
+# RUN apt-get update && apt-get install -y libreoffice libreoffice-writer
+
+RUN apt-get update && apt-get install -y \
+    libreoffice \
+    libreoffice-writer \
+    libreoffice-core \
+    libreoffice-common \
+    libreoffice-calc \
+    libreoffice-impress \
+    fonts-dejavu \
+    && rm -rf /var/lib/apt/lists/*
+
+
+
 # # required for PHPStamp
 # RUN apt-get update && \
 #     apt-get install -y libxslt1-dev zip unzip && \
