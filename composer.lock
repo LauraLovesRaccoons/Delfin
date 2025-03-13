@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "502b707694eea8cbe2a6a900a986e21b",
+    "content-hash": "93ed2c3d16971179f650cc7acec48e07",
     "packages": [
         {
             "name": "ddn/sapp",
