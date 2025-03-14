@@ -118,7 +118,8 @@ foreach ($emailRecipientsArray as $recipientUser) {
     // replacing docX fields with data
     $templateDocX = $templateFile;
     // i might need to create the directory before trying to write to it
-    $outputDocXDir = $templateDir . $recipientUserId . "/" . $timestamp . "/";
+    // $outputDocXDir = $templateDir . $recipientUserId . "/" . $timestamp . "/";  //? dropped; creates an unnecessary folder named after another timestamp in directory named already after a timestamp
+    $outputDocXDir = $templateDir . $recipientUserId . "/";     //? much easier to use IF files are kept
     $outputDocX = $outputDocXDir . $templateFileName;
     if (!is_dir($outputDocXDir)) {
         mkdir($outputDocXDir, 0777, true);  // Create directory; but everyone can access it :/
