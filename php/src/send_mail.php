@@ -113,11 +113,21 @@ foreach ($emailRecipientsArray as $recipientUser) {
     // path stuff
     $timestamp = time();    // yes
     $recipientUserId = $recipientUser['RecipientId'];
+
     // 
     // replacing docX fields with data
     $templateDocX = $templateFile;
-    $outputDocX = $templateDir . $recipientUserId . "/" . $timestamp . "/" . $templateFileName;
-    // i might need to create the directory
+    // i might need to create the directory before trying to write to it
+    $outputDocXDir = $templateDir . $recipientUserId . "/" . $timestamp . "/";
+    $outputDocX = $outputDocXDir . $templateFileName;
+    if (!is_dir($outputDocXDir)) {
+        mkdir($outputDocXDir, 0777, true);  // Create directory; but everyone can access it :/
+    }
+    else {
+        system("rm -rf " . escapeshellarg($outputDocXDir)); // witchcraft ; libre office would force overwrite it though ; but Document\Parser\Word doesn't
+    };
+    // $outputDocX = $GLOBALS['uploadBasePath'] . "IT-WORKZ.docx"; // proof that it requires the directory to exist
+    // 
     modify_docX_delfin($templateDocX, $outputDocX, $recipientUser);
     // conert filled in docX to pdf
     $inputDocX = $outputDocX;

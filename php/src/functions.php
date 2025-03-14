@@ -180,7 +180,7 @@ function write_log_delfin($logMessage)
     $logDirUserId = $logBasePath . $_SESSION['id']; // 
     $logFile = $GLOBALS['logFile'];  // global var
     if (!is_dir($logDirUserId)) {
-        mkdir($logDirUserId, 0777, true);  // Create directory but everyone can access it
+        mkdir($logDirUserId, 0777, true);  // Create directory; but everyone can access it :/
     }
     $logFileWithPath = $logDirUserId . "/" .  $logFile;
 
@@ -321,7 +321,7 @@ function upload_docX_delfin()
 // docX fill data {hard coded fields!}
 function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
 {
-    // $recipientUser used inside the array
+    //! $recipientUser used inside the array as variables
     $replacementsArray = [
         '«Allocation»' => 'Madame',
         '«Nom»' => 'AAAA',
@@ -339,11 +339,6 @@ function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
 // convert docX to pdf (libre office plugin)
 function convertDocxToPdf($inputDocx, $outputPdf)
 {
-    // $logFile = $GLOBALS['logFile'];  // global var
-    // if (!is_dir($logDirUserId)) {
-    //     mkdir($logDirUserId, 0777, true);  // Create directory but everyone can access it
-    // }
-    // $logFileWithPath = $logDirUserId . "/" .  $logFile;
 
     // $recipientId = $recipientUser['RecipientId'];
     $inputDocx = escapeshellarg($inputDocx);    // requires real path
@@ -353,7 +348,7 @@ function convertDocxToPdf($inputDocx, $outputPdf)
     }
     // /var/www/html/ is from compose.yaml
     // $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir /var/www/html/uploads $inputDocx 2>&1";  // this one works
-    $outDir = "/var/www/html/" . $GLOBALS['uploadBasePath'] . "HI/";
+    $outDir = "/var/www/html/" . $GLOBALS['uploadBasePath'];
     $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir $outDir $inputDocx 2>&1";
     $output = shell_exec($command);
 
@@ -367,6 +362,8 @@ function convertDocxToPdf($inputDocx, $outputPdf)
 // ! UNUSED
 function digitally_sign_pdf_delfin($pdfToSign)
 {
+    // new filename or directory or force overwrite required; PERHAPS ?
+    // input path + file => DIR /signed/ ; most edit the original though , so not actually needed
     return $pdfToSign;
 };
 
