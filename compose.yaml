@@ -48,7 +48,6 @@ services:
       - ./logs:/var/www/html/logs       # 
     ports:
       - "80:80"   # port 80 external
-      
     networks:
       - delfin_network
     build:
