@@ -20,10 +20,18 @@ session_checker_delfin();
 
 
 if (isset($_SESSION['targetFile'])) {
-    $emailAttachement = $_SESSION['targetFile'];
+    $templateFile = $_SESSION['targetFile'];
     unset($_SESSION['targetFile']); // prevents sending duplicate mails
     // run this before writing to the log file, as the older logs are less likely to be needed
     log_too_big_delfin();
+    // the IF is just to be sure no shenanigans are going on
+    if (isset($_SESSION['targetDir'])) {
+        $templateDir = $_SESSION['targetDir'];
+        unset($_SESSION['targetDir']);
+    } else {
+        header("Location: delfin.php");
+        exit();
+    }
 }
 // it's better to be sure this hasn't somehow been purged
 if (isset($_SESSION['targetUsersArray'])) {
@@ -89,10 +97,11 @@ include 'header.html';
 
 
 // preparing this for use inside the loop
-$templateFile = $_SESSION['targetFile'];
-unset($_SESSION['targetFile']);
-$templateDir = $_SESSION['targetDir'];
-unset($_SESSION['targetDir']);
+// this is all the way at the top!
+// // $templateFile = $_SESSION['targetFile'];
+// // unset($_SESSION['targetFile']);
+// // $templateDir = $_SESSION['targetDir'];
+// // unset($_SESSION['targetDir']);
 // removing the full path from the file or else it will get too compilcated
 $templateFileName = str_replace($templateDir, '', $templateFile);
 // $templateFileName = ltrim($templateFile, '/');  // this would remove the / in front of the filename ,but it's already contained in the full path (dir)
@@ -113,6 +122,7 @@ foreach ($emailRecipientsArray as $recipientUser) {
     $inputDocX = $outputDocX;
     $outputPdf = "./uploads/AAAAAA_output.pdf";
     convertDocxToPdf($inputDocX, $outputPdf);
+    $emailAttachement = $outputPdf;
 
     send_mail_delfin(
         $emailSender,
