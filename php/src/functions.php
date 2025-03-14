@@ -332,9 +332,11 @@ function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
         '«Allocation_Spéciale»' => 'Prinzessin',
         '«Nom coupon-réponse»' => 'Laura',  //! verify actual field name! 
     ];
+    ob_start();         // output buffer so it removes the annnoying notification from this extension
     $word = new Word();
     $word->findAndReplace($templateDocX, $outputDocX, $replacementsArray);
-    echo "<br />";  // File written! is always printed :/ 
+    // echo "<br />";  // File written! is always printed :/ 
+    ob_end_clean();     // do i need to explain this ?!?
 }
 
 // convert docX to pdf (libre office plugin)
