@@ -34,13 +34,13 @@ if (isset($_SESSION['targetUsersArray'])) {
     exit();
 }
 // sets the Subject and Body and loads the default from the env file if it doesn't exist
-if (isset($_SESSION['emailSubject'])){
+if (isset($_SESSION['emailSubject'])) {
     $emailSubject = $_SESSION['emailSubject'];
     unset($_SESSION['emailSubject']);   // wipe it ditto
 } else {
     $emailSubject = getenv('DEFAULT_EMAIL_SUBJECT');
 }
-if (isset($_SESSION['emailBody'])){
+if (isset($_SESSION['emailBody'])) {
     $emailBody = $_SESSION['emailBody'];
     unset($_SESSION['emailSubject']);   // wipe it ditto
 } else {
@@ -92,17 +92,14 @@ include 'header.html';
 foreach ($emailRecipientsArray as $recipientUser) {
     $emailSender = $_SESSION['email'];
     $emailSenderName = $_SESSION['username'];
-    // // function customMessageSubject
-    // // function customMessageBody
-    // // first set the custom msg; just dump everything into the $_SESSION['targetUsersArray'] 
-    // $emailSubject = 'TEST EMAIL Petange Intern';
-    // $emailBody = '<h2>Intern verschéckten Test Email, net entwäerten a keen Handlungsbedarf.</h2> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 🦆 <br> <br> <br> 北京烤鴨 <br>';
-    // // end of this note
-
     // replacing docX fields with data
-    // i need a failsafe is some fields aren't present
-    docx_db_fill_delfin();
+    $templateDocX = './uploads/testdocx.docx';
+    $outputDocX = './uploads/output.docx';
+    modify_docX_delfin($templateFile, $outputFile);
     // conert filled in docX to pdf
+    $inputDocX = $outputDocX;
+    $outputPdf = "./uploads/output.pdf";
+    convertDocxToPdf($inputDocX, $outputPdf);
 
     send_mail_delfin(
         $emailSender,

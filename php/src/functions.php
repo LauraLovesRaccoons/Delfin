@@ -21,8 +21,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-// use Enflow\DocumentReplacer\DocumentReplacer;
-// use Enflow\DocumentReplacer\Converters\UnoserverConverter;
+use Document\Parser\Word;
+
 
 
 
@@ -316,24 +316,59 @@ function upload_docX_delfin()
     }
 }
 
-
-function docx_db_fill_delfin()
+// docX fill data {hard coded fields!}
+function modify_docX_delfin()
 {
-    // DocumentReplacer::template('./uploads/testdocx.docx')
-    //     ->converter(
-    //         UnoserverConverter::class,
-    //         // [
-    //         //     'interface' => '127.0.0.1',
-    //         //     // 'interface' => 'localhost',
-    //         //     'port' => 2002,
-    //         //     // 'port' => 8088,
-    //         // ]
-    //     )
-    //     ->replace([
-    //         '${Allocation_Spéciale}' => 'Laura',
-    //     ])
-    //     ->save('./uploads/Laura.pdf');
-    // // with the converter service running it will be .pdf
+    $replacements = [
+        '«Allocation»' => 'Madame',
+        '«Nom»' => $myName,
+        '«Nom2»' => 'Laura',
+        '«Fonction»' => '',
+        '«Adresse1»' => 'Place JFK',
+        '«Adresse2»' => 'Pétange',
+        '«Allocation_Spéciale»' => 'Prinzessin',
+        '«ERRORRRORRRRR»' => 'AA<AAAAASHBSJBU989965S',
+    ];
+    $word = new Word();
+    $word->findAndReplace($templateFile, $outputFile, $replacements);
+}
+
+// convert docX to pdf (libre office plugin)
+function convertDocxToPdf($inputDocx, $outputPdf)
+{
+    $inputDocx = escapeshellarg($inputDocx);    // requires real path
+    $outputPdf = escapeshellarg($outputPdf);    // ditto
+    if (file_exists($outputPdf)){
+        unlink($outputPdf);         // it can't overwrite exisiting files
+    }
+    // /var/www/html/ is from compose.yaml
+    $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir /var/www/html/uploads $inputDocx 2>&1";
+    $output = shell_exec($command);
+
+    // file_put_contents('/var/www/html/uploads/convert_log.txt', $output);    // logging file
+    // echo "<pre>$output</pre>";  // visible on the webpage
+    // echo "<br />";  // 
+
+    return file_exists($outputPdf) ? $outputPdf : false;
 }
 
 
+
+// function docx_db_fill_delfin()
+// {
+//     // DocumentReplacer::template('./uploads/testdocx.docx')
+//     //     ->converter(
+//     //         UnoserverConverter::class,
+//     //         // [
+//     //         //     'interface' => '127.0.0.1',
+//     //         //     // 'interface' => 'localhost',
+//     //         //     'port' => 2002,
+//     //         //     // 'port' => 8088,
+//     //         // ]
+//     //     )
+//     //     ->replace([
+//     //         '${Allocation_Spéciale}' => 'Laura',
+//     //     ])
+//     //     ->save('./uploads/Laura.pdf');
+//     // // with the converter service running it will be .pdf
+// }
