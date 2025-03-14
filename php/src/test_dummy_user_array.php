@@ -19,10 +19,10 @@ $dummyAccounts = [
     // [
     //     'emailRecipient' => 'loser@petange.lu',
     //     'emailRecipientName' => 'LOSER Dummy Recipient',
-    //     'RecipientId' => 3
+    //     'RecipientId' => 666
     // ],
     // [
-    //     'emailRecipient' => 'loser@email.com.lux',
+    //     'emailRecipient' => 'holaura@protonmail.com',
     //     'emailRecipientName' => 'LOSER Dummy Recipient',
     //     'RecipientId' => 455
     
