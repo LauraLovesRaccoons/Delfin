@@ -222,7 +222,7 @@ function file_upload_delfin($file)
         echo "<strong>Something went terribly wrong!</strong><br />";
         return false;
     }
-    $_SESSION['targetDir']; // this makes stuff much easier later on; because of the timestamp shenanigans
+    $_SESSION['targetDir'] = $targetUploadDir;  // this makes stuff much easier later on; because of the timestamp shenanigans
     return $targetFile; // now i can use it
 }
 
