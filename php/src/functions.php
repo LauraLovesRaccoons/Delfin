@@ -326,7 +326,7 @@ function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
         '«Allocation»' => 'Madame',
         '«Nom»' => 'AAAA',
         '«Nom2»' => 'Laura',
-        '«Fonction»' => '',
+        '«Fonction»' => '​',    //! this is not empty on purpose
         '«Adresse1»' => 'Place JFK',
         '«Adresse2»' => 'Pétange',
         '«Allocation_Spéciale»' => 'Prinzessin',
