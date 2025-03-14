@@ -88,17 +88,30 @@ include 'header.html';
 
 
 
+// preparing this for use inside the loop
+$templateFile = $_SESSION['targetFile'];
+unset($_SESSION['targetFile']);
+$templateDir = $_SESSION['targetDir'];
+unset($_SESSION['targetDir']);
+// removing the full path from the file or else it will get too compilcated
+$templateFileName = str_replace($templateDir, '', $templateFile);
+// $templateFileName = ltrim($templateFile, '/');  // this would remove the / in front of the filename ,but it's already contained in the full path (dir)
+// 
 // Loop through the array and send emails
 foreach ($emailRecipientsArray as $recipientUser) {
     $emailSender = $_SESSION['email'];
     $emailSenderName = $_SESSION['username'];
+    // path stuff
+    $timestamp = time();    // yes
+    $recipientUserId = $recipientUser['RecipientId'];
+    // 
     // replacing docX fields with data
-    $templateDocX = './uploads/testdocx.docx';
-    $outputDocX = './uploads/output.docx';
+    $templateDocX = $templateFile;
+    $outputDocX = $templateDir . $recipientUserId . "/" . $timestamp . "/" . $templateFileName;
     modify_docX_delfin($templateDocX, $outputDocX, $recipientUser);
     // conert filled in docX to pdf
     $inputDocX = $outputDocX;
-    $outputPdf = "./uploads/output.pdf";
+    $outputPdf = "./uploads/AAAAAA_output.pdf";
     convertDocxToPdf($inputDocX, $outputPdf);
 
     send_mail_delfin(
@@ -114,7 +127,8 @@ foreach ($emailRecipientsArray as $recipientUser) {
     // wait for 1 millisecond ; don't go below that!
     usleep(1000);   // 1000 microseconds
 }
-delete_uploads_dir_delfin();    // cleanup
+//! delete_uploads_dir_delfin();    // cleanup
+//! temporarily disabled for debugging reason
 
 
 

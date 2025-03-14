@@ -222,6 +222,7 @@ function file_upload_delfin($file)
         echo "<strong>Something went terribly wrong!</strong><br />";
         return false;
     }
+    $_SESSION['targetDir']; // this makes stuff much easier later on; because of the timestamp shenanigans
     return $targetFile; // now i can use it
 }
 
@@ -320,26 +321,24 @@ function upload_docX_delfin()
 // docX fill data {hard coded fields!}
 function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
 {
+    // $recipientUser used inside the array
     $replacementsArray = [
         '«Allocation»' => 'Madame',
         '«Nom»' => 'AAAA',
         '«Nom2»' => 'Laura',
-        '«Nom coupon-réponse»' => 'Laura',  //! verify actual field name! 
         '«Fonction»' => '',
         '«Adresse1»' => 'Place JFK',
         '«Adresse2»' => 'Pétange',
         '«Allocation_Spéciale»' => 'Prinzessin',
+        '«Nom coupon-réponse»' => 'Laura',  //! verify actual field name! 
     ];
     $word = new Word();
     $word->findAndReplace($templateDocX, $outputDocX, $replacementsArray);
 }
 
 // convert docX to pdf (libre office plugin)
-function convertDocxToPdf($inputDocx, $outputPdf, $recipientUser)
-{
-    $timestamp = time();
-    $uploadBasePath = $GLOBALS['uploadBasePath'];  // global var
-    $uploadDirUserId = $logBasePath . $_SESSION['id']; // 
+function convertDocxToPdf($inputDocx, $outputPdf)
+{ 
     $logFile = $GLOBALS['logFile'];  // global var
     if (!is_dir($logDirUserId)) {
         mkdir($logDirUserId, 0777, true);  // Create directory but everyone can access it
