@@ -23,6 +23,7 @@ RUN apt-get install -y libzip-dev git && \
 
 # RUN apt-get update && apt-get install -y libreoffice libreoffice-writer
 
+# Libre Office needs this to work
 RUN apt-get update && apt-get install -y \
     libreoffice \
     libreoffice-writer \
@@ -33,19 +34,6 @@ RUN apt-get update && apt-get install -y \
     fonts-dejavu \
     && rm -rf /var/lib/apt/lists/*
 
-
-
-# # required for PHPStamp
-# RUN apt-get update && \
-#     apt-get install -y libxslt1-dev zip unzip && \
-#     docker-php-ext-install xsl zip
-
-
-
-
-# RUN add-apt-repository ppa:libreoffice/ppa
-# RUN apt install libreoffice
-# RUN pip install unoserver
 
 
 

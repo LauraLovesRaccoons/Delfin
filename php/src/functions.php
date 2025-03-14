@@ -7,7 +7,8 @@ date_default_timezone_set('Europe/Luxembourg'); //! this isn't meant to change
 // Global Variables
 $logBasePath = "./logs/";   // global makes sense for this specific use case
 $logFile = "log.txt";       // ditto
-$uploadPath = "./uploads/"; // global makes sense for this specific use case
+$uploadBasePath = "./uploads/"; // global makes sense for this specific use case
+// // removed the ./ from in front of the path
 
 $session_name = "delfin-session-cookie";    // prettier name
 session_name("$session_name");              // now this is the cookie's name
@@ -21,8 +22,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-// use Enflow\DocumentReplacer\DocumentReplacer;
-// use Enflow\DocumentReplacer\Converters\UnoserverConverter;
+use Document\Parser\Word;
+
 
 
 
@@ -179,7 +180,7 @@ function write_log_delfin($logMessage)
     $logDirUserId = $logBasePath . $_SESSION['id']; // 
     $logFile = $GLOBALS['logFile'];  // global var
     if (!is_dir($logDirUserId)) {
-        mkdir($logDirUserId, 0777, true);  // Create directory but everyone can access it
+        mkdir($logDirUserId, 0777, true);  // Create directory; but everyone can access it :/
     }
     $logFileWithPath = $logDirUserId . "/" .  $logFile;
 
@@ -206,7 +207,7 @@ function log_too_big_delfin()
 // requires a session to be set
 function file_upload_delfin($file)
 {
-    $baseUploadDir = $GLOBALS['uploadPath'];    // global var
+    $baseUploadDir = $GLOBALS['uploadBasePath'];    // global var
     $timestamp = time();
     $targetUploadDir = $baseUploadDir . $_SESSION['id'] . "/" . $timestamp . "/"; // ensures each upload folder is unique, user id is unique and timestamp is unique ; and if not I'm gonna play the lottery (since the filename would also have to be an exact match)
     if (!is_dir($targetUploadDir)) {
@@ -221,13 +222,14 @@ function file_upload_delfin($file)
         echo "<strong>Something went terribly wrong!</strong><br />";
         return false;
     }
+    $_SESSION['targetDir'] = $targetUploadDir;  // this makes stuff much easier later on; because of the timestamp shenanigans
     return $targetFile; // now i can use it
 }
 
 
 function delete_uploads_dir_delfin()
 {
-    $baseUploadDir = $GLOBALS['uploadPath'];    // global var
+    $baseUploadDir = $GLOBALS['uploadBasePath'];    // global var
     $UploadDirUserId = $baseUploadDir . "/" . $_SESSION['id'];  // this only targets the current user
     system("rm -rf " . escapeshellarg($UploadDirUserId)); // forces wipes the entire directory
 }
@@ -316,24 +318,74 @@ function upload_docX_delfin()
     }
 }
 
-
-function docx_db_fill_delfin()
+// docX fill data {hard coded fields!}
+function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
 {
-    // DocumentReplacer::template('./uploads/testdocx.docx')
-    //     ->converter(
-    //         UnoserverConverter::class,
-    //         // [
-    //         //     'interface' => '127.0.0.1',
-    //         //     // 'interface' => 'localhost',
-    //         //     'port' => 2002,
-    //         //     // 'port' => 8088,
-    //         // ]
-    //     )
-    //     ->replace([
-    //         '${Allocation_Spéciale}' => 'Laura',
-    //     ])
-    //     ->save('./uploads/Laura.pdf');
-    // // with the converter service running it will be .pdf
+    //! $recipientUser used inside the array as variables
+    $replacementsArray = [
+        '«Allocation»' => 'Madame',
+        '«Nom»' => 'AAAA',
+        '«Nom2»' => 'Laura',
+        '«Fonction»' => '',
+        '«Adresse1»' => 'Place JFK',
+        '«Adresse2»' => 'Pétange',
+        '«Allocation_Spéciale»' => 'Prinzessin',
+        '«Nom coupon-réponse»' => 'Laura',  //! verify actual field name! 
+    ];
+    $word = new Word();
+    $word->findAndReplace($templateDocX, $outputDocX, $replacementsArray);
+    echo "<br />";  // File written! is always printed :/ 
 }
 
+// convert docX to pdf (libre office plugin)
+function convertDocxToPdf($inputDocx, $outputPdf, $inputDocXDir)
+{
+    // $inputDocXDir;   // 
+    // $recipientId = $recipientUser['RecipientId'];
+    $inputDocx = escapeshellarg($inputDocx);    // requires real path
+    $outputPdf = escapeshellarg($outputPdf);    // ditto
+    if (file_exists($outputPdf)) {
+        unlink($outputPdf);         // it can't overwrite exisiting files
+    }
+    // /var/www/html/ is from compose.yaml
+    // $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir /var/www/html/uploads $inputDocx 2>&1";  // this one works
+    // $outDir = "/var/www/html/" . $GLOBALS['uploadBasePath'];
+    $outDir = "/var/www/html/" . $inputDocXDir;
+    $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir $outDir $inputDocx 2>&1";
+    $output = shell_exec($command);     //? the $output variable can be used for logging purposes
 
+    // file_put_contents('/var/www/html/uploads/convert_log.txt', $output);    // logging file
+    // echo "<pre>$output</pre>";  // visible on the webpage
+    // echo "<br />";  // 
+
+    return file_exists($outputPdf) ? $outputPdf : false;    // black magive / witchcraft prevention
+}
+
+// ! UNUSED
+function digitally_sign_pdf_delfin($pdfToSign)
+{
+    // new filename or directory or force overwrite required; PERHAPS ?
+    // input path + file => DIR /signed/ ; most edit the original though , so not actually needed
+    return $pdfToSign;
+};
+
+
+
+// function docx_db_fill_delfin()
+// {
+//     // DocumentReplacer::template('./uploads/testdocx.docx')
+//     //     ->converter(
+//     //         UnoserverConverter::class,
+//     //         // [
+//     //         //     'interface' => '127.0.0.1',
+//     //         //     // 'interface' => 'localhost',
+//     //         //     'port' => 2002,
+//     //         //     // 'port' => 8088,
+//     //         // ]
+//     //     )
+//     //     ->replace([
+//     //         '${Allocation_Spéciale}' => 'Laura',
+//     //     ])
+//     //     ->save('./uploads/Laura.pdf');
+//     // // with the converter service running it will be .pdf
+// }

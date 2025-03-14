@@ -20,10 +20,18 @@ session_checker_delfin();
 
 
 if (isset($_SESSION['targetFile'])) {
-    $emailAttachement = $_SESSION['targetFile'];
+    $templateFile = $_SESSION['targetFile'];
     unset($_SESSION['targetFile']); // prevents sending duplicate mails
     // run this before writing to the log file, as the older logs are less likely to be needed
     log_too_big_delfin();
+    // the IF is just to be sure no shenanigans are going on
+    if (isset($_SESSION['targetDir'])) {
+        $templateDir = $_SESSION['targetDir'];
+        unset($_SESSION['targetDir']);
+    } else {
+        header("Location: delfin.php");
+        exit();
+    }
 }
 // it's better to be sure this hasn't somehow been purged
 if (isset($_SESSION['targetUsersArray'])) {
@@ -34,13 +42,13 @@ if (isset($_SESSION['targetUsersArray'])) {
     exit();
 }
 // sets the Subject and Body and loads the default from the env file if it doesn't exist
-if (isset($_SESSION['emailSubject'])){
+if (isset($_SESSION['emailSubject'])) {
     $emailSubject = $_SESSION['emailSubject'];
     unset($_SESSION['emailSubject']);   // wipe it ditto
 } else {
     $emailSubject = getenv('DEFAULT_EMAIL_SUBJECT');
 }
-if (isset($_SESSION['emailBody'])){
+if (isset($_SESSION['emailBody'])) {
     $emailBody = $_SESSION['emailBody'];
     unset($_SESSION['emailSubject']);   // wipe it ditto
 } else {
@@ -88,21 +96,48 @@ include 'header.html';
 
 
 
+// preparing this for use inside the loop
+// this is all the way at the top!
+// // $templateFile = $_SESSION['targetFile'];
+// // unset($_SESSION['targetFile']);
+// // $templateDir = $_SESSION['targetDir'];
+// // unset($_SESSION['targetDir']);
+// removing the full path from the file or else it will get too compilcated
+$templateFileName = str_replace($templateDir, '', $templateFile);
+// $templateFileName = ltrim($templateFile, '/');  // this would remove the / in front of the filename ,but it's already contained in the full path (dir)
+// 
 // Loop through the array and send emails
 foreach ($emailRecipientsArray as $recipientUser) {
     $emailSender = $_SESSION['email'];
     $emailSenderName = $_SESSION['username'];
-    // // function customMessageSubject
-    // // function customMessageBody
-    // // first set the custom msg; just dump everything into the $_SESSION['targetUsersArray'] 
-    // $emailSubject = 'TEST EMAIL Petange Intern';
-    // $emailBody = '<h2>Intern verschéckten Test Email, net entwäerten a keen Handlungsbedarf.</h2> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 🦆 <br> <br> <br> 北京烤鴨 <br>';
-    // // end of this note
+    // path stuff
+    $timestamp = time();    // yes
+    $recipientUserId = $recipientUser['RecipientId'];
 
+    // 
     // replacing docX fields with data
-    // i need a failsafe is some fields aren't present
-    docx_db_fill_delfin();
+    $templateDocX = $templateFile;
+    // i might need to create the directory before trying to write to it
+    $outputDocXDir = $templateDir . $recipientUserId . "/" . $timestamp . "/";
+    $outputDocX = $outputDocXDir . $templateFileName;
+    if (!is_dir($outputDocXDir)) {
+        mkdir($outputDocXDir, 0777, true);  // Create directory; but everyone can access it :/
+    }
+    else {
+        system("rm -rf " . escapeshellarg($outputDocXDir)); // witchcraft ; libre office would force overwrite it though ; but Document\Parser\Word doesn't
+    };
+    // $outputDocX = $GLOBALS['uploadBasePath'] . "IT-WORKZ.docx"; // proof that it requires the directory to exist
+    // 
+    modify_docX_delfin($templateDocX, $outputDocX, $recipientUser);
     // conert filled in docX to pdf
+    $inputDocX = $outputDocX;   // easier to read code
+    $outputPdf = preg_replace('/\.docx$/i', '.pdf', $inputDocX);    // changes .docx to .pdf ; since the tool doesn't dew it
+    $inputDocXDir = $outputDocXDir; // easier to read code
+    convertDocxToPdf($inputDocX, $outputPdf, $inputDocXDir);
+    //! Future
+    $signedPdf = digitally_sign_pdf_delfin($outputPdf);
+    // therefore the line below
+    $emailAttachement = $signedPdf;
 
     send_mail_delfin(
         $emailSender,
@@ -117,7 +152,8 @@ foreach ($emailRecipientsArray as $recipientUser) {
     // wait for 1 millisecond ; don't go below that!
     usleep(1000);   // 1000 microseconds
 }
-delete_uploads_dir_delfin();    // cleanup
+//! delete_uploads_dir_delfin();    // cleanup
+//! temporarily disabled for debugging reason
 
 
 
