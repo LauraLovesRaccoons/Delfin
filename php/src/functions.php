@@ -7,7 +7,8 @@ date_default_timezone_set('Europe/Luxembourg'); //! this isn't meant to change
 // Global Variables
 $logBasePath = "./logs/";   // global makes sense for this specific use case
 $logFile = "log.txt";       // ditto
-$uploadPath = "./uploads/"; // global makes sense for this specific use case
+$uploadBasePath = "./uploads/"; // global makes sense for this specific use case
+// // removed the ./ from in front of the path
 
 $session_name = "delfin-session-cookie";    // prettier name
 session_name("$session_name");              // now this is the cookie's name
@@ -206,7 +207,7 @@ function log_too_big_delfin()
 // requires a session to be set
 function file_upload_delfin($file)
 {
-    $baseUploadDir = $GLOBALS['uploadPath'];    // global var
+    $baseUploadDir = $GLOBALS['uploadBasePath'];    // global var
     $timestamp = time();
     $targetUploadDir = $baseUploadDir . $_SESSION['id'] . "/" . $timestamp . "/"; // ensures each upload folder is unique, user id is unique and timestamp is unique ; and if not I'm gonna play the lottery (since the filename would also have to be an exact match)
     if (!is_dir($targetUploadDir)) {
@@ -227,7 +228,7 @@ function file_upload_delfin($file)
 
 function delete_uploads_dir_delfin()
 {
-    $baseUploadDir = $GLOBALS['uploadPath'];    // global var
+    $baseUploadDir = $GLOBALS['uploadBasePath'];    // global var
     $UploadDirUserId = $baseUploadDir . "/" . $_SESSION['id'];  // this only targets the current user
     system("rm -rf " . escapeshellarg($UploadDirUserId)); // forces wipes the entire directory
 }
@@ -319,7 +320,7 @@ function upload_docX_delfin()
 // docX fill data {hard coded fields!}
 function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
 {
-    $replacements = [
+    $replacementsArray = [
         '«Allocation»' => 'Madame',
         '«Nom»' => 'AAAA',
         '«Nom2»' => 'Laura',
@@ -331,7 +332,7 @@ function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
         '«ERRORRRORRRRR»' => 'AA<AAAAASHBSJBU989965S',
     ];
     $word = new Word();
-    $word->findAndReplace($templateDocX, $outputDocX, $replacements);
+    $word->findAndReplace($templateDocX, $outputDocX, $replacementsArray);
 }
 
 // convert docX to pdf (libre office plugin)
@@ -343,7 +344,9 @@ function convertDocxToPdf($inputDocx, $outputPdf)
         unlink($outputPdf);         // it can't overwrite exisiting files
     }
     // /var/www/html/ is from compose.yaml
-    $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir /var/www/html/uploads $inputDocx 2>&1";
+    // $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir /var/www/html/uploads $inputDocx 2>&1";  // this one works
+    $outDir = "/var/www/html/" . $GLOBALS['uploadBasePath'] . "HI/";
+    $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir $outDir $inputDocx 2>&1";
     $output = shell_exec($command);
 
     // file_put_contents('/var/www/html/uploads/convert_log.txt', $output);    // logging file

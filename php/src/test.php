@@ -39,8 +39,8 @@ $replacements = [
 ];
 
 // Create an instance of the Word class
-$word = new Word();
-$word->findAndReplace($templateFile, $outputFile, $replacements);
+// $word = new Word();
+// $word->findAndReplace($templateFile, $outputFile, $replacements);
 
 echo "Document generated successfully: <a href='$outputFile'>Download Here</a>";
 
@@ -55,30 +55,34 @@ echo "Document generated successfully: <a href='$outputFile'>Download Here</a>";
 // // 
 
 
-function convertDocxToPdf($inputDocx, $outputPdf)
-{
-    $inputDocx = escapeshellarg($inputDocx);    // requires real path
-    $outputPdf = escapeshellarg($outputPdf);    // ditto
-    if (file_exists($outputPdf)){
-        unlink($outputPdf);         // it can't overwrite exisiting files
-    }
-    // /var/www/html/ is from compose.yaml
-    $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir /var/www/html/uploads $inputDocx 2>&1";
-    $output = shell_exec($command);
+// function convertDocxToPdf($inputDocx, $outputPdf)
+// {
+//     $inputDocx = escapeshellarg($inputDocx);    // requires real path
+//     $outputPdf = escapeshellarg($outputPdf);    // ditto
+//     if (file_exists($outputPdf)){
+//         unlink($outputPdf);         // it can't overwrite exisiting files
+//     }
+//     // /var/www/html/ is from compose.yaml
+//     $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir /var/www/html/uploads $inputDocx 2>&1";
+//     $output = shell_exec($command);
 
-    // file_put_contents('/var/www/html/uploads/convert_log.txt', $output);    // logging file
-    // echo "<pre>$output</pre>";  // visible on the webpage
-    // echo "<br />";  // 
+//     // file_put_contents('/var/www/html/uploads/convert_log.txt', $output);    // logging file
+//     // echo "<pre>$output</pre>";  // visible on the webpage
+//     // echo "<br />";  // 
 
-    return file_exists($outputPdf) ? $outputPdf : false;
-}
+//     return file_exists($outputPdf) ? $outputPdf : false;
+// }
+
 
 $docxFile = "./uploads/output.docx";
 $pdfFile = "./uploads/output.pdf";
 // $docxFile = realpath("./uploads/output.docx");
 // $pdfFile = realpath("./uploads/output.pdf");
+$inputDocx = "./uploads/testdocx.docx";
+$outpdfFile = "./uploads/AAAAA/HI_output.pdf";
 
-convertDocxToPdf($docxFile, $pdfFile);
+// convertDocxToPdf($docxFile, $pdfFile);
+convertDocxToPdf($inputDocx, $outpdfFile);
 
 
 // if (convertDocxToPdf($docxFile, $pdfFile)) {
