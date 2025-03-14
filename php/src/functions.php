@@ -335,8 +335,18 @@ function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
 }
 
 // convert docX to pdf (libre office plugin)
-function convertDocxToPdf($inputDocx, $outputPdf, )
+function convertDocxToPdf($inputDocx, $outputPdf, $recipientUser)
 {
+    $timestamp = time();
+    $uploadBasePath = $GLOBALS['uploadBasePath'];  // global var
+    $uploadDirUserId = $logBasePath . $_SESSION['id']; // 
+    $logFile = $GLOBALS['logFile'];  // global var
+    if (!is_dir($logDirUserId)) {
+        mkdir($logDirUserId, 0777, true);  // Create directory but everyone can access it
+    }
+    $logFileWithPath = $logDirUserId . "/" .  $logFile;
+
+    $recipientId = $recipientUser['RecipientId'];
     $inputDocx = escapeshellarg($inputDocx);    // requires real path
     $outputPdf = escapeshellarg($outputPdf);    // ditto
     if (file_exists($outputPdf)){
