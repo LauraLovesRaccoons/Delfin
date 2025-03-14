@@ -117,10 +117,11 @@ foreach ($emailRecipientsArray as $recipientUser) {
     // replacing docX fields with data
     $templateDocX = $templateFile;
     $outputDocX = $templateDir . $recipientUserId . "/" . $timestamp . "/" . $templateFileName;
+    // i might need to create the directory
     modify_docX_delfin($templateDocX, $outputDocX, $recipientUser);
     // conert filled in docX to pdf
     $inputDocX = $outputDocX;
-    $outputPdf = "./uploads/AAAAAA_output.pdf";
+    $outputPdf = $outputDocX;
     convertDocxToPdf($inputDocX, $outputPdf);
     //! Future
     $signedPdf = digitally_sign_pdf_delfin($outputPdf);
