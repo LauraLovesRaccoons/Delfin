@@ -329,14 +329,13 @@ function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
         '«Adresse1»' => 'Place JFK',
         '«Adresse2»' => 'Pétange',
         '«Allocation_Spéciale»' => 'Prinzessin',
-        '«ERRORRRORRRRR»' => 'AA<AAAAASHBSJBU989965S',
     ];
     $word = new Word();
     $word->findAndReplace($templateDocX, $outputDocX, $replacementsArray);
 }
 
 // convert docX to pdf (libre office plugin)
-function convertDocxToPdf($inputDocx, $outputPdf)
+function convertDocxToPdf($inputDocx, $outputPdf, )
 {
     $inputDocx = escapeshellarg($inputDocx);    // requires real path
     $outputPdf = escapeshellarg($outputPdf);    // ditto
