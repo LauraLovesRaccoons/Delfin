@@ -338,7 +338,7 @@ function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
 
 // convert docX to pdf (libre office plugin)
 function convertDocxToPdf($inputDocx, $outputPdf)
-{ 
+{
     // $logFile = $GLOBALS['logFile'];  // global var
     // if (!is_dir($logDirUserId)) {
     //     mkdir($logDirUserId, 0777, true);  // Create directory but everyone can access it
@@ -348,7 +348,7 @@ function convertDocxToPdf($inputDocx, $outputPdf)
     // $recipientId = $recipientUser['RecipientId'];
     $inputDocx = escapeshellarg($inputDocx);    // requires real path
     $outputPdf = escapeshellarg($outputPdf);    // ditto
-    if (file_exists($outputPdf)){
+    if (file_exists($outputPdf)) {
         unlink($outputPdf);         // it can't overwrite exisiting files
     }
     // /var/www/html/ is from compose.yaml
@@ -363,6 +363,12 @@ function convertDocxToPdf($inputDocx, $outputPdf)
 
     return file_exists($outputPdf) ? $outputPdf : false;
 }
+
+// ! UNUSED
+function digitally_sign_pdf_delfin($pdfToSign)
+{
+    return $pdfToSign;
+};
 
 
 

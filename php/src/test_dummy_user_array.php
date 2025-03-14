@@ -11,20 +11,20 @@ session_checker_delfin();
 
 $dummyAccounts = [
     [
-        'emailRecipient' => 'laura.hornick@petange.lu',
-        'emailRecipientName' => 'Dummy Recipient 1',
-        'RecipientId' => 1   // from database
-    ],
-    [
-        'emailRecipient' => 'loser@petange.lu',
-        'emailRecipientName' => 'LOSER Dummy Recipient',
-        'RecipientId' => 3
-    ],
-    [
-        'emailRecipient' => 'loser@email.com.lux',
-        'emailRecipientName' => 'LOSER Dummy Recipient',
-        'RecipientId' => 455
-    ]
+        'emailRecipient' => $_SESSION['email'],
+        'emailRecipientName' => $_SESSION['username'],
+        'RecipientId' => 0   // normally from database ; but since this is testing it has id=0
+    // ],
+    // [
+    //     'emailRecipient' => 'loser@petange.lu',
+    //     'emailRecipientName' => 'LOSER Dummy Recipient',
+    //     'RecipientId' => 3
+    // ],
+    // [
+    //     'emailRecipient' => 'loser@email.com.lux',
+    //     'emailRecipientName' => 'LOSER Dummy Recipient',
+    //     'RecipientId' => 455
+    ]   //! the last one must drop the comma
 ];
 
 $_SESSION['targetUsersArray'] = $dummyAccounts;

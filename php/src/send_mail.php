@@ -122,7 +122,10 @@ foreach ($emailRecipientsArray as $recipientUser) {
     $inputDocX = $outputDocX;
     $outputPdf = "./uploads/AAAAAA_output.pdf";
     convertDocxToPdf($inputDocX, $outputPdf);
-    $emailAttachement = $outputPdf;
+    //! Future
+    $signedPdf = digitally_sign_pdf_delfin($outputPdf);
+    // therefore the line below
+    $emailAttachement = $signedPdf;
 
     send_mail_delfin(
         $emailSender,
