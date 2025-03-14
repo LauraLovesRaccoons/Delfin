@@ -338,20 +338,20 @@ function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
 }
 
 // convert docX to pdf (libre office plugin)
-function convertDocxToPdf($inputDocx, $outputPdf, $inputDocXDir)
+function convertDocXToPdf($inputDocX, $outputPdf, $inputDocXDir)
 {
     // $inputDocXDir;   // 
     // $recipientId = $recipientUser['RecipientId'];
-    $inputDocx = escapeshellarg($inputDocx);    // requires real path
+    $inputDocX = escapeshellarg($inputDocX);    // requires real path
     $outputPdf = escapeshellarg($outputPdf);    // ditto
     if (file_exists($outputPdf)) {
         unlink($outputPdf);         // it can't overwrite exisiting files
     }
     // /var/www/html/ is from compose.yaml
-    // $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir /var/www/html/uploads $inputDocx 2>&1";  // this one works
+    // $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir /var/www/html/uploads $inputDocX 2>&1";  // this one works
     // $outDir = "/var/www/html/" . $GLOBALS['uploadBasePath'];
     $outDir = "/var/www/html/" . $inputDocXDir;
-    $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir $outDir $inputDocx 2>&1";
+    $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir $outDir $inputDocX 2>&1";
     $output = shell_exec($command);     //? the $output variable can be used for logging purposes
 
     // file_put_contents('/var/www/html/uploads/convert_log.txt', $output);    // logging file
@@ -371,21 +371,3 @@ function digitally_sign_pdf_delfin($pdfToSign)
 
 
 
-// function docx_db_fill_delfin()
-// {
-//     // DocumentReplacer::template('./uploads/testdocx.docx')
-//     //     ->converter(
-//     //         UnoserverConverter::class,
-//     //         // [
-//     //         //     'interface' => '127.0.0.1',
-//     //         //     // 'interface' => 'localhost',
-//     //         //     'port' => 2002,
-//     //         //     // 'port' => 8088,
-//     //         // ]
-//     //     )
-//     //     ->replace([
-//     //         '${Allocation_Spéciale}' => 'Laura',
-//     //     ])
-//     //     ->save('./uploads/Laura.pdf');
-//     // // with the converter service running it will be .pdf
-// }
