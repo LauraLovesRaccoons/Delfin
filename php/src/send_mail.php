@@ -95,7 +95,7 @@ foreach ($emailRecipientsArray as $recipientUser) {
     // replacing docX fields with data
     $templateDocX = './uploads/testdocx.docx';
     $outputDocX = './uploads/output.docx';
-    modify_docX_delfin($templateFile, $outputFile);
+    modify_docX_delfin($templateDocX, $outputDocX, $recipientUser);
     // conert filled in docX to pdf
     $inputDocX = $outputDocX;
     $outputPdf = "./uploads/output.pdf";

@@ -317,12 +317,13 @@ function upload_docX_delfin()
 }
 
 // docX fill data {hard coded fields!}
-function modify_docX_delfin()
+function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
 {
     $replacements = [
         '«Allocation»' => 'Madame',
-        '«Nom»' => $myName,
+        '«Nom»' => 'AAAA',
         '«Nom2»' => 'Laura',
+        '«Nom coupon-réponse»' => 'Laura',  //! verify actual field name! 
         '«Fonction»' => '',
         '«Adresse1»' => 'Place JFK',
         '«Adresse2»' => 'Pétange',
@@ -330,7 +331,7 @@ function modify_docX_delfin()
         '«ERRORRRORRRRR»' => 'AA<AAAAASHBSJBU989965S',
     ];
     $word = new Word();
-    $word->findAndReplace($templateFile, $outputFile, $replacements);
+    $word->findAndReplace($templateDocX, $outputDocX, $replacements);
 }
 
 // convert docX to pdf (libre office plugin)
