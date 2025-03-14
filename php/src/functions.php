@@ -338,9 +338,9 @@ function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
 }
 
 // convert docX to pdf (libre office plugin)
-function convertDocxToPdf($inputDocx, $outputPdf)
+function convertDocxToPdf($inputDocx, $outputPdf, $inputDocXDir)
 {
-
+    // $inputDocXDir;   // 
     // $recipientId = $recipientUser['RecipientId'];
     $inputDocx = escapeshellarg($inputDocx);    // requires real path
     $outputPdf = escapeshellarg($outputPdf);    // ditto
@@ -349,15 +349,16 @@ function convertDocxToPdf($inputDocx, $outputPdf)
     }
     // /var/www/html/ is from compose.yaml
     // $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir /var/www/html/uploads $inputDocx 2>&1";  // this one works
-    $outDir = "/var/www/html/" . $GLOBALS['uploadBasePath'];
+    // $outDir = "/var/www/html/" . $GLOBALS['uploadBasePath'];
+    $outDir = "/var/www/html/" . $inputDocXDir;
     $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir $outDir $inputDocx 2>&1";
-    $output = shell_exec($command);
+    $output = shell_exec($command);     //? the $output variable can be used for logging purposes
 
     // file_put_contents('/var/www/html/uploads/convert_log.txt', $output);    // logging file
     // echo "<pre>$output</pre>";  // visible on the webpage
     // echo "<br />";  // 
 
-    return file_exists($outputPdf) ? $outputPdf : false;
+    return file_exists($outputPdf) ? $outputPdf : false;    // black magive / witchcraft prevention
 }
 
 // ! UNUSED

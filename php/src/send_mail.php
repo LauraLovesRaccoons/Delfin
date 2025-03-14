@@ -130,9 +130,10 @@ foreach ($emailRecipientsArray as $recipientUser) {
     // 
     modify_docX_delfin($templateDocX, $outputDocX, $recipientUser);
     // conert filled in docX to pdf
-    $inputDocX = $outputDocX;
-    $outputPdf = $outputDocX;
-    convertDocxToPdf($inputDocX, $outputPdf);
+    $inputDocX = $outputDocX;   // easier to read code
+    $outputPdf = preg_replace('/\.docx$/i', '.pdf', $inputDocX);    // changes .docx to .pdf ; since the tool doesn't dew it
+    $inputDocXDir = $outputDocXDir; // easier to read code
+    convertDocxToPdf($inputDocX, $outputPdf, $inputDocXDir);
     //! Future
     $signedPdf = digitally_sign_pdf_delfin($outputPdf);
     // therefore the line below
