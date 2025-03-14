@@ -334,6 +334,7 @@ function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
     ];
     $word = new Word();
     $word->findAndReplace($templateDocX, $outputDocX, $replacementsArray);
+    echo "<br />";  // File written! is always printed :/ 
 }
 
 // convert docX to pdf (libre office plugin)
