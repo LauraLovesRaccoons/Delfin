@@ -14,6 +14,7 @@ $dummyAccounts = [
         'emailRecipient' => $_SESSION['email'],
         'emailRecipientName' => $_SESSION['username'],
         'RecipientId' => 0   // normally from database ; but since this is testing it has id=0
+
     // ],
     // [
     //     'emailRecipient' => 'loser@petange.lu',
@@ -24,6 +25,7 @@ $dummyAccounts = [
     //     'emailRecipient' => 'loser@email.com.lux',
     //     'emailRecipientName' => 'LOSER Dummy Recipient',
     //     'RecipientId' => 455
+    
     ]   //! the last one must drop the comma
 ];
 
