@@ -77,25 +77,6 @@ include 'header.html';
 
 
 
-
-// // 
-// $emailSender = $_SESSION['email'];
-// $emailSenderName = $_SESSION['username'];
-// $emailRecipient = 'holaura@protonmail.com';    // external requires proper configured mail server
-// // $emailRecipient = 'laura.hornick@petange.lu';
-// $emailRecipientName = 'RECEIVER-TEST';
-// $emailSubject = 'TEST EMAIL Petange Intern';
-// $emailBody = '<h2>Intern verschéckten Test Email, net entwäerten a keen Handlungsbedarf.</h2> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 🦆 <br> <br> <br> 北京烤鴨 <br>';
-// // $emailAttachement = 'favicon.ico';
-// // 
-// // $RecipientId = 0; // from DB
-// // send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement, $RecipientId);
-// // 
-
-
-
-
-
 // preparing this for use inside the loop
 // this is all the way at the top!
 // // $templateFile = $_SESSION['targetFile'];
@@ -111,8 +92,8 @@ foreach ($emailRecipientsArray as $recipientUser) {
     $emailSender = $_SESSION['email'];
     $emailSenderName = $_SESSION['username'];
     // path stuff
-    $timestamp = time();    // yes
-    $recipientUserId = $recipientUser['RecipientId'];
+    $timestamp = time();    //? yes -> 
+    $recipientUserId = $recipientUser['recipientId'];
 
     // 
     // replacing docX fields with data
@@ -152,11 +133,12 @@ foreach ($emailRecipientsArray as $recipientUser) {
         $emailSubject,
         $emailBody,
         $emailAttachement,
-        $recipientUser['RecipientId']
+        $recipientUser['recipientId']
     );
     // wait for 1 millisecond ; don't go below that!
     usleep(1000);   // 1000 microseconds
 }
+combine_all_letters_into_one_pdf_delfin($templateDir, $templateFile, $timestamp);  //? hello darkness my old friend  I've come to talk with you again
 //! delete_uploads_dir_delfin();    // cleanup
 //! temporarily disabled for debugging reason
 
@@ -185,12 +167,12 @@ include 'footer.html';
 //     [
 //         'emailRecipient' => 'laura.hornick@petange.lu',
 //         'emailRecipientName' => 'Dummy Recipient 1',
-//         'RecipientId' => 1   // from database
+//         'recipientId' => 1   // from database
 //     ],
 //     [
 //         'emailRecipient' => 'frank.merges@petange.lu',
 //         'emailRecipientName' => 'Dummy Recipient 2',
-//         'RecipientId' => 2
+//         'recipientId' => 2
 //     ] -->
 
 
@@ -218,8 +200,8 @@ include 'footer.html';
 // echo "<br />";
 // $emailRecipient = '@';
 // $emailRecipientName = 'HACKER';
-// $RecipientId = 666; // from DB
-// send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement, $RecipientId);
+// $recipientId = 666; // from DB
+// send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement, $recipientId);
 // // if (strpos($emailRecipient, '@') === false) {
 // //     echo "NO EMAIL: $emailRecipientName <br />";
 // //     echo "<script>console.log('NO EMAIL:  " . $emailRecipientName . "');</script>";
@@ -274,32 +256,32 @@ include 'footer.html';
 //     [
 //         'emailRecipient' => 'laura.hornick@petange.lu',
 //         'emailRecipientName' => 'Dummy Recipient 1',
-//         'RecipientId' => 1
+//         'recipientId' => 1
 //     ],
 //     [
 //         'emailRecipient' => 'frank.merges@petange.lu',
 //         'emailRecipientName' => 'Dummy Recipient 2',
-//         'RecipientId' => 2
+//         'recipientId' => 2
 //     ],
 //     [
 //         'emailRecipient' => 'patrick.wagner@petange.lu',
 //         'emailRecipientName' => 'Dummy Recipient 3',
-//         'RecipientId' => 3
+//         'recipientId' => 3
 //     ],
 //     [
 //         'emailRecipient' => 'dummy@example.com',
 //         'emailRecipientName' => 'Dummy Recipient 4 - invalid email',
-//         'RecipientId' => 4
+//         'recipientId' => 4
 //     ],
 //     [
 //         'emailRecipient' => '/',
 //         'emailRecipientName' => 'Backslash',
-//         'RecipientId' => 5
+//         'recipientId' => 5
 //     ],
 //     [
 //         'emailRecipient' => 'noreply-laura.hornick@petange.lu',
 //         'emailRecipientName' => 'Dummy Recipient 6',
-//         'RecipientId' => 6
+//         'recipientId' => 6
 //     ]
 // ];
 
@@ -313,7 +295,7 @@ include 'footer.html';
 //         $emailSubject,
 //         $emailBody,
 //         $emailAttachement,
-//         $account['RecipientId']
+//         $account['recipientId']
 //     );
 // }
 
