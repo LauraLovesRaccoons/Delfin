@@ -7,6 +7,12 @@ require "functions.php";
 session_checker_delfin();
 
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $_SESSION['letter_required'] = true;    // this is the easiest option to add this feature
+}
+
+
+
 // <!-- EXAMPLE ARRAY -->
 
 $dummyAccounts = [
@@ -50,3 +56,13 @@ echo "<br />";
 echo "<h1>you now have a dummy emailing list ready</h1><br />";
 echo '<a href="file_upload.php">UPLOAD FILE -> </a><br />';
 echo "<br />";
+
+
+?>
+
+
+<form method="post">
+    <button type="submit">Enable Letter Required Flag</button>
+</form>
+
+

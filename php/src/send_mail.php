@@ -104,8 +104,7 @@ foreach ($emailRecipientsArray as $recipientUser) {
     $outputDocX = $outputDocXDir . $templateFileName;
     if (!is_dir($outputDocXDir)) {
         mkdir($outputDocXDir, 0777, true);  // Create directory; but everyone can access it :/
-    }
-    else {
+    } else {
         system("rm -rf " . escapeshellarg($outputDocXDir)); // witchcraft ; libre office would force overwrite it though ; but Document\Parser\Word doesn't
     };
     // $outputDocX = $GLOBALS['uploadBasePath'] . "IT-WORKZ.docx"; // proof that it requires the directory to exist
@@ -117,14 +116,21 @@ foreach ($emailRecipientsArray as $recipientUser) {
     $inputDocXDir = $outputDocXDir; // easier to read code
     convertDocXToPdf($inputDocX, $outputPdf, $inputDocXDir);
     //? deleting the "temporary" filled in docX files to only have the pdf in the directory
-    if (file_exists($inputDocX)){
+    if (file_exists($inputDocX)) {
         unlink($inputDocX);
     }
     //! Future
     $signedPdf = digitally_sign_pdf_delfin($outputPdf);
     // therefore the line below
     $emailAttachement = $signedPdf;
-
+    // if a letter is specifically required this will make the email invalid
+    //  the send_mail function has smth built in for this
+    if (isset($_SESSION['letter_required'])) {
+        if ($_SESSION['letter_required'] === true) {
+            $recipientUser['emailRecipient'] = "";
+        }
+    }
+    // actual sending part
     send_mail_delfin(
         $emailSender,
         $emailSenderName,
@@ -139,6 +145,9 @@ foreach ($emailRecipientsArray as $recipientUser) {
     usleep(1000);   // 1000 microseconds
 }
 combine_all_letters_into_one_pdf_delfin($templateDir, $templateFile, $timestamp);  //? hello darkness my old friend  I've come to talk with you again
+if (isset($_SESSION['letter_required'])) {
+    unset($_SESSION['letter_required']);
+}
 //! delete_uploads_dir_delfin();    // cleanup
 //! temporarily disabled for debugging reason
 
@@ -161,21 +170,6 @@ include 'footer.html';
 ?>
 
 
-<!-- EXAMPLE ARRAY -->
-
-<!-- // $dummyAccounts = [
-//     [
-//         'emailRecipient' => 'laura.hornick@petange.lu',
-//         'emailRecipientName' => 'Dummy Recipient 1',
-//         'recipientId' => 1   // from database
-//     ],
-//     [
-//         'emailRecipient' => 'frank.merges@petange.lu',
-//         'emailRecipientName' => 'Dummy Recipient 2',
-//         'recipientId' => 2
-//     ] -->
-
-
 
 
 <br />
@@ -190,34 +184,11 @@ include 'footer.html';
 <hr />
 <br />
 
-
-<!-- 
-<br /><br /><br /><br /><br /><br />
-<h2>TESTING error logging simulated loop from an array</h2>
-<br /><br /><br /> -->
 <?php
-// echo "<script>console.log('TEST LOOP');</script>";
-// echo "<br />";
-// $emailRecipient = '@';
-// $emailRecipientName = 'HACKER';
-// $recipientId = 666; // from DB
-// send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement, $recipientId);
-// // if (strpos($emailRecipient, '@') === false) {
-// //     echo "NO EMAIL: $emailRecipientName <br />";
-// //     echo "<script>console.log('NO EMAIL:  " . $emailRecipientName . "');</script>";
-// // } else {
-// //     send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement);
-// //     echo "<br />";
-// // }
 
-// echo "<br />";
-// // $emailRecipient = 'laura.hornick@petange.lu';
-// // send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement);
-// // echo "<br />";
-// // $emailRecipient = 'laura.hornick@petange.lu';
-// // send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement);
-// // echo "<br />";
 ?>
+
+
 <br />
 <hr />
 <br />
@@ -226,91 +197,8 @@ include 'footer.html';
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// this works
-
-// Define an array of dummy accounts
-// // $emailRecipient = "NO"; // ensures there always is a string present
-// $dummyAccounts = [
-//     [
-//         'emailRecipient' => 'laura.hornick@petange.lu',
-//         'emailRecipientName' => 'Dummy Recipient 1',
-//         'recipientId' => 1
-//     ],
-//     [
-//         'emailRecipient' => 'frank.merges@petange.lu',
-//         'emailRecipientName' => 'Dummy Recipient 2',
-//         'recipientId' => 2
-//     ],
-//     [
-//         'emailRecipient' => 'patrick.wagner@petange.lu',
-//         'emailRecipientName' => 'Dummy Recipient 3',
-//         'recipientId' => 3
-//     ],
-//     [
-//         'emailRecipient' => 'dummy@example.com',
-//         'emailRecipientName' => 'Dummy Recipient 4 - invalid email',
-//         'recipientId' => 4
-//     ],
-//     [
-//         'emailRecipient' => '/',
-//         'emailRecipientName' => 'Backslash',
-//         'recipientId' => 5
-//     ],
-//     [
-//         'emailRecipient' => 'noreply-laura.hornick@petange.lu',
-//         'emailRecipientName' => 'Dummy Recipient 6',
-//         'recipientId' => 6
-//     ]
-// ];
-
-// // Loop through the array and send emails
-// foreach ($dummyAccounts as $account) {
-//     send_mail_delfin(
-//         $emailSender,
-//         $emailSenderName,
-//         $account['emailRecipient'],
-//         $account['emailRecipientName'],
-//         $emailSubject,
-//         $emailBody,
-//         $emailAttachement,
-//         $account['recipientId']
-//     );
-// }
-
-
 ?>
 
 
 
-<!-- <br />
-<br />
-<hr />
-<br />
-<br />
-<h1>This php must run at the end!!!</h1>
-<br /> -->
-<?php
-// delete_uploads_dir_delfin();
-?>
+
