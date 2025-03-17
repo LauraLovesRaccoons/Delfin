@@ -396,7 +396,8 @@ function combine_all_letters_into_one_pdf_delfin($baseDir, $templateFile, $times
     // go on
     $targetFName = str_replace($baseDir, '', $templateFile);    // gets just the reference file with extension
     $targetFName = str_replace('.docx', '.pdf', $targetFName);  // this still has the .docx file extension
-    $combinedFile = $baseDir . $timestamp . ".pdf";
+    $outputRefName = str_replace('.pdf', '', $targetFName);     // this is for the line just below
+    $combinedFile = $baseDir . "Nëmmen Bréiwer!" . " - " . $outputRefName . " - " . $timestamp . ".pdf";    // fancy name ; and a filestamp to prevent duplicates on the user's side
         // var_dump($combinedFile);
         // echo "<br />";
     $pdf = new Fpdi();  // I need to initiliaze the fpdi plugin
