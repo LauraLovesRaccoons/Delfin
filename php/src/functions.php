@@ -327,14 +327,14 @@ function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
 {
     //! $recipientUser used inside the array as variables
     $replacementsArray = [
-        '«Allocation»' => 'Madame',
-        '«Nom»' => 'AAAA',
-        '«Nom2»' => 'Laura',
-        '«Fonction»' => '​',    //! this is not empty on purpose
-        '«Adresse1»' => 'Place JFK',
-        '«Adresse2»' => 'Pétange',
-        '«Allocation_Spéciale»' => 'Prinzessin',
-        '«Nom coupon-réponse»' => 'Laura',  //! verify actual field name! 
+        '«Allocation»' => $recipientUser['allocation'] ?: '​',
+        '«Nom»' => $recipientUser['nom'] ?: '​',
+        '«Nom2»' => $recipientUser['nom2'] ?: '​',
+        '«Fonction»' => $recipientUser['fonction'] ?: '​',      //? if variable is empty or null or false it will use U+200B ; which is not empty on purpose
+        '«Adresse1»' => $recipientUser['adresse1'] ?: '​',
+        '«Adresse2»' => $recipientUser['adresse2'] ?: '​',
+        '«Allocation_Spéciale»' => $recipientUser['allocationSpeciale'] ?: '​',
+        '«Nom_coupon-réponse»' => $recipientUser['nomCouponReponse'] ?: '​',        //! verify actual field name! 
     ];
     ob_start();         // output buffer so it removes the annnoying notification from this extension
     $word = new Word();

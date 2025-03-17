@@ -13,7 +13,16 @@ $dummyAccounts = [
     [
         'emailRecipient' => $_SESSION['email'],
         'emailRecipientName' => $_SESSION['username'],
-        'recipientId' => 0   // normally from database ; but since this is testing it has id=0
+        'recipientId' => 0,     // normally from database ; but since this is testing it has id=0
+        // filling it with test data
+        'allocation' => 'Madame',
+        'nom' => 'Laura Enterprise',
+        'nom2' => 'HORNICK Laura',
+        'fonction' => '',
+        'adresse1' => 'Place JFK',
+        'adresse2' => 'L-0000 Pétange',
+        'allocationSpeciale' => 'Prinzessin',
+        'nomCouponReponse' => '',       //! verify actual field name!
 
     // ],
     // [
