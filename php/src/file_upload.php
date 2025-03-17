@@ -15,23 +15,6 @@ if (isset($_SESSION['targetUsersArray'])) {
 
 
 if (isset($_POST['submit_button'])) {
-  // if(!isset($_FILES['fileToUplad'])){
-  //   echo "<strong>Keen Fichier ausgewielt</strong><br />";
-  //   // needs to come before the next line to handle custom empty file msg
-  // }
-  // elseif($_FILES['fileToUpload']['error'] !== UPLOAD_ERR_OK){
-  //   echo "<strong>Fichier ass iwwert 20MB</strong><br />";
-  //   // this doesn't work though ; future -> custom error msg
-  // }
-  // elseif (!empty($_FILES['fileToUpload']['name'])) {
-
-  // next part
-  // header('Location: send_mail.php');
-  // exit();
-  // else {
-  //   echo "<strong>Keen Fichier ausgewielt</strong><br />";
-  // }
-
   // store entered text or set default one from the env file  // overkill since the default env message is also set on the next page
   $emailSubject = isset($_POST['email_subject']) && $_POST['email_subject'] !== '' ? $_POST['email_subject'] : getenv('DEFAULT_EMAIL_SUBJECT');
   $_SESSION['emailSubject'] = $emailSubject;
@@ -40,6 +23,16 @@ if (isset($_POST['submit_button'])) {
 
   upload_docX_delfin();
 }
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  if (isset($_POST['enable_letter_mode'])) {
+    $_SESSION['letter_required'] = true;    // this is the easiest option to add this feature
+  } elseif (isset($_POST['disable_letter_mode'])) {
+    unset($_SESSION['letter_required']);
+  }
+}
+
+
 
 
 include 'header.html';
@@ -77,6 +70,21 @@ email_or_letter_mode_delfin();  // this shows the current mode
 <br />
 
 <br />
+<hr />
+<br />
+<h3>Mode Switch: Entered Text WILL be Lost if you switch modes!</h3>
+<form method="POST">
+  <label for="submit"></label>
+  <button type="submit" name="enable_letter_mode">Switch to Letter Mode</button>
+  <br />
+  <label for="submit"></label>
+  <button type="submit" name="disable_letter_mode">Switch to Email Mode (default)</button>
+</form>
+<br />
+<hr />
+<br />
+
+
 
 
 <?php
@@ -88,4 +96,5 @@ include 'footer.html';
 <?php
 // delete_uploads_dir_delfin();
 ?>
+
 

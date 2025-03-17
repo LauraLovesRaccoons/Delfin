@@ -8,10 +8,10 @@ session_checker_delfin();
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['enable'])) {
+    if (isset($_POST['enable_letter_mode'])) {
         $_SESSION['letter_required'] = true;    // this is the easiest option to add this feature
     }
-    elseif(isset($_POST['disable'])){
+    elseif(isset($_POST['disable_letter_mode'])){
         unset($_SESSION['letter_required']);
     }
 }
@@ -66,9 +66,9 @@ echo "<br />";
 ?>
 
 
-<form method="post">
-    <button type="submit" name="enable">Enable Letter Required Flag</button>
-    <button type="submit" name="disable">Disable Letter Required Flag</button>
+<form method="POST">
+    <button type="submit" name="enable_letter_mode">Enable Letter Mode</button>
+    <button type="submit" name="disable_letter_mode">Email Mode (default)</button>
 </form>
 
 
