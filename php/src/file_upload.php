@@ -42,13 +42,14 @@ if (isset($_POST['submit_button'])) {
 }
 
 
-
-
 include 'header.html';
+
+// 
+email_or_letter_mode_delfin();  // this shows the current mode
+// 
 
 ?>
 
-<br />
 <h2>Fichier uploaden a verschécken</h2><br />
 <form method="POST" enctype="multipart/form-data">
 
