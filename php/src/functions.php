@@ -24,6 +24,8 @@ use PHPMailer\PHPMailer\Exception;
 
 use Document\Parser\Word;
 
+use setasign\Fpdi\Fpdi;
+
 
 
 
@@ -32,7 +34,7 @@ function debug_test_env_delfin()
     echo "<br /><br />";
     var_dump(getenv());     // shows all environment variables
     echo "<br /><br />";
-}
+};
 
 function logout_delfin($session_name)
 {
@@ -44,7 +46,7 @@ function logout_delfin($session_name)
     // since there is a session start there always is a cookie session present ; unless someone messes with the cookie or the browser blocks them
     header('Location: index.php');
     exit();
-}
+};
 
 function db_connect_delfin()
 {
@@ -68,7 +70,7 @@ function db_connect_delfin()
         echo "<script>console.log('Een Dëcken Hardware Problem mam Server');</script>";
     }
     return $db; // this gives me the cannot modify header information warning
-}
+};
 
 function db_close_delfin($db)
 {
@@ -80,7 +82,7 @@ function db_close_delfin($db)
         // echo "There was NO Database Connection";
         echo "<script>console.log('There was NO Database Connection');</script>";
     }
-}
+};
 
 function session_checker_delfin()
 {
@@ -96,16 +98,17 @@ function session_checker_delfin()
     } else {
         header("location: index.php");  // this requires a session from login
     }
-}
+};
 
 // HTML ONLY
-function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement, $RecipientId)
+function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement, $recipientId)
 {
     if (strpos($emailRecipient, '@') === false || strlen($emailRecipient) < 3) {   // just checking if an @ is present to make the code faster ; and absolute minimum possible length
-        echo "NO EMAIL: <strong>$emailRecipientName</strong> - ID: <strong>$RecipientId</strong><br />";
-        echo "<script>console.log('NO EMAIL: [ " . $emailRecipientName . " - ID: $RecipientId ]');</script>";
-        $logMessage = "NO EMAIL: $emailRecipientName - ID: $RecipientId";
+        echo "NO EMAIL: <strong>$emailRecipientName</strong> - ID: <strong>$recipientId</strong><br />";
+        echo "<script>console.log('NO EMAIL: [ " . $emailRecipientName . " - ID: $recipientId ]');</script>";
+        $logMessage = "NO EMAIL: $emailRecipientName - ID: $recipientId";
         write_log_delfin($logMessage);
+        letter_required_delfin($recipientId);   //! saves it for future use ; currently working on this
     } else {
         usleep(1000);   // 1000 microseconds    // hardcoded 1ms delay ; I'm not removing it!
         $mail = new PHPMailer(true);    // true enables exceptions
@@ -157,20 +160,21 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             $mail->send();
             // echo 'Message has been sent<br />';
             $mail->SmtpClose();     // close the connection ; Very Smort -> stonks
-            $logMessage = "Email sent to: $emailRecipientName --- $emailRecipient - ID: $RecipientId";
+            $logMessage = "Email sent to: $emailRecipientName --- $emailRecipient - ID: $recipientId";
             write_log_delfin($logMessage);
         } catch (Exception $e) {
             // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}<br />";
             $mailErrorInfo = json_encode($mail->ErrorInfo);         // made it a proper string for console logging
             echo "<script>console.log($mailErrorInfo);</script>";  // 
-            echo "Message failed to send to: <strong>$emailRecipientName</strong> --- <strong>$emailRecipient</strong> - ID: <strong>$RecipientId</strong><br />";
-            echo "<script>console.log('Message failed to send to: [ " . $emailRecipientName . " - " . $emailRecipient . " - ID: $RecipientId ]');</script>";
+            echo "Message failed to send to: <strong>$emailRecipientName</strong> --- <strong>$emailRecipient</strong> - ID: <strong>$recipientId</strong><br />";
+            echo "<script>console.log('Message failed to send to: [ " . $emailRecipientName . " - " . $emailRecipient . " - ID: $recipientId ]');</script>";
             // echo "<h3>The conosole.log is niche to have but it should write smth into the php logger</h3>";     // conosole FTW -> niche
-            $logMessage = "Message failed to send to: $emailRecipientName --- $emailRecipient - ID: $RecipientId";
+            $logMessage = "Message failed to send to: $emailRecipientName --- $emailRecipient - ID: $recipientId";
             write_log_delfin($logMessage);
+            letter_required_delfin($recipientId);   //! saves it for future use ; currently working on this ; i want to ensure those whose email doesn't work get at least a letter
         }
     }
-}
+};
 
 function write_log_delfin($logMessage)
 {
@@ -188,7 +192,7 @@ function write_log_delfin($logMessage)
     $logToFile = fopen($logFileWithPath, "w") or die("Unable to open loging file!"); // this also ensures the file is created if it doesn't exist
     fwrite($logToFile, PHP_EOL . $timestamp . PHP_EOL . $logMessage . PHP_EOL . $existingContent);
     fclose($logToFile); // yes
-}
+};
 
 function log_too_big_delfin()
 {
@@ -202,7 +206,7 @@ function log_too_big_delfin()
         unlink($logFileWithPath);    // deletes the file
         echo "<script>console.log('Log File was too big and has been deleted');</script>";
     }
-}
+};
 
 // requires a session to be set
 function file_upload_delfin($file)
@@ -224,7 +228,7 @@ function file_upload_delfin($file)
     }
     $_SESSION['targetDir'] = $targetUploadDir;  // this makes stuff much easier later on; because of the timestamp shenanigans
     return $targetFile; // now i can use it
-}
+};
 
 
 function delete_uploads_dir_delfin()
@@ -232,7 +236,7 @@ function delete_uploads_dir_delfin()
     $baseUploadDir = $GLOBALS['uploadBasePath'];    // global var
     $UploadDirUserId = $baseUploadDir . "/" . $_SESSION['id'];  // this only targets the current user
     system("rm -rf " . escapeshellarg($UploadDirUserId)); // forces wipes the entire directory
-}
+};
 
 
 
@@ -274,7 +278,7 @@ function upload_pdf_delfin()
     } else {
         echo "<strong>Unknown Error Occured</strong><br />";
     }
-}
+};
 
 
 
@@ -316,7 +320,7 @@ function upload_docX_delfin()
     } else {
         echo "<strong>Unknown Error Occured</strong><br />";
     }
-}
+};
 
 // docX fill data {hard coded fields!}
 function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
@@ -337,13 +341,13 @@ function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
     $word->findAndReplace($templateDocX, $outputDocX, $replacementsArray);
     // echo "<br />";  // File written! is always printed :/ 
     ob_end_clean();     // do i need to explain this ?!?
-}
+};
 
 // convert docX to pdf (libre office plugin)
 function convertDocXToPdf($inputDocX, $outputPdf, $inputDocXDir)
 {
     // $inputDocXDir;   // 
-    // $recipientId = $recipientUser['RecipientId'];
+    // $recipientId = $recipientUser['recipientId'];
     $inputDocX = escapeshellarg($inputDocX);    // requires real path
     $outputPdf = escapeshellarg($outputPdf);    // ditto
     if (file_exists($outputPdf)) {
@@ -361,7 +365,7 @@ function convertDocXToPdf($inputDocX, $outputPdf, $inputDocXDir)
     // echo "<br />";  // 
 
     return file_exists($outputPdf) ? $outputPdf : false;    // black magive / witchcraft prevention
-}
+};
 
 // ! UNUSED
 function digitally_sign_pdf_delfin($pdfToSign)
@@ -370,6 +374,47 @@ function digitally_sign_pdf_delfin($pdfToSign)
     // input path + file => DIR /signed/ ; most edit the original though , so not actually needed
     return $pdfToSign;
 };
+
+
+
+function letter_required_delfin($recipientId)
+{
+    $_SESSION['letter_id_array'][] = $recipientId;  // this needs to be an array
+};
+
+function combine_all_letters_into_one_pdf_delfin($baseDir, $templateFile, $timestamp)
+{
+    if (!isset($_SESSION['letter_id_array'])) {
+        exit;   // no point in continuing
+    }
+    if (empty($_SESSION['letter_id_array'])) {
+        unset($_SESSION['letter_id_array']);    // cleanup , just to be sure
+        exit;
+    }
+    // go on
+    $targetFName = str_replace($baseDir, '', $templateFile);    // gets just the reference file with extension
+    $combinedFile = $baseDir . $timestamp . ".pdf";
+    $pdf = new Fpdi();  // I need to initiliaze the fpdi plugin
+    // i prefer for each loops over i++
+    foreach ($_SESSION['letter_id_array'] as $recipientId) {
+        $pdfId = $baseDir . $recipientId . "/" . $targetFName;  // the file with its path
+        if (file_exists($pdfId)) {    // if somehow palpatine returned and used sith magic i at least want this to drop a non existing file
+            $pageCount = $pdf->setSourceFile($pdfId);
+            foreach (range(1, $pageCount) as $page) {
+                $pdf->AddPage();
+                $pdf->useTemplate($pdf->importPage($page));
+            }
+        }
+    }
+    // verifiying if there is smth at least
+    if ($pdf->PageNo()>0){
+        $pdf->Output($combinedFile, 'F');
+    }
+    // the end
+    unset($_SESSION['account_ids']);    // this is needed
+    echo "<br /><a href='" . basename($combinedFile) . "' download>Download PDF for printing to then send via letter</a><br />";
+};
+
 
 
 
