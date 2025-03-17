@@ -380,6 +380,8 @@ function digitally_sign_pdf_delfin($pdfToSign)
 function letter_required_delfin($recipientId)
 {
     $_SESSION['letter_id_array'][] = $recipientId;  // this needs to be an array
+        // var_dump($_SESSION['letter_id_array']);
+        // echo "<br />";
 };
 
 function combine_all_letters_into_one_pdf_delfin($baseDir, $templateFile, $timestamp)
@@ -393,11 +395,16 @@ function combine_all_letters_into_one_pdf_delfin($baseDir, $templateFile, $times
     }
     // go on
     $targetFName = str_replace($baseDir, '', $templateFile);    // gets just the reference file with extension
+    $targetFName = str_replace('.docx', '.pdf', $targetFName);  // this still has the .docx file extension
     $combinedFile = $baseDir . $timestamp . ".pdf";
+        // var_dump($combinedFile);
+        // echo "<br />";
     $pdf = new Fpdi();  // I need to initiliaze the fpdi plugin
     // i prefer for each loops over i++
     foreach ($_SESSION['letter_id_array'] as $recipientId) {
         $pdfId = $baseDir . $recipientId . "/" . $targetFName;  // the file with its path
+            // var_dump($pdfId);
+            // echo "<br />";
         if (file_exists($pdfId)) {    // if somehow palpatine returned and used sith magic i at least want this to drop a non existing file
             $pageCount = $pdf->setSourceFile($pdfId);
             foreach (range(1, $pageCount) as $page) {
@@ -411,8 +418,8 @@ function combine_all_letters_into_one_pdf_delfin($baseDir, $templateFile, $times
         $pdf->Output($combinedFile, 'F');
     }
     // the end
-    unset($_SESSION['account_ids']);    // this is needed
-    echo "<br /><a href='" . basename($combinedFile) . "' download>Download PDF for printing to then send via letter</a><br />";
+    unset($_SESSION['letter_id_array']);    // this is needed
+    echo "<br /><a href='" . $combinedFile . "' download>Download PDF for printing for those who require a letter or for those whose email failed to send</a><br />";
 };
 
 
