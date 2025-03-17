@@ -8,7 +8,12 @@ session_checker_delfin();
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $_SESSION['letter_required'] = true;    // this is the easiest option to add this feature
+    if (isset($_POST['enable'])) {
+        $_SESSION['letter_required'] = true;    // this is the easiest option to add this feature
+    }
+    elseif(isset($_POST['disable'])){
+        unset($_SESSION['letter_required']);
+    }
 }
 
 
@@ -30,21 +35,21 @@ $dummyAccounts = [
         'allocationSpeciale' => 'Prinzessin',
         'nomCouponReponse' => '',       //! verify actual field name!
 
-    // ],
-    // [
-    //     'emailRecipient' => 'loser@petange.lu',
-    //     'emailRecipientName' => 'LOSER Dummy Recipient',
-    //     'recipientId' => 666
-    // ],
-    // [
-    //     'emailRecipient' => 'holaura@protonmail.com',
-    //     'emailRecipientName' => 'LOSER Dummy Recipient',
-    //     'recipientId' => 455
-    //     ],
-    // [
-    //     'emailRecipient' => 'NO-EMAIL',
-    //     'emailRecipientName' => 'i do not have an email',
-    //     'recipientId' => 555
+        // ],
+        // [
+        //     'emailRecipient' => 'loser@petange.lu',
+        //     'emailRecipientName' => 'LOSER Dummy Recipient',
+        //     'recipientId' => 666
+        // ],
+        // [
+        //     'emailRecipient' => 'holaura@protonmail.com',
+        //     'emailRecipientName' => 'LOSER Dummy Recipient',
+        //     'recipientId' => 455
+        //     ],
+        // [
+        //     'emailRecipient' => 'NO-EMAIL',
+        //     'emailRecipientName' => 'i do not have an email',
+        //     'recipientId' => 555
 
     ]   //! the last one must drop the comma
 ];
@@ -62,7 +67,9 @@ echo "<br />";
 
 
 <form method="post">
-    <button type="submit">Enable Letter Required Flag</button>
+    <button type="submit" name="enable">Enable Letter Required Flag</button>
+    <button type="submit" name="disable">Disable Letter Required Flag</button>
 </form>
+
 
 

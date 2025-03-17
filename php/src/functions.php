@@ -380,8 +380,8 @@ function digitally_sign_pdf_delfin($pdfToSign)
 function letter_required_delfin($recipientId)
 {
     $_SESSION['letter_id_array'][] = $recipientId;  // this needs to be an array
-        // var_dump($_SESSION['letter_id_array']);
-        // echo "<br />";
+    // var_dump($_SESSION['letter_id_array']);
+    // echo "<br />";
 };
 
 function combine_all_letters_into_one_pdf_delfin($baseDir, $templateFile, $timestamp)
@@ -398,14 +398,14 @@ function combine_all_letters_into_one_pdf_delfin($baseDir, $templateFile, $times
     $targetFName = str_replace('.docx', '.pdf', $targetFName);  // this still has the .docx file extension
     $outputRefName = str_replace('.pdf', '', $targetFName);     // this is for the line just below
     $combinedFile = $baseDir . "Nëmmen Bréiwer!" . " - " . $outputRefName . " - " . $timestamp . ".pdf";    // fancy name ; and a filestamp to prevent duplicates on the user's side
-        // var_dump($combinedFile);
-        // echo "<br />";
+    // var_dump($combinedFile);
+    // echo "<br />";
     $pdf = new Fpdi();  // I need to initiliaze the fpdi plugin
     // i prefer for each loops over i++
     foreach ($_SESSION['letter_id_array'] as $recipientId) {
         $pdfId = $baseDir . $recipientId . "/" . $targetFName;  // the file with its path
-            // var_dump($pdfId);
-            // echo "<br />";
+        // var_dump($pdfId);
+        // echo "<br />";
         if (file_exists($pdfId)) {    // if somehow palpatine returned and used sith magic i at least want this to drop a non existing file
             $pageCount = $pdf->setSourceFile($pdfId);
             foreach (range(1, $pageCount) as $page) {
@@ -415,7 +415,7 @@ function combine_all_letters_into_one_pdf_delfin($baseDir, $templateFile, $times
         }
     }
     // verifiying if there is smth at least
-    if ($pdf->PageNo()>0){
+    if ($pdf->PageNo() > 0) {
         $pdf->Output($combinedFile, 'F');
     }
     // the end
@@ -423,6 +423,17 @@ function combine_all_letters_into_one_pdf_delfin($baseDir, $templateFile, $times
     echo "<br /><a href='" . $combinedFile . "' download>Download PDF for printing for those who require a letter or for those whose email failed to send</a><br />";
 };
 
+function email_or_letter_mode_delfin()
+{
+    if (isset($_SESSION['letter_required'])) {
+        if ($_SESSION['letter_required'] === true) {
+            echo '<br /><h2 style="color: blue;">Letter Mode</h2><br />';
+        }
+    }
+    else {
+        echo '<br /><h2 style="color: red;">Email Mode</h2><br />';
+    }
+}
 
 
 

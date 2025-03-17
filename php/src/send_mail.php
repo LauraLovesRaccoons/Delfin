@@ -145,6 +145,7 @@ foreach ($emailRecipientsArray as $recipientUser) {
     usleep(1000);   // 1000 microseconds
 }
 combine_all_letters_into_one_pdf_delfin($templateDir, $templateFile, $timestamp);  //? hello darkness my old friend  I've come to talk with you again
+// cleans these session variables
 if (isset($_SESSION['letter_required'])) {
     unset($_SESSION['letter_required']);
 }
