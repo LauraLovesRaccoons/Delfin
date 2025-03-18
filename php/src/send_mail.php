@@ -153,8 +153,8 @@ combine_all_letters_into_one_pdf_delfin($templateDir, $templateFile, $timestamp)
 if (isset($_SESSION['letter_required'])) {
     unset($_SESSION['letter_required']);
 }
-//! delete_uploads_dir_delfin();    // cleanup
-//! temporarily disabled for debugging reason
+delete_uploads_dir_delfin();    // cleanup
+// // temporarily disabled for debugging reasons
 
 
 

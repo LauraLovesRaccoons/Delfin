@@ -234,8 +234,29 @@ function file_upload_delfin($file)
 function delete_uploads_dir_delfin()
 {
     $baseUploadDir = $GLOBALS['uploadBasePath'];    // global var
-    $UploadDirUserId = $baseUploadDir . "/" . $_SESSION['id'];  // this only targets the current user
-    system("rm -rf " . escapeshellarg($UploadDirUserId)); // forces wipes the entire directory
+    // old method
+    // // $UploadDirUserId = $baseUploadDir . "/" . $_SESSION['id'];  // this only targets the current user
+    // // system("rm -rf " . escapeshellarg($UploadDirUserId)); // forces wipes the entire directory
+    // 
+    $userIdDir = $baseUploadDir . "/" . $_SESSION['id'] . "/";  // this limits the scope to the current user
+    $currentTimestamp = time();
+    // one month is 30 days for outsiders ;)
+    $oneMonthInSeconds = 31 * 24 * 60 * 60;         // 31 days at least allows a wiggle room of a few days
+    $thresholdInMonths = 3 * $oneMonthInSeconds;    // I just set it to 3 months for now
+    $deletionThreshold = $currentTimestamp - $thresholdInMonths;    // calculates the range
+    // i need a loop
+    foreach (scandir($userIdDir) as $directory) {
+        if ($directory !== '.' || $directory !== '..') {    // this should exclude the current and parent folder depending on the file system
+            $directoryPath = $userIdDir . $directory;   // grabs the entire path
+            if (is_dir($directoryPath)) {   // checks if the folder hasn't been removed
+                if (is_numeric($directory)) {   // checks if the folder is entirely numeric
+                    if ($deletionThreshold > $directory) {  // if the deletion treshold is newer than the directory...
+                        system("rm -rf " . escapeshellarg($directoryPath)); // ...it annihilates it
+                    }
+                }
+            }
+        }
+    }
 };
 
 
