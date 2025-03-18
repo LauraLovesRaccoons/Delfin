@@ -246,11 +246,11 @@ function delete_uploads_dir_delfin()
     $deletionThreshold = $currentTimestamp - $thresholdInMonths;    // calculates the range
     // i need a loop
     foreach (scandir($userIdDir) as $directory) {
-        if ($directory !== '.' || $directory !== '..') {    // this should exclude the current and parent folder depending on the file system
+        if ($directory !== '.' && $directory !== '..') {    // this should exclude the current and parent folder depending on the file system ; yes it's an AND not an OR
             $directoryPath = $userIdDir . $directory;   // grabs the entire path
             if (is_dir($directoryPath)) {   // checks if the folder hasn't been removed
                 if (is_numeric($directory)) {   // checks if the folder is entirely numeric
-                    if ($deletionThreshold > $directory) {  // if the deletion treshold is newer than the directory...
+                    if ($deletionThreshold > (int)$directory) { // if the deletion treshold is newer than the directory...  // the integer is important since it's by default a string
                         system("rm -rf " . escapeshellarg($directoryPath)); // ...it annihilates it
                     }
                 }
