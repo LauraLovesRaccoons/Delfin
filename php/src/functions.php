@@ -243,6 +243,7 @@ function delete_uploads_dir_delfin()
     // one month is 30 days for outsiders ;)
     $oneMonthInSeconds = 31 * 24 * 60 * 60;         // 31 days at least allows a wiggle room of a few days
     $thresholdInMonths = 3 * $oneMonthInSeconds;    // I just set it to 3 months for now
+    // $thresholdInMonths = 300;   // manual override for debugging -> 5 minutes
     $deletionThreshold = $currentTimestamp - $thresholdInMonths;    // calculates the range
     // i need a loop
     foreach (scandir($userIdDir) as $directory) {
@@ -250,7 +251,7 @@ function delete_uploads_dir_delfin()
             $directoryPath = $userIdDir . $directory;   // grabs the entire path
             if (is_dir($directoryPath)) {   // checks if the folder hasn't been removed
                 if (is_numeric($directory)) {   // checks if the folder is entirely numeric
-                    if ($deletionThreshold > (int)$directory) { // if the deletion treshold is newer than the directory...  // the integer is important since it's by default a string
+                    if ($deletionThreshold > (int)$directory) {     // if the deletion treshold is newer than the directory...      // the integer is important since it's by default a string
                         system("rm -rf " . escapeshellarg($directoryPath)); // ...it annihilates it
                     }
                 }
