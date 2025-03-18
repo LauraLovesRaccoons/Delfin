@@ -32,6 +32,10 @@ if (isset($_SESSION['targetFile'])) {
         header("Location: delfin.php");
         exit();
     }
+} else {
+    header("Location: delfin.php");     // I'm not messing around with wannabe hackers
+    exit();
+
 }
 // it's better to be sure this hasn't somehow been purged
 if (isset($_SESSION['targetUsersArray'])) {
@@ -199,7 +203,3 @@ include 'footer.html';
 
 
 ?>
-
-
-
-
