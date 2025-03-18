@@ -148,6 +148,7 @@ foreach ($emailRecipientsArray as $recipientUser) {
     // wait for 1 millisecond ; don't go below that!
     usleep(1000);   // 1000 microseconds
 }
+$timestamp = time();    //? I have no idea why, but I can no longer rely on the one above
 combine_all_letters_into_one_pdf_delfin($templateDir, $templateFile, $timestamp);  //? hello darkness my old friend  I've come to talk with you again
 // cleans these session variables
 if (isset($_SESSION['letter_required'])) {

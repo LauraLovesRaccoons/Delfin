@@ -41,6 +41,7 @@ if (isset($_POST['submit_button'])) {
         $user = $result->fetch_assoc();
 
         // closing db for security (and performance) reasons
+        $stmt->close();     // also doing this
         db_close_delfin($db);
         // 
         if ($user) {
