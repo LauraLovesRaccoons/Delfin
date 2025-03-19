@@ -503,3 +503,12 @@ include 'header.html';
 </div>
 
 
+
+<!--  -->
+
+<?php
+include "footer.html";
+?>
+
+<!--  -->
+

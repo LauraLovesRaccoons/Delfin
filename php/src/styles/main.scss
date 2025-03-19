@@ -15,14 +15,35 @@ body {
 
 // header navbar
 header {
-  a {
-    text-decoration: none;
-    color: #1cafb4;
+  text-align: center;
+  // margin: auto;
+  ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    li {
+      // display: inline-block;
+      padding: 1px 25px;  // top+bottom - left+right
+      margin: 0px 50px;
+      a {
+        text-decoration: none;
+        color: #1cafb4;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 3rem;
+        i {
+          padding-right: 10px;
+        }
+      }
+    }
+  }
+  hr {
+    width: 100vw;
   }
 }
 
 // footer
 footer {
+  // display: flex;
   a {
     text-decoration: none;
     color: #e61eec;
@@ -117,7 +138,3 @@ tbody tr:nth-child(3n + 3) {
     background-color: rgba(255, 165, 0, 0.8);
   }
 }
-
-
-
-
