@@ -10,9 +10,25 @@ body {
   font-size: 1.2rem;
 }
 
-header a {
+header {
+  text-align: center;
+}
+header ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+}
+header ul li {
+  padding: 1px 25px;
+}
+header ul li a {
   text-decoration: none;
   color: #1cafb4;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 3rem;
+}
+header hr {
+  width: 100vw;
 }
 
 footer a {
