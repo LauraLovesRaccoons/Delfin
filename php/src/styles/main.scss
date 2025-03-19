@@ -29,16 +29,95 @@ footer {
   }
 }
 
-
 // bigger text boxes for file upload's custom msg
-  .email_subject{
-    width: 512px;
+.email_subject {
+  width: 512px;
+}
+.email_body {
+  width: 1024px;
+}
+// strong{
+// color: aqua;
+// }
+
+// tables
+.table_wrapper {
+  overflow-y: auto;
+  max-height: 90vh;
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+  position: absolute;
+  padding: 5px;
+  // border: 1px solid;
+  z-index: 100;
+  background-color: rgba($color: #ffffff, $alpha: 0.01);
+}
+table {
+  border: 1px solid;
+  border-radius: 1px;
+}
+table {
+  caption {
+    // position: sticky;
+    // top: 0;
+    background: #81ec1e;
+    font-size: 2rem;
+    // z-index: 101;
+    text-align: center;
   }
-  .email_body{
-    width: 1024px;
+}
+table {
+  thead {
+    tr {
+      position: sticky;
+      top: 0-5; //! I need to substract the padding of the table wrapper class
+      background-color: rgba(110, 235, 155, 0.99);
+      th {
+        padding: 10px;
+        font-size: 0.95rem;
+      }
+    }
   }
-  // strong{
-  // color: aqua;
-  // }
+}
+table {
+  tbody {
+    tr {
+      font-size: 1rem;
+      th {
+        padding: 10px;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+// // 1 is odd and the first entry
+// tbody tr:nth-child(odd) {
+//   background-color: rgba(100, 100, 100, 0.5);
+// }
+// tbody tr:nth-child(even) {
+//   background-color: rgba(200, 200, 200, 0.5);
+// }
+
+// tri - colours -> (3n) can be written as (3n+3) or (3n+0) ; it's actually the last one loaded
+tbody tr:nth-child(3n + 1) {
+  background-color: rgba(200, 200, 200, 0.5);
+}
+tbody tr:nth-child(3n + 2) {
+  background-color: rgba(185, 185, 180, 0.5);
+}
+tbody tr:nth-child(3n + 3) {
+  background-color: rgba(170, 170, 170, 0.5);
+}
+
+// for users that have this flag set
+.duplicateUser {
+  th {
+    background-color: rgba(255, 165, 0, 0.8);
+  }
+}
+
+
 
 
