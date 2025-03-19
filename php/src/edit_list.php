@@ -57,7 +57,7 @@ include 'header.html';
                 <th>«Nom_coupon-réponse»</th>
                 <th>E-Mail</th>
                 <th>letter required</th>
-                <th>duplicate user</th>
+                <th>fonction multiple</th>
                 <!-- <th class="spacer"></th> -->
             </tr>
         </thead>
@@ -93,7 +93,7 @@ include 'header.html';
                     <td data-cell="nomCouponReponse"><?= htmlspecialchars($row['nomCouponReponse']) ?></td>
                     <td data-cell="email"><?= htmlspecialchars($row['email']) ?></td>
                     <td data-cell="letter_required"><?= $row['letter_required'] ? '✅' : '❌' ?></td>
-                    <td data-cell="duplicate"><?= $row['duplicate'] ? '⚠️' : '' ?></td>
+                    <td data-cell="duplicate"><?= $row['duplicate'] ? '⚠' : '' ?></td>
                     <!-- <td data-cell="spacer" class="spacer"></td> -->
                 </tr>
             <?php endwhile; ?>
