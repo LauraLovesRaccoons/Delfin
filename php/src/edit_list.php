@@ -57,7 +57,7 @@ include 'header.html';
                 <th>«Nom_coupon-réponse»</th>
                 <th>E-Mail</th>
                 <th>letter required</th>
-                <th>duplicate user</th>
+                <th>fonction multiple</th>
                 <!-- <th class="spacer"></th> -->
             </tr>
         </thead>
