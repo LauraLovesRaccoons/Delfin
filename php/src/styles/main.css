@@ -65,10 +65,12 @@ table {
   border-radius: 1px;
 }
 
+table {
+  text-align: center;
+}
 table caption {
   background: #81ec1e;
   font-size: 2rem;
-  text-align: center;
 }
 
 table thead tr {
@@ -84,7 +86,7 @@ table thead tr th {
 table tbody tr {
   font-size: 1rem;
 }
-table tbody tr th {
+table tbody tr td {
   padding: 10px;
   font-size: 0.9rem;
 }
@@ -101,6 +103,20 @@ tbody tr:nth-child(3n+3) {
   background-color: rgba(170, 170, 170, 0.5);
 }
 
-.duplicateUser th {
+.duplicateUser td {
   background-color: rgba(255, 165, 0, 0.8);
+}
+
+.spacer {
+  background-color: rgb(220, 220, 220) !important;
+}
+
+.kick {
+  background-color: rgb(95, 128, 19) !important;
+  color: #a12e1a;
+}
+
+.delete {
+  background-color: rgb(250, 1, 1) !important;
+  color: #0a1a3d;
 }/*# sourceMappingURL=main.css.map */
