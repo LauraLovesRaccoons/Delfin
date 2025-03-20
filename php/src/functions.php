@@ -492,19 +492,19 @@ function query_grab_user_list($selectedList, $db)
     $listTrue = 1;
     $stmt->bind_param("i", $listTrue);
     $stmt->execute();
-    $result = $stmt->get_result();
+    $queryResult = $stmt->get_result();
     $stmt->close();         // yes
     db_close_delfin($db);   // performance reasons
-    return $result;
+    return $queryResult;
 };
 
 
-function turn_fetched_users_into_array_delfin($result)
+function turn_fetched_users_into_array_delfin($queryResult)
 {
     // i need to return an array
     $grabbedUsers = [];
     // 
-    while ($recipientUser = $result->fetch_assoc()) {
+    while ($recipientUser = $queryResult->fetch_assoc()) {
         $grabbedUsers[] = [
             'recipientId' => $recipientUser['id'],
             'emailRecipient' => $recipientUser['letter_required'] ? '' : $recipientUser['email'],   // if the person requires a letter, this invalidates the email
