@@ -60,8 +60,8 @@ include "header.html";
 
 
 echo "<br />";
-echo "<h1>you now have a dummy emailing list ready</h1><br />";
-echo '<a href="file_upload.php">UPLOAD FILE -> </a><br />';
+echo "<h2>This will send a test email to yourself</h2><br />";
+echo '<a href="file_upload.php"> GO TO:  UPLOAD FILE -> </a><br />';
 echo "<br />";
 
 
