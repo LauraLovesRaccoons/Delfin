@@ -34,7 +34,7 @@ include 'header.html';
 <div class="table_wrapper">
     <table>
         <caption>
-            Edit Users Only in List A
+            Edit Users Only in <?php echo $selectedList ?>  <!-- this dynamically adjusts the name -->
         </caption>
         <thead>
             <tr>
