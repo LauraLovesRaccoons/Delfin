@@ -483,4 +483,44 @@ function cleanup_session_vars_delfin()
 };
 
 
+// query stuff
+
+function query_grab_user_list($selectedList, $db)
+{
+    $query = "SELECT * FROM Users WHERE $selectedList = ?";     //? I just grab everything for possible future expansions
+    $stmt = $db->prepare($query);
+    $listTrue = 1;
+    $stmt->bind_param("i", $listTrue);
+    $stmt->execute();
+    $queryResult = $stmt->get_result();
+    $stmt->close();         // yes
+    db_close_delfin($db);   // performance reasons
+    return $queryResult;
+};
+
+
+function turn_fetched_users_into_array_delfin($queryResult)
+{
+    // i need to return an array
+    $grabbedUsers = [];
+    // 
+    while ($recipientUser = $queryResult->fetch_assoc()) {
+        $grabbedUsers[] = [
+            'recipientId' => $recipientUser['id'],
+            'emailRecipient' => $recipientUser['letter_required'] ? '' : $recipientUser['email'],   // if the person requires a letter, this invalidates the email
+            'emailRecipientName' => empty(trim($recipientUser['nom'])) ? $recipientUser['nom2'] : $recipientUser['nom'],    // this if for logging purposes ; if nom is empty, it will grab nom2
+            'allocation' => $recipientUser['allocation'],
+            'nom' => $recipientUser['nom'],
+            'nom2' => $recipientUser['nom2'],
+            'fonction' => $recipientUser['fonction'],
+            'adresse1' => $recipientUser['adresse1'],
+            'adresse2' => $recipientUser['adresse2'],
+            'allocationSpeciale' => $recipientUser['allocationSpeciale'],
+            'nomCouponReponse' => $recipientUser['nomCouponReponse'],
+        ];
+    }
+    return $grabbedUsers;
+};
+
+
 
