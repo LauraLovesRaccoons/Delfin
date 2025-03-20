@@ -1,6 +1,6 @@
 <?php
 
-ob_start();
+ob_start();   // yeah i need this ... 
 
 require "functions.php";
 
@@ -12,6 +12,8 @@ if (isset($_SESSION['targetUsersArray'])) {
   header("Location: delfin.php");
   exit();
 }
+
+include 'header.html';
 
 
 if (isset($_POST['submit_button'])) {
@@ -35,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-include 'header.html';
+
 
 // 
 email_or_letter_mode_delfin();  // this shows the current mode

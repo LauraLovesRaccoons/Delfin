@@ -1,12 +1,17 @@
 <?php
 
-ob_start();     // output buffer removes header warnings : output buffer
+ob_start();     // output buffer is need here to prevent header errors
+
+
 
 require 'functions.php';
 // echo ini_get("session.gc_maxlifetime");
 // ini_set("session.gc_maxlifetime", 60);
 // echo ini_get("session.gc_maxlifetime");
 session_start([]);
+
+require 'header.html';
+
 
 if (isset($_POST['submit_button'])) {
     // there is no signup so we don't care about a potentional mismatch with stripped tags
@@ -65,7 +70,7 @@ if (isset($_POST['submit_button'])) {
 }
 ?>
 
-<?php require 'header.html'; ?>
+
 
 
 <!-- <form method="POST"> -->

@@ -3,6 +3,10 @@
 require "functions.php";
 session_checker_delfin();
 
+// unsets every session variable apart from login
+
+// 
+
 
 
 ?>

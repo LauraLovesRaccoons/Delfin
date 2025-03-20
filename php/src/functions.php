@@ -279,7 +279,7 @@ function upload_pdf_delfin()
 
         // checks the file extension
         if (!preg_match("/\.pdf$/i", $fileNAME)) {
-            echo "<strong>.PDF obligatoresch</strong><br />";
+            echo "<br /><strong style='color: #FF553D;'>.PDF obligatoresch</strong><br />";
         }
         // checks the file's mime type
         elseif ($fileMIME === 'application/pdf') {
@@ -294,13 +294,13 @@ function upload_pdf_delfin()
             header('Location: send_mail.php');
             exit();
         } else {
-            echo "<strong>Muss ee richteg formatéierte PDF Fichier sinn</strong><br />";
+            echo "<br /><strong style='color: #FF553D;'>Muss ee richteg formatéierte PDF Fichier sinn</strong><br />";
         }
         // }
 
 
     } else {
-        echo "<strong>Unknown Error Occured</strong><br />";
+        echo "<br /><strong style='color: #FF553D;'>Unknown Error Occured</strong><br />";
     }
 };
 
@@ -321,7 +321,7 @@ function upload_docX_delfin()
 
         // checks the file extension
         if (!preg_match("/\.docx$/i", $fileNAME)) {
-            echo "<strong>.DOXC obligatoresch</strong><br />";
+            echo "<br /><strong style='color: #FF553D;'>.DOXC obligatoresch</strong><br />";
         }
         // checks the file's mime type
         elseif ($fileMIME === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {  // yes this is docX
@@ -336,13 +336,13 @@ function upload_docX_delfin()
             header('Location: send_mail.php');
             exit();
         } else {
-            echo "<strong>Muss ee richteg formatéierte DOCX Fichier sinn</strong><br />";
+            echo "<br /><strong style='color: #FF553D;'>Muss ee richteg formatéierte DOCX Fichier sinn</strong><br />";
         }
         // }
 
 
     } else {
-        echo "<strong>Unknown Error Occured</strong><br />";
+        echo "<br /><strong style='color: #FF553D;'>Unknown Error Occured</strong><br />";
     }
 };
 
