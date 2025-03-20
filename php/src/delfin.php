@@ -1,5 +1,6 @@
 <?php
 
+
 require "functions.php";
 
 // unsets every session variable apart from those related to login or essentials
@@ -13,10 +14,23 @@ session_checker_delfin();
 
 
 // 
+$approvedSelectedList = ["list_A", "list_B",];      //! this needs updating if new lists are added
+// 
 
-
+// checks if someone wishes to send a mailing list
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["selectedList"])) {
     $selectedList = $_POST["selectedList"];
+    // checking if someone wants to send an example file
+    if ($selectedList === "test") {
+        header("location: test_dummy_user_array.php");  // it still has its debugging name :barry:
+        exit;
+    }
+
+    // if someone inspect element on the hidden value field, we're gonna have a bad time
+    if (!in_array($selectedList, $approvedSelectedList)) {
+        header("location: delfin.php"); // redirect
+        exit;
+    }
 
     // $selectedList = "list_A";   // this is usefull
 
@@ -49,9 +63,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["selectedList"])) {
 
 <h1>LOGGED IN</h1>
 
-<br />
+<!-- <br />
 <a href="test_dummy_user_array.php">Test mailing list (on yourself)</a>
-<br />
+<br /> -->
 
 <!-- <br />
 <h3> <span>LIST A</span><span>&nbsp;---&nbsp;</span><span>EDIT</span> </h3>
@@ -59,20 +73,34 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["selectedList"])) {
 
 <br />
 
-<div class="button-container">
+<div class="selectListsForm">
+    
     <form method="POST">
+        <label for="submit"></label>
         <input type="hidden" name="selectedList" value="list_A">
         <button type="submit" class="list-button">Select List A</button>
     </form>
 
     <form method="POST">
+        <label for="submit"></label>
         <input type="hidden" name="selectedList" value="list_B">
         <button type="submit" class="list-button">Select List B</button>
     </form>
+    <form method="POST">
+        <label for="submit"></label>
+        <input type="hidden" name="selectedList" value="HACKER">
+        <button type="submit" class="list-button">HACKER</button>
+    </form>
+    <form method="POST">
+        <label for="submit"></label>
+        <input type="hidden" name="selectedList" value="test">
+        <button type="submit" class="list-button">Test mailing list (on yourself)</button>
+    </form>
+
 </div>
 
 
 
+
+
 <?php require 'footer.html'; ?>
-
-
