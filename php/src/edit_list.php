@@ -12,24 +12,18 @@ session_checker_delfin();
 // }
 
 
+// $approvedSelectedList = approved_lists_delfin();    // yes it's a function
 
+$selectedList = list_url_decode_delfin();
 
-$selectedList = "list_A";   // this is usefull
+// $selectedList = "list_A";   // this is usefull
+
+// var_dump($selectedList);
 
 
 $db = db_connect_delfin();
 
-// $query = "SELECT id, allocation, nom, nom2, fonction, adresse1, adresse2, allocationSpeciale, email, nomCouponReponse, letter_required FROM Users WHERE $selectedList = ?";
-$query = "SELECT * FROM Users WHERE $selectedList = ?";     //? I just grab everything for possible future expansions
-$stmt = $db->prepare($query);
-$listTrue = 1;      // i use tinyint instead of boolean
-$stmt->bind_param("i", $listTrue);
-$stmt->execute();
-$result = $stmt->get_result();
-
-$stmt->close();
-
-db_close_delfin($db);
+$queryResult = query_grab_user_list($selectedList, $db);
 
 
 include 'header.html';
@@ -40,7 +34,7 @@ include 'header.html';
 <div class="table_wrapper">
     <table>
         <caption>
-            Edit Users Only in List A
+            Edit Users Only in <?php echo $selectedList ?>  <!-- this dynamically adjusts the name -->
         </caption>
         <thead>
             <tr>
@@ -78,7 +72,7 @@ include 'header.html';
             </tr>
         </tbody> -->
         <tbody>
-            <?php while ($row = $result->fetch_assoc()): ?>
+            <?php while ($row = $queryResult->fetch_assoc()): ?>
                 <tr class="<?= $row['duplicate'] ? 'duplicateUser' : '' ?>">
                     <td data-cell="kick" class="kick">🦶</td>
                     <td data-cell="id"><?= htmlspecialchars($row['id']) ?></td>
