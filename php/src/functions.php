@@ -386,8 +386,17 @@ function convertDocXToPdf($inputDocX, $outputPdf, $inputDocXDir)
     // $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir /var/www/html/uploads $inputDocX 2>&1";  // this one works
     // $outDir = "/var/www/html/" . $GLOBALS['uploadBasePath'];
     $outDir = "/var/www/html/" . $inputDocXDir;
-    $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir $outDir $inputDocX 2>&1";
-    $output = shell_exec($command);     //? the $output variable can be used for logging purposes
+    //? basic one
+    // $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir $outDir $inputDocX 2>&1";     //! basic one ; no additional pdf settings
+    // $output = shell_exec($command);     //? the $output variable can be used for logging purposes
+    //? fine tuned one
+    $command = "HOME=/tmp libreoffice --headless --convert-to odt --outdir $outDir $inputDocX 2>&1";
+    $output = shell_exec($command);
+    // 
+    $odtFile = str_replace(".docx", ".odt", $inputDocX);
+    $command = "HOME=/tmp libreoffice --headless --convert-to pdf:writer_pdf_Export --outdir $outDir $odtFile 2>&1";
+    $output = shell_exec($command);
+    //? 
 
     // file_put_contents('/var/www/html/uploads/convert_log.txt', $output);    // logging file
     // echo "<pre>$output</pre>";  // visible on the webpage
@@ -541,7 +550,6 @@ function list_url_decode_delfin()
     header('Location: delfin.php');
     exit();
 };
-
 
 
 
