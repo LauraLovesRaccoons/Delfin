@@ -7,14 +7,14 @@ require "functions.php";
 session_checker_delfin();
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['enable_letter_mode'])) {
-        $_SESSION['letter_required'] = true;    // this is the easiest option to add this feature
-    }
-    elseif(isset($_POST['disable_letter_mode'])){
-        unset($_SESSION['letter_required']);
-    }
-}
+// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//     if (isset($_POST['enable_letter_mode'])) {
+//         $_SESSION['letter_required'] = true;    // this is the easiest option to add this feature
+//     }
+//     elseif(isset($_POST['disable_letter_mode'])){
+//         unset($_SESSION['letter_required']);
+//     }
+// }
 
 
 
@@ -26,14 +26,14 @@ $dummyAccounts = [
         'emailRecipientName' => $_SESSION['username'],
         'recipientId' => 0,     // normally from database ; but since this is testing it has id=0
         // filling it with test data
-        'allocation' => 'Madame',
-        'nom' => 'Laura Enterprise',
-        'nom2' => 'HORNICK Laura',
-        'fonction' => '',
-        'adresse1' => 'Place JFK',
-        'adresse2' => 'L-0000 Pétange',
-        'allocationSpeciale' => 'Prinzessin',
-        'nomCouponReponse' => '',       //! verify actual field name!
+        'allocation' => '!allocation!',
+        'nom' => '!nom!',
+        'nom2' => '!nom2!',
+        'fonction' => '!fonction!',
+        'adresse1' => '!adresse1!',
+        'adresse2' => '!adresse2!',
+        'allocationSpeciale' => '!allocationSpeciale!',
+        'nomCouponReponse' => '!nomCouponReponse!',     //! verify actual field name!
 
         // ],
         // [
@@ -56,6 +56,8 @@ $dummyAccounts = [
 
 $_SESSION['targetUsersArray'] = $dummyAccounts;
 
+include "header.html";
+
 
 echo "<br />";
 echo "<h1>you now have a dummy emailing list ready</h1><br />";
@@ -65,11 +67,17 @@ echo "<br />";
 
 ?>
 
-
+<!-- 
 <form method="POST">
     <button type="submit" name="enable_letter_mode">Enable Letter Mode</button>
     <button type="submit" name="disable_letter_mode">Email Mode (default)</button>
 </form>
+ -->
 
 
+<?php
+
+include "footer.html";
+
+?>
 

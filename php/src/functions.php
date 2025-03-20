@@ -60,14 +60,16 @@ function db_connect_delfin()
     $db = @mysqli_connect($serviceMysql, $username, $password, $dbname);    // @ means surpress error message
     if (!$db) {
         //     // // error_log(mysqli_connect_error());
-        // echo "Datenbank huet een Problem <br>";
+        echo "<h1 style= 'color: red'>Datenbank huet een Problem</h1> ";
         echo "<script>console.log('Datenbank huet een Problem');</script>";
+        echo "<br /><a href='logout.php'Logout</a><br />";
     } elseif ($db) {
         // echo "Datenbank ass aktiv <br>";
-        echo "<script>console.log('Datenbank ass aktiv');</script>";
+        // echo "<script>console.log('Datenbank ass aktiv');</script>";
     } else {
-        // echo "Een Dëcken Hardware Problem mam Server <br>";
-        echo "<script>console.log('Een Dëcken Hardware Problem mam Server');</script>";
+        echo "<h1 style= 'color: red'>Een Dëcken Hardware Problem mam Server an der Datenbank</h1> ";
+        echo "<script>console.log('Een Dëcken Hardware Problem mam Server an der Datenbank');</script>";
+        echo "<br /><a href='logout.php'>Logout</a><br />";
     }
     return $db; // this gives me the cannot modify header information warning
 };
@@ -77,7 +79,7 @@ function db_close_delfin($db)
     if ($db) {
         mysqli_close($db);  // closes the database connection
         // echo "Closed the Database Connection";
-        echo "<script>console.log('Closed the Database Connection');</script>";
+        // echo "<script>console.log('Closed the Database Connection');</script>";
     } else {
         // echo "There was NO Database Connection";
         echo "<script>console.log('There was NO Database Connection');</script>";

@@ -45,23 +45,28 @@ email_or_letter_mode_delfin();  // this shows the current mode
 
 <h2>Fichier uploaden a verschécken</h2><br />
 <form method="POST" enctype="multipart/form-data">
+  <?php if (!isset($_SESSION['letter_required'])): ?>
+    <em>Email personaliséieren?</em><br />
+    <!-- <em>Limitt: 500 & 2000 Zeechen</em><br /> -->
+    <!-- maxlength="" removed -->
 
-  <em>Text personaliséieren?</em><br />
-  <!-- <em>Limitt: 500 & 2000 Zeechen</em><br /> -->
-  <!-- maxlength="" removed -->
-  <label for="email_subject"></label>
-  <strong>Email Subject: </strong><input type="text" name="email_subject" id="email_subject" class="email_subject" placeholder=" Default: <?= getenv('DEFAULT_EMAIL_SUBJECT') ?> " value="<?= $_POST['email_subject'] ?? getenv('DEFAULT_EMAIL_SUBJECT') ?>">
-  <br />
-  <strong>Email Body: </strong><label for="email_body"></label>
-  <input type="text" name="email_body" id="email_body" class="email_body" placeholder=" Default: <?= getenv('DEFAULT_EMAIL_BODY') ?> " value="<?= $_POST['email_body'] ?? getenv('DEFAULT_EMAIL_BODY') ?>">
-  <br />
-
+    <label for="email_subject"></label>
+    <strong>Email Subject: </strong><input type="text" name="email_subject" id="email_subject" class="email_subject" placeholder=" Default: <?= getenv('DEFAULT_EMAIL_SUBJECT') ?> " value="<?= $_POST['email_subject'] ?? getenv('DEFAULT_EMAIL_SUBJECT') ?>">
+    <br />
+    <strong>Email Body: </strong><label for="email_body"></label>
+    <input type="text" name="email_body" id="email_body" class="email_body" placeholder=" Default: <?= getenv('DEFAULT_EMAIL_BODY') ?> " value="<?= $_POST['email_body'] ?? getenv('DEFAULT_EMAIL_BODY') ?>">
+    <br />
+  <?php endif; ?>
   <em>Fichier auswielen:</em><br />
   <label for="file"></label>
   <input type="file" name="fileToUpload" id="fileToUpload" required>
   <br />
   <label for="submit"></label>
+  <?php if (isset($_SESSION['letter_required'])): ?>
+  <input type="submit" value=" Upload File & Prepare Letters " name="submit_button" id="">
+  <?php else: ?>
   <input type="submit" value=" Upload File & Send Emails " name="submit_button" id="">
+  <?php endif; ?>
   <br />
 </form>
 <!-- <br /> -->
@@ -72,13 +77,15 @@ email_or_letter_mode_delfin();  // this shows the current mode
 <br />
 <hr />
 <br />
-<h3>Mode Switch: Entered Text WILL be Lost if you switch modes!</h3>
+<h3>Mode Switch<!-- : Entered Text WILL be Lost if you switch modes! --></h3>
 <form method="POST">
-  <label for="submit"></label>
-  <button type="submit" name="enable_letter_mode">Switch to Letter Mode</button>
-  <br />
-  <label for="submit"></label>
-  <button type="submit" name="disable_letter_mode">Switch to Email Mode (default)</button>
+  <?php if (isset($_SESSION['letter_required'])): ?>
+    <label for="submit"></label>
+    <button type="submit" name="disable_letter_mode">Switch to Email Mode (default)</button>
+  <?php else: ?>
+    <label for="submit"></label>
+    <button type="submit" name="enable_letter_mode">Switch to Letter Mode</button>
+  <?php endif; ?>
 </form>
 <br />
 <hr />
@@ -89,12 +96,6 @@ email_or_letter_mode_delfin();  // this shows the current mode
 
 <?php
 include 'footer.html';
-?>
-
-
-
-<?php
-// delete_uploads_dir_delfin();
 ?>
 
 

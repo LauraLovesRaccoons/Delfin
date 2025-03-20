@@ -12,20 +12,13 @@ session_checker_delfin();
 
 
 
-
 <h1>LOGGED IN</h1>
-<br />
-<h1>This needs a session from login to work</h1>
-<?php
-// if (!isset($_SESSION['loggedin'])) {
-//     header('Location: index.html');
-//     exit;
-// }
-?>
 
-<!-- <h2>:farewell:</h2>
-<form method="post">
-    <input type="submit" value="log out" name="logout_button">
-</form> -->
+<br />
+<a href="test_dummy_user_array.php">Test Email User List</a>
+<br />
 
 <?php require 'footer.html'; ?>
+
+
+
