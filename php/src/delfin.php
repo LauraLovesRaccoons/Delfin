@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // redirects to the edit_list.php page
         if (isset($_POST["editList"])) {
-            header("location: edit_list.php?" . urlencode($selectedList));  // urlencode might make the most sense here
+            header("location: edit_list.php?selectedList=" . urlencode($selectedList));     // urlencode might make the most sense here
             exit;   // if there is no exit, it will proceed with the remainder of the code
         }
 
