@@ -393,7 +393,7 @@ function convertDocXToPdf($inputDocX, $outputPdf, $inputDocXDir)
     // echo "<pre>$output</pre>";  // visible on the webpage
     // echo "<br />";  // 
 
-    return file_exists($outputPdf) ? $outputPdf : false;    // black magive / witchcraft prevention
+    return file_exists($outputPdf) ? $outputPdf : false;    // black magic / witchcraft prevention
 };
 
 // ! UNUSED

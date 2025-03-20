@@ -125,7 +125,7 @@ foreach ($emailRecipientsArray as $recipientUser) {
     convertDocXToPdf($inputDocX, $outputPdf, $inputDocXDir);
     //? deleting the "temporary" filled in docX files to only have the pdf in the directory
     if (file_exists($inputDocX)) {
-        unlink($inputDocX);
+        // unlink($inputDocX);     //? uncomment this if you need to debug smth
     }
     //! Future
     $signedPdf = digitally_sign_pdf_delfin($outputPdf);
