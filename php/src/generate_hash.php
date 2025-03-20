@@ -1,22 +1,26 @@
 <?php
 
+require 'header.html';
 // session_start();
 if (isset($_POST['submit_button'])) {
-    echo "<br /><h1>Generate a Hash for your Password</h1><br />";
+    echo "<br /><h2>Generate a Hash for your Password</h2><br />";
     $password = strip_tags(trim($_POST['password']));
-    echo "<br /><h1>This is your password which is sql query safe ; might be different from the inputed one!!!</h1><br />";
-    var_dump($password);
+    echo "<br /><h3>This is your password which is sql query safe ; might be different from the inputed one!!!</h3><br />";
+    // var_dump($password);
+    printf("<strong>%s</strong><br />", $password);
     $password = password_hash("$password", PASSWORD_DEFAULT);
-    echo "<br /><h1>This should be entered into the database!!!</h1><br />";
-    var_dump($password);
-    echo "<br /><br /><br />---<br /><br /><br />";
+    echo "<br /><h3>This should be entered into the database!!!</h3><br />";
+    // var_dump($password);
+    printf("<strong>%s</strong><br />", $password);
+    echo "<br />";
+
 }
 
 ?>
 
 
-<?php require 'header.html'; ?>
 
+<br />
 <form method="POST">
     <label for="password"></label>
     <?php if (isset($errors['password'])) echo $errors['password']; ?>
@@ -26,10 +30,12 @@ if (isset($_POST['submit_button'])) {
 </form>
 
 
-<br /><br /><br /><br />
+<br />
 <a href="index.php">Go Back</a>
-<br /><br /><br /><br />
+<br />
 
 
 
 <?php require 'footer.html'; ?>
+
+
