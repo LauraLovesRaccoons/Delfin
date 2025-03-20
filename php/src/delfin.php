@@ -13,7 +13,7 @@ session_checker_delfin();
 
 
 // 
-$approvedSelectedList = ["list_A", "list_B",];      //! this needs updating if new lists are added
+$approvedSelectedList = approved_lists_delfin();    // yes it's a function
 // 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {

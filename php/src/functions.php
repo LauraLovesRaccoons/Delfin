@@ -27,6 +27,11 @@ use Document\Parser\Word;
 use setasign\Fpdi\Fpdi;
 
 
+//! related to selecting lists
+function approved_lists_delfin()
+{
+    return ["list_A", "list_B",];       //! Update this when new lists are added
+};
 
 
 function debug_test_env_delfin()
@@ -521,6 +526,5 @@ function turn_fetched_users_into_array_delfin($queryResult)
     }
     return $grabbedUsers;
 };
-
 
 
