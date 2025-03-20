@@ -31,6 +31,7 @@ if (isset($_SESSION['targetUsersArray'])) {
 // 
 $_SESSION['targetUsersArray'] = $grabbedUsers;  // grabbedUsers was returned
 header("location: file_upload.php");    // redirect
+exit;   // this is needed
 
 
 
