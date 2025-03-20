@@ -189,22 +189,3 @@ include 'footer.html';
 //! IGNORE THE STUFF BELOW
 ?>
 
-
-<br />
-<hr />
-<br />
-
-<?php
-
-?>
-
-
-<br />
-<hr />
-<br />
-
-<?php
-
-
-
-?>
