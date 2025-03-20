@@ -125,8 +125,15 @@ foreach ($emailRecipientsArray as $recipientUser) {
     convertDocXToPdf($inputDocX, $outputPdf, $inputDocXDir);
     //? deleting the "temporary" filled in docX files to only have the pdf in the directory
     if (file_exists($inputDocX)) {
-        // unlink($inputDocX);     //? uncomment this if you need to debug smth
+        unlink($inputDocX);     //? uncomment this if you need to debug smth
     }
+    //! this is currently only .odt
+    $otherFormatDocX = str_replace('.docx', '.odt', $inputDocX); 
+    if (file_exists($inputDocX)) {
+        unlink($inputDocX);     //? uncomment this if you need to debug smth
+    }
+    //! copy the if above for other formats
+
     //! Future
     $signedPdf = digitally_sign_pdf_delfin($outputPdf);
     // therefore the line below
