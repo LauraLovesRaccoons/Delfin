@@ -453,11 +453,34 @@ function email_or_letter_mode_delfin()
         if ($_SESSION['letter_required'] === true) {
             echo '<br /><h2 style="color: blue;">Letter Mode</h2><br />';
         }
-    }
-    else {
+    } else {
         echo '<br /><h2 style="color: red;">Email Mode</h2><br />';
     }
 }
+
+
+// all session vars apart from id, username and email should be in here
+function cleanup_session_vars_delfin()
+{
+    if (isset($_SESSION['targetUsersArray'])) {
+        unset($_SESSION['targetUsersArray']);
+    }
+    if (isset($_SESSION['letter_required'])) {
+        unset($_SESSION['letter_required']);
+    }
+    if (isset($_SESSION['emailSubject'])) {
+        unset($_SESSION['emailSubject']);
+    }
+    if (isset($_SESSION['emailBody'])) {
+        unset($_SESSION['emailBody']);
+    }
+    if (isset($_SESSION['targetDir'])) {
+        unset($_SESSION['targetDir']);
+    }
+    if (isset($_SESSION['targetFile'])) {
+        unset($_SESSION['targetFile']);
+    }
+};
 
 
 

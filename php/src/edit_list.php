@@ -6,17 +6,16 @@ require "functions.php";
 
 session_checker_delfin();
 
-// wipes it, if it exists already
-if (isset($_SESSION['targetUsersArray'])) {
-    unset($_SESSION['targetUsersArray']);
-}
+// // wipes it, if it exists already
+// if (isset($_SESSION['targetUsersArray'])) {
+//     unset($_SESSION['targetUsersArray']);
+// }
 
 
 
 
 $selectedList = "list_A";   // this is usefull
 
-$grabbedUsers = [];
 
 $db = db_connect_delfin();
 
