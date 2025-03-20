@@ -1,23 +1,36 @@
-<?php 
+<?php
 
 require "functions.php";
-session_checker_delfin();
 
 // unsets every session variable apart from those related to login or essentials
 // id, email, username
 // in order
 cleanup_session_vars_delfin();
 
+// a little later than usual  but i want to be sure everything is clean
+session_checker_delfin();
+
+
+
 // 
 
 
-// if someone clicks it there will be a query here
-$grabbedUsers = [];     // i need to save it in a users's array
-// not needed here ; because of cleanup,,, function
-// if (isset($_SESSION['targetUsersArray'])) {
-//     unset($_SESSION['targetUsersArray']);
-// }
-$_SESSION['targetUsersArray'] = $grabbedUsers;
+$selectedList = "list_A";   // this is usefull
+
+$db = db_connect_delfin();
+
+// $query = "SELECT id, allocation, nom, nom2, fonction, adresse1, adresse2, allocationSpeciale, email, nomCouponReponse, letter_required FROM Users WHERE $selectedList = ?";
+query_grab_user_list($selectedList, $db);
+
+// 
+turn_fetched_users_into_array_delfin($queryResult);     // $queryResult is self explanatory
+// 
+if (isset($_SESSION['targetUsersArray'])) {
+    unset($_SESSION['targetUsersArray']);   // just to be sure, even if cleanup_session_vars_delfin already ran
+}
+// 
+$_SESSION['targetUsersArray'] = $grabbedUsers;  // grabbedUsers was returned
+header("location: file_upload.php");    // redirect
 
 
 
@@ -40,6 +53,5 @@ $_SESSION['targetUsersArray'] = $grabbedUsers;
 
 
 <?php require 'footer.html'; ?>
-
 
 
