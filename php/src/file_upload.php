@@ -46,7 +46,7 @@ email_or_letter_mode_delfin();  // this shows the current mode
 <h2>Fichier uploaden a verschécken</h2><br />
 <form method="POST" enctype="multipart/form-data">
   <?php if (!isset($_SESSION['letter_required'])): ?>
-    <em>Text personaliséieren?</em><br />
+    <em>Email personaliséieren?</em><br />
     <!-- <em>Limitt: 500 & 2000 Zeechen</em><br /> -->
     <!-- maxlength="" removed -->
 
