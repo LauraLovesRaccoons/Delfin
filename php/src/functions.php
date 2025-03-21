@@ -390,7 +390,7 @@ function convertDocXToPdf($inputDocX, $outputPdf, $inputDocXDir)
     // $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir $outDir $inputDocX 2>&1";     //! basic one ; no additional pdf settings
     // $output = shell_exec($command);     //? the $output variable can be used for logging purposes
     //? fine tuned one
-    $command = "HOME=/tmp libreoffice --headless --convert-to 'odt:writer8' --outdir $outDir $inputDocX 2>&1";
+    $command = "HOME=/tmp libreoffice --headless --infilter='Microsoft Word 2007/2010/2013 XML' --convert-to 'odt:writer8' --outdir $outDir $inputDocX 2>&1";
     $output = shell_exec($command);
     // 
     $odtFile = str_replace(".docx", ".odt", $inputDocX);
