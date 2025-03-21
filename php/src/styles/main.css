@@ -121,7 +121,6 @@ tbody tr:nth-child(3n+3) {
   color: #0a1a3d;
 }
 
-/* loading animation */
 #loadingScreen {
   display: none;
   position: fixed;
@@ -135,4 +134,22 @@ tbody tr:nth-child(3n+3) {
   align-items: center;
   font-size: 2rem;
   z-index: 151;
+}
+
+#loadingScreenAnimation {
+  border: 6px solid #f3f3f3; /* Light grey */
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }/*# sourceMappingURL=main.css.map */
