@@ -338,6 +338,7 @@ function upload_docX_delfin()
             // next part:
             // header('Location: send_mail.php?file=' . urlencode($targetFile));
             $_SESSION['targetFile'] = $targetFile;  // save it inside the user's session
+            header("Location: " . $_SERVER['PHP_SELF']);    //? this allows use to have a nice animation; just right before the real re-direct
             header('Location: send_mail.php');
             exit();
         } else {

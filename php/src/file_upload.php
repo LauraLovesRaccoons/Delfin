@@ -13,7 +13,7 @@ if (isset($_SESSION['targetUsersArray'])) {
   exit();
 }
 
-include 'header.html';
+require 'header.html';
 
 
 if (isset($_POST['submit_button'])) {
@@ -22,8 +22,8 @@ if (isset($_POST['submit_button'])) {
   $_SESSION['emailSubject'] = $emailSubject;
   $emailBody = isset($_POST['email_body']) && $_POST['email_body'] !== '' ? $_POST['email_body'] : getenv('DEFAULT_EMAIL_BODY');
   $_SESSION['emailBody'] = $emailBody;
-
   upload_docX_delfin();
+  // the animation is handled much letter
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -45,8 +45,9 @@ email_or_letter_mode_delfin();  // this shows the current mode
 
 ?>
 
+
 <h2>Fichier uploaden a verschécken</h2><br />
-<form method="POST" enctype="multipart/form-data">
+<form id="heavyFormSubmission" action="" method="POST" enctype="multipart/form-data"> <!-- id is needed for the animation part -->
   <?php if (!isset($_SESSION['letter_required'])): ?>
     <em>Email personaliséieren?</em><br />
     <!-- <em>Limitt: 500 & 2000 Zeechen</em><br /> -->
@@ -65,9 +66,9 @@ email_or_letter_mode_delfin();  // this shows the current mode
   <br />
   <label for="submit"></label>
   <?php if (isset($_SESSION['letter_required'])): ?>
-  <input type="submit" value=" Upload File & Prepare Letters " name="submit_button" id="">
+    <input type="submit" value=" Upload File & Prepare Letters " name="submit_button" id="">
   <?php else: ?>
-  <input type="submit" value=" Upload File & Send Emails " name="submit_button" id="">
+    <input type="submit" value=" Upload File & Send Emails " name="submit_button" id="">
   <?php endif; ?>
   <br />
 </form>
@@ -75,6 +76,8 @@ email_or_letter_mode_delfin();  // this shows the current mode
 <strong>Kann ee bëssi daueren...</strong><br />
 <em>Ënnert 20MB soss komme Feelermeldungen!</em><br />
 <br />
+
+<span id="loadingScreen">Loading...</span>
 
 <br />
 <hr />
@@ -93,11 +96,21 @@ email_or_letter_mode_delfin();  // this shows the current mode
 <hr />
 <br />
 
+<!-- loading animation -->
+<!-- yes this can't be in the footer somehow -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const loadingScreen = document.getElementById("loadingScreen");
+    loadingScreen.style.display = "none"; // start as hidden
 
+    document.getElementById("heavyFormSubmission").addEventListener("submit", function() {
+      loadingScreen.style.display = "flex"; // makes it visible
+    });
+  });
+</script>
 
 
 <?php
-include 'footer.html';
+require 'footer.html';
 ?>
-
 
