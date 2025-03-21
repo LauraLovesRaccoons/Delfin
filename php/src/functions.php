@@ -273,7 +273,8 @@ function delete_uploads_dir_delfin()
 function upload_pdf_delfin()
 {
     if (empty($_FILES['fileToUpload']['name'])) {
-        echo "<strong>Keen Fichier ausgewielt</strong><br />";
+        echo "<br /><h2 style='color:rgb(250, 45, 20);'>ERROR! No Emails Sent! More Info Just Below: </h2>";
+        echo "<br /><strong style='color: #FF553D;'>Keen Fichier ausgewielt</strong><br />";
     } elseif (isset($_FILES['fileToUpload'])) {
 
         // preparing the file checking
@@ -284,6 +285,7 @@ function upload_pdf_delfin()
 
         // checks the file extension
         if (!preg_match("/\.pdf$/i", $fileNAME)) {
+            echo "<br /><h2 style='color:rgb(250, 45, 20);'>ERROR! No Emails Sent! More Info Just Below: </h2>";
             echo "<br /><strong style='color: #FF553D;'>.PDF obligatoresch</strong><br />";
         }
         // checks the file's mime type
@@ -299,12 +301,14 @@ function upload_pdf_delfin()
             header('Location: send_mail.php');
             exit();
         } else {
+            echo "<br /><h2 style='color:rgb(250, 45, 20);'>ERROR! No Emails Sent! More Info Just Below: </h2>";
             echo "<br /><strong style='color: #FF553D;'>Muss ee richteg formatéierte PDF Fichier sinn</strong><br />";
         }
         // }
 
 
     } else {
+        echo "<br /><h2 style='color:rgb(250, 45, 20);'>ERROR! No Emails Sent! More Info Just Below: </h2>";
         echo "<br /><strong style='color: #FF553D;'>Unknown Error Occured</strong><br />";
     }
 };
@@ -315,7 +319,8 @@ function upload_pdf_delfin()
 function upload_docX_delfin()
 {
     if (empty($_FILES['fileToUpload']['name'])) {
-        echo "<strong>Keen Fichier ausgewielt</strong><br />";
+        echo "<br /><h2 style='color:rgb(250, 45, 20);'>ERROR! No Emails Sent! More Info Just Below: </h2>";
+        echo "<br /><strong style='color: #FF553D;'>Keen Fichier ausgewielt</strong><br />";
     } elseif (isset($_FILES['fileToUpload'])) {
 
         // preparing the file checking
@@ -326,6 +331,7 @@ function upload_docX_delfin()
 
         // checks the file extension
         if (!preg_match("/\.docx$/i", $fileNAME)) {
+            echo "<br /><h2 style='color:rgb(250, 45, 20);'>ERROR! No Emails Sent! More Info Just Below: </h2>";
             echo "<br /><strong style='color: #FF553D;'>.DOXC obligatoresch</strong><br />";
         }
         // checks the file's mime type
@@ -342,12 +348,14 @@ function upload_docX_delfin()
             header('Location: send_mail.php');
             exit();
         } else {
+            echo "<br /><h2 style='color:rgb(250, 45, 20);'>ERROR! No Emails Sent! More Info Just Below: </h2>";
             echo "<br /><strong style='color: #FF553D;'>Muss ee richteg formatéierte DOCX Fichier sinn</strong><br />";
         }
         // }
 
 
     } else {
+        echo "<br /><h2 style='color:rgb(250, 45, 20);'>ERROR! No Emails Sent! More Info Just Below: </h2>";
         echo "<br /><strong style='color: #FF553D;'>Unknown Error Occured</strong><br />";
     }
 };
