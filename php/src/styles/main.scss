@@ -23,12 +23,12 @@ header {
     justify-content: center;
     li {
       // display: inline-block;
-      padding: 1px 25px;  // top+bottom - left+right
+      padding: 1px 25px; // top+bottom - left+right
       margin: 0px 50px;
       a {
         text-decoration: none;
         color: #1cafb4;
-        font-family: 'Times New Roman', Times, serif;
+        font-family: "Times New Roman", Times, serif;
         font-size: 3rem;
         i {
           padding-right: 10px;
@@ -79,7 +79,7 @@ table {
   border-radius: 1px;
 }
 table {
-  text-align: center;   // centers everything in the table
+  text-align: center; // centers everything in the table
   caption {
     // position: sticky;
     // top: 0;
@@ -143,15 +143,32 @@ tbody tr:nth-child(3n + 3) {
 // styling of gui table
 // important overwrittes the duplicateUser class
 .spacer {
-  background-color: rgba(220, 220, 220, 1.0) !important;
+  background-color: rgba(220, 220, 220, 1) !important;
 }
 .kick {
   background-color: rgb(95, 128, 19) !important;
   color: #a12e1a;
 }
 .delete {
-  background-color: rgba(250, 1, 1, 1.0) !important;
+  background-color: rgba(250, 1, 1, 1) !important;
   color: #0a1a3d;
+}
+
+
+/* loading animation */
+#loadingScreen {
+  display: none;  //? is hidden by default ; but i need js to do that some
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.0rem;
+  z-index: 151;   // this should be above everything;  MEW
 }
 
 

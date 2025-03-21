@@ -119,4 +119,20 @@ tbody tr:nth-child(3n+3) {
 .delete {
   background-color: rgb(250, 1, 1) !important;
   color: #0a1a3d;
+}
+
+/* loading animation */
+#loadingScreen {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  z-index: 151;
 }/*# sourceMappingURL=main.css.map */

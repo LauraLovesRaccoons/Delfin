@@ -2,14 +2,14 @@
 
 require "functions.php";
 
+
+// this must come before the other one
+session_checker_delfin();
+
 // unsets every session variable apart from those related to login or essentials
 // id, email, username
 // in order
 cleanup_session_vars_delfin();
-
-// a little later than usual  but i want to be sure everything is clean
-session_checker_delfin();
-
 
 
 // 
