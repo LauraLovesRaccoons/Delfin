@@ -25,6 +25,7 @@ $dummyAccounts = [
         'emailRecipient' => $_SESSION['email'],
         'emailRecipientName' => $_SESSION['username'],
         'recipientId' => 0,     // normally from database ; but since this is testing it has id=0
+        'recipientId' => "YOUR ACCOUNT ID: " . $_SESSION['id'], //? manual override
         // filling it with test data
         'allocation' => '!allocation!',
         'nom' => '!nom!',
