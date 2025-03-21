@@ -467,7 +467,15 @@ function combine_all_letters_into_one_pdf_delfin($baseDir, $templateFile, $times
     }
     // the end
     unset($_SESSION['letter_id_array']);    // this is needed
-    echo "<br /><a href='" . $combinedFile . "' download>Download PDF for printing for those who require a letter or for those whose email failed to send</a><br />";
+    // echo "<br /><a href='" . $combinedFile . "' download>Download PDF for printing for those who require a letter or for those whose email failed to send</a><br />";
+    //? outerHTML overwrites the span ; innerHTML would keep it
+    echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('downloadLinkMsg').outerHTML = ` 
+                <br /><a href='" . $combinedFile . "' download>Download PDF for printing for those who require a letter or for those whose email failed to send</a><br />
+             `
+        });
+    </script>";     // yes this allows me to overwrite a span and let it appear before the "error" list
 };
 
 function email_or_letter_mode_delfin()
@@ -559,6 +567,3 @@ function list_url_decode_delfin()
     header('Location: delfin.php');
     exit();
 };
-
-
-
