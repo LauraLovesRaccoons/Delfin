@@ -72,9 +72,9 @@ include 'header.html';
 
 
 <h2>Batch Job Finished</h2>
+
+<span id="downloadLinkMsg"></span>  <!-- the span will be overwritten by outerHTML with JS -->
 <br />
-
-
 
 
 <!-- <h1>BE PATIENT ! - MUST DISPLAY ON THE PREVIOUS PAGE </h1>
