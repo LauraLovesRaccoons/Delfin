@@ -4,7 +4,8 @@ require "functions.php";
 
 session_checker_delfin();
 
-
+header("Location: delfin.php");
+exit();
 
 ?>
 
