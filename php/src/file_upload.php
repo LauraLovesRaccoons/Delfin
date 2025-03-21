@@ -77,7 +77,7 @@ email_or_letter_mode_delfin();  // this shows the current mode
 <em>Ënnert 20MB soss komme Feelermeldungen!</em><br />
 <br />
 
-<span id="loadingScreen">Loading...</span>
+<span id="loadingScreen">Sending Emails... &nbsp; <div id="loadingScreenAnimation"></div></span>
 
 <br />
 <hr />
