@@ -23,8 +23,9 @@ session_checker_delfin();
 $dummyAccounts = [
     [
         'emailRecipient' => $_SESSION['email'],
-        'emailRecipientName' => $_SESSION['username'],
+        'emailRecipientName' => "<em><u>This is YOUR account and your personal ID:</u></em> " . $_SESSION['username'] . " - " . $_SESSION['email'],     //? makes it more obvious
         'recipientId' => 0,     // normally from database ; but since this is testing it has id=0
+        'recipientId' => $_SESSION['id'],   //? manual override
         // filling it with test data
         'allocation' => '!allocation!',
         'nom' => '!nom!',

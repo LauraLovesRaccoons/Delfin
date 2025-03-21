@@ -17,6 +17,10 @@ $approvedSelectedList = approved_lists_delfin();    // yes it's a function
 // 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_POST["importCsv"])) {       // checks if the importCsv button was pressed
+        header("location: import_csv.php"); // FUTURE EXPANSION
+        exit;                               // uncomment this as well
+    }
     if (isset($_POST["editEntireDb"])) {        // checks if the editEntireDb button was pressed
         header("location: edit_entire_db.php");
         exit;
@@ -96,25 +100,33 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <button type="submit" class="list-button">Select List B</button>
         <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
     </form>
-    <form method="POST">
+    <!-- <form method="POST">
         <label for="submit"></label>
         <input type="hidden" name="selectedList" value="HACKER">
         <button type="submit" class="list-button">HACKER</button>
         <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
-    </form>
+    </form> -->
+    <br />
     <form method="POST">
         <label for="submit"></label>
         <input type="hidden" name="selectedList" value="test">
-        <button type="submit" class="list-button">Test mailing list (on yourself)</button>
+        <button type="submit" class="list-button">Test document (on yourself)</button>
     </form>
-    <br />
     <br />
     <form method="POST">
         <label for="edit-entire-db"></label>
         <input type="hidden" name="editEntireDb" value="1">
         <button type="submit" class="edit-entire-db-button">Edit the entire database</button>
     </form>
-
+    <br />
+    <hr />
+    <br />
+    <form method="POST">
+        <h4>Future expansion</h4>
+        <label for="edit-entire-db"></label>
+        <input type="hidden" name="importCsv" value="1">
+        <button type="submit" class="import-csv-button">Import .csv file as a mailing list</button>
+    </form>
 </div>
 
 
@@ -122,6 +134,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 <?php require 'footer.html'; ?>
-
-
 
