@@ -130,6 +130,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </div>
 
 
+<br />
+<br />
+
+
+<!-- opens your personal logging file in a new tab -->
+<a href = "<?= $logBasePath . $_SESSION['id'] . '/' . $logFile ?>" target="_blank">Check out your log 🪵 </a><br />
 
 
 
