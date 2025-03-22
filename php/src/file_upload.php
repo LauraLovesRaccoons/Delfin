@@ -1,6 +1,6 @@
 <?php
 
-ob_start();   // yeah i need this ... 
+ob_start();   //? yeah i need this ... 
 
 require "functions.php";
 

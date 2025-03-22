@@ -67,7 +67,7 @@ if (isset($_SESSION['emailBody'])) {
 
 
 <?php
-include 'header.html';
+include 'header.html';  //? this code should never cancel
 ?>
 
 
@@ -172,13 +172,10 @@ delete_uploads_dir_delfin();    // cleanup
 
 ?>
 
-<!-- <br /><br /><br />
-<h1> ADD A LOGGER THAT REGISTERS ALL FAILED SEND MESSAGES ; EXCEPTIONS IN THE FUNCTION </h1>
-<br /><br /><br /> -->
 
 
 <?php
-include 'footer.html';
+include 'footer.html';  //? this code should never cancel
 ?>
 
 
@@ -187,12 +184,4 @@ include 'footer.html';
 ?>
 
 
-
-
-<br />
-<hr /><br />
-
-<?php
-//! IGNORE THE STUFF BELOW
-?>
 

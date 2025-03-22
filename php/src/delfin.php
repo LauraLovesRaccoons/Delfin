@@ -75,13 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <h1>LOGGED IN</h1>
 
-<!-- <br />
-<a href="test_dummy_user_array.php">Test mailing list (on yourself)</a>
-<br /> -->
 
-<!-- <br />
-<h3> <span>LIST A</span><span>&nbsp;---&nbsp;</span><span>EDIT</span> </h3>
-<h3>List A</h3> -->
 
 <br />
 

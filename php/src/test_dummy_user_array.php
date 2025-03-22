@@ -58,7 +58,7 @@ $dummyAccounts = [
 
 $_SESSION['targetUsersArray'] = $dummyAccounts;
 
-include "header.html";
+require "header.html";
 
 
 echo "<br />";
@@ -79,7 +79,7 @@ echo "<br />";
 
 <?php
 
-include "footer.html";
+require "footer.html";
 
 ?>
 

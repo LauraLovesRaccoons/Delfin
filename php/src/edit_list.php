@@ -26,7 +26,7 @@ $db = db_connect_delfin();
 $queryResult = query_grab_user_list($selectedList, $db);
 
 
-include 'header.html';
+require 'header.html';
 
 // 
 ?>
@@ -99,7 +99,7 @@ include 'header.html';
 <!--  -->
 
 <?php
-include "footer.html";
+require "footer.html";
 ?>
 
 <!--  -->
