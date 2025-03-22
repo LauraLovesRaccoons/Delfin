@@ -76,9 +76,13 @@ email_or_letter_mode_delfin();  // this shows the current mode
 <strong>Kann ee bëssi daueren...</strong><br />
 <em>Ënnert 20MB soss komme Feelermeldungen!</em><br />
 <br />
-
-<span id="loadingScreen">Sending Emails... &nbsp; <div id="loadingScreenAnimation"></div></span>
-
+<?php 
+if (isset($_SESSION['letter_required'])) {
+  echo '<span id="loadingScreen">Preparing Letters... &nbsp; <div id="loadingScreenAnimation"></div></span>';
+} else {
+  echo '<span id="loadingScreen">Sending Emails... &nbsp; <div id="loadingScreenAnimation"></div></span>';
+}
+ ?>
 <br />
 <hr />
 <br />
