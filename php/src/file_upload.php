@@ -25,7 +25,7 @@ if (isset($_POST['submit_button'])) {
   $emailBody = isset($_POST['email_body']) && $_POST['email_body'] !== '' ? $_POST['email_body'] : getenv('DEFAULT_EMAIL_BODY');
   $_SESSION['emailBody'] = $emailBody;
   upload_docX_delfin();
-  // the animation is handled much letter
+  // the animation is handled much letter   // much letter ftw 
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
