@@ -60,6 +60,7 @@ $_SESSION['targetUsersArray'] = $dummyAccounts;
 
 require "header.html";
 
+echo '<div class="general-wrapper">';
 
 echo "<br />";
 echo "<h2>This will send a test email to yourself</h2><br />";
@@ -76,6 +77,8 @@ echo "<br />";
 </form>
  -->
 
+
+</div>
 
 <?php
 

@@ -15,6 +15,8 @@ if (isset($_SESSION['targetUsersArray'])) {
 
 require 'header.html';
 
+echo '<div class="general-wrapper">';
+
 
 if (isset($_POST['submit_button'])) {
   // store entered text or set default one from the env file  // overkill since the default env message is also set on the next page
@@ -44,7 +46,6 @@ email_or_letter_mode_delfin();  // this shows the current mode
 // 
 
 ?>
-
 
 <h2>Fichier uploaden a verschécken</h2><br />
 <form id="heavyFormSubmission" action="" method="POST" enctype="multipart/form-data"> <!-- id is needed for the animation part -->
@@ -99,6 +100,8 @@ if (isset($_SESSION['letter_required'])) {
 <br />
 <hr />
 <br />
+
+  </div>
 
 <!-- loading animation -->
 <!-- yes this can't be in the footer somehow -->

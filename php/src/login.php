@@ -12,6 +12,7 @@ session_start([]);
 
 require 'header.html';
 
+echo '<div class="general-wrapper">';
 
 if (isset($_POST['submit_button'])) {
     // there is no signup so we don't care about a potentional mismatch with stripped tags
@@ -93,6 +94,8 @@ if (isset($_POST['submit_button'])) {
     <input type="submit" value="Log in" name="submit_button" id="">
 </form>
 
+
+</div>
 
 <?php require 'footer.html'; ?>
 
