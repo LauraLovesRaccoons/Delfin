@@ -10,6 +10,7 @@ session_checker_delfin();
 
 <?php require 'header.html'; ?>
 
+<!-- yes a different div -->
 <div class="table-wrapper">
 
 </div>

@@ -11,6 +11,7 @@ exit();
 
 <?php require 'header.html'; ?>
 
+<!-- yes a different div -->
 <div class="general-wrapper">
 
 </div>

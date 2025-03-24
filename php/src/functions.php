@@ -282,7 +282,7 @@ function upload_pdf_delfin()
 
     if (empty($_FILES['fileToUpload']['name'])) {
         echo $generealErrorMessage;
-        echo "<br /><strong style='color: #FF553D;'>Keen Fichier ausgewielt</strong><br />";
+        echo "<p class='specific-error-msg-file-upload'><strong>No File selected</strong></p>";
     } elseif (isset($_FILES['fileToUpload'])) {
 
         // preparing the file checking
@@ -294,7 +294,7 @@ function upload_pdf_delfin()
         // checks the file extension
         if (!preg_match("/\.pdf$/i", $fileNAME)) {
             echo $generealErrorMessage;
-            echo "<br /><strong style='color: #FF553D;'>.PDF obligatoresch</strong><br />";
+            echo "<p class='specific-error-msg-file-upload'><strong>.PDF is mandatory</strong></p>";
         }
         // checks the file's mime type
         elseif ($fileMIME === 'application/pdf') {
@@ -310,14 +310,14 @@ function upload_pdf_delfin()
             exit();
         } else {
             echo $generealErrorMessage;
-            echo "<br /><strong style='color: #FF553D;'>Muss ee richteg formatéierte PDF Fichier sinn</strong><br />";
+            echo "<p class='specific-error-msg-file-upload'><strong>Must be a properly formated PDF file</strong></p>";
         }
         // }
 
 
     } else {
         echo $generealErrorMessage;
-        echo "<br /><strong style='color: #FF553D;'>Unknown Error Occured</strong><br />";
+        echo "<p class='specific-error-msg-file-upload'><strong>Unknown Error Occured</strong></p>";
     }
 };
 
@@ -333,7 +333,7 @@ function upload_docX_delfin()
 
     if (empty($_FILES['fileToUpload']['name'])) {
         echo $generealErrorMessage;
-        echo "<br /><strong style='color: #FF553D;'>Keen Fichier ausgewielt</strong><br />";
+        echo "<p class='specific-error-msg-file-upload'><strong>No File selected</strong></p>";
     } elseif (isset($_FILES['fileToUpload'])) {
 
         // preparing the file checking
@@ -345,7 +345,7 @@ function upload_docX_delfin()
         // checks the file extension
         if (!preg_match("/\.docx$/i", $fileNAME)) {
             echo $generealErrorMessage;
-            echo "<br /><strong style='color: #FF553D;'>.DOXC obligatoresch</strong><br />";
+            echo "<p class='specific-error-msg-file-upload'><strong>.DOXC is mandatory</strong></p>";
         }
         // checks the file's mime type
         elseif ($fileMIME === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {  // yes this is docX
@@ -362,14 +362,14 @@ function upload_docX_delfin()
             exit();
         } else {
             echo $generealErrorMessage;
-            echo "<br /><strong style='color: #FF553D;'>Muss ee richteg formatéierte DOCX Fichier sinn</strong><br />";
+            echo "<p class='specific-error-msg-file-upload'><strong>Must be a properly formated DOCX file</strong></p>";
         }
         // }
 
 
     } else {
         echo $generealErrorMessage;
-        echo "<br /><strong style='color: #FF553D;'>Unknown Error Occured</strong><br />";
+        echo "<p class='specific-error-msg-file-upload'><strong>Unknown Error Occured</strong></p>";
     }
 };
 

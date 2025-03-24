@@ -50,18 +50,18 @@ email_or_letter_mode_delfin();  // this shows the current mode
 <h2>Fichier uploaden a verschécken</h2><br />
 <form id="heavyFormSubmission" action="" method="POST" enctype="multipart/form-data"> <!-- id is needed for the animation part -->
   <?php if (!isset($_SESSION['letter_required'])): ?>
-    <em>Email personaliséieren?</em><br />
+    <em>Personalize Email?</em><br />
     <!-- <em>Limitt: 500 & 2000 Zeechen</em><br /> -->
     <!-- maxlength="" removed -->
 
     <label for="email_subject"></label>
-    <strong>Email Subject: </strong><input type="text" name="email_subject" id="email_subject" class="email_subject" placeholder=" Default: <?= getenv('DEFAULT_EMAIL_SUBJECT') ?> " value="<?= $_POST['email_subject'] ?? getenv('DEFAULT_EMAIL_SUBJECT') ?>">
+    <strong>Email Title: </strong><input type="text" name="email_subject" id="email_subject" class="email_subject" placeholder=" Default: <?= getenv('DEFAULT_EMAIL_SUBJECT') ?> " value="<?= $_POST['email_subject'] ?? getenv('DEFAULT_EMAIL_SUBJECT') ?>">
     <br />
-    <strong>Email Body: </strong><label for="email_body"></label>
+    <strong>Email Message: </strong><label for="email_body"></label>
     <input type="text" name="email_body" id="email_body" class="email_body" placeholder=" Default: <?= getenv('DEFAULT_EMAIL_BODY') ?> " value="<?= $_POST['email_body'] ?? getenv('DEFAULT_EMAIL_BODY') ?>">
     <br />
   <?php endif; ?>
-  <em>Fichier auswielen:</em><br />
+  <em>Select File:</em><br />
   <label for="file"></label>
   <input type="file" name="fileToUpload" id="fileToUpload" required>
   <br />
@@ -74,8 +74,8 @@ email_or_letter_mode_delfin();  // this shows the current mode
   <br />
 </form>
 <!-- <br /> -->
-<strong>Kann ee bëssi daueren...</strong><br />
-<em>Ënnert 20MB soss komme Feelermeldungen!</em><br />
+<strong>This might take a while...</strong><br />
+<em>Keep it below 20MB or else!</em><br />
 <br />
 <?php 
 if (isset($_SESSION['letter_required'])) {
