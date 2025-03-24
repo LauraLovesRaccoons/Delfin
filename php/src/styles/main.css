@@ -163,4 +163,49 @@ tbody tr:nth-child(3n+3) {
 .general-wrapper {
   margin: 10px;
   padding: 2px;
+}
+
+.list-button, .edit-button, .edit-entire-db-button, .import-csv-button {
+  padding: 5px;
+  height: 66px;
+  width: 200px;
+  margin-bottom: 15px;
+  border: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 1.251rem;
+  color: #010101;
+}
+
+.list-button:hover, .edit-button:hover, .edit-entire-db-button:hover, .import-csv-button:hover, #button-yourself:hover {
+  background-color: #81ec1e;
+  color: #000;
+  transition: 0.251s ease-in-out;
+}
+
+.list-button {
+  background-color: #3498db;
+}
+
+.edit-button {
+  background-color: #FF553D;
+  width: 80px;
+}
+
+.edit-entire-db-button {
+  background-color: #741616;
+  color: #FFF3CD;
+}
+
+.import-csv-button {
+  margin-top: 5px;
+  opacity: 0.666;
+  background-color: #D3D3D3;
+  color: #A0A0A0;
+  cursor: not-allowed;
+}
+
+#button-yourself {
+  background-color: #2ebeab;
 }/*# sourceMappingURL=main.css.map */
