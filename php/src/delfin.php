@@ -94,6 +94,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <button type="submit" class="list-button">Select List B</button>
             <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
         </form>
+
+        <form method="POST">
+            <label for="submit"></label>
+            <input type="hidden" name="selectedList" value="list_C">
+            <button type="submit" class="list-button">Select List C</button>
+            <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
+        </form>
+
         <!-- <form method="POST">
         <label for="submit"></label>
         <input type="hidden" name="selectedList" value="HACKER">

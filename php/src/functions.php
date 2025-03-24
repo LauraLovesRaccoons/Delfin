@@ -30,7 +30,7 @@ use setasign\Fpdi\Fpdi;
 //! related to selecting lists
 function approved_lists_delfin()
 {
-    return ["list_A", "list_B",];       //! Update this when new lists are added
+    return ["list_A", "list_B", "list_C",];     //! Update this when new lists are added
 };
 
 
