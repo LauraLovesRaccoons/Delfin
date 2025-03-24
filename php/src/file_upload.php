@@ -87,7 +87,7 @@ if (isset($_SESSION['letter_required'])) {
 <br />
 <hr />
 <br />
-<h3>Mode Switch<!-- : Entered Text WILL be Lost if you switch modes! --></h3>
+<h3>Mode Switch<!-- : Entered Text (and file) WILL be Lost if you switch modes! --></h3>
 <form method="POST">
   <?php if (isset($_SESSION['letter_required'])): ?>
     <label for="submit"></label>
