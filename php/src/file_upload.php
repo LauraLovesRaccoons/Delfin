@@ -47,7 +47,14 @@ email_or_letter_mode_delfin();  // this shows the current mode
 
 ?>
 
-<h2>Fichier uploaden a verschécken</h2><br />
+<?php
+if(isset($_SESSION['letter_required'])){
+  echo "<h2>Upload File and Create Letters</h2>";
+} else {
+  echo "<h2>Upload File and Send Emails</h2>";
+}
+?>
+<br />
 <form id="heavyFormSubmission" action="" method="POST" enctype="multipart/form-data"> <!-- id is needed for the animation part -->
   <?php if (!isset($_SESSION['letter_required'])): ?>
     <em>Personalize Email?</em><br />

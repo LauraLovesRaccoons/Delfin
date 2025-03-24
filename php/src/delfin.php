@@ -73,65 +73,64 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <div class="general-wrapper">
 
-<h1>LOGGED IN</h1>
+    <h1>LOGGED IN</h1>
 
 
 
-<br />
+    <br />
 
-<div class="selectListsForm">
+    <div class="selectListsForm">
 
-    <form method="POST">
-        <label for="submit"></label>
-        <input type="hidden" name="selectedList" value="list_A"> <!-- ensure the value is always transmited -->
-        <button type="submit" class="list-button">Select List A</button>
-        <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
-    </form>
+        <form method="POST">
+            <label for="submit"></label>
+            <input type="hidden" name="selectedList" value="list_A"> <!-- ensure the value is always transmited -->
+            <button type="submit" class="list-button">Select List A</button>
+            <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
+        </form>
 
-    <form method="POST">
-        <label for="submit"></label>
-        <input type="hidden" name="selectedList" value="list_B">
-        <button type="submit" class="list-button">Select List B</button>
-        <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
-    </form>
-    <!-- <form method="POST">
+        <form method="POST">
+            <label for="submit"></label>
+            <input type="hidden" name="selectedList" value="list_B">
+            <button type="submit" class="list-button">Select List B</button>
+            <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
+        </form>
+        <!-- <form method="POST">
         <label for="submit"></label>
         <input type="hidden" name="selectedList" value="HACKER">
         <button type="submit" class="list-button">HACKER</button>
         <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
     </form> -->
-    <br />
-    <form method="POST">
-        <label for="submit"></label>
-        <input type="hidden" name="selectedList" value="test">
-        <button type="submit" class="list-button">Test document (on yourself)</button>
-    </form>
-    <br />
-    <form method="POST">
-        <label for="edit-entire-db"></label>
-        <input type="hidden" name="editEntireDb" value="1">
-        <button type="submit" class="edit-entire-db-button">Edit the entire database</button>
-    </form>
-    <br />
-    <hr />
-    <br />
-    <form method="POST">
-        <h4>Future expansion</h4>
-        <label for="edit-entire-db"></label>
-        <input type="hidden" name="importCsv" value="1">
-        <button type="submit" class="import-csv-button">Import .csv file as a mailing list</button>
-    </form>
-</div>
+        <!-- <br /> -->
+        <form method="POST">
+            <label for="edit-entire-db"></label>
+            <input type="hidden" name="editEntireDb" value="1">
+            <button type="submit" class="edit-entire-db-button">Edit the entire database</button>
+        </form>
+        <!-- <br /> -->
+        <form method="POST">
+            <label for="submit"></label>
+            <input type="hidden" name="selectedList" value="test">
+            <button type="submit" class="list-button" id="button-yourself">Test document <br />(on yourself)</button>
+        </form>
+        <br />
+        <hr />
+        <br />
+        <form method="POST">
+            <h4>Future expansion</h4>
+            <label for="edit-entire-db"></label>
+            <input type="hidden" name="importCsv" value="1">
+            <button type="submit" class="import-csv-button">Import .csv file as a mailing list</button>
+        </form>
+    </div>
 
 
-<br />
-<br />
+    <!-- <br /> -->
+    <!-- <br /> -->
 
 
-<!-- opens your personal logging file in a new tab -->
-<a href = "<?= $logBasePath . $_SESSION['id'] . '/' . $logFile ?>" target="_blank">Check out your log 🪵 </a><br />
+    <!-- opens your personal logging file in a new tab -->
+    <a href="<?= $logBasePath . $_SESSION['id'] . '/' . $logFile ?>" target="_blank">Check out your log 🪵 </a><br />
 
 </div>
 
 <?php require 'footer.html'; ?>
-
