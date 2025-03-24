@@ -11,6 +11,10 @@ exit();
 
 <?php require 'header.html'; ?>
 
+<div class="general-wrapper">
+
+</div>
+
 <?php require 'footer.html'; ?>
 
 

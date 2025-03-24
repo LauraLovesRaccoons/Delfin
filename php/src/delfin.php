@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <?php require 'header.html'; ?>
 
-
+<div class="general-wrapper">
 
 <h1>LOGGED IN</h1>
 
@@ -131,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <!-- opens your personal logging file in a new tab -->
 <a href = "<?= $logBasePath . $_SESSION['id'] . '/' . $logFile ?>" target="_blank">Check out your log 🪵 </a><br />
 
-
+</div>
 
 <?php require 'footer.html'; ?>
 

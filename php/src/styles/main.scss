@@ -62,7 +62,7 @@ footer {
 // }
 
 // tables
-.table_wrapper {
+.table-wrapper {
   overflow-y: auto;
   max-height: 90vh;
   display: flex;
@@ -186,4 +186,8 @@ tbody tr:nth-child(3n + 3) {
 
 
 // 
+
+.general-wrapper {
+  padding: 10px;
+}
 

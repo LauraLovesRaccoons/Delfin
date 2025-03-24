@@ -1,6 +1,9 @@
 <?php
 
 require 'header.html';
+
+echo '<div class="table-wrapper">';
+
 // session_start();
 if (isset($_POST['submit_button'])) {
     echo "<br /><h2>Generate a Hash for your Password</h2><br />";
@@ -34,7 +37,7 @@ if (isset($_POST['submit_button'])) {
 <a href="index.php">Go Back</a>
 <br />
 
-
+</div>
 
 <?php require 'footer.html'; ?>
 

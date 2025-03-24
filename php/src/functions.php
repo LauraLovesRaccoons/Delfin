@@ -275,8 +275,13 @@ function delete_uploads_dir_delfin()
 // pdf upload
 function upload_pdf_delfin()
 {
+    // personalizes message based on letter and email mode ; OH? and it makes it one simple echo $var instead of you know what ...
+    $generealErrorMessage = isset($_SESSION['letter_required'])
+        ? "<br /><h2 style='color:rgb(250, 45, 20);'>ERROR! No Letters Parsed! More Info Just Below: </h2>"
+        : "<br /><h2 style='color:rgb(250, 45, 20);'>ERROR! No Emails Sent! More Info Just Below: </h2>";
+
     if (empty($_FILES['fileToUpload']['name'])) {
-        echo "<br /><h2 style='color:rgb(250, 45, 20);'>ERROR! No Emails Sent! More Info Just Below: </h2>";
+        echo $generealErrorMessage;
         echo "<br /><strong style='color: #FF553D;'>Keen Fichier ausgewielt</strong><br />";
     } elseif (isset($_FILES['fileToUpload'])) {
 
@@ -288,7 +293,7 @@ function upload_pdf_delfin()
 
         // checks the file extension
         if (!preg_match("/\.pdf$/i", $fileNAME)) {
-            echo "<br /><h2 style='color:rgb(250, 45, 20);'>ERROR! No Emails Sent! More Info Just Below: </h2>";
+            echo $generealErrorMessage;
             echo "<br /><strong style='color: #FF553D;'>.PDF obligatoresch</strong><br />";
         }
         // checks the file's mime type
@@ -304,14 +309,14 @@ function upload_pdf_delfin()
             header('Location: send_mail.php');
             exit();
         } else {
-            echo "<br /><h2 style='color:rgb(250, 45, 20);'>ERROR! No Emails Sent! More Info Just Below: </h2>";
+            echo $generealErrorMessage;
             echo "<br /><strong style='color: #FF553D;'>Muss ee richteg formatéierte PDF Fichier sinn</strong><br />";
         }
         // }
 
 
     } else {
-        echo "<br /><h2 style='color:rgb(250, 45, 20);'>ERROR! No Emails Sent! More Info Just Below: </h2>";
+        echo $generealErrorMessage;
         echo "<br /><strong style='color: #FF553D;'>Unknown Error Occured</strong><br />";
     }
 };
@@ -321,8 +326,13 @@ function upload_pdf_delfin()
 // docX upload
 function upload_docX_delfin()
 {
+    // personalizes message based on letter and email mode ; OH? and it makes it one simple echo $var instead of you know what ...
+    $generealErrorMessage = isset($_SESSION['letter_required'])
+        ? "<br /><h2 style='color:rgb(250, 45, 20);'>ERROR! No Letters Parsed! More Info Just Below: </h2>"
+        : "<br /><h2 style='color:rgb(250, 45, 20);'>ERROR! No Emails Sent! More Info Just Below: </h2>";
+
     if (empty($_FILES['fileToUpload']['name'])) {
-        echo "<br /><h2 style='color:rgb(250, 45, 20);'>ERROR! No Emails Sent! More Info Just Below: </h2>";
+        echo $generealErrorMessage;
         echo "<br /><strong style='color: #FF553D;'>Keen Fichier ausgewielt</strong><br />";
     } elseif (isset($_FILES['fileToUpload'])) {
 
@@ -334,7 +344,7 @@ function upload_docX_delfin()
 
         // checks the file extension
         if (!preg_match("/\.docx$/i", $fileNAME)) {
-            echo "<br /><h2 style='color:rgb(250, 45, 20);'>ERROR! No Emails Sent! More Info Just Below: </h2>";
+            echo $generealErrorMessage;
             echo "<br /><strong style='color: #FF553D;'>.DOXC obligatoresch</strong><br />";
         }
         // checks the file's mime type
@@ -351,14 +361,14 @@ function upload_docX_delfin()
             header('Location: send_mail.php');
             exit();
         } else {
-            echo "<br /><h2 style='color:rgb(250, 45, 20);'>ERROR! No Emails Sent! More Info Just Below: </h2>";
+            echo $generealErrorMessage;
             echo "<br /><strong style='color: #FF553D;'>Muss ee richteg formatéierte DOCX Fichier sinn</strong><br />";
         }
         // }
 
 
     } else {
-        echo "<br /><h2 style='color:rgb(250, 45, 20);'>ERROR! No Emails Sent! More Info Just Below: </h2>";
+        echo $generealErrorMessage;
         echo "<br /><strong style='color: #FF553D;'>Unknown Error Occured</strong><br />";
     }
 };
@@ -570,3 +580,5 @@ function list_url_decode_delfin()
     header('Location: delfin.php');
     exit();
 };
+
+

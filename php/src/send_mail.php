@@ -70,6 +70,7 @@ if (isset($_SESSION['emailBody'])) {
 include 'header.html';  //? this code should never cancel
 ?>
 
+<div class="general-wrapper">
 
 <h2>Batch Job Finished</h2>
 
@@ -172,7 +173,7 @@ delete_uploads_dir_delfin();    // cleanup
 
 ?>
 
-
+</div>
 
 <?php
 include 'footer.html';  //? this code should never cancel

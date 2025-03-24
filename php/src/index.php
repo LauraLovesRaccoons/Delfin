@@ -3,7 +3,7 @@
 <!--  Import a file -> warning of issue, script continues to run -->
 
 
-
+<div class="general-wrapper">
 
 
 
@@ -17,6 +17,8 @@
 
 <br />
 <h4><?= getenv('APP_NAME'); ?></h4><br />
+
+</div>
 
 <!-- Import a file -> stop the script if problem return an error -->
 <?php require 'footer.html'; ?>
