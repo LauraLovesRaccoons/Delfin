@@ -25,6 +25,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         header("location: edit_entire_db.php");
         exit;
     }
+    if (isset($_POST["log"])) {         // if someone wants to open their personal log
+        $logUrlId = $logBasePath . $_SESSION['id'] . '/' . $logFile;    // these are globals
+        echo "<script>window.open('$logUrlId', '_blank');</script>";    // javascript
+        // exit;    // no exit allowed
+    }
+
     if (isset($_POST["selectedList"])) {        // checks if someone wishes to send a mailing list
         $selectedList = $_POST["selectedList"];
         // checking if someone wants to send an example file
@@ -73,34 +79,110 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <div class="general-wrapper">
 
-    <h1>LOGGED IN</h1>
+    <h1 class="landing-page-h1">Choose your action</h1>
 
 
 
-    <br />
+    <!-- <br /> -->
 
     <div class="selectListsForm">
 
-        <form method="POST">
-            <label for="submit"></label>
-            <input type="hidden" name="selectedList" value="list_A"> <!-- ensure the value is always transmited -->
-            <button type="submit" class="list-button">Select List A</button>
-            <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
-        </form>
+        <div class="side-by-side-form">
 
-        <form method="POST">
-            <label for="submit"></label>
-            <input type="hidden" name="selectedList" value="list_B">
-            <button type="submit" class="list-button">Select List B</button>
-            <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
-        </form>
+            <div class="left-side-form">
+                <form method="POST">
+                    <label for="submit"></label>
+                    <input type="hidden" name="selectedList" value="list_A"> <!-- ensure the value is always transmited -->
+                    <button type="submit" class="list-button">Select List A</button>
+                    <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
+                </form>
 
-        <form method="POST">
-            <label for="submit"></label>
-            <input type="hidden" name="selectedList" value="list_C">
-            <button type="submit" class="list-button">Select List C</button>
-            <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
-        </form>
+                <form method="POST">
+                    <label for="submit"></label>
+                    <input type="hidden" name="selectedList" value="list_B">
+                    <button type="submit" class="list-button">Select List B</button>
+                    <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
+                </form>
+
+                <form method="POST">
+                    <label for="submit"></label>
+                    <input type="hidden" name="selectedList" value="list_C">
+                    <button type="submit" class="list-button">Select List C</button>
+                    <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
+                </form>
+            </div>
+
+            <div class="left-middle-side-form">
+                <form method="POST">
+                    <label for="submit"></label>
+                    <input type="hidden" name="selectedList" value="list_D">
+                    <button type="submit" class="list-button">Select List D</button>
+                    <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
+                </form>
+
+                <form method="POST">
+                    <label for="submit"></label>
+                    <input type="hidden" name="selectedList" value="list_E">
+                    <button type="submit" class="list-button">Select List E</button>
+                    <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
+                </form>
+
+                <form method="POST">
+                    <label for="submit"></label>
+                    <input type="hidden" name="selectedList" value="list_F">
+                    <button type="submit" class="list-button">Select List F</button>
+                    <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
+                </form>
+            </div>
+
+            <div class="right-middle-side-form">
+                <form method="POST">
+                    <label for="submit"></label>
+                    <input type="hidden" name="selectedList" value="nouvel_an">
+                    <button type="submit" class="list-button">Nouvel An</button>
+                    <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
+                </form>
+
+                <form method="POST">
+                    <label for="submit"></label>
+                    <input type="hidden" name="selectedList" value="fete_nationale">
+                    <button type="submit" class="list-button">Fête nationale</button>
+                    <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
+                </form>
+
+                <form method="POST">
+                    <label for="submit"></label>
+                    <input type="hidden" name="selectedList" value="list_temp">
+                    <button type="submit" class="list-button">Select List temp</button>
+                    <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
+                </form>
+            </div>
+
+            <!-- <div class="right-side-form">
+                <form method="POST">
+                    <label for="submit"></label>
+                    <input type="hidden" name="selectedList" value="list_temp">
+                    <button type="submit" class="list-button">Select List temp</button>
+                    <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
+                </form>
+
+                <form method="POST">
+                    <label for="submit"></label>
+                    <input type="hidden" name="selectedList" value="list_A">
+                    <button type="submit" class="list-button">Select List A</button>
+                    <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
+                </form>
+
+                <form method="POST">
+                    <label for="submit"></label>
+                    <input type="hidden" name="selectedList" value="list_A">
+                    <button type="submit" class="list-button">Select List A</button>
+                    <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
+                </form>
+            </div> -->
+
+        </div> <!-- don't comment this one !!! -->
+
 
         <!-- <form method="POST">
         <label for="submit"></label>
@@ -109,26 +191,38 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
     </form> -->
         <!-- <br /> -->
-        <form method="POST">
-            <label for="edit-entire-db"></label>
-            <input type="hidden" name="editEntireDb" value="1">
-            <button type="submit" class="edit-entire-db-button">Edit the entire database</button>
-        </form>
-        <!-- <br /> -->
-        <form method="POST">
-            <label for="submit"></label>
-            <input type="hidden" name="selectedList" value="test">
-            <button type="submit" class="list-button" id="button-yourself">Test document <br />(on yourself)</button>
-        </form>
-        <br />
-        <hr />
-        <br />
-        <form method="POST">
-            <h4>Future expansion</h4>
-            <label for="edit-entire-db"></label>
-            <input type="hidden" name="importCsv" value="1">
-            <button type="submit" class="import-csv-button">Import .csv file as a mailing list</button>
-        </form>
+
+        <div class="rest-of-the-form">
+            <form method="POST">
+                <label for="edit-entire-db"></label>
+                <input type="hidden" name="editEntireDb" value="1">
+                <button type="submit" class="edit-entire-db-button">Edit the entire database</button>
+            </form>
+            <!-- <br /> -->
+            <form method="POST">
+                <label for="submit"></label>
+                <input type="hidden" name="selectedList" value="test">
+                <button type="submit" class="list-button" id="button-yourself">Test document <br />(on yourself)</button>
+            </form>
+            <!-- <br /> -->
+            <form method="POST">
+                <label for="your-log"></label>
+                <input type="hidden" name="log" value="log">
+                <button type="submit" class="list-button" id="your-log">Check out your log 🪵 </button>
+            </form>
+            <!-- <br />
+            <hr />
+            <br /> -->
+            <form method="POST">
+
+                <label for="import-csv-db"></label>
+                <input type="hidden" name="importCsv" value="1">
+                <button type="submit" class="import-csv-button">Import .csv file as a mailing list</button>
+                <p>
+                    <em>Future expansion</em>
+                </p>
+            </form>
+        </div>
     </div>
 
 
@@ -137,7 +231,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
     <!-- opens your personal logging file in a new tab -->
-    <a href="<?= $logBasePath . $_SESSION['id'] . '/' . $logFile ?>" target="_blank">Check out your log 🪵 </a><br />
+    <!-- <a href="<?= $logBasePath . $_SESSION['id'] . '/' . $logFile ?>" target="_blank">Check out your log 🪵 </a><br /> -->
 
 </div>
 
