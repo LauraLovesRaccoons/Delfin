@@ -2,7 +2,7 @@
 
 require 'header.html';
 
-echo '<div class="table-wrapper">';
+echo '<div class="general-wrapper">';
 
 // session_start();
 if (isset($_POST['submit_button'])) {
