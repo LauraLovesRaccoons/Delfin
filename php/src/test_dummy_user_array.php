@@ -23,9 +23,10 @@ session_checker_delfin();
 $dummyAccounts = [
     [
         'emailRecipient' => $_SESSION['email'],
-        'emailRecipientName' => "<em><u>This is YOUR account and your personal ID:</u></em> " . $_SESSION['username'] . " - " . $_SESSION['email'],     //? makes it more obvious
+        'emailRecipientName' => $_SESSION['username'],
+        // 'emailRecipientName' => "<em><u>This is YOUR account and your personal ID:</u></em> " . $_SESSION['username'] . " - " . $_SESSION['email'],     //? makes it more obvious
         'recipientId' => 0,     // normally from database ; but since this is testing it has id=0
-        'recipientId' => $_SESSION['id'],   //? manual override
+        // 'recipientId' => $_SESSION['id'],   //? manual override
         // filling it with test data
         'allocation' => '!allocation!',
         'nom' => '!nom!',
@@ -57,7 +58,7 @@ $dummyAccounts = [
 
 $_SESSION['targetUsersArray'] = $dummyAccounts;
 
-include "header.html";
+require "header.html";
 
 
 echo "<br />";
@@ -78,7 +79,7 @@ echo "<br />";
 
 <?php
 
-include "footer.html";
+require "footer.html";
 
 ?>
 

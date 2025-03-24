@@ -111,11 +111,14 @@ function session_checker_delfin()
 function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement, $recipientId)
 {
     if (strpos($emailRecipient, '@') === false || strlen($emailRecipient) < 3) {   // just checking if an @ is present to make the code faster ; and absolute minimum possible length
-        echo "NO EMAIL: <strong>$emailRecipientName</strong> - ID: <strong>$recipientId</strong><br />";
-        echo "<script>console.log('NO EMAIL: [ " . $emailRecipientName . " - ID: $recipientId ]');</script>";
-        $logMessage = "NO EMAIL: $emailRecipientName - ID: $recipientId";
-        write_log_delfin($logMessage);
-        letter_required_delfin($recipientId);   //! saves it for future use ; currently working on this
+        if (!isset($_SESSION['letter_required'])) {     // no need to display it on the webpage if it's a freakin letter
+            echo "NO EMAIL: <strong>$emailRecipientName</strong> - ID: <strong>$recipientId</strong><br />";
+            echo "<script>console.log('NO EMAIL: [ " . $emailRecipientName . " - ID: $recipientId ]');</script>";
+            $logMessage = "NO EMAIL: $emailRecipientName - ID: $recipientId";
+            write_log_delfin($logMessage);
+        }
+        // 
+        letter_required_delfin($recipientId);   // saves it for future use ; currently working on this ; already implemented
     } else {
         usleep(1000);   // 1000 microseconds    // hardcoded 1ms delay ; I'm not removing it!
         $mail = new PHPMailer(true);    // true enables exceptions
@@ -178,7 +181,7 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             // echo "<h3>The conosole.log is niche to have but it should write smth into the php logger</h3>";     // conosole FTW -> niche
             $logMessage = "Message failed to send to: $emailRecipientName --- $emailRecipient - ID: $recipientId";
             write_log_delfin($logMessage);
-            letter_required_delfin($recipientId);   //! saves it for future use ; currently working on this ; i want to ensure those whose email doesn't work get at least a letter
+            letter_required_delfin($recipientId);   // saves it for future use ; currently working on this ; i want to ensure those whose email doesn't work get at least a letter ; it's already implemented
         }
     }
 };
