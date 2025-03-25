@@ -4,7 +4,7 @@
 
 require "functions.php";
 
-// require "crud.php";
+// require "ajax.php";
 
 
 ?>

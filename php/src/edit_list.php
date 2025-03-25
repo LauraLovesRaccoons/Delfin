@@ -4,7 +4,7 @@
 
 require "functions.php";
 
-// require "crud.php";
+// require "ajax.php";
 
 session_checker_delfin();
 
@@ -113,12 +113,14 @@ require 'header.html';
             let columnName = selectedList;
 
             // creates a post request
-            fetch('crud.php', { // that's why crud.php has been excluded from require at the top of the php
+            fetch('ajax.php', {     // that's why ajax.php has been excluded from require at the top of the php
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },
                     body: `id=${userId}&selectedList=${columnName}` // just hands over the id and db column name
+                        // you can just inspect element on the id to target ANY user from the db, not even those on that list
+                        // but if you are here you already have access to the entire db
                 })
                 .then(() => {
                     // just visual removal

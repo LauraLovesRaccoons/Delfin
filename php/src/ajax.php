@@ -6,6 +6,7 @@ require "functions.php";
 session_checker_delfin();
 
 
+// functions
 function kickUserFromList_delfin($id, $selectedList)
 {
     $db = db_connect_delfin();
