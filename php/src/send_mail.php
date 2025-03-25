@@ -166,6 +166,10 @@ combine_all_letters_into_one_pdf_delfin($templateDir, $templateFile, $timestamp)
 if (isset($_SESSION['letter_required'])) {
     unset($_SESSION['letter_required']);
 }
+//? this was added much later
+if (isset($_SESSION['selectedList'])) {
+    unset($_SESSION['selectedList']);
+}
 delete_uploads_dir_delfin();    // cleanup
 // // temporarily disabled for debugging reasons
 

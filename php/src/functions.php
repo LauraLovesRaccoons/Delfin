@@ -524,6 +524,10 @@ function cleanup_session_vars_delfin()
     if (isset($_SESSION['targetFile'])) {
         unset($_SESSION['targetFile']);
     }
+    if (isset($_SESSION['selectedList'])) {
+        unset($_SESSION['selectedList']);
+    }
+
 };
 
 

@@ -13,6 +13,14 @@ if (isset($_SESSION['targetUsersArray'])) {
   exit();
 }
 
+if (isset($_SESSION['selectedList'])) {
+  $selectedList = $_SESSION['selectedList'];
+  // unset($_SESSION['selectedList']);    // this doesn't work on a refresh
+} else {
+  header("Location delfin.php");
+  exit;
+}
+
 require 'header.html';
 
 echo '<div class="general-wrapper">';
@@ -37,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 
-
+// var_dump($selectedList);
 
 
 
@@ -49,10 +57,11 @@ email_or_letter_mode_delfin();  // this shows the current mode
 
 <?php
 if(isset($_SESSION['letter_required'])){
-  echo "<h2>Upload File and Create Letters</h2>";
+  echo "<h2>Upload File and Create Letters: &nbsp; $selectedList</h2>";
 } else {
-  echo "<h2>Upload File and Send Emails</h2>";
+  echo "<h2>Upload File and Send Emails: &nbsp; $selectedList</h2>";
 }
+// echo "<h4> $selectedList </h4>";
 ?>
 <br />
 <form id="heavyFormSubmission" action="" method="POST" enctype="multipart/form-data"> <!-- id is needed for the animation part -->
