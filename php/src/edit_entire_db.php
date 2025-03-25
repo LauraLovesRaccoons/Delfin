@@ -1,9 +1,10 @@
 <?php
 
+// ob_start();
+
 require "functions.php";
 
-session_checker_delfin();
-
+// require "ajax.php";
 
 
 ?>

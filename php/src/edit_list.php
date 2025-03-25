@@ -4,6 +4,8 @@
 
 require "functions.php";
 
+// require "ajax.php";
+
 session_checker_delfin();
 
 // // wipes it, if it exists already
@@ -34,7 +36,7 @@ require 'header.html';
 <div class="table-wrapper">
     <table>
         <caption>
-            Edit Users Only in <?php echo $selectedList ?>  <!-- this dynamically adjusts the name -->
+            Edit Users Only in <?php echo $selectedList ?> <!-- this dynamically adjusts the name -->
         </caption>
         <thead>
             <tr>
@@ -77,7 +79,7 @@ require 'header.html';
         <tbody>
             <?php while ($row = $queryResult->fetch_assoc()): ?>
                 <tr class="<?= $row['duplicate'] ? 'duplicateUser' : '' ?>">
-                    <td data-cell="kick" class="kick">🦶</td>
+                    <td data-cell="kick" class="kick"><span class="kick-symbol">🦶</span></td> <!-- span is used to limit the selection to just the symbol -->
                     <td data-cell="id"><?= htmlspecialchars($row['id']) ?></td>
                     <td data-cell="allocation"><?= htmlspecialchars($row['allocation']) ?></td>
                     <td data-cell="nom"><?= htmlspecialchars($row['nom']) ?></td>
@@ -101,8 +103,53 @@ require 'header.html';
 
 <!--  -->
 
+<script>
+    const selectedList = "<?php echo $selectedList; ?>"; // i need to clean this a bit
+
+    // this adds the kick properly to the entire cell
+    document.querySelectorAll('.kick-symbol').forEach(button => {
+        button.addEventListener('click', function() {
+            let userId = this.closest('tr').querySelector('[data-cell="id"]').textContent;
+            let columnName = selectedList;
+
+            // creates a post request
+            fetch('ajax.php', {     // that's why ajax.php has been excluded from require at the top of the php
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `id=${userId}&selectedList=${columnName}` // just hands over the id and db column name
+                        // you can just inspect element on the id to target ANY user from the db, not even those on that list
+                        // but if you are here you already have access to the entire db
+                })
+                .then(() => {
+                    // just visual removal
+                    // since tr encapsulates the table entry
+                    this.closest('tr').remove();
+
+                    // animation
+                    let kickedMessage = document.createElement('span');             // span is the best option since i display text
+                    kickedMessage.textContent = `User with id: ${userId} kicked`;   // this requires these ` for js vars
+
+                    kickedMessage.classList.add('kickedMessage');   // adds a class for styling
+
+                    // append the span to my wrapper
+                    let tableWrapper = document.querySelector('.table-wrapper');
+                    tableWrapper.appendChild(kickedMessage);
+
+                    // Remove the success message after 5(000 milli)seconds -> after fade out effect
+                    setTimeout(() => {
+                        kickedMessage.classList.add('fade-out');
+                        setTimeout(() => kickedMessage.remove(), 1250);     // 1.25 is fade out in my scss code
+                    }, 5000);
+                })
+        });
+    });
+</script>
+
 <?php
 require "footer.html";
 ?>
 
 <!--  -->
+
