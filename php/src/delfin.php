@@ -66,6 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
         // 
         $_SESSION['targetUsersArray'] = $grabbedUsers;  // grabbedUsers was returned
+        $_SESSION['selectedList'] = $selectedList;      //? added this so I can display it on the file upload page
         header("location: file_upload.php");    // redirect
         exit;   // this is needed
     }

@@ -54,6 +54,9 @@ require 'header.html';
                 <!-- <th class="spacer"></th> -->
             </tr>
         </thead>
+
+        <!-- !data-cell should have the RAW column name from the database! -->
+
         <!-- <tbody>
             <tr>
                 <td data-cell="kick" class="kick">X</td>
