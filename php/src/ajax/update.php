@@ -7,7 +7,7 @@ session_checker_delfin();
 
 
 // functions
-function kickUserFromList_delfin($id, $selectedList)
+function updateUser_delfin($id, $selectedList)
 {
     $db = db_connect_delfin();
     $fieldValue = 0;    // tinyint 0 means false
