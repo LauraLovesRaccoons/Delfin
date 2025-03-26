@@ -1,6 +1,7 @@
 #version: "3.1"
 name: "${APP_NAME}"
 services:
+# mysql
   mysql:
     image: "mysql"
     container_name: "${COMPOSE_PROJECT_NAME}_MYSQL"
@@ -14,8 +15,10 @@ services:
     #   - "3306:3306"   # no need to expose the port(s)
     volumes:
       - mysql_data:/var/lib/mysql
+      #? I could make an auto import if there is a backup and no db exists
     networks:
       - delfin_network
+# phpmyadmin
   phpmyadmin:
     image: "phpmyadmin:latest"          #! x64
     # image: "arm64v8/phpmyadmin:latest"  #! ARM
@@ -33,6 +36,7 @@ services:
       - phpmyadmin_data:/var/lib/pma
     networks:
       - delfin_network
+# php-apache
   php-apache:
     image: "php:8.2-apache"
     container_name: "${COMPOSE_PROJECT_NAME}_PHP-APACHE"
@@ -53,7 +57,30 @@ services:
     build:
       context: "./php"
       dockerfile: "dockerfile"  # extensions install
+# mysql-cron-backup
+  mysql-cron-backup:
+    image: fradelg/mysql-cron-backup  # https://github.com/fradelg/docker-mysql-cron-backup
+    container_name: "${COMPOSE_PROJECT_NAME}_MYSQL-CRON-BACKUP"
+    restart: "always"
+    depends_on:
+      - "${MYSQL_SERVICE_NAME}"
+    environment:
+      - MYSQL-HOST = "${COMPOSE_PROJECT_NAME}_MYSQL"  # the container name for mysql
+      - MYSQL_USER = "root"
+      - MYSQL_PASS = "${MYSQL_ROOT_PASSWORD}"
+      - MAX_BACKUPS = 35          # 1 month if daily, with a small reserve
+      - INIT_BACKUPS = 0
+      - CRON_TIME = */5 * * * *   # every 5 minutes
+      # Make it small
+      - GZIP_LEVEL=9
+      # As of MySQL 8.0.21 this is needed
+      - MYSQLDUMP_OPTS=--no-tablespaces
+    volumes:
+      - ./db_backup:/backup
+    networks:
+      - delfin_network
 
+# wordpress
   #wordpress:
     #image: wordpress:latest
     #restart: always
@@ -70,7 +97,11 @@ services:
 volumes:
   mysql_data:
   phpmyadmin_data:
-  # php-apache-environment:
+  # php-apache:
+  uploads:
+  logs:
+  # mysql-cron-backup
+  db_backup:
   #wordpress:
 
 networks:
