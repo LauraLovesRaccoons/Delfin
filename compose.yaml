@@ -16,6 +16,7 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
       #? I could make an auto import if there is a backup and no db exists
+
     networks:
       - delfin_network
 # phpmyadmin
@@ -48,8 +49,8 @@ services:
     volumes:
       - ./php/src:/var/www/html/        # Path to folder in windows : Path to folder in Linux
       - ./vendor:/var/www/html/vendor   # composer -> vendor folder
-      - ./uploads:/var/www/html/uploads # 
-      - ./logs:/var/www/html/logs       # 
+      - ./uploads:/var/www/html/uploads # ./ means local volume and dropping ./ means docker volume
+      - ./logs:/var/www/html/logs       # ./ means local volume and dropping ./ means docker volume
     ports:
       - "80:80"   # port 80 external
     networks:
@@ -68,20 +69,20 @@ services:
       - MYSQL_HOST=${MYSQL_SERVICE_NAME}  # !!!!
       - MYSQL_USER=root
       - MYSQL_PASS=${MYSQL_ROOT_PASSWORD}
-      - MAX_BACKUPS = 35          # 1 month if daily, with a small reserve
-      - INIT_BACKUPS = 0
+      - MAX_BACKUPS=35    # 1 month if daily, with a small reserve
+      - INIT_BACKUPS=0    # self explanatory
+      - GZIP_LEVEL=9      # zip it a bit
+      - MYSQLDUMP_OPTS=--no-tablespaces   # As of MySQL 8.0.21 this is needed
       #! CRON IS IN UTC+0
-      # - CRON_TIME = "*/5 * * * *"   # every 5 minutes
-      #       # Every day at 10:00
-      # - CRON_TIME=0 10 * * *
-      # - CRON_TIME=10 10 * * *  # every day at 10:10 AM
-      - CRON_TIME=*/1 * * * *   # every 1 minutes
-      # Make it small
-      - GZIP_LEVEL=9
-      # As of MySQL 8.0.21 this is needed
-      - MYSQLDUMP_OPTS=--no-tablespaces
+      # - CRON_TIME=*/5 * * * *   # every 5 minutes
+      # - CRON_TIME=0 10 * * *    # every day at 10:00
+      - CRON_TIME=15 23 * * *   # every day at 23:15
+
+      # workplace test
+      - CRON_TIME=15 13 * * *   # test office hours
+
     volumes:
-      - ./db_backup:/backup
+      - db_backup:/backup   # docker volume
     networks:
       - delfin_network
 
@@ -102,9 +103,9 @@ services:
 volumes:
   mysql_data:
   phpmyadmin_data:
-  # php-apache:
-  uploads:
-  logs:
+  # # php-apache:
+  # uploads:
+  # logs:
   # mysql-cron-backup
   db_backup:
   #wordpress:

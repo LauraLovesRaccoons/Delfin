@@ -5,8 +5,9 @@
 date_default_timezone_set('Europe/Luxembourg'); //! this isn't meant to change
 
 // Global Variables
-$logBasePath = "./logs/";   // global makes sense for this specific use case
-$logFile = "log.txt";       // ditto
+$appName = getenv('APP_NAME');  // prevents continous reading from the .env file and makes it a global var
+$logBasePath = "./logs/";       // global makes sense for this specific use case
+$logFile = "log.txt";           // ditto
 $uploadBasePath = "./uploads/"; // global makes sense for this specific use case
 // // removed the ./ from in front of the path
 

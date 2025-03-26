@@ -16,7 +16,8 @@
 <a href="generate_hash.php">Generate Hash</a><br />
 
 <br />
-<h4><?= getenv('APP_NAME'); ?></h4><br />
+<h4><?= getenv('APP_NAME'); ?></h4><br />   <!-- this one must read from .env since functions.php isn't loaded here -->
+
 
 </div>
 
