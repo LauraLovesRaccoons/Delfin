@@ -65,16 +65,17 @@ services:
     depends_on:
       - "${MYSQL_SERVICE_NAME}"
     environment:
-      - MYSQL_HOST = "${COMPOSE_PROJECT_NAME}_MYSQL"  # the container name for mysql
-      - MYSQL_USER = "root"
-      - MYSQL_PASS = "${MYSQL_ROOT_PASSWORD}"
+      - MYSQL_HOST=${MYSQL_SERVICE_NAME}  # !!!!
+      - MYSQL_USER=root
+      - MYSQL_PASS=${MYSQL_ROOT_PASSWORD}
       - MAX_BACKUPS = 35          # 1 month if daily, with a small reserve
       - INIT_BACKUPS = 0
       #! CRON IS IN UTC+0
       # - CRON_TIME = "*/5 * * * *"   # every 5 minutes
       #       # Every day at 10:00
       # - CRON_TIME=0 10 * * *
-      - CRON_TIME=10 10 * * *  # every day at 10:10 AM
+      # - CRON_TIME=10 10 * * *  # every day at 10:10 AM
+      - CRON_TIME=*/1 * * * *   # every 1 minutes
       # Make it small
       - GZIP_LEVEL=9
       # As of MySQL 8.0.21 this is needed
