@@ -28,14 +28,14 @@ $dummyAccounts = [
         'recipientId' => 0,     // normally from database ; but since this is testing it has id=0
         // 'recipientId' => $_SESSION['id'],   //? manual override
         // filling it with test data
-        'allocation' => '!allocation!',
-        'nom' => '!nom!',
-        'nom2' => '!nom2!',
-        'fonction' => '!fonction!',
-        'adresse1' => '!adresse1!',
-        'adresse2' => '!adresse2!',
-        'allocationSpeciale' => '!allocationSpeciale!',
-        'nomCouponReponse' => '!nomCouponReponse!',     //! verify actual field name!
+        'allocation' => htmlspecialchars('!allocation!', ENT_QUOTES, 'UTF-8'),
+        'nom' => htmlspecialchars('!nom!', ENT_QUOTES, 'UTF-8'),
+        'nom2' => htmlspecialchars('!nom2!', ENT_QUOTES, 'UTF-8'),
+        'fonction' => htmlspecialchars('!fonction!', ENT_QUOTES, 'UTF-8'),
+        'adresse1' => htmlspecialchars('!adresse1!', ENT_QUOTES, 'UTF-8'),
+        'adresse2' => htmlspecialchars('!adresse2!', ENT_QUOTES, 'UTF-8'),
+        'allocationSpeciale' => htmlspecialchars('!allocationSpeciale!', ENT_QUOTES, 'UTF-8'),
+        'nomCouponReponse' => htmlspecialchars('!nomCouponReponse!', ENT_QUOTES, 'UTF-8'),      //! verify actual field name!
 
         // ],
         // [
@@ -56,6 +56,8 @@ $dummyAccounts = [
     ]   //! the last one must drop the comma
 ];
 
+
+$_SESSION['selectedList'] = "YOURSELF";         //? this is needed for the next page
 $_SESSION['targetUsersArray'] = $dummyAccounts;
 
 require "header.html";

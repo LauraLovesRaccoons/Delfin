@@ -5,8 +5,9 @@
 date_default_timezone_set('Europe/Luxembourg'); //! this isn't meant to change
 
 // Global Variables
-$logBasePath = "./logs/";   // global makes sense for this specific use case
-$logFile = "log.txt";       // ditto
+$appName = getenv('APP_NAME');  // prevents continous reading from the .env file and makes it a global var
+$logBasePath = "./logs/";       // global makes sense for this specific use case
+$logFile = "log.txt";           // ditto
 $uploadBasePath = "./uploads/"; // global makes sense for this specific use case
 // // removed the ./ from in front of the path
 
@@ -377,6 +378,7 @@ function upload_docX_delfin()
 function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
 {
     //! $recipientUser used inside the array as variables
+    //? htmlspecialchars('replyFromDb', ENT_QUOTES, 'UTF-8'),   // -> was used before since symbols like & will crash it
     $replacementsArray = [
         '«Allocation»' => $recipientUser['allocation'] ?: '​',
         '«Nom»' => $recipientUser['nom'] ?: '​',
@@ -557,14 +559,14 @@ function turn_fetched_users_into_array_delfin($queryResult)
             'recipientId' => $recipientUser['id'],
             'emailRecipient' => $recipientUser['letter_required'] ? '' : $recipientUser['email'],   // if the person requires a letter, this invalidates the email
             'emailRecipientName' => empty(trim($recipientUser['nom'])) ? $recipientUser['nom2'] : $recipientUser['nom'],    // this if for logging purposes ; if nom is empty, it will grab nom2
-            'allocation' => $recipientUser['allocation'],
-            'nom' => $recipientUser['nom'],
-            'nom2' => $recipientUser['nom2'],
-            'fonction' => $recipientUser['fonction'],
-            'adresse1' => $recipientUser['adresse1'],
-            'adresse2' => $recipientUser['adresse2'],
-            'allocationSpeciale' => $recipientUser['allocationSpeciale'],
-            'nomCouponReponse' => $recipientUser['nomCouponReponse'],
+            'allocation' => htmlspecialchars($recipientUser['allocation'], ENT_QUOTES, 'UTF-8'),
+            'nom' => htmlspecialchars($recipientUser['nom'], ENT_QUOTES, 'UTF-8'),
+            'nom2' => htmlspecialchars($recipientUser['nom2'], ENT_QUOTES, 'UTF-8'),
+            'fonction' => htmlspecialchars($recipientUser['fonction'], ENT_QUOTES, 'UTF-8'),
+            'adresse1' => htmlspecialchars($recipientUser['adresse1'], ENT_QUOTES, 'UTF-8'),
+            'adresse2' => htmlspecialchars($recipientUser['adresse2'], ENT_QUOTES, 'UTF-8'),
+            'allocationSpeciale' => htmlspecialchars($recipientUser['allocationSpeciale'], ENT_QUOTES, 'UTF-8'),
+            'nomCouponReponse' => htmlspecialchars($recipientUser['nomCouponReponse'], ENT_QUOTES, 'UTF-8'),
         ];
     }
     return $grabbedUsers;
