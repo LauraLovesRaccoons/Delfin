@@ -1,13 +1,13 @@
 <?php
 
-require "functions.php";
+require "../functions.php";     //? i need to head to load it from the previous folder
 
 // I'm not messing around with wannabe hackerz
 session_checker_delfin();
 
 
 // functions
-function kickUserFromList_delfin($id, $selectedList)
+function addUserToList_delfin($id, $selectedList)
 {
     $db = db_connect_delfin();
     $fieldValue = 0;    // tinyint 0 means false
