@@ -56,6 +56,8 @@ $dummyAccounts = [
     ]   //! the last one must drop the comma
 ];
 
+
+$_SESSION['selectedList'] = "YOURSELF";         //? this is needed for the next page
 $_SESSION['targetUsersArray'] = $dummyAccounts;
 
 require "header.html";
