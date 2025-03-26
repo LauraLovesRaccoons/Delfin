@@ -113,7 +113,7 @@ require 'header.html';
             let columnName = selectedList;
 
             // creates a post request
-            fetch('ajax.php', {     // that's why ajax.php has been excluded from require at the top of the php
+            fetch('ajax/kick.php', {    // that's why ajax.php has been excluded from require at the top of the php
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'

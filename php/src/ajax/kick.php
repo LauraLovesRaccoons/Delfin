@@ -1,6 +1,6 @@
 <?php
 
-require "functions.php";
+require "../functions.php";     //? i need to head to load it from the previous folder
 
 // I'm not messing around with wannabe hackerz
 session_checker_delfin();
