@@ -108,7 +108,7 @@ require 'header.html';
 
     // this adds the kick properly to the entire cell
     document.querySelectorAll('.kick-symbol').forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('dblclick', function() {        // double click for ease of use
             let userId = this.closest('tr').querySelector('[data-cell="id"]').textContent;
             let columnName = selectedList;
 
