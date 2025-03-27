@@ -556,9 +556,9 @@ function turn_fetched_users_into_array_delfin($queryResult)
     // 
     while ($recipientUser = $queryResult->fetch_assoc()) {
         $grabbedUsers[] = [
-            'recipientId' => $recipientUser['id'],
-            'emailRecipient' => $recipientUser['letter_required'] ? '' : $recipientUser['email'],   // if the person requires a letter, this invalidates the email
-            'emailRecipientName' => empty(trim($recipientUser['nom'])) ? $recipientUser['nom2'] : $recipientUser['nom'],    // this if for logging purposes ; if nom is empty, it will grab nom2
+            'recipientId' => intval($recipientUser['id']),
+            'emailRecipient' => intval($recipientUser['letter_required']) ? '' : htmlspecialchars($recipientUser['email'], ENT_QUOTES, 'UTF-8'),    // if the person requires a letter, this invalidates the email
+            'emailRecipientName' => htmlspecialchars(empty(trim($recipientUser['nom'])) ? $recipientUser['nom2'] : $recipientUser['nom'], ENT_QUOTES, 'UTF-8'), // this if for logging purposes ; if nom is empty, it will grab nom2
             'allocation' => htmlspecialchars($recipientUser['allocation'], ENT_QUOTES, 'UTF-8'),
             'nom' => htmlspecialchars($recipientUser['nom'], ENT_QUOTES, 'UTF-8'),
             'nom2' => htmlspecialchars($recipientUser['nom2'], ENT_QUOTES, 'UTF-8'),
