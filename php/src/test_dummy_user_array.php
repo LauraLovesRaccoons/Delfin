@@ -22,10 +22,10 @@ session_checker_delfin();
 
 $dummyAccounts = [
     [
-        'emailRecipient' => $_SESSION['email'],
-        'emailRecipientName' => $_SESSION['username'],
+        'emailRecipient' => htmlspecialchars($_SESSION['email'], ENT_QUOTES, 'UTF-8'),
+        'emailRecipientName' => htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8'),
         // 'emailRecipientName' => "<em><u>This is YOUR account and your personal ID:</u></em> " . $_SESSION['username'] . " - " . $_SESSION['email'],     //? makes it more obvious
-        'recipientId' => 0,     // normally from database ; but since this is testing it has id=0
+        'recipientId' => intval(0),     // normally from database ; but since this is testing it has id=0
         // 'recipientId' => $_SESSION['id'],   //? manual override
         // filling it with test data
         'allocation' => htmlspecialchars('!allocation!', ENT_QUOTES, 'UTF-8'),
