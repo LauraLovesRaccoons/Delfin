@@ -130,8 +130,8 @@ foreach ($emailRecipientsArray as $recipientUser) {
     }
     //! this is currently only .odt
     $otherFormatDocX = str_replace('.docx', '.odt', $inputDocX); 
-    if (file_exists($inputDocX)) {
-        unlink($inputDocX);     //? uncomment this if you need to debug smth
+    if (file_exists($otherFormatDocX)) {
+        unlink($otherFormatDocX);   //? uncomment this if you need to debug smth
     }
     //! copy the if above for other formats
 
