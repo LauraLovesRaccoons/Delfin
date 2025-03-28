@@ -153,34 +153,34 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 <form method="POST">
                     <label for="submit"></label>
-                    <input type="hidden" name="selectedList" value="list_temp">
-                    <button type="submit" class="list-button">Select List temp</button>
+                    <input type="hidden" name="selectedList" value="tennis">
+                    <button type="submit" class="list-button">Tennis</button>
                     <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
                 </form>
             </div>
 
-            <!-- <div class="right-side-form">
+            <div class="right-side-form">
                 <form method="POST">
                     <label for="submit"></label>
-                    <input type="hidden" name="selectedList" value="list_temp">
-                    <button type="submit" class="list-button">Select List temp</button>
+                    <input type="hidden" name="selectedList" value="temp">
+                    <button type="submit" class="list-button">List temp</button>
+                    <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
+                </form>
+
+                <!-- <form method="POST">
+                    <label for="submit"></label>
+                    <input type="hidden" name="selectedList" value="temp">
+                    <button type="submit" class="list-button">List temp</button>
                     <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
                 </form>
 
                 <form method="POST">
                     <label for="submit"></label>
-                    <input type="hidden" name="selectedList" value="list_A">
-                    <button type="submit" class="list-button">Select List A</button>
+                    <input type="hidden" name="selectedList" value="temp">
+                    <button type="submit" class="list-button">List temp</button>
                     <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
-                </form>
-
-                <form method="POST">
-                    <label for="submit"></label>
-                    <input type="hidden" name="selectedList" value="list_A">
-                    <button type="submit" class="list-button">Select List A</button>
-                    <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
-                </form>
-            </div> -->
+                </form> -->
+            </div>
 
         </div> <!-- don't comment this one !!! -->
 
