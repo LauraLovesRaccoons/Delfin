@@ -81,8 +81,8 @@ require 'header.html';
                 <tr class="<?= $row['duplicate'] ? 'duplicateUser' : '' ?>">
                     <td data-cell="kick" class="kick"><span class="kick-symbol">🦶</span></td> <!-- span is used to limit the selection to just the symbol -->
                     <td data-cell="id"><?= htmlspecialchars($row['id']) ?></td>
-                    <td data-cell="allocation"><?= htmlspecialchars($row['allocation']) ?></td>
-                    <td data-cell="nom"><?= htmlspecialchars($row['nom']) ?></td>
+                    <td data-cell="allocation"><span class="allocation"><?= htmlspecialchars($row['allocation']) ?></span></td>
+                    <td data-cell="nom"><span class="nom"><?= htmlspecialchars($row['nom']) ?></span></td>
                     <td data-cell="nom2"><?= htmlspecialchars($row['nom2']) ?></td>
                     <td data-cell="fonction"><?= htmlspecialchars($row['fonction']) ?></td>
                     <td data-cell="adresse1"><?= htmlspecialchars($row['adresse1']) ?></td>
