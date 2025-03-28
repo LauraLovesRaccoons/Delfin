@@ -49,12 +49,12 @@ footer a {
 }
 
 .table-wrapper {
-  overflow-y: auto;
+  overflow: auto;
   max-height: 90vh;
   display: flex;
   justify-content: center;
   margin: 5px;
-  position: absolute;
+  position: relative;
   padding: 5px;
   z-index: 100;
   background-color: rgba(255, 255, 255, 0.01);
@@ -71,12 +71,14 @@ table {
 table caption {
   background: #81ec1e;
   font-size: 2rem;
+  z-index: 101;
 }
 
 table thead tr {
   position: sticky;
-  top: -5;
+  top: -5px;
   background-color: rgba(110, 235, 155, 0.99);
+  z-index: 105;
 }
 table thead tr th {
   padding: 10px;
