@@ -108,19 +108,19 @@ require 'header.html';
 
     // this adds the kick properly to the entire cell
     document.querySelectorAll('.kick-symbol').forEach(button => {
-        button.addEventListener('dblclick', function() {        // double click for ease of use
+        button.addEventListener('dblclick', function() { // double click for ease of use
             let userId = this.closest('tr').querySelector('[data-cell="id"]').textContent;
             let columnName = selectedList;
 
             // creates a post request
-            fetch('ajax/list_kick_user.php', {      // that's why ajax.php has been excluded from require at the top of the php
+            fetch('ajax/list_kick_user.php', { // that's why ajax.php has been excluded from require at the top of the php
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },
                     body: `id=${userId}&selectedList=${columnName}` // just hands over the id and db column name
-                        // you can just inspect element on the id to target ANY user from the db, not even those on that list
-                        // but if you are here you already have access to the entire db
+                    // you can just inspect element on the id to target ANY user from the db, not even those on that list
+                    // but if you are here you already have access to the entire db
                 })
                 .then(() => {
                     // just visual removal
@@ -128,10 +128,10 @@ require 'header.html';
                     this.closest('tr').remove();
 
                     // animation
-                    let kickedMessage = document.createElement('span');             // span is the best option since i display text
-                    kickedMessage.textContent = `User with id: ${userId} kicked`;   // this requires these ` for js vars
+                    let kickedMessage = document.createElement('span'); // span is the best option since i display text
+                    kickedMessage.textContent = `User with id: ${userId} kicked`; // this requires these ` for js vars
 
-                    kickedMessage.classList.add('kickedMessage');   // adds a class for styling
+                    kickedMessage.classList.add('kickedMessage'); // adds a class for styling
 
                     // append the span to my wrapper
                     let tableWrapper = document.querySelector('.table-wrapper');
@@ -140,67 +140,63 @@ require 'header.html';
                     // Remove the success message after 5(000 milli)seconds -> after fade out effect
                     setTimeout(() => {
                         kickedMessage.classList.add('fade-out');
-                        setTimeout(() => kickedMessage.remove(), 1250);     // 1.25 is fade out in my scss code
+                        setTimeout(() => kickedMessage.remove(), 1250); // 1.25 is fade out in my scss code
                     }, 5000);
                 })
         });
     });
 
 
-    document.querySelectorAll('td[data-cell="nom"]').forEach(td => {
-    td.addEventListener('dblclick', function () {
-        let originalText = this.textContent.trim();
-        let userId = this.closest('tr').querySelector('[data-cell="id"]').textContent;
-        let columnName = this.getAttribute('data-cell'); // "nom"
+    document.querySelectorAll('td[data-cell="nom"], td[data-cell="nom2"], td[data-cell="fonction"]').forEach(td => {
+        td.addEventListener('dblclick', function() {
+            let originalText = this.textContent.trim();
+            let userId = this.closest('tr').querySelector('[data-cell="id"]').textContent;
+            let columnName = this.getAttribute('data-cell'); // "nom"
 
-        // Create input field
-        let input = document.createElement('input');
-        input.type = 'text';
-        input.value = originalText;
-        input.classList.add('edit-input');
+            // Create input field
+            let input = document.createElement('input');
+            input.type = 'text';
+            input.value = originalText;
+            input.classList.add('edit-input');
 
-        // Clear TD and insert input
-        this.innerHTML = '';
-        this.appendChild(input);
-        input.focus();
+            // Clear TD and insert input
+            this.innerHTML = '';
+            this.appendChild(input);
+            input.focus();
 
-        // Save changes on blur or Enter key press
-        function save() {
-            let newValue = input.value.trim();
-            if (newValue === originalText || newValue === '') {
-                cancelEdit();
-                return;
+            // Save changes on blur or Enter key press
+            function save() {
+                let newValue = input.value.trim(); // Allow empty value
+
+                fetch('ajax/update_text.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `id=${userId}&column=${columnName}&value=${encodeURIComponent(newValue)}`
+                }).then(() => {
+                    updateCell(newValue);
+                }).catch(() => {
+                    updateCell(originalText); // Revert on error
+                });
             }
 
-            fetch('ajax/update.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: `id=${userId}&column=${columnName}&value=${encodeURIComponent(newValue)}`
-            }).then(() => {
-                updateCell(newValue);
-            }).catch(() => {
-                updateCell(originalText); // Revert on error
+            function updateCell(text) {
+                td.innerHTML = `<span>${text || ''}</span>`; // Styled color for empty value
+            }
+
+
+            function cancelEdit() {
+                updateCell(originalText);
+            }
+
+            input.addEventListener('blur', save);
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') save();
+                if (e.key === 'Escape') cancelEdit();
             });
-        }
-
-        function updateCell(text) {
-            td.innerHTML = `<span class="nom">${text}</span>`; // Restore span
-        }
-
-        function cancelEdit() {
-            updateCell(originalText);
-        }
-
-        input.addEventListener('blur', save);
-        input.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') save();
-            if (e.key === 'Escape') cancelEdit();
         });
     });
-});
-
-
-
 </script>
 
 <?php
@@ -208,4 +204,3 @@ require "footer.html";
 ?>
 
 <!--  -->
-

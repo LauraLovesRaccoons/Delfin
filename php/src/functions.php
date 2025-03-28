@@ -10,6 +10,10 @@ $logBasePath = "./logs/";       // global makes sense for this specific use case
 $logFile = "log.txt";           // ditto
 $uploadBasePath = "./uploads/"; // global makes sense for this specific use case
 // // removed the ./ from in front of the path
+//! these must be the exact same in the db and data-cell
+$allowedColumnsText = ['allocation', 'nom', 'nom2', 'fonction', 'adresse1', 'adresse2', 'allocationSpeciale', 'nomCouponReponse', 'email', ];
+$allowedColumnsTinyint = ['letter_required', 'duplicate', ];
+
 
 $session_name = "delfin-session-cookie";    // prettier name
 session_name("$session_name");              // now this is the cookie's name
