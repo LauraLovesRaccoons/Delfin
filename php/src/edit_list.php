@@ -104,8 +104,9 @@ require 'header.html';
 <!--  -->
 
 <script>
+    // kick script
     const selectedList = "<?php echo $selectedList; ?>"; // i need to clean this a bit
-
+    // 
     // this adds the kick properly the class .kick symbol (span)
     document.querySelectorAll('.kick-symbol').forEach(button => {
         button.addEventListener('dblclick', function() { // double click for ease of use
@@ -146,12 +147,15 @@ require 'header.html';
         });
     });
 
-
-    document.querySelectorAll('td[data-cell="nom"], td[data-cell="nom2"], td[data-cell="fonction"]').forEach(td => {
+    // edit text script
+    const allowedColumns = <?php echo json_encode($allowedColumnsText); ?>; // loads the array from the php global var as json
+    const selector = allowedColumns.map(col => `td[data-cell="${col}"]`).join(', '); // this passes the allowed data-cells into an array
+    // adds these to the selector
+    document.querySelectorAll(selector).forEach(td => { // this doesn't need updating if new columns are added
         td.addEventListener('dblclick', function() {
             let originalText = this.textContent.trim();
             let userId = this.closest('tr').querySelector('[data-cell="id"]').textContent;
-            let columnName = this.getAttribute('data-cell'); // "nom"
+            let columnName = this.getAttribute('data-cell');
 
             // Create input field
             let input = document.createElement('input');
@@ -166,7 +170,7 @@ require 'header.html';
 
             // Save changes on blur or Enter key press
             function save() {
-                let newValue = input.value.trim(); // Allow empty value
+                let newValue = input.value.trim(); // this allows an empty string to be valid
 
                 fetch('ajax/update_text.php', {
                     method: 'POST',
@@ -177,14 +181,13 @@ require 'header.html';
                 }).then(() => {
                     updateCell(newValue);
                 }).catch(() => {
-                    updateCell(originalText); // Revert on error
+                    updateCell(originalText);
                 });
             }
 
             function updateCell(text) {
-                td.innerHTML = `<span>${text || ''}</span>`; // Styled color for empty value
+                td.innerHTML = `<span>${text || ''}</span>`; // just adding an empty string, for screen readers perhaps
             }
-
 
             function cancelEdit() {
                 updateCell(originalText);
