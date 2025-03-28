@@ -145,6 +145,62 @@ require 'header.html';
                 })
         });
     });
+
+
+    document.querySelectorAll('td[data-cell="nom"]').forEach(td => {
+    td.addEventListener('dblclick', function () {
+        let originalText = this.textContent.trim();
+        let userId = this.closest('tr').querySelector('[data-cell="id"]').textContent;
+        let columnName = this.getAttribute('data-cell'); // "nom"
+
+        // Create input field
+        let input = document.createElement('input');
+        input.type = 'text';
+        input.value = originalText;
+        input.classList.add('edit-input');
+
+        // Clear TD and insert input
+        this.innerHTML = '';
+        this.appendChild(input);
+        input.focus();
+
+        // Save changes on blur or Enter key press
+        function save() {
+            let newValue = input.value.trim();
+            if (newValue === originalText || newValue === '') {
+                cancelEdit();
+                return;
+            }
+
+            fetch('ajax/update.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `id=${userId}&column=${columnName}&value=${encodeURIComponent(newValue)}`
+            }).then(() => {
+                updateCell(newValue);
+            }).catch(() => {
+                updateCell(originalText); // Revert on error
+            });
+        }
+
+        function updateCell(text) {
+            td.innerHTML = `<span class="nom">${text}</span>`; // Restore span
+        }
+
+        function cancelEdit() {
+            updateCell(originalText);
+        }
+
+        input.addEventListener('blur', save);
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') save();
+            if (e.key === 'Escape') cancelEdit();
+        });
+    });
+});
+
+
+
 </script>
 
 <?php

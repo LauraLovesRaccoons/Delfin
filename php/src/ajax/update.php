@@ -28,16 +28,28 @@ function updateUser_delfin($id, $selectedList)
 
 // AJAX
 
-// KICK
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'], $_POST['selectedList'])) {
-    $id = (int) $_POST['id'];   // filters everything and turns it into an integer and if no numbers are found it defaults to 0
-    $selectedList = $_POST['selectedList'];
-    kickUserFromList_delfin($id, $selectedList);    // function call
+// Update User
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'], $_POST['column'], $_POST['value'])) {
+    $id = (int) $_POST['id'];
+    $column = $_POST['column'];
+    $value = trim($_POST['value']);
+
+    // Only allow updates to specific columns
+    $allowedColumns = ['nom'];
+    if (!in_array($column, $allowedColumns)) {
+        exit('Invalid column');
+    }
+
+    $db = db_connect_delfin();
+    $query = "UPDATE Users SET $column = ? WHERE id = ?";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("si", $value, $id);
+    $stmt->execute();
+
+    $stmt->close();
+    db_close_delfin($db);
     exit;
-};
-
-
-
+}
 
 ?>
 
