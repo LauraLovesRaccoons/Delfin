@@ -9,6 +9,10 @@ require "functions.php";
 // session id handoff
 session_checker_delfin();
 
+// expansion
+require "./functions/signature_template.php";   //? since a session is required this MUST come after the session_checker_delfin() function call
+
+
 
 
 // if (isset($_GET['file'])) {
@@ -54,10 +58,12 @@ if (isset($_SESSION['emailSubject'])) {
 }
 if (isset($_SESSION['emailBody'])) {
     $emailBody = $_SESSION['emailBody'];
-    unset($_SESSION['emailSubject']);   // wipe it ditto
+    unset($_SESSION['emailBody']);  // wipe it ditto
 } else {
     $emailBody = getenv('DEFAULT_EMAIL_BODY');
 }
+//! append signature to the email body
+$emailBody=appendSignature_delfin($emailBody);
 
 
 // echo "<h1>The file must be cleared afterwards</h1><br />";
