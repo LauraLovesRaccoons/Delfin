@@ -33,7 +33,7 @@ $template = "<br /> SIGNATURE IS POSSIBLE <br />" .
 function appendSignature_delfin($emailBody)
 {
     global $template;   //? i need to call it with global
-    $emailBody = $emailBody . $template;    //? catenates both strings into one
+    $emailBody = $emailBody . "<br />" . $template;     //? catenates both strings into one ; with a line break
     return $emailBody;
 };
 
