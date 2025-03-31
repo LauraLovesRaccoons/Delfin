@@ -10,7 +10,7 @@ require "functions.php";
 session_checker_delfin();
 
 // expansion
-require 'signature_template.php';   //? since a session is required this MUST come after the session_checker_delfin() function call
+require "./functions/signature_template.php";   //? since a session is required this MUST come after the session_checker_delfin() function call
 
 
 

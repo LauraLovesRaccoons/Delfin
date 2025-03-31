@@ -1,6 +1,6 @@
 <?php
 
-// include_once "functions.php";   //? yes
+// include_once "../functions.php";    //? yes
 
 
 // // I'm not messing around with wannabe hackerz
@@ -9,7 +9,8 @@
 
 // actually checks if someone does have permissions ; why these specifically? Well since these were added later into my DB
 if (!isset($_SESSION['signatureName'], $_SESSION['signaturePhone'], $_SESSION['signatureService'])) {
-    header("Location: delfin.php");     //? since this doesn't call the session, i just redirect the landing page which handles unauthorized access
+    header("Location: ../delfin.php");  //? since this doesn't call the session, i just redirect the landing page which handles unauthorized access
+                                        //? also I need to move in the previous directory
     exit();     //? this will never execute if the function below is called from another page that has a proper session set
 };
 
