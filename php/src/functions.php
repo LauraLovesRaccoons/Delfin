@@ -280,6 +280,7 @@ function delete_uploads_dir_delfin()
 // pdf upload
 function upload_pdf_delfin()
 {
+    echo '<div class="function-file-upload-error-messages">';   // allows css styling
     // personalizes message based on letter and email mode ; OH? and it makes it one simple echo $var instead of you know what ...
     $generealErrorMessage = isset($_SESSION['letter_required'])
         ? "<br /><h2 style='color:rgb(250, 45, 20);'>ERROR! No Letters Parsed! More Info Just Below: </h2>"
@@ -324,6 +325,7 @@ function upload_pdf_delfin()
         echo $generealErrorMessage;
         echo "<p class='specific-error-msg-file-upload'><strong>Unknown Error Occured</strong></p>";
     }
+    echo '</div>';  // closes the div for the css styling
 };
 
 
@@ -331,6 +333,7 @@ function upload_pdf_delfin()
 // docX upload
 function upload_docX_delfin()
 {
+    echo '<div class="function-file-upload-error-messages">';   // allows css styling
     // personalizes message based on letter and email mode ; OH? and it makes it one simple echo $var instead of you know what ...
     $generealErrorMessage = isset($_SESSION['letter_required'])
         ? "<br /><h2 style='color:rgb(250, 45, 20);'>ERROR! No Letters Parsed! More Info Just Below: </h2>"
@@ -376,6 +379,7 @@ function upload_docX_delfin()
         echo $generealErrorMessage;
         echo "<p class='specific-error-msg-file-upload'><strong>Unknown Error Occured</strong></p>";
     }
+    echo '</div>';  // closes the div for the css styling
 };
 
 // docX fill data {hard coded fields!}
