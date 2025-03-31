@@ -55,56 +55,61 @@ email_or_letter_mode_delfin();  // this shows the current mode
 
 ?>
 
-<?php
-if(isset($_SESSION['letter_required'])){
-  echo "<h2>Upload File and Create Letters: &nbsp; $selectedList</h2>";
-} else {
-  echo "<h2>Upload File and Send Emails: &nbsp; $selectedList</h2>";
-}
-// echo "<h4> $selectedList </h4>";
-?>
-<br />
-<form id="heavyFormSubmission" action="" method="POST" enctype="multipart/form-data"> <!-- id is needed for the animation part -->
-  <?php if (!isset($_SESSION['letter_required'])): ?>
-    <em>Personalize Email?</em><br />
-    <!-- <em>Limitt: 500 & 2000 Zeechen</em><br /> -->
-    <!-- maxlength="" removed -->
 
-    <label for="email_subject"></label>
-    <strong>Email Subject: </strong><input type="text" name="email_subject" id="email_subject" class="email_subject" placeholder=" Default: <?= getenv('DEFAULT_EMAIL_SUBJECT') ?> " value="<?= $_POST['email_subject'] ?? getenv('DEFAULT_EMAIL_SUBJECT') ?>">   <!-- . -->
+<article class="upload-file-form-wrapper"> <!-- article makes sense - easier css styling -->
+
+  <?php
+  if (isset($_SESSION['letter_required'])) {
+    echo "<h3>Upload File and Create Letters: &nbsp; $selectedList</h3>";
+  } else {
+    echo "<h3>Upload File and Send Emails: &nbsp; $selectedList</h3>";
+  }
+  // echo "<h4> $selectedList </h4>";
+  ?>
+  <!-- <br /> -->
+  <form id="heavyFormSubmission" action="" method="POST" enctype="multipart/form-data"> <!-- id is needed for the animation part -->
+    <?php if (!isset($_SESSION['letter_required'])): ?>
+      <em>Personalize Email?</em><br />
+      <!-- <em>Limitt: 500 & 2000 Zeechen</em><br /> -->
+      <!-- maxlength="" removed -->
+
+      <label for="email_subject"></label>
+      <strong>Email Subject: </strong><input type="text" name="email_subject" id="email_subject" class="email_subject" placeholder=" Default: <?= getenv('DEFAULT_EMAIL_SUBJECT') ?> " value="<?= $_POST['email_subject'] ?? getenv('DEFAULT_EMAIL_SUBJECT') ?>"> <!-- . -->
+      <br />
+      <strong>Email Message: </strong><label for="email_body"></label>
+      <input type="text" name="email_body" id="email_body" class="email_body" placeholder=" Default: <?= getenv('DEFAULT_EMAIL_BODY') ?> " value="<?= $_POST['email_body'] ?? getenv('DEFAULT_EMAIL_BODY') ?>">
+      <br />
+    <?php endif; ?>
+    <em>Select File:</em><br />
+    <label for="file"></label>
+    <input type="file" name="fileToUpload" id="fileToUpload" required>
     <br />
-    <strong>Email Message: </strong><label for="email_body"></label>
-    <input type="text" name="email_body" id="email_body" class="email_body" placeholder=" Default: <?= getenv('DEFAULT_EMAIL_BODY') ?> " value="<?= $_POST['email_body'] ?? getenv('DEFAULT_EMAIL_BODY') ?>">
+    <label for="submit"></label>
+    <?php if (isset($_SESSION['letter_required'])): ?>
+      <input type="submit" value=" Upload File & Prepare Letters " name="submit_button" id="">
+    <?php else: ?>
+      <input type="submit" value=" Upload File & Send Emails " name="submit_button" id="">
+    <?php endif; ?>
     <br />
-  <?php endif; ?>
-  <em>Select File:</em><br />
-  <label for="file"></label>
-  <input type="file" name="fileToUpload" id="fileToUpload" required>
+  </form>
+  <!-- <br /> -->
+  <strong>This might take a while...</strong><br />
+  <em>Keep it below 20MB or else!</em><br />
   <br />
-  <label for="submit"></label>
-  <?php if (isset($_SESSION['letter_required'])): ?>
-    <input type="submit" value=" Upload File & Prepare Letters " name="submit_button" id="">
-  <?php else: ?>
-    <input type="submit" value=" Upload File & Send Emails " name="submit_button" id="">
-  <?php endif; ?>
-  <br />
-</form>
-<!-- <br /> -->
-<strong>This might take a while...</strong><br />
-<em>Keep it below 20MB or else!</em><br />
-<br />
-<?php 
-if (isset($_SESSION['letter_required'])) {
-  echo '<span id="loadingScreen">Preparing Letters... &nbsp; <div id="loadingScreenAnimation"></div></span>';
-} else {
-  echo '<span id="loadingScreen">Sending Emails... &nbsp; <div id="loadingScreenAnimation"></div></span>';
-}
- ?>
+  <?php
+  if (isset($_SESSION['letter_required'])) {
+    echo '<span id="loadingScreen">Preparing Letters... &nbsp; <div id="loadingScreenAnimation"></div></span>';
+  } else {
+    echo '<span id="loadingScreen">Sending Emails... &nbsp; <div id="loadingScreenAnimation"></div></span>';
+  }
+  ?>
+
+</article> <!-- closes the article and css styling -->
 
 
 <!-- mode switcher is now handled in the php function -->
 
-  </div>
+</div>
 
 <!-- loading animation -->
 <!-- yes this can't be in the footer somehow -->
@@ -123,4 +128,3 @@ if (isset($_SESSION['letter_required'])) {
 <?php
 require 'footer.html';
 ?>
-
