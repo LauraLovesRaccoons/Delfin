@@ -1,6 +1,6 @@
 <?php
 
-include_once "functions.php";   //? yes
+// include_once "functions.php";   //? yes
 
 
 // // I'm not messing around with wannabe hackerz
