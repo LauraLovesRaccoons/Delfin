@@ -71,7 +71,7 @@ if(isset($_SESSION['letter_required'])){
     <!-- maxlength="" removed -->
 
     <label for="email_subject"></label>
-    <strong>Email Subject: </strong><input type="text" name="email_subject" id="email_subject" class="email_subject" placeholder=" Default: <?= getenv('DEFAULT_EMAIL_SUBJECT') ?> " value="<?= ($_POST['email_subject'] ?? getenv('DEFAULT_EMAIL_SUBJECT'))  . ' ' ?>">  <!-- adds an empty space so you can attach/write the invitation's name w/o pressing the spacebar -->
+    <strong>Email Subject: </strong><input type="text" name="email_subject" id="email_subject" class="email_subject" placeholder=" Default: <?= getenv('DEFAULT_EMAIL_SUBJECT') ?> " value="<?= $_POST['email_subject'] ?? getenv('DEFAULT_EMAIL_SUBJECT') ?>">   <!-- . -->
     <br />
     <strong>Email Message: </strong><label for="email_body"></label>
     <input type="text" name="email_body" id="email_body" class="email_body" placeholder=" Default: <?= getenv('DEFAULT_EMAIL_BODY') ?> " value="<?= $_POST['email_body'] ?? getenv('DEFAULT_EMAIL_BODY') ?>">
@@ -100,22 +100,9 @@ if (isset($_SESSION['letter_required'])) {
   echo '<span id="loadingScreen">Sending Emails... &nbsp; <div id="loadingScreenAnimation"></div></span>';
 }
  ?>
-<br />
-<hr />
-<br />
-<h3>Mode Switch<!-- : Entered Text (and file) WILL be Lost if you switch modes! --></h3>
-<form method="POST">
-  <?php if (isset($_SESSION['letter_required'])): ?>
-    <label for="submit"></label>
-    <button type="submit" name="disable_letter_mode">Switch to Email Mode (default)</button>
-  <?php else: ?>
-    <label for="submit"></label>
-    <button type="submit" name="enable_letter_mode">Switch to Letter Mode</button>
-  <?php endif; ?>
-</form>
-<br />
-<hr />
-<br />
+
+
+<!-- mode switcher is now handled in the php function -->
 
   </div>
 
