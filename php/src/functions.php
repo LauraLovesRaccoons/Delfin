@@ -499,14 +499,26 @@ function combine_all_letters_into_one_pdf_delfin($baseDir, $templateFile, $times
 
 function email_or_letter_mode_delfin()
 {
-    if (isset($_SESSION['letter_required'])) {
-        if ($_SESSION['letter_required'] === true) {
-            echo '<br /><h2 style="color: blue;">Letter Mode</h2><br />';
+    echo '<div class = "function-mode-switcher">';
+        if (isset($_SESSION['letter_required'])) {
+            if ($_SESSION['letter_required'] === true) {
+                echo '<h2 style="color: blue;">Letter Mode</h2>';
+            }
+        } else {
+            echo '<h2 style="color: red;">Email Mode</h2>';
         }
-    } else {
-        echo '<br /><h2 style="color: red;">Email Mode</h2><br />';
-    }
-}
+        echo '
+            <form method="POST" class="mode-switch-form">
+                <label for="submit"></label>'
+                 . (isset($_SESSION['letter_required']) ? 
+                    '<button type="submit" name="disable_letter_mode">Switch to Email Mode</button>'
+                     : 
+                    '<button type="submit" name="enable_letter_mode">Switch to Letter Mode</button>'
+                ) . '
+            </form>
+            ';
+    echo '</div>';
+};
 
 
 // all session vars apart from id, username and email should be in here

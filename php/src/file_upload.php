@@ -100,22 +100,9 @@ if (isset($_SESSION['letter_required'])) {
   echo '<span id="loadingScreen">Sending Emails... &nbsp; <div id="loadingScreenAnimation"></div></span>';
 }
  ?>
-<br />
-<hr />
-<br />
-<h3>Mode Switch<!-- : Entered Text (and file) WILL be Lost if you switch modes! --></h3>
-<form method="POST">
-  <?php if (isset($_SESSION['letter_required'])): ?>
-    <label for="submit"></label>
-    <button type="submit" name="disable_letter_mode">Switch to Email Mode (default)</button>
-  <?php else: ?>
-    <label for="submit"></label>
-    <button type="submit" name="enable_letter_mode">Switch to Letter Mode</button>
-  <?php endif; ?>
-</form>
-<br />
-<hr />
-<br />
+
+
+<!-- mode switcher is now handled in the php function -->
 
   </div>
 
