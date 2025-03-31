@@ -7,7 +7,7 @@ include_once "functions.php";   //? yes
 // session_checker_delfin();
 
 
-// actually checks if someone does have permissions ; why these specifically? Welll since these were added later into my DB
+// actually checks if someone does have permissions ; why these specifically? Well since these were added later into my DB
 if (!isset($_SESSION['signatureName'], $_SESSION['signaturePhone'], $_SESSION['signatureService'])) {
     header("Location: delfin.php");     //? since this doesn't call the session, i just redirect the landing page which handles unauthorized access
     exit();     //? this will never execute if the function below is called from another page that has a proper session set
