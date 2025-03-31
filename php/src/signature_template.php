@@ -1,22 +1,18 @@
 <?php
 
-// require "functions.php";    //? yes
+include_once "functions.php";   //? yes
+
 
 // // I'm not messing around with wannabe hackerz
 // session_checker_delfin();
 
 
+// actually checks if someone does have permissions ; why these specifically? Welll since these were added later into my DB
+if (!isset($_SESSION['signatureName'], $_SESSION['signaturePhone'], $_SESSION['signatureService'])) {
+    header("Location: delfin.php");     //? since this doesn't call the session, i just redirect the landing page which handles unauthorized access
+    exit();     //? this will never execute if the function below is called from another page that has a proper session set
+};
 
-// if (isset($_SESSION['signatureName']) || isset($_SESSION['signaturePhone']) || isset($_SESSION['signatureService'])) {
-//     // header("Location: delfin.php");
-//     // exit();
-//     echo "<strong>Signature not set</strong><br />";
-// }
-
-// if (!isset($_SESSION['id'])) {
-//     header("Location: delfin.php");
-//     exit();
-// };
 
 //? template vars
 $user['signatureName'] = $_SESSION['signatureName'];
@@ -29,13 +25,14 @@ $template = "<br /> SIGNATURE IS POSSIBLE <br />" .
     "<strong>" . $user['signatureName'] . "</strong><br />" .
     "<strong>" . $user['signaturePhone'] . "</strong><br />" .
     "<strong>" . $user['signatureService'] . "</strong><br />" .
-    "<br />";
+    "<br />FAREWELL";
 
 
 // function to append the filled in template
 function appendSignature_delfin($emailBody)
 {
-    $emailBody = $emailBody . $GLOBALS['template']; //? i need to call the template as a global var
+    global $template;   //? i need to call it with global
+    $emailBody = $emailBody . $template;    //? catenates both strings into one
     return $emailBody;
 };
 

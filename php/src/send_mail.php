@@ -6,11 +6,12 @@
 
 require "functions.php";
 
-// expansion
-require 'signature_template.php';   //? yes
-
 // session id handoff
 session_checker_delfin();
+
+// expansion
+require 'signature_template.php';   //? since a session is required this MUST come after the session_checker_delfin() function call
+
 
 
 
