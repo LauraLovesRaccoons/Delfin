@@ -61,6 +61,12 @@ if (isset($_POST['submit_button'])) {
                 $_SESSION['signatureName'] = $user['signatureName'];
                 $_SESSION['signaturePhone'] = $user['signaturePhone'];
                 $_SESSION['signatureService'] = $user['signatureService'];
+                // optional expansion
+                $_SESSION['signatureTitle'] = $user['signatureTitle'];
+                $_SESSION['signatureOffice'] = $user['signatureOffice'];
+                $_SESSION['signatureGSM'] = $user['signatureGSM'];
+                $_SESSION['signatureFax'] = $user['signatureFax'];
+                // finally
                 header("location: delfin.php");
                 exit();
             } else {
