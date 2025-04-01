@@ -11,8 +11,8 @@ $logFile = "log.txt";           // ditto
 $uploadBasePath = "./uploads/"; // global makes sense for this specific use case
 // // removed the ./ from in front of the path
 //! these must be the exact same in the db and data-cell
-$allowedColumnsText = ['allocation', 'nom', 'nom2', 'fonction', 'adresse1', 'adresse2', 'allocationSpeciale', 'nomCouponReponse', 'email', ];
-$allowedColumnsTinyint = ['letter_required', 'duplicate', ];
+$allowedColumnsText = ['allocation', 'nom', 'nom2', 'fonction', 'adresse1', 'adresse2', 'allocationSpeciale', 'nomCouponReponse', 'email',];
+$allowedColumnsTinyint = ['letter_required', 'duplicate',];
 
 
 $session_name = "delfin-session-cookie";    // prettier name
@@ -35,7 +35,7 @@ use setasign\Fpdi\Fpdi;
 //! related to selecting lists
 function approved_lists_delfin()
 {
-    return ["list_A", "list_B", "list_C", "list_D", "list_E", "list_F", "nouvel_an", "fete_nationale", "tennis", "temp", ];     //! Update this when new lists are added
+    return ["list_A", "list_B", "list_C", "list_D", "list_E", "list_F", "nouvel_an", "fete_nationale", "tennis", "temp",];     //! Update this when new lists are added
 };
 
 
@@ -168,10 +168,29 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             $mail->addAddress($emailRecipient, $emailRecipientName);
             // Attachments
             $mail->addAttachment($emailAttachement);
+            // ?
+            // embeed images with cid
+            // ?
+            $logoImagePath = __DIR__ . "/images/email.logo.jpg"; // Adjust the path
+            $bannerImagePath = __DIR__ . "/images/banner.RPLtv.440.jpg"; // Adjust the path
+            if (file_exists($logoImagePath)) {
+                $mail->addEmbeddedImage($logoImagePath, 'logo_cid', 'email.logo.jpg', 'base64', 'image/jpeg'); // Embedded image with Content-ID
+            };
+            if (file_exists($bannerImagePath)) {
+                $mail->addEmbeddedImage($bannerImagePath, 'banner_cid', 'banner.RPLtv.440.jpg', 'base64', 'image/jpeg'); // Embedded image with Content-ID
+            };
+            // Replace placeholders in the email body with the CID
+            $emailBodyCID = str_replace(
+                ['{logo}', '{banner}'], // Placeholders in the email body
+                ['cid:logo_cid', 'cid:banner_cid'], // Corresponding CIDs
+                $emailBody
+            );
+            // ?
             // Content
             $mail->isHTML(true);
             $mail->Subject = $emailSubject;
-            $mail->Body = $emailBody;
+            // $mail->Body = $emailBody;    // working body
+            $mail->Body = $emailBodyCID;
 
             // echo "<br /><pre>";
             // var_dump($mail);
@@ -509,21 +528,21 @@ function combine_all_letters_into_one_pdf_delfin($baseDir, $templateFile, $times
 function email_or_letter_mode_delfin()
 {
     echo '<div class = "function-mode-switcher">';
-        if (isset($_SESSION['letter_required'])) {
-            if ($_SESSION['letter_required'] === true) {
-                echo '<h2 style="color: blue;">Letter Mode</h2>';
-            }
-        } else {
-            echo '<h2 style="color: red;">Email Mode</h2>';
+    if (isset($_SESSION['letter_required'])) {
+        if ($_SESSION['letter_required'] === true) {
+            echo '<h2 style="color: blue;">Letter Mode</h2>';
         }
-        echo '
+    } else {
+        echo '<h2 style="color: red;">Email Mode</h2>';
+    }
+    echo '
             <form method="POST" class="mode-switch-form">
                 <label for="submit"></label>'
-                 . (isset($_SESSION['letter_required']) ? 
-                    '<button type="submit" name="disable_letter_mode">Switch to Email Mode</button>'
-                     : 
-                    '<button type="submit" name="enable_letter_mode">Switch to Letter Mode</button>'
-                ) . '
+        . (isset($_SESSION['letter_required']) ?
+            '<button type="submit" name="disable_letter_mode">Switch to Email Mode</button>'
+            :
+            '<button type="submit" name="enable_letter_mode">Switch to Letter Mode</button>'
+        ) . '
             </form>
             ';
     echo '</div>';
@@ -554,7 +573,6 @@ function cleanup_session_vars_delfin()
     if (isset($_SESSION['selectedList'])) {
         unset($_SESSION['selectedList']);
     }
-
 };
 
 
@@ -611,5 +629,3 @@ function list_url_decode_delfin()
     header('Location: delfin.php');
     exit();
 };
-
-
