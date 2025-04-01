@@ -31,7 +31,11 @@ $signatureOffice = (empty($signatureOffice) || strlen($signatureOffice ?? '') < 
 $signatureGSM = (empty($signatureGSM) || strlen($signatureGSM ?? '') < 2) ? '' : '<br><i>GSM: ' . $signatureGSM. '</i>';
 $signatureFax = (empty($signatureFax) || strlen($signatureFax ?? '') < 2) ? '' : '<br><i>Fax: ' . $signatureFax. '</i>';
 // banner
-$banner = '';   //? leaving this empty for now (or forever?)
+$banner = 
+    '<tr><td width="410" height="109" colspan="2" style="border:none;padding:10px 1px;">' . 
+    '<a href="https://petange.lu/canaux-de-communication/"><img src="https://web.petange.lu/signature/banner/banner.RPLtv.440.jpg" alt="https://petange.lu/canaux-de-communication/"></a>' . 
+    '</td></tr>' ;
+// $banner = '';   //? leaving this empty for now (or forever?)
 
 //! template
 $template = 
