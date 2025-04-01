@@ -11,8 +11,13 @@ $logFile = "log.txt";           // ditto
 $uploadBasePath = "./uploads/"; // global makes sense for this specific use case
 // // removed the ./ from in front of the path
 //! these must be the exact same in the db and data-cell
-$allowedColumnsText = ['allocation', 'nom', 'nom2', 'fonction', 'adresse1', 'adresse2', 'allocationSpeciale', 'nomCouponReponse', 'email',];
-$allowedColumnsTinyint = ['letter_required', 'duplicate',];
+$allowedColumnsText = ['allocation', 'nom', 'nom2', 'fonction', 'adresse1', 'adresse2', 'allocationSpeciale', 'nomCouponReponse', 'email', ];
+$allowedColumnsTinyint = ['letter_required', 'duplicate', ];
+//? image paths
+$logoImagePath = __DIR__ . "/images/email.logo.jpg";    // ensures it's exectued from the current directory
+$bannerImagePath = __DIR__ . "/images/banner.RPLtv.440.jpg";    // ditto
+$logoImageLink = "https://web.petange.lu/signature/email.logo.jpg"; // backup-link
+$bannerImageLink = "https://web.petange.lu/signature/banner/banner.RPLtv.440.jpg";  // backup-link
 
 
 $session_name = "delfin-session-cookie";    // prettier name
@@ -168,33 +173,37 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             $mail->addAddress($emailRecipient, $emailRecipientName);
             // Attachments
             $mail->addAttachment($emailAttachement);
-            // ?
+
             // embeed images with cid
-            // ?
-            $logoImagePath = __DIR__ . "/images/email.logo.jpg"; // Adjust the path
-            $bannerImagePath = __DIR__ . "/images/banner.RPLtv.440.jpg"; // Adjust the path
-            if (file_exists($logoImagePath)) {
-                $mail->addEmbeddedImage($logoImagePath, 'logo_cid', 'email.logo.jpg', 'base64', 'image/jpeg'); // Embedded image with Content-ID
+            global $logoImagePath, $bannerImagePath, $logoImageLink, $bannerImageLink;  // I defined these outside the function
+            if (file_exists($logoImagePath) && file_exists($bannerImagePath)) {
+                $mail->addEmbeddedImage($logoImagePath, 'logo_cid', 'email.logo.jpg', 'base64', 'image/jpeg');  // inline embedded image with Content-ID
+                $mail->addEmbeddedImage($bannerImagePath, 'banner_cid', 'banner.RPLtv.440.jpg', 'base64', 'image/jpeg');    // inline embedded image with Content-ID
+                // Replace placeholders in the email body with the CID
+                $emailBodyCID = str_replace(
+                    ['{logo}', '{banner}'], // Placeholders in the email body
+                    ['cid:logo_cid', 'cid:banner_cid'], // Corresponding CIDs
+                    $emailBody
+                );
+            } else {
+                // if the images aren't present, it will just be voided and "insecure" (https) links we be used instead
+                $emailBodyCID = str_replace(
+                    ['{logo}', '{banner}'], // Placeholders in the email body
+                    [$logoImageLink, $bannerImageLink], // Corresponding CIDs
+                    $emailBody
+                );
             };
-            if (file_exists($bannerImagePath)) {
-                $mail->addEmbeddedImage($bannerImagePath, 'banner_cid', 'banner.RPLtv.440.jpg', 'base64', 'image/jpeg'); // Embedded image with Content-ID
-            };
-            // Replace placeholders in the email body with the CID
-            $emailBodyCID = str_replace(
-                ['{logo}', '{banner}'], // Placeholders in the email body
-                ['cid:logo_cid', 'cid:banner_cid'], // Corresponding CIDs
-                $emailBody
-            );
-            // ?
+            // ending - embeed images with cid
+
             // Content
             $mail->isHTML(true);
             $mail->Subject = $emailSubject;
             // $mail->Body = $emailBody;    // working body
-            $mail->Body = $emailBodyCID;
+            $mail->Body = $emailBodyCID;    // this has the CID (or not if the images are missing)
 
-            // echo "<br /><pre>";
-            // var_dump($mail);
-            // echo "</pre><br />";
+            //             // echo "<br /><pre>";
+            //             // var_dump($mail);
+            //             // echo "</pre><br />";
 
             $mail->send();
             // echo 'Message has been sent<br />';
