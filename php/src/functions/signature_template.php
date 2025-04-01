@@ -27,9 +27,9 @@ $signatureFax = $_SESSION['signatureFax'];
 // optional vars will check if string is bigger then 1 and then load the string with the variable
 //? optional vars
 $signatureTitle = (strlen($signatureTitle) <  2) ? '' : '<br><i>' . $signatureTitle. '</i>';
-$sigantureOffice = (strlen($sigantureOffice) <  2) ? '' : '<br><i>' . $sigantureOffice. '</i>';
-$sigantureGSM = (strlen($sigantureGSM) <  2) ? '' : '<br><i>GSM: ' . $sigantureGSM. '</i>';
-$sigantureFax = (strlen($sigantureFax) <  2) ? '' : '<br><i>Fax: ' . $sigantureFax. '</i>';
+$signatureOffice = (strlen($signatureOffice) <  2) ? '' : '<br><i>' . $signatureOffice. '</i>';
+$signatureGSM = (strlen($signatureGSM) <  2) ? '' : '<br><i>GSM: ' . $signatureGSM. '</i>';
+$signatureFax = (strlen($signatureFax) <  2) ? '' : '<br><i>Fax: ' . $signatureFax. '</i>';
 // banner
 $banner = '';   //? leaving this empty for now (or forever?)
 
@@ -45,10 +45,10 @@ $template =
     '<br><i>Administration communale de Pétange</i>' . 
     '<br><i>' . $signatureService . '</i>' . 
     $signatureTitle . 
-    $sigantureOffice . 
+    $signatureOffice . 
     '<br><i>T&eacute;l: ' . $signaturePhone . '</i>' . 
-    $sigantureGSM . 
-    $sigantureFax . 
+    $signatureGSM . 
+    $signatureFax . 
     '<br><i>E-Mail&nbsp;:&nbsp;<a href="mailto:' . $signatureEmail . '">' . $signatureEmail . '</a></i>' . 
     '<br><i>Web&nbsp;:&nbsp;</i><a href="https://www.petange.lu"><i>https://www.petange.lu</i></a>' . 
     '</span></td></tr>' . 
