@@ -172,6 +172,11 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             $mail->isHTML(true);
             $mail->Subject = $emailSubject;
             $mail->Body = $emailBody;
+
+            // echo "<br /><pre>";
+            // var_dump($mail);
+            // echo "</pre><br />";
+
             $mail->send();
             // echo 'Message has been sent<br />';
             $mail->SmtpClose();     // close the connection ; Very Smort -> stonks
