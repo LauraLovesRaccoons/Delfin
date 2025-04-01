@@ -9,8 +9,8 @@
 
 // actually checks if someone does have permissions ; why these specifically? Well since these were added later into my DB
 if (!isset($_SESSION['signatureName'], $_SESSION['signaturePhone'], $_SESSION['signatureService'], $_SESSION['signatureTitle'], $_SESSION['signatureOffice'], $_SESSION['signatureGSM'], $_SESSION['signatureFax'])) {
-    header("Location: ../delfin.php");  //? since this doesn't call the session, i just redirect the landing page which handles unauthorized access
-                                        //? also I need to move in the previous directory
+    header("Location: ../delfin.php");  //? since this doesn't call the session, i just redirect to the landing page which handles unauthorized access
+                                        //? also I need to move into the previous directory
     exit();     //? this will never execute if the function below is called from another page that has a proper session set
 };
 
