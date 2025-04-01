@@ -33,7 +33,7 @@ $signatureFax = (empty($signatureFax) || strlen($signatureFax ?? '') < 2) ? '' :
 // banner
 $banner = 
     '<tr><td width="410" height="109" colspan="2" style="border:none;padding:10px 1px;">' . 
-    '<a href="https://petange.lu/canaux-de-communication/"><img src="https://web.petange.lu/signature/banner/banner.RPLtv.440.jpg" alt="https://petange.lu/canaux-de-communication/"></a>' . 
+    '<a href="https://petange.lu/canaux-de-communication/"><img src="{banner}" alt="https://petange.lu/canaux-de-communication/"></a>' . 
     '</td></tr>' ;
 // $banner = '';   //? leaving this empty for now (or forever?)
 
@@ -42,7 +42,7 @@ $template =
     '<br />' . 
     '<table border=1 cellspacing=0 cellpadding=0 style="border-collapse:collapse;border:none;"><tr>' . 
     '<td width="110" valign=top align=center style="border:solid black 1.0pt;border-right:none;padding:15px 8px 15px 8px;">' . 
-    '<p><img width=94 height=58 src="https://web.petange.lu/signature/email.logo.jpg" alt="Logo P&eacute;tange"></p></td>' . 
+    '<p><img width=94 height=58 src="{logo}" alt="Logo P&eacute;tange"></p></td>' . 
     '<td width="300" valign=top style="border:solid black 1.0pt;border-left:none;padding:15px 5px 15px 5px;">' . 
     '<span style="font-family:Calibri;color:#1f497d;font-size:10pt;">' . 
     '<b><span style="color:#101010;">' . $signatureName . '</span></b>' . 
