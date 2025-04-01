@@ -26,10 +26,10 @@ $signatureGSM = $_SESSION['signatureGSM'];
 $signatureFax = $_SESSION['signatureFax'];
 // optional vars will check if string is bigger then 1 and then load the string with the variable
 //? optional vars
-$signatureTitle = (empty($signatureTitle) || $signatureTitle === "1") ? '' : '<br><i>' . $signatureTitle. '</i>';
-$signatureOffice = (empty($signatureOffice) || $signatureOffice === "1") ? '' : '<br><i>' . $signatureOffice. '</i>';
-$signatureGSM = (empty($signatureGSM) || $signatureGSM === "1") ? '' : '<br><i>GSM: ' . $signatureGSM. '</i>';
-$signatureFax = (empty($signatureFax) || $signatureFax === "1") ? '' : '<br><i>Fax: ' . $signatureFax. '</i>';
+$signatureTitle = (empty($signatureTitle) || strlen($signatureTitle ?? '') < 2) ? '' : '<br><i>' . $signatureTitle. '</i>';
+$signatureOffice = (empty($signatureOffice) || strlen($signatureOffice ?? '') < 2) ? '' : '<br><i>' . $signatureOffice. '</i>';
+$signatureGSM = (empty($signatureGSM) || strlen($signatureGSM ?? '') < 2) ? '' : '<br><i>GSM: ' . $signatureGSM. '</i>';
+$signatureFax = (empty($signatureFax) || strlen($signatureFax ?? '') < 2) ? '' : '<br><i>Fax: ' . $signatureFax. '</i>';
 // banner
 $banner = '';   //? leaving this empty for now (or forever?)
 
@@ -57,11 +57,11 @@ $template =
     ;
 
 
-    echo "<br />";
-    var_dump($signatureTitle, $signatureOffice, $signatureGSM, $signatureFax);
-    echo "<br />";
-    echo $template;
-    echo "<br />";
+    // echo "<br />";
+    // var_dump($signatureTitle, $signatureOffice, $signatureGSM, $signatureFax);
+    // echo "<br />";
+    // echo $template;
+    // echo "<br />";
 
 
 
