@@ -53,6 +53,7 @@ $template =
     '<br><i>Web&nbsp;:&nbsp;</i><a href="https://www.petange.lu"><i>https://www.petange.lu</i></a>' . 
     '</span></td></tr>' . 
     $banner . 
+    '</table>' . 
     '<br />'
     ;
 
