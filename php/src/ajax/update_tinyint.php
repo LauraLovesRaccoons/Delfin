@@ -41,6 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'], $_POST['column'
     // checking if the db column is allowed to have tinyint
     if (!in_array($column, $allowedColumnsTinyint)) {  // global var
         exit;
+    } elseif (!in_array($column, approved_lists_delfin())) {    // checks if for the list, since the lists also use tinyint
+        exit;                                                   // needed for edit entire DB where you toggle the lists
     }
     
     // i don't want a 2 or 3 in there!
