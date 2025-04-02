@@ -26,16 +26,16 @@ $signatureGSM = $_SESSION['signatureGSM'];
 $signatureFax = $_SESSION['signatureFax'];
 // optional vars will check if string is bigger then 1 and then load the string with the variable
 //? optional vars
-$signatureTitle = (empty($signatureTitle) || strlen($signatureTitle ?? '') < 2) ? '' : '<br><i>' . $signatureTitle. '</i>';
-$signatureOffice = (empty($signatureOffice) || strlen($signatureOffice ?? '') < 2) ? '' : '<br><i>' . $signatureOffice. '</i>';
-$signatureGSM = (empty($signatureGSM) || strlen($signatureGSM ?? '') < 2) ? '' : '<br><i>GSM: ' . $signatureGSM. '</i>';
-$signatureFax = (empty($signatureFax) || strlen($signatureFax ?? '') < 2) ? '' : '<br><i>Fax: ' . $signatureFax. '</i>';
+$signatureTitle = (empty($signatureTitle) || strlen($signatureTitle ?? '') < 2) ? '' : '<br><i>' . $signatureTitle . '</i>';
+$signatureOffice = (empty($signatureOffice) || strlen($signatureOffice ?? '') < 2) ? '' : '<br><i>' . $signatureOffice . '</i>';
+$signatureGSM = (empty($signatureGSM) || strlen($signatureGSM ?? '') < 2) ? '' : '<br><i>GSM: ' . $signatureGSM . '</i>';
+$signatureFax = (empty($signatureFax) || strlen($signatureFax ?? '') < 2) ? '' : '<br><i>Fax: ' . $signatureFax . '</i>';
 // banner
 $banner = 
     '<tr><td width="410" height="109" colspan="2" style="border:none;padding:10px 1px;">' . 
     '<a href="https://petange.lu/canaux-de-communication/"><img src="{banner}" alt="https://petange.lu/canaux-de-communication/"></a>' . 
     '</td></tr>' ;
-// $banner = '';   //? leaving this empty for now (or forever?)
+// $banner = '';   // can be used to disable the banner ; was used previously as a placeholder variable for the banner
 
 //! template
 $template = 

@@ -62,7 +62,7 @@ if (isset($_SESSION['emailBody'])) {
 } else {
     $emailBody = getenv('DEFAULT_EMAIL_BODY');
 }
-//! append signature to the email body
+// append signature to the email body
 $emailBody=appendSignature_delfin($emailBody);
 
 
