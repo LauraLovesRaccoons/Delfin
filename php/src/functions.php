@@ -20,6 +20,7 @@ $logoImageLink = "https://web.petange.lu/signature/email.logo.jpg"; // backup-li
 $bannerImageLink = "https://web.petange.lu/signature/banner/banner.RPLtv.440.jpg";  // backup-link
 // 
 $docXFields = ['«Allocation»', '«Nom»', '«Nom2»', '«Fonction»', '«Adresse1»', '«Adresse2»', '«Allocation_Spéciale»', '«Nom_coupon-réponse»',];  //! the docX modify function doesn't use this and has hardcoded fields (left-side)
+// those are only used for the table header so you need to add additional table fields in the php table, OR ELSE, everything will break
 
 
 $session_name = "delfin-session-cookie";    // prettier name
