@@ -110,15 +110,29 @@ require 'header.html';
             let userId = this.closest('tr').querySelector('[data-cell="id"]').textContent;
             let columnName = selectedList;
 
+            let value = 0;  // since I use update tinyint the functions kick and add to list are no longer needed
+            // 0 obviously means false which removes someone from the list
+
             // creates a post request
-            fetch('ajax/list_kick_user.php', { // that's why ajax.php has been excluded from require at the top of the php
+
+            // fetch('ajax/list_kick_user.php', { // that's why ajax.php has been excluded from require at the top of the php
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/x-www-form-urlencoded'
+            //     },
+            //     body: `id=${userId}&selectedList=${columnName}` // just hands over the id and db column name
+            //     // you can just inspect element on the id to target ANY user from the db, not even those on that list
+            //     // but if you are here you already have access to the entire db
+
+
+            // ajax update tinyint
+            fetch('ajax/update_tinyint.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },
-                    body: `id=${userId}&selectedList=${columnName}` // just hands over the id and db column name
-                    // you can just inspect element on the id to target ANY user from the db, not even those on that list
-                    // but if you are here you already have access to the entire db
+                    body: `id=${userId}&column=${columnName}&value=${encodeURIComponent(value)}`
+
                 })
                 .then(() => {
                     // just visual removal
