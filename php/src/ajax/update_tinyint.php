@@ -39,12 +39,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'], $_POST['column'
     $value = (int) $_POST['value']; // forces it to be an integer and 0 and 1 are valid but other integers are treated like 0
 
     // checking if the db column is allowed to have tinyint
-    if (!in_array($column, $allowedColumnsTinyint)) {  // global var
-        exit;
-    } elseif (!in_array($column, approved_lists_delfin())) {    // checks if for the list, since the lists also use tinyint
-        exit;                                                   // needed for edit entire DB where you toggle the lists
+    if (!in_array($column, $allowedColumnsTinyint) && !in_array($column, approved_lists_delfin())) {    // checks with our global var - checks the returned array from our function
+        exit;       // i wanna recycle this code for toggling the lists
     }
-    
+
     // i don't want a 2 or 3 in there!
     if ($value !== 0 && $value !== 1) {
         $value = 0; // which is false ; I don't care if you edited your browser to send a 2 or 3 and showing you a wrong visual value until you refresh the page!!!
@@ -55,6 +53,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'], $_POST['column'
     exit;
 }
 
-
 ?>
-
