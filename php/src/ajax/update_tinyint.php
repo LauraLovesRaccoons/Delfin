@@ -35,7 +35,7 @@ function editUserTinyint_delfin($id, $column, $value)
 // Update Tinyint
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'], $_POST['column'], $_POST['value'])) {
     $id = (int) $_POST['id'];       // obvious...
-    $column = $_POST['column'];     // i need the column
+    $column = trim($_POST['column']);   // i need the column
     $value = (int) $_POST['value']; // forces it to be an integer and 0 and 1 are valid but other integers are treated like 0
 
     // checking if the db column is allowed to have tinyint

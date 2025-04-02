@@ -31,7 +31,10 @@ function kickUserFromList_delfin($id, $selectedList)
 // KICK
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'], $_POST['selectedList'])) {
     $id = (int) $_POST['id'];   // filters everything and turns it into an integer and if no numbers are found it defaults to 0
-    $selectedList = $_POST['selectedList'];
+    $selectedList = trim($_POST['selectedList']);
+    if (!in_array($selectedList, approved_lists_delfin())) {
+        exit;
+    };
     kickUserFromList_delfin($id, $selectedList);    // function call
     exit;
 };
