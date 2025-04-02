@@ -11,8 +11,8 @@ $logFile = "log.txt";           // ditto
 $uploadBasePath = "./uploads/"; // global makes sense for this specific use case
 // // removed the ./ from in front of the path
 //! these must be the exact same in the db and data-cell
-$allowedColumnsText = ['allocation', 'nom', 'nom2', 'fonction', 'adresse1', 'adresse2', 'allocationSpeciale', 'nomCouponReponse', 'email', ];
-$allowedColumnsTinyint = ['letter_required', 'duplicate', ];
+$allowedColumnsText = ['allocation', 'nom', 'nom2', 'fonction', 'adresse1', 'adresse2', 'allocationSpeciale', 'nomCouponReponse', 'email',];
+$allowedColumnsTinyint = ['letter_required', 'duplicate',];
 //? image paths
 $logoImagePath = __DIR__ . "/images/email.logo.jpg";    // ensures it's exectued from the current directory
 $bannerImagePath = __DIR__ . "/images/banner.RPLtv.440.jpg";    // ditto
@@ -40,7 +40,7 @@ use setasign\Fpdi\Fpdi;
 //! related to selecting lists
 function approved_lists_delfin()
 {
-    return ["list_A", "list_B", "list_C", "list_D", "list_E", "list_F", "nouvel_an", "fete_nationale", "tennis", "temp",];     //! Update this when new lists are added
+    return ["list_A", "list_B", "list_C", "list_D", "list_E", "list_F", "nouvel_an", "fete_nationale", "tennis", "temp",];      //! Update this when new lists are added
 };
 
 
