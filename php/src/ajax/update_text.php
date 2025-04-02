@@ -30,7 +30,7 @@ function editUsersText_delfin($id, $column, $value)
 // Update Text
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'], $_POST['column'], $_POST['value'])) {
     $id = (int) $_POST['id'];
-    $column = $_POST['column'];
+    $column = trim($_POST['column']);
     $value = trim($_POST['value']);
 
     // checking if the db column is allowed to have text
