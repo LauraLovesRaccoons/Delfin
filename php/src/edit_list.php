@@ -102,7 +102,7 @@ require 'header.html';
 
 <script>
     // kick script
-    const selectedList = "<?php echo $selectedList; ?>"; // i need to clean this a bit
+    const selectedList = <?php echo json_encode($selectedList); ?>; // i need to clean this a bit
     // 
     // this adds the kick properly the class .kick symbol (span)
     document.querySelectorAll('.kick-symbol').forEach(button => {
