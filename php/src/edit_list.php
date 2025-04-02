@@ -42,14 +42,11 @@ require 'header.html';
             <tr>
                 <th class="kick">KICK</th>
                 <th>id</th>
-                <th>«Allocation»</th>
-                <th>«Nom»</th>
-                <th>«Nom2»</th>
-                <th>«Fonction»</th>
-                <th>«Adresse1»</th>
-                <th>«Adresse2»</th>
-                <th>«Allocation_Spéciale»</th>
-                <th>«Nom_coupon-réponse»</th>
+                <?php
+                foreach ($docXFields as $field) {
+                    echo "<th>{$field}</th>";
+                }
+                ?>
                 <th>E-Mail</th>
                 <th>letter required</th>
                 <th>fonction multiple</th>
@@ -213,7 +210,7 @@ require 'header.html';
             let columnName = this.getAttribute('data-cell');
 
             // Determine new value based on current value
-            let newValue = originalText === '⚠' || originalText === '✅' ? '0' : '1';  // toggle
+            let newValue = originalText === '⚠' || originalText === '✅' ? '0' : '1'; // toggle
             let newSymbol;
             // Toggle the symbols based on column name
             if (columnName === 'letter_required') {
@@ -231,14 +228,14 @@ require 'header.html';
                 body: `id=${userId}&column=${columnName}&value=${encodeURIComponent(newValue)}`
             }).then(() => {
                 updateCell(newSymbol);
-                handleRowClass(columnName, newValue);   // the class to style the entire row if we have a user with the duplicate flag set
+                handleRowClass(columnName, newValue); // the class to style the entire row if we have a user with the duplicate flag set
             }).catch(() => {
                 updateCell(originalText);
             });
 
             // Update the cell with the new symbol
             function updateCell(symbol) {
-                td.innerHTML = `<span>${symbol}</span>`;    // actually updates the symbol
+                td.innerHTML = `<span>${symbol}</span>`; // actually updates the symbol
             }
 
             // Handle adding/removing the 'duplicateUser' class based on the duplicate column value
@@ -248,15 +245,14 @@ require 'header.html';
                 // Only apply/remove class for the 'duplicate' column
                 if (columnName === 'duplicate') {
                     if (newValue === '1') {
-                        row.classList.add('duplicateUser');     // adds the class if true
+                        row.classList.add('duplicateUser'); // adds the class if true
                     } else {
-                        row.classList.remove('duplicateUser');  // everything else is treated like 0
+                        row.classList.remove('duplicateUser'); // everything else is treated like 0
                     }
                 }
             }
         });
     });
-    
 </script>
 
 <?php
