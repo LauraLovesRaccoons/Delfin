@@ -49,7 +49,7 @@ require 'header.html';
                 ?>
                 <th>E-Mail</th>
                 <th>letter required</th>
-                <th>fonction multiple</th>
+                <th>*duplicate user*</th>
                 <!-- <th class="spacer"></th> -->
             </tr>
         </thead>
