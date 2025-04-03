@@ -1,6 +1,6 @@
-const selector = allowedColumns.map(col => `td[data-cell="${col}"]`).join(', '); // this passes the allowed data-cells into an array
+const textSelector = textColumns.map(col => `td[data-cell="${col}"]`).join(', '); // this passes the allowed data-cells into an array
 // adds these to the selector
-document.querySelectorAll(selector).forEach(td => { // this doesn't need updating if new columns are added
+document.querySelectorAll(textSelector).forEach(td => { // this doesn't need updating if new columns are added
     td.addEventListener('dblclick', function() {
         let originalText = this.textContent.trim();
         let userId = this.closest('tr').querySelector('[data-cell="id"]').textContent;
