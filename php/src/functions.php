@@ -617,7 +617,7 @@ function turn_fetched_users_into_array_delfin($queryResult)
         };
         $grabbedUsers[] = [
             'recipientId' => intval($recipientUser['id']),
-            'emailRecipient' => intval($recipientUser['letter_required']) ? '' : htmlspecialchars($recipientUser['email'], ENT_QUOTES, 'UTF-8'),    // if the person requires a letter, this invalidates the email
+            'emailRecipient' => intval($recipientUser['letter_required']) ? '' : htmlspecialchars(trim($recipientUser['email']), ENT_QUOTES, 'UTF-8'),  // if the person requires a letter, this invalidates the email
             // 'emailRecipientName' => htmlspecialchars(empty(trim($recipientUser['nom'])) ? $recipientUser['nom2'] : $recipientUser['nom'], ENT_QUOTES, 'UTF-8'), // this if for logging purposes ; if nom is empty, it will grab nom2
 
             'emailRecipientName' => htmlspecialchars(
