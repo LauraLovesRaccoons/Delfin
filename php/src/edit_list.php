@@ -101,7 +101,7 @@ require 'header.html';
 <!--  -->
 <button class="editButton" id="editButton">Enable Editing</button>
 <!--  -->
-<script src="scripts/enable_Editing.js"></script>
+<script src="scripts/enable_editing.js"></script>
 <!--  -->
 
 <script>
