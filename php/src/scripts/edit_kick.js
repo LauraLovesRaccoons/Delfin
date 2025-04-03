@@ -1,5 +1,5 @@
    // this adds the kick properly the class .kick symbol (span)
-   document.querySelectorAll('.kick-symbol').forEach(button => {
+   document.querySelectorAll('.kick-symbol_edit').forEach(button => {
     button.addEventListener('dblclick', function() { // double click for ease of use
         let userId = this.closest('tr').querySelector('[data-cell="id"]').textContent;
         let columnName = selectedList;
