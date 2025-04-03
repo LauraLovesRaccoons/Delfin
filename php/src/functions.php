@@ -629,15 +629,15 @@ function turn_fetched_users_into_array_delfin($queryResult)
                 ENT_QUOTES,
                 'UTF-8'
             ),
-
-            'allocation' => htmlspecialchars($recipientUser['allocation'], ENT_QUOTES, 'UTF-8'),
-            'nom' => htmlspecialchars($recipientUser['nom'], ENT_QUOTES, 'UTF-8'),
-            'nom2' => htmlspecialchars($recipientUser['nom2'], ENT_QUOTES, 'UTF-8'),
-            'fonction' => htmlspecialchars($recipientUser['fonction'], ENT_QUOTES, 'UTF-8'),
-            'adresse1' => htmlspecialchars($recipientUser['adresse1'], ENT_QUOTES, 'UTF-8'),
-            'adresse2' => htmlspecialchars($recipientUser['adresse2'], ENT_QUOTES, 'UTF-8'),
-            'allocationSpeciale' => htmlspecialchars($recipientUser['allocationSpeciale'], ENT_QUOTES, 'UTF-8'),
-            'nomCouponReponse' => htmlspecialchars($recipientUser['nomCouponReponse'], ENT_QUOTES, 'UTF-8'),
+            // adding trims so that whitespaces aren't considered as valid data
+            'allocation' => htmlspecialchars(trim($recipientUser['allocation']), ENT_QUOTES, 'UTF-8'),
+            'nom' => htmlspecialchars(trim($recipientUser['nom']), ENT_QUOTES, 'UTF-8'),
+            'nom2' => htmlspecialchars(trim($recipientUser['nom2']), ENT_QUOTES, 'UTF-8'),
+            'fonction' => htmlspecialchars(trim($recipientUser['fonction']), ENT_QUOTES, 'UTF-8'),
+            'adresse1' => htmlspecialchars(trim($recipientUser['adresse1']), ENT_QUOTES, 'UTF-8'),
+            'adresse2' => htmlspecialchars(trim($recipientUser['adresse2']), ENT_QUOTES, 'UTF-8'),
+            'allocationSpeciale' => htmlspecialchars(trim($recipientUser['allocationSpeciale']), ENT_QUOTES, 'UTF-8'),
+            'nomCouponReponse' => htmlspecialchars(trim($recipientUser['nomCouponReponse']), ENT_QUOTES, 'UTF-8'),
         ];
     }
     return $grabbedUsers;
