@@ -101,25 +101,29 @@ require 'header.html';
 <!--  -->
 <button class="editButton" id="editButton">Enable Editing</button>
 <!--  -->
-<script src="scripts/enable_editing.js"></script>
+<!-- <script src="scripts/enable_editing.js"></script> -->
 <!--  -->
 
 <script>
     // kick script
     const selectedList = <?php echo json_encode($selectedList); ?>; // i need to clean this a bit
 </script>
-<script src="scripts/edit_kick.js"></script>
+<!-- <script src="scripts/edit_kick.js"></script> -->
 <script>
     // edit text script
-    const allowedColumns = <?php echo json_encode($allowedColumnsText); ?>; // loads the array from the php global var as json
+    const textColumns = <?php echo json_encode($allowedColumnsText); ?>; // loads the array from the php global var as json
 </script>
-<script src="scripts/edit_text.js"></script>
+<!-- <script src="scripts/edit_text.js"></script> -->
 <script>
     // edit tinyint
     const tinyintColumns = <?php echo json_encode($allowedColumnsTinyint); ?>; // loads the array from the php global var as json
 </script>
-<script src="scripts/edit_tinyint.js"></script>
+<!-- <script src="scripts/edit_tinyint.js"></script> -->
 </script>
+
+<!--  -->
+<script src="scripts/enable_editing.js"></script>
+<!--  -->
 
 <?php
 require "footer.html";
