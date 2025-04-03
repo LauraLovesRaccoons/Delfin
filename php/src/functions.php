@@ -610,10 +610,26 @@ function turn_fetched_users_into_array_delfin($queryResult)
     $grabbedUsers = [];
     // 
     while ($recipientUser = $queryResult->fetch_assoc()) {
+        // if nom and nom2 are empty it will treat it like the letter flag is set
+        // trim ensures white spaces aren't considered as valid data
+        if (empty(trim($recipientUser['nom'])) && empty(trim($recipientUser['nom2']))) {
+            $recipientUser['letter_required'] = 1;
+        };
         $grabbedUsers[] = [
             'recipientId' => intval($recipientUser['id']),
             'emailRecipient' => intval($recipientUser['letter_required']) ? '' : htmlspecialchars($recipientUser['email'], ENT_QUOTES, 'UTF-8'),    // if the person requires a letter, this invalidates the email
-            'emailRecipientName' => htmlspecialchars(empty(trim($recipientUser['nom'])) ? $recipientUser['nom2'] : $recipientUser['nom'], ENT_QUOTES, 'UTF-8'), // this if for logging purposes ; if nom is empty, it will grab nom2
+            // 'emailRecipientName' => htmlspecialchars(empty(trim($recipientUser['nom'])) ? $recipientUser['nom2'] : $recipientUser['nom'], ENT_QUOTES, 'UTF-8'), // this if for logging purposes ; if nom is empty, it will grab nom2
+
+            'emailRecipientName' => htmlspecialchars(
+                trim(
+                    (!empty(trim($recipientUser['nom'])) ? $recipientUser['nom'] : '') .                                // if nom is set add append it to the string
+                        ((!empty(trim($recipientUser['nom'])) && !empty(trim($recipientUser['nom2']))) ? ' | ' : '') .  // if both nom and nom2 are set add a seperator symbol
+                        (!empty(trim($recipientUser['nom2'])) ? $recipientUser['nom2'] : '')                            // if nom 2 is set append it to the string
+                ) ?: "BOTH nom and nom2 ARE MISSING OR FAULTY -> NO EMAIL SENT -> CHECK ID FOR REFERENCE!",             // if both are empty, this will be the string -> the trims before ensures whitespace are considered as empty
+                ENT_QUOTES,
+                'UTF-8'
+            ),
+
             'allocation' => htmlspecialchars($recipientUser['allocation'], ENT_QUOTES, 'UTF-8'),
             'nom' => htmlspecialchars($recipientUser['nom'], ENT_QUOTES, 'UTF-8'),
             'nom2' => htmlspecialchars($recipientUser['nom2'], ENT_QUOTES, 'UTF-8'),
