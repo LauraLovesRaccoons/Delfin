@@ -31,6 +31,8 @@ require 'header.html';
 <!-- yes a different div -->
 <div class="table-wrapper">
 
+<span class="delete-symbol">DELETE TEST</span>
+
 </div>
 
 
