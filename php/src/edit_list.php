@@ -77,18 +77,18 @@ require 'header.html';
             <?php while ($row = $queryResult->fetch_assoc()): ?>
                 <tr class="<?= $row['duplicate'] ? 'duplicateUser' : '' ?>">
                     <td data-cell="kick" class="kick"><span class="kick-symbol">🦶</span></td> <!-- span is used to limit the selection to just the symbol -->
-                    <td data-cell="id"><span><?= htmlspecialchars($row['id']) ?></span></td>
-                    <td data-cell="allocation"><span><?= htmlspecialchars($row['allocation']) ?></span></td>
-                    <td data-cell="nom"><span><?= htmlspecialchars($row['nom']) ?></span></td>
-                    <td data-cell="nom2"><span><?= htmlspecialchars($row['nom2']) ?></span></td>
-                    <td data-cell="fonction"><span><?= htmlspecialchars($row['fonction']) ?></span></td>
-                    <td data-cell="adresse1"><span><?= htmlspecialchars($row['adresse1']) ?></span></td>
-                    <td data-cell="adresse2"><span><?= htmlspecialchars($row['adresse2']) ?></span></td>
-                    <td data-cell="allocationSpeciale"><span><?= htmlspecialchars($row['allocationSpeciale']) ?></span></td>
-                    <td data-cell="nomCouponReponse"><span><?= htmlspecialchars($row['nomCouponReponse']) ?></span></td>
-                    <td data-cell="email"><span><?= htmlspecialchars($row['email']) ?></span></td>
-                    <td data-cell="letter_required"><span><?= $row['letter_required'] == 1 ? '✅' : '​' ?></span></td>
-                    <td data-cell="duplicate"><span><?= $row['duplicate'] == 1 ? '⚠' : '​' ?></span></td>
+                    <td data-cell="id" class="table_id"><span><?= htmlspecialchars($row['id']) ?></span></td>
+                    <td data-cell="allocation" class="table_text"><span><?= htmlspecialchars($row['allocation']) ?></span></td>
+                    <td data-cell="nom" class="table_text"><span><?= htmlspecialchars($row['nom']) ?></span></td>
+                    <td data-cell="nom2" class="table_text"><span><?= htmlspecialchars($row['nom2']) ?></span></td>
+                    <td data-cell="fonction" class="table_text"><span><?= htmlspecialchars($row['fonction']) ?></span></td>
+                    <td data-cell="adresse1" class="table_text"><span><?= htmlspecialchars($row['adresse1']) ?></span></td>
+                    <td data-cell="adresse2" class="table_text"><span><?= htmlspecialchars($row['adresse2']) ?></span></td>
+                    <td data-cell="allocationSpeciale" class="table_text"><span><?= htmlspecialchars($row['allocationSpeciale']) ?></span></td>
+                    <td data-cell="nomCouponReponse" class="table_text"><span><?= htmlspecialchars($row['nomCouponReponse']) ?></span></td>
+                    <td data-cell="email" class="table_text"><span><?= htmlspecialchars($row['email']) ?></span></td>
+                    <td data-cell="letter_required" class="table_tinyint"><span><?= $row['letter_required'] == 1 ? '✅' : '​' ?></span></td>
+                    <td data-cell="duplicate" class="table_tinyint"><span><?= $row['duplicate'] == 1 ? '⚠' : '​' ?></span></td>
                     <!-- <td data-cell="spacer" class="spacer"></td> -->
                 </tr>
             <?php endwhile; ?>
@@ -98,6 +98,10 @@ require 'header.html';
 
 
 
+<!--  -->
+<button class="editButton" id="editButton">Enable Editing</button>
+<!--  -->
+<script src="scripts/enable_Editing.js"></script>
 <!--  -->
 
 <script>
