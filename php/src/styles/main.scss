@@ -161,7 +161,7 @@ tbody tr:nth-child(3n + 3) {
 }
 
 // kick symbol span clickable "button"
-.kick-symbol {
+.kick-symbol, .kick-symbol_edit {
   cursor: pointer;
   font-size: 1.025rem;
 }
