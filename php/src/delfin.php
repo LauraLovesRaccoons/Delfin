@@ -35,7 +35,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $selectedList = $_POST["selectedList"];
         // checking if someone wants to send an example file
         if ($selectedList === "test") {
-            header("location: test_dummy_user_array.php");  // it still has its debugging name :barry:
+            // header("location: test_dummy_user_array.php");  // it still has its debugging name :barry:
+            // exit;
+            if (isset($_SESSION['targetUsersArray'])) {
+                unset($_SESSION['targetUsersArray']);   // just to be sure, even if cleanup_session_vars_delfin already ran
+            };
+            dummyAccounts_delfin();
+            header("location: file_upload.php");    // redirect
             exit;
         }
 
