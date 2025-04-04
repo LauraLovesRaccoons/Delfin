@@ -5,20 +5,20 @@
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Lock`
+-- Table structure for table `Job_Lock`
 --
 
-CREATE TABLE `Lock` (
+CREATE TABLE `Job_Lock` (
   `id` int NOT NULL,
   `active` tinyint NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `Lock`
+-- Dumping data for table `Job_Lock`
 --
 
-INSERT INTO `Lock` (`id`, `active`) VALUES
+INSERT INTO `Job_Lock` (`id`, `active`) VALUES
 (1, '0');
 
 --
