@@ -71,7 +71,7 @@ echo "<br />";
 
 
 
-
+// if someone sets the letter mode in a different tab, then yes I'm keeping it here. since then it seems like smth is wrong
 echo "<br />";
 echo "<hr />";
 echo "<br />";
