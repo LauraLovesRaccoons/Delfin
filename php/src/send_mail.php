@@ -13,6 +13,10 @@ session_checker_delfin();
 require "./functions/signature_template.php";   //? since a session is required this MUST come after the session_checker_delfin() function call
 
 
+//! WAITING PART IF SOMEONE IS ALREADY USING THIS
+batchJobAlreadyRunning_delfin();
+//! END OF WAITING PART
+
 
 
 // if (isset($_GET['file'])) {
@@ -178,6 +182,8 @@ if (isset($_SESSION['selectedList'])) {
 }
 delete_uploads_dir_delfin();    // cleanup
 // // temporarily disabled for debugging reasons
+//?
+clear_batchJobAlreadyRunning_delfin();
 
 
 

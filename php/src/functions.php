@@ -702,3 +702,15 @@ function dummyAccounts_delfin()
 };
 
 
+function batchJobAlreadyRunning_delfin()
+{
+    // 
+};
+
+
+function clear_batchJobAlreadyRunning_delfin()
+{
+    // 
+};
+
+
