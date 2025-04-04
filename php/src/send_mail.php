@@ -26,6 +26,7 @@ if (isset($_SESSION['targetFile'])) {
 
     //? WAITING PART IF SOMEONE IS ALREADY USING THIS
     batchJobAlreadyRunning_delfin();
+    set_batchJobAlreadyRunning_delfin();
     //? If you somehow have a target file in the session but not the other stuff , you're gonna wait as a punishment!
 
     $templateFile = $_SESSION['targetFile'];

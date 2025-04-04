@@ -742,4 +742,21 @@ function clear_batchJobAlreadyRunning_delfin()
 };
 
 
+function set_batchJobAlreadyRunning_delfin()
+{
+    sleep(1);
+    // check if someone else hasn't started a batch job in the meantime
+    batchJobAlreadyRunning_delfin();
+
+    $db = db_connect_delfin();
+    $query = "UPDATE Job_Lock SET `active` = 1";
+    $stmt = $db->prepare($query);
+    if (!$stmt) {
+        die("Prepare failed: " . $db->error);
+    };
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    db_close_delfin($db);
+};
 
