@@ -36,7 +36,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 use Document\Parser\Word;
-
+use FontLib\Table\Type\head;
 use setasign\Fpdi\Fpdi;
 
 
@@ -700,5 +700,46 @@ function dummyAccounts_delfin()
     $_SESSION['selectedList'] = "YOURSELF";         //? this is needed for the next page
     $_SESSION['targetUsersArray'] = $dummyAccounts;
 };
+
+
+function batchJobAlreadyRunning_delfin()
+{
+    $db = db_connect_delfin();
+    $query = "SELECT `active` FROM Job_Lock WHERE `id` = 1";
+    $stmt = $db->prepare($query);
+    if (!$stmt) {
+        die("Prepare failed: " . $db->error);
+    };
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    db_close_delfin($db);
+    // 
+    if ($row = $result->fetch_assoc()) {
+        if ((int)$row['active'] == 1) {
+            sleep(15);  // wait for 15 seconds
+            // refresh the page
+            // header("Refresh:0; url=" . $_SERVER['PHP_SELF']);
+            header("Location: send_mail.php");  // I saved every post inside a session var ; so i can just refresh the previous page while keeping its animation
+            exit;
+        }
+    }
+};
+
+
+function clear_batchJobAlreadyRunning_delfin()
+{
+    $db = db_connect_delfin();
+    $query = "UPDATE Job_Lock SET `active` = 0";
+    $stmt = $db->prepare($query);
+    if (!$stmt) {
+        die("Prepare failed: " . $db->error);
+    };
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    db_close_delfin($db);
+};
+
 
 
