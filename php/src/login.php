@@ -54,18 +54,18 @@ if (isset($_POST['submit_button'])) {
             $passwordVerify = password_verify($password, $user['password']);    // db password must be hashed
 
             if ($passwordVerify) {
-                $_SESSION['id'] = $user['id'];
-                $_SESSION['email'] = $user['email'];
-                $_SESSION['username'] = $user['username'];
+                $_SESSION['id'] = (int) $user['id'];
+                $_SESSION['email'] = (trim($user['email']));
+                $_SESSION['username'] = (trim($user['username']));
                 // expansion
-                $_SESSION['signatureName'] = $user['signatureName'];
-                $_SESSION['signaturePhone'] = $user['signaturePhone'];
-                $_SESSION['signatureService'] = $user['signatureService'];
+                $_SESSION['signatureName'] = (trim($user['signatureName']));
+                $_SESSION['signaturePhone'] = (trim($user['signaturePhone']));
+                $_SESSION['signatureService'] = (trim($user['signatureService']));
                 // optional expansion
-                $_SESSION['signatureTitle'] = $user['signatureTitle'];
-                $_SESSION['signatureOffice'] = $user['signatureOffice'];
-                $_SESSION['signatureGSM'] = $user['signatureGSM'];
-                $_SESSION['signatureFax'] = $user['signatureFax'];
+                $_SESSION['signatureTitle'] = (trim($user['signatureTitle']));
+                $_SESSION['signatureOffice'] = (trim($user['signatureOffice']));
+                $_SESSION['signatureGSM'] = (trim($user['signatureGSM']));
+                $_SESSION['signatureFax'] = (trim($user['signatureFax']));
                 // finally
                 header("location: delfin.php");
                 exit();

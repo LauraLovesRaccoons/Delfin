@@ -70,6 +70,21 @@ echo '<a href="file_upload.php"> GO TO:  UPLOAD FILE -> </a><br />';
 echo "<br />";
 
 
+
+
+echo "<br />";
+echo "<hr />";
+echo "<br />";
+echo "<pre>";
+ob_start();                     // Start output buffering
+var_dump($_SESSION);            // Dump session to buffer
+$dump = ob_get_clean();         // Get buffer content as a string
+echo htmlspecialchars($dump);   // Escape HTML characters
+echo "</pre>";
+echo "<br />";
+echo "<hr />";
+echo "<br />";
+
 ?>
 
 <!-- 
@@ -78,6 +93,7 @@ echo "<br />";
     <button type="submit" name="disable_letter_mode">Email Mode (default)</button>
 </form>
  -->
+
 
 
 </div>
