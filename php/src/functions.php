@@ -264,6 +264,7 @@ function file_upload_delfin($file)
 {
     $baseUploadDir = $GLOBALS['uploadBasePath'];    // global var
     $timestamp = time();
+    // $timestamp = "_DEBUG_";
     $targetUploadDir = $baseUploadDir . $_SESSION['id'] . "/" . $timestamp . "/"; // ensures each upload folder is unique, user id is unique and timestamp is unique ; and if not I'm gonna play the lottery (since the filename would also have to be an exact match)
     if (!is_dir($targetUploadDir)) {
         mkdir($targetUploadDir, 0777, true);    // 0777 gives everyone access to it ; for simplicity purposes
@@ -736,7 +737,7 @@ function clear_batchJobAlreadyRunning_delfin()
         die("Prepare failed: " . $db->error);
     };
     $stmt->execute();
-    $result = $stmt->get_result();
+    // $result = $stmt->get_result();
     $stmt->close();
     db_close_delfin($db);
 };
@@ -744,19 +745,19 @@ function clear_batchJobAlreadyRunning_delfin()
 
 function set_batchJobAlreadyRunning_delfin()
 {
-    sleep(1);
     // check if someone else hasn't started a batch job in the meantime
-    batchJobAlreadyRunning_delfin();
+    sleep(1);
 
     $db = db_connect_delfin();
-    $query = "UPDATE Job_Lock SET `active` = 1";
+    $query = "UPDATE Job_Lock SET `active` = 1 WHERE `id` = 1 AND `active` = 0";    // the ultimate check
     $stmt = $db->prepare($query);
-    if (!$stmt) {
-        die("Prepare failed: " . $db->error);
-    };
     $stmt->execute();
-    $result = $stmt->get_result();
+    $result = $stmt->affected_rows;
     $stmt->close();
     db_close_delfin($db);
+    if ($result === 0) {
+        batchJobAlreadyRunning_delfin();    // and if this fails the page will refresh like usual
+    }
 };
+
 
