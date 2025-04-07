@@ -525,3 +525,46 @@ tbody tr:nth-child(3n + 3) {
 }
 
 
+
+// login page
+.login-article {
+  background-color: rgba(240, 220, 210, 0.666);
+  margin: 15px;
+  padding: 15px;
+  display: flex;
+  // justify-content: center;
+  // align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 1.501rem;
+  border-radius: 15px;
+  border: 1px solid inherit;
+  form {
+    * {
+      padding: 10px;
+      align-items: center;
+      margin: 1px;
+      justify-content: center;
+    }
+    label {
+      margin: 0;
+      padding: 0;
+    }
+    input {
+      background-color: #F1F1F1;
+      border: none;
+      border-radius: 10px;
+    }
+  }
+}
+
+.login-error {
+  color: #FF553D;
+  font-size: 2.001rem;
+  margin-bottom: 1px;
+  text-align: center;
+  text-decoration: underline;
+}
+
+
+
