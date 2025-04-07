@@ -125,7 +125,7 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
 {
     if (strpos($emailRecipient, '@') === false || strlen($emailRecipient) < 3) {   // just checking if an @ is present to make the code faster ; and absolute minimum possible length
         if (!isset($_SESSION['letter_required'])) {     // no need to display it on the webpage if it's a freakin letter
-            echo "<span>NO EMAIL: <strong>$emailRecipientName</strong> - ID: <strong>$recipientId</strong><span>";
+            echo "<span>NO EMAIL: <strong>$emailRecipientName</strong> - ID: <strong>$recipientId</strong></span>";
             echo "<script>console.log('NO EMAIL: [ " . $emailRecipientName . " - ID: $recipientId ]');</script>";
             $logMessage = "NO EMAIL: $emailRecipientName - ID: $recipientId";
             write_log_delfin($logMessage);
@@ -532,7 +532,7 @@ function combine_all_letters_into_one_pdf_delfin($baseDir, $templateFile, $times
     echo "<script>
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('downloadLinkMsg').outerHTML = ` 
-                <br /><a href='" . $combinedFile . "' download>Download PDF for printing for those who require a letter or for those whose email failed to send</a><br />
+                <a href='" . $combinedFile . "' download>Download PDF for printing for those who require a letter or for those whose email failed to send</a>
              `
         });
     </script>";     // yes this allows me to overwrite a span and let it appear before the "error" list

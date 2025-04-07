@@ -586,18 +586,34 @@ tbody tr:nth-child(3n+3) {
 .batch-job-wrapper * {
   font-size: 1.251rem;
 }
+.batch-job-wrapper h2 {
+  margin-bottom: 12px;
+  font-size: 1.555rem;
+  margin-left: 5px;
+}
+.batch-job-wrapper a {
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+.batch-job-wrapper a:visited {
+  color: #B0B0B0;
+}
+.batch-job-wrapper a:active {
+  color: #1CAFB4;
+}
 .batch-job-wrapper div {
   background-color: rgba(240, 240, 240, 0.251);
-  text-align: left !important;
+  text-align: left;
   display: flex;
   flex-direction: column;
+  padding: 5px;
+  border-radius: 25px;
+  border: 1px rgba(15, 15, 15, 0.251);
 }
 .batch-job-wrapper div span {
   font-size: 1.251rem;
   display: block;
-  margin-left: 0px !important;
   padding: 5px;
-  border-radius: 5px;
-  text-align: center;
+  text-align: left;
   justify-content: center;
 }/*# sourceMappingURL=main.css.map */
