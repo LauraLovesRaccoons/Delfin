@@ -24,6 +24,7 @@ if (isset($_SESSION['selectedList'])) {
 require 'header.html';
 
 echo '<div class="general-wrapper">';
+echo '<div class="file_upload-wrapper">';
 
 
 if (isset($_POST['submit_button'])) {
@@ -93,8 +94,10 @@ email_or_letter_mode_delfin();  // this shows the current mode
     <br />
   </form>
   <!-- <br /> -->
-  <strong>This might take a while...</strong><br />
-  <em>Keep it below 20MB or else!</em><br />
+  <div>
+    <strong>This might take a while...</strong><br />
+    <em>Keep it below 20MB or else!</em><br />
+  </div>
   <br />
   <?php
   if (isset($_SESSION['letter_required'])) {
@@ -109,6 +112,7 @@ email_or_letter_mode_delfin();  // this shows the current mode
 
 <!-- mode switcher is now handled in the php function -->
 
+</div>
 </div>
 
 <!-- loading animation -->
