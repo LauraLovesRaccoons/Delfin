@@ -302,6 +302,7 @@ tbody tr:nth-child(3n+3) {
   border: 1px solid #010101;
   border-radius: 15px;
   padding: 5px;
+  margin-left: 1px !important;
 }
 .function-mode-switcher h2 {
   font-family: Georgia, "Times New Roman", Times, serif;
