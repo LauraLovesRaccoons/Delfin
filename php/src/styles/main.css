@@ -405,6 +405,7 @@ tbody tr:nth-child(3n+3) {
   border: 1px solid #010101;
   padding: 15px;
   border-radius: 25px;
+  background-color: rgba(251, 251, 251, 0.251);
 }
 .support_page-wrapper * {
   margin-bottom: 5px;
