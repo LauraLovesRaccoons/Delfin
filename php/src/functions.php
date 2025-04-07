@@ -320,8 +320,8 @@ function upload_pdf_delfin()
     echo '<div class="function-file-upload-error-messages">';   // allows css styling
     // personalizes message based on letter and email mode ; OH? and it makes it one simple echo $var instead of you know what ...
     $generealErrorMessage = isset($_SESSION['letter_required'])
-        ? "<br /><h2 style='color:rgb(250, 45, 20);'>ERROR! No Letters Parsed! More Info Just Below: </h2>"
-        : "<br /><h2 style='color:rgb(250, 45, 20);'>ERROR! No Emails Sent! More Info Just Below: </h2>";
+        ? "<h2>ERROR! No Letters Parsed! More Info Just Below: </h2>"
+        : "<h2>ERROR! No Emails Sent! More Info Just Below: </h2>";
 
     if (empty($_FILES['fileToUpload']['name'])) {
         echo $generealErrorMessage;
@@ -373,8 +373,8 @@ function upload_docX_delfin()
     echo '<div class="function-file-upload-error-messages">';   // allows css styling
     // personalizes message based on letter and email mode ; OH? and it makes it one simple echo $var instead of you know what ...
     $generealErrorMessage = isset($_SESSION['letter_required'])
-        ? "<br /><h2 style='color:rgb(250, 45, 20);'>ERROR! No Letters Parsed! More Info Just Below: </h2>"
-        : "<br /><h2 style='color:rgb(250, 45, 20);'>ERROR! No Emails Sent! More Info Just Below: </h2>";
+        ? "<h2>ERROR! No Letters Parsed! More Info Just Below: </h2>"
+        : "<h2>ERROR! No Emails Sent! More Info Just Below: </h2>";
 
     if (empty($_FILES['fileToUpload']['name'])) {
         echo $generealErrorMessage;

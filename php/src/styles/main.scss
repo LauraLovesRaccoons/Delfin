@@ -229,6 +229,7 @@ tbody tr:nth-child(3n + 3) {
   font-size: 1.555rem;
   text-decoration: underline;
   margin-top: 8px;
+  margin-bottom: 2px;
 }
 
 //
@@ -360,14 +361,16 @@ tbody tr:nth-child(3n + 3) {
     color: #010101;
     background-color: rgba($color: #f0f0f0, $alpha: 1);
   }
-  // 
-  // margin-left: 5px;
-  // padding: 15px;
+  //
+  margin-left: 1px !important; //? this overwrites everything, yes i somehow am off by a single pixel
 }
 
 // styling of file upload error messages
 .function-file-upload-error-messages {
-  margin-left: 5px;
+  margin-left: 1px !important; //? this overwrites everything, yes i somehow am off by a single pixel
+  h2 {
+    color: rgb(250, 45, 20);
+  }
 }
 
 // file upload article
@@ -377,9 +380,11 @@ tbody tr:nth-child(3n + 3) {
   padding-left: 5px;
   h3 {
     font-size: 2rem;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
     margin-left: -5px;
     padding-left: 0px;
+    margin-top: -6px;
+    padding-left: 10px;
   }
 }
 
@@ -439,6 +444,9 @@ tbody tr:nth-child(3n + 3) {
 
 .index_header {
   font-size: 2rem;
+  margin-bottom: -10px;
+  color: #0F0F0F;
+  letter-spacing: 1px;
 }
 
 .index_login {
@@ -588,8 +596,9 @@ tbody tr:nth-child(3n + 3) {
     border-radius: 5px;
     padding: 5px;
     margin: -5px; // I need to to substract the padding to keep everything aligned
-    margin-top: 5px;
+    margin-top: 10px;
     margin-bottom: 5px;
+    padding-left: 10px;
   }
 }
 
@@ -600,7 +609,36 @@ tbody tr:nth-child(3n + 3) {
   margin: -5px; // I need to to substract the padding to keep everything aligned
   margin-top: 5px;
   margin-bottom: 5px;
-  background-color: rgba($color: #958E8E, $alpha: 0.251);
+  background-color: rgba($color: #958e8e, $alpha: 0.251);
+  padding-left: 10px;
+  // 
+  input[type="file"], input[type="submit"] {
+    background-color: #EBE0EF;
+    border-radius: 10px;
+    padding: 5px;
+    margin-top: 6px;
+    border: 1px solid rgba($color: #FFFFFF, $alpha: 0.151);
+  }
+  input[type="file"]:hover, input[type="submit"]:hover {
+    cursor: pointer;
+    background-color: #FF553D;
+  }
+  input[type="text"] {
+    background-color: #F0F0F0;
+    color: #000000;
+    padding: 2px;
+    border-radius: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    padding-left: 5px;
+    border: 1px solid rgba($color: #FFFFFF, $alpha: 0.151);
+  }
+  input[type="submit"]:hover {
+    background-color: #81EC1E;
+  }
+  input[type="text"]:hover {
+    background-color: #FFFFFF;
+  }
 }
 
 

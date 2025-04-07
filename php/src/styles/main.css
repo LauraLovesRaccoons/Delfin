@@ -189,6 +189,7 @@ tbody tr:nth-child(3n+3) {
   font-size: 1.555rem;
   text-decoration: underline;
   margin-top: 8px;
+  margin-bottom: 2px;
 }
 
 .general-wrapper {
@@ -302,6 +303,7 @@ tbody tr:nth-child(3n+3) {
   border: 1px solid #010101;
   border-radius: 15px;
   padding: 5px;
+  margin-left: 1px !important;
 }
 .function-mode-switcher h2 {
   font-family: Georgia, "Times New Roman", Times, serif;
@@ -319,7 +321,10 @@ tbody tr:nth-child(3n+3) {
 }
 
 .function-file-upload-error-messages {
-  margin-left: 5px;
+  margin-left: 1px !important;
+}
+.function-file-upload-error-messages h2 {
+  color: rgb(250, 45, 20);
 }
 
 .upload-file-form-wrapper {
@@ -328,9 +333,11 @@ tbody tr:nth-child(3n+3) {
 }
 .upload-file-form-wrapper h3 {
   font-size: 2rem;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
   margin-left: -5px;
   padding-left: 0px;
+  margin-top: -6px;
+  padding-left: 10px;
 }
 
 .editButton,
@@ -384,6 +391,9 @@ tbody tr:nth-child(3n+3) {
 
 .index_header {
   font-size: 2rem;
+  margin-bottom: -10px;
+  color: #0F0F0F;
+  letter-spacing: 1px;
 }
 
 .index_login {
@@ -524,8 +534,9 @@ tbody tr:nth-child(3n+3) {
   border-radius: 5px;
   padding: 5px;
   margin: -5px;
-  margin-top: 5px;
+  margin-top: 10px;
   margin-bottom: 5px;
+  padding-left: 10px;
 }
 
 #heavyFormSubmission {
@@ -536,4 +547,32 @@ tbody tr:nth-child(3n+3) {
   margin-top: 5px;
   margin-bottom: 5px;
   background-color: rgba(149, 142, 142, 0.251);
+  padding-left: 10px;
+}
+#heavyFormSubmission input[type=file], #heavyFormSubmission input[type=submit] {
+  background-color: #EBE0EF;
+  border-radius: 10px;
+  padding: 5px;
+  margin-top: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.151);
+}
+#heavyFormSubmission input[type=file]:hover, #heavyFormSubmission input[type=submit]:hover {
+  cursor: pointer;
+  background-color: #FF553D;
+}
+#heavyFormSubmission input[type=text] {
+  background-color: #F0F0F0;
+  color: #000000;
+  padding: 2px;
+  border-radius: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  padding-left: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.151);
+}
+#heavyFormSubmission input[type=submit]:hover {
+  background-color: #81EC1E;
+}
+#heavyFormSubmission input[type=text]:hover {
+  background-color: #FFFFFF;
 }/*# sourceMappingURL=main.css.map */

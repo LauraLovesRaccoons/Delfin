@@ -27,16 +27,6 @@ echo '<div class="general-wrapper">';
 echo '<div class="file_upload-wrapper">';
 
 
-if (isset($_POST['submit_button'])) {
-  // store entered text or set default one from the env file  // overkill since the default env message is also set on the next page
-  $emailSubject = isset($_POST['email_subject']) && $_POST['email_subject'] !== '' ? $_POST['email_subject'] : getenv('DEFAULT_EMAIL_SUBJECT');
-  $_SESSION['emailSubject'] = $emailSubject;
-  $emailBody = isset($_POST['email_body']) && $_POST['email_body'] !== '' ? $_POST['email_body'] : getenv('DEFAULT_EMAIL_BODY');
-  $_SESSION['emailBody'] = $emailBody;
-  upload_docX_delfin();
-  // the animation is handled much letter   // much letter ftw 
-}
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (isset($_POST['enable_letter_mode'])) {
     $_SESSION['letter_required'] = true;    // this is the easiest option to add this feature
@@ -53,6 +43,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // 
 email_or_letter_mode_delfin();  // this shows the current mode
 // 
+
+
+
+if (isset($_POST['submit_button'])) {
+  // store entered text or set default one from the env file  // overkill since the default env message is also set on the next page
+  $emailSubject = isset($_POST['email_subject']) && $_POST['email_subject'] !== '' ? $_POST['email_subject'] : getenv('DEFAULT_EMAIL_SUBJECT');
+  $_SESSION['emailSubject'] = $emailSubject;
+  $emailBody = isset($_POST['email_body']) && $_POST['email_body'] !== '' ? $_POST['email_body'] : getenv('DEFAULT_EMAIL_BODY');
+  $_SESSION['emailBody'] = $emailBody;
+  upload_docX_delfin();
+  // the animation is handled much letter   // much letter ftw 
+}
+
+
 
 ?>
 
