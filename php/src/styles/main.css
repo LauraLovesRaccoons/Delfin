@@ -337,6 +337,7 @@ tbody tr:nth-child(3n+3) {
   margin-left: -5px;
   padding-left: 0px;
   margin-top: -6px;
+  padding-left: 10px;
 }
 
 .editButton,
@@ -532,6 +533,7 @@ tbody tr:nth-child(3n+3) {
   margin: -5px;
   margin-top: 10px;
   margin-bottom: 5px;
+  padding-left: 10px;
 }
 
 #heavyFormSubmission {
@@ -542,4 +544,5 @@ tbody tr:nth-child(3n+3) {
   margin-top: 5px;
   margin-bottom: 5px;
   background-color: rgba(149, 142, 142, 0.251);
+  padding-left: 10px;
 }/*# sourceMappingURL=main.css.map */
