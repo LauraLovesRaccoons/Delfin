@@ -18,6 +18,7 @@ body {
 header {
   text-align: center;
   // margin: auto;
+  margin-top: 5px;
   ul {
     list-style-type: none;
     display: flex;
@@ -39,6 +40,7 @@ header {
   }
   hr {
     width: 100vw;
+    margin-top: 2px;
   }
 }
 
@@ -503,6 +505,9 @@ tbody tr:nth-child(3n + 3) {
     }
     input[type="submit"] {
       color: rgb(19, 19, 19);
+    }
+    input[type="submit"]:hover {
+      cursor: pointer;
     }
   }
   strong {
