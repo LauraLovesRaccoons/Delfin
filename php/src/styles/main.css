@@ -189,6 +189,7 @@ tbody tr:nth-child(3n+3) {
   font-size: 1.555rem;
   text-decoration: underline;
   margin-top: 8px;
+  margin-bottom: 2px;
 }
 
 .general-wrapper {
@@ -320,7 +321,10 @@ tbody tr:nth-child(3n+3) {
 }
 
 .function-file-upload-error-messages {
-  margin-left: 5px;
+  margin-left: 1px !important;
+}
+.function-file-upload-error-messages h2 {
+  color: rgb(250, 45, 20);
 }
 
 .upload-file-form-wrapper {
@@ -329,7 +333,7 @@ tbody tr:nth-child(3n+3) {
 }
 .upload-file-form-wrapper h3 {
   font-size: 2rem;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
   margin-left: -5px;
   padding-left: 0px;
 }

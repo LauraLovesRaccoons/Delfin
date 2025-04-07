@@ -229,6 +229,7 @@ tbody tr:nth-child(3n + 3) {
   font-size: 1.555rem;
   text-decoration: underline;
   margin-top: 8px;
+  margin-bottom: 2px;
 }
 
 //
@@ -366,7 +367,10 @@ tbody tr:nth-child(3n + 3) {
 
 // styling of file upload error messages
 .function-file-upload-error-messages {
-  margin-left: 5px;
+  margin-left: 1px !important;  //? this overwrites everything, yes i somehow am off by a single pixel
+  h2 {
+    color:rgb(250, 45, 20);
+  }
 }
 
 // file upload article
@@ -376,7 +380,7 @@ tbody tr:nth-child(3n + 3) {
   padding-left: 5px;
   h3 {
     font-size: 2rem;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
     margin-left: -5px;
     padding-left: 0px;
   }
