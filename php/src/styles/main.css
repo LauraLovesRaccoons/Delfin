@@ -13,6 +13,7 @@ body {
 
 header {
   text-align: center;
+  margin-top: 5px;
 }
 header ul {
   list-style-type: none;
@@ -34,6 +35,7 @@ header ul li a i {
 }
 header hr {
   width: 100vw;
+  margin-top: 2px;
 }
 
 footer a {
@@ -351,4 +353,113 @@ tbody tr:nth-child(3n+3) {
   display: none;
   background-color: rgba(232, 227, 233, 0.95);
   color: #0F0F0F;
+}
+
+.other-general-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 5px;
+}
+
+.index_login, .index_support, .index_header {
+  display: block;
+  margin: 1px;
+  text-decoration: none;
+  color: inherit;
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 1.5rem;
+  text-align: center;
+  width: 379px;
+}
+
+.index_header {
+  font-size: 2rem;
+}
+
+.index_login {
+  background-color: rgba(255, 165, 0, 0.75);
+}
+
+.index_login:hover {
+  background-color: rgba(255, 165, 100, 0.95);
+}
+
+.index_support {
+  background-color: rgba(178, 192, 51, 0.95);
+}
+
+.index_support:hover {
+  background-color: rgba(178, 192, 151, 0.75);
+}
+
+.support_page-wrapper {
+  width: 911px;
+  margin: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #010101;
+  padding: 15px;
+  border-radius: 25px;
+}
+.support_page-wrapper * {
+  margin-bottom: 5px;
+}
+.support_page-wrapper div {
+  margin-bottom: 15px;
+  margin-top: 5px;
+}
+.support_page-wrapper h1 {
+  text-align: center;
+  margin-top: 1px;
+  margin-bottom: 10px;
+}
+.support_page-wrapper article {
+  text-align: center;
+  justify-content: center;
+  margin-right: 1px;
+}
+.support_page-wrapper article a, .support_page-wrapper article a:visited, .support_page-wrapper article a:hover, .support_page-wrapper article a:active {
+  color: rgb(20, 62, 201);
+}
+.support_page-wrapper article strong {
+  text-decoration: none;
+}
+.support_page-wrapper .generate-hash-form {
+  align-items: center;
+  justify-content: center;
+  margin-top: -15px;
+  display: flex;
+  gap: 15px;
+}
+.support_page-wrapper .generate-hash-form * {
+  padding: 15px;
+  border-radius: 15px;
+  border: none;
+  background-color: rgba(153, 155, 229, 0.751);
+  color: #FEFEFE;
+  text-align: left;
+}
+.support_page-wrapper .generate-hash-form label {
+  background-color: rgba(255, 255, 255, 0);
+}
+.support_page-wrapper .generate-hash-form input[type=username] {
+  color: rgb(15, 15, 15);
+}
+.support_page-wrapper .generate-hash-form input[type=submit] {
+  color: rgb(19, 19, 19);
+}
+.support_page-wrapper .generate-hash-form input[type=submit]:hover {
+  cursor: pointer;
+}
+.support_page-wrapper strong {
+  color: #222222;
+  -webkit-text-decoration: dotted underline;
+          text-decoration: dotted underline;
+}
+.support_page-wrapper hr {
+  margin: auto -15px;
 }/*# sourceMappingURL=main.css.map */

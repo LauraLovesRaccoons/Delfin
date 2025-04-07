@@ -18,6 +18,7 @@ body {
 header {
   text-align: center;
   // margin: auto;
+  margin-top: 5px;
   ul {
     list-style-type: none;
     display: flex;
@@ -39,6 +40,7 @@ header {
   }
   hr {
     width: 100vw;
+    margin-top: 2px;
   }
 }
 
@@ -231,6 +233,7 @@ tbody tr:nth-child(3n + 3) {
 .general-wrapper {
   margin: 10px;
   padding: 2px;
+  // 
 }
 
 // delfin.php button styling -> will be a bit like divs
@@ -399,6 +402,124 @@ tbody tr:nth-child(3n + 3) {
   // cursor: not-allowed;
   background-color: rgba(232, 227, 233, 0.95);
   color: #0F0F0F;
+}
+
+
+.other-general-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 5px;
+}
+
+// index.php
+
+.index_login, .index_support, .index_header {
+  display: block;
+  margin: 1px;
+  text-decoration: none;
+  color: inherit;
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 1.5rem;
+  text-align: center;
+  // background-color: rgba(110, 235, 155, 0.99);
+  width: 379px;
+}
+
+.index_header {
+  font-size: 2rem;
+}
+
+.index_login {
+  background-color: rgba(255, 165, 0, 0.75);
+}
+.index_login:hover {
+  background-color: rgba(255, 165, 100, 0.95);
+}
+
+.index_support {
+  background-color: rgba(178, 192, 51, 0.95);
+}
+.index_support:hover {
+  background-color: rgba(178, 192, 151, 0.75);
+}
+
+
+// generate_hash.php
+.support_page-wrapper {
+  // display: flex;
+  // margin: auto;
+  // justify-content: center;
+  // align-items: center;
+  // flex-direction: column;
+  width: 911px;
+  margin: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  // text-align: center;
+  * {
+    margin-bottom: 5px; // this targets any&all element in here
+  }
+  div {
+    margin-bottom: 15px;
+    margin-top: 5px;
+  }
+  h1 {
+    text-align: center;
+    margin-top: 1px;
+    margin-bottom: 10px;
+  }
+  article {
+    text-align: center;
+    justify-content: center;
+    margin-right: 1px;
+    a, a:visited, a:hover, a:active {
+      color: rgb(20, 62, 201);
+    }
+    strong {
+      text-decoration: none;
+    }
+  }
+  .generate-hash-form {
+    align-items: center;
+    justify-content: center;
+    margin-top: -15px;
+    display: flex;
+    gap: 15px;
+    * {
+      padding: 15px;
+      border-radius: 15px;
+      border: none;
+      background-color: rgba(153, 155, 229, 0.751);
+      color: #FEFEFE;
+      text-align: left;
+    }
+    label {
+      background-color: rgba($color: #ffffff, $alpha: 0.000);
+    }
+    input[type="username"] {
+      color: rgb(15, 15, 15);
+    }
+    input[type="submit"] {
+      color: rgb(19, 19, 19);
+    }
+    input[type="submit"]:hover {
+      cursor: pointer;
+    }
+  }
+  strong {
+    color: #222222;
+    text-decoration: dotted underline;
+  }
+  border: 1px solid #010101;
+  padding: 15px;
+  border-radius: 25px;
+  hr {
+    margin: auto -15px;
+  }
 }
 
 
