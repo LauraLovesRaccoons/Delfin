@@ -4,21 +4,21 @@
 
 
 <div class="general-wrapper">
+    <div class="other-general-wrapper">
+
+
+        <h4 class="index_header"><?= getenv('APP_NAME'); ?></h4> <!-- this one must read from .env since functions.php isn't loaded here -->
+
+
+        <a href="login.php" class="index_login">Culture et Communications</a>
 
 
 
+        <a href="generate_hash.php" class="index_support">Support</a>
 
 
-<br /><a href="login.php">LOGIN PAGE</a><br />
-<br />
 
-
-<a href="generate_hash.php">Generate Hash</a><br />
-
-<br />
-<h4><?= getenv('APP_NAME'); ?></h4><br />   <!-- this one must read from .env since functions.php isn't loaded here -->
-
-
+    </div>
 </div>
 
 <!-- Import a file -> stop the script if problem return an error -->
@@ -28,6 +28,7 @@
 <?php
 
 ?>
+
 
 
 
@@ -119,4 +120,3 @@
 ⠀⠀⠸⣆⣀⣀⣀⣀⡠⠤⠒⠋⠁⠀⠀⠉⠙⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
  -->
-
