@@ -494,11 +494,11 @@ function letter_required_delfin($recipientId)
 function combine_all_letters_into_one_pdf_delfin($baseDir, $templateFile, $timestamp)
 {
     if (!isset($_SESSION['letter_id_array'])) {
-        exit;   // no point in continuing
+        return; // no point in continuing
     }
     if (empty($_SESSION['letter_id_array'])) {
         unset($_SESSION['letter_id_array']);    // cleanup , just to be sure
-        exit;
+        return; // 
     }
     // go on
     $targetFName = str_replace($baseDir, '', $templateFile);    // gets just the reference file with extension
