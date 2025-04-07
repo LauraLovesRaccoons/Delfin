@@ -465,10 +465,55 @@ tbody tr:nth-child(3n + 3) {
     margin-bottom: 15px;
     margin-top: 5px;
   }
+  h1 {
+    text-align: center;
+    margin-top: 1px;
+    margin-bottom: 10px;
+  }
   article {
     text-align: center;
     justify-content: center;
     margin-right: 1px;
+    a, a:visited, a:hover, a:active {
+      color: rgb(20, 62, 201);
+    }
+    strong {
+      text-decoration: none;
+    }
+  }
+  .generate-hash-form {
+    align-items: center;
+    justify-content: center;
+    margin-top: -15px;
+    display: flex;
+    gap: 15px;
+    * {
+      padding: 15px;
+      border-radius: 15px;
+      border: none;
+      background-color: rgba(153, 155, 229, 0.751);
+      color: #FEFEFE;
+      text-align: left;
+    }
+    label {
+      background-color: rgba($color: #ffffff, $alpha: 0.000);
+    }
+    input[type="username"] {
+      color: rgb(15, 15, 15);
+    }
+    input[type="submit"] {
+      color: rgb(19, 19, 19);
+    }
+  }
+  strong {
+    color: #222222;
+    text-decoration: dotted underline;
+  }
+  border: 1px solid #010101;
+  padding: 15px;
+  border-radius: 25px;
+  hr {
+    margin: auto -15px;
   }
 }
 
