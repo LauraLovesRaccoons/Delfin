@@ -49,7 +49,7 @@ if (isset($_POST['submit_button'])) {
 </form>
 
 
-<div class="spacer"></div>
+<!-- <div class="spacer"></div> -->
 <!-- <hr /> -->
 
 
