@@ -125,7 +125,7 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
 {
     if (strpos($emailRecipient, '@') === false || strlen($emailRecipient) < 3) {   // just checking if an @ is present to make the code faster ; and absolute minimum possible length
         if (!isset($_SESSION['letter_required'])) {     // no need to display it on the webpage if it's a freakin letter
-            echo "NO EMAIL: <strong>$emailRecipientName</strong> - ID: <strong>$recipientId</strong><br />";
+            echo "<span>NO EMAIL: <strong>$emailRecipientName</strong> - ID: <strong>$recipientId</strong><span>";
             echo "<script>console.log('NO EMAIL: [ " . $emailRecipientName . " - ID: $recipientId ]');</script>";
             $logMessage = "NO EMAIL: $emailRecipientName - ID: $recipientId";
             write_log_delfin($logMessage);
@@ -217,7 +217,7 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}<br />";
             $mailErrorInfo = json_encode($mail->ErrorInfo);         // made it a proper string for console logging
             echo "<script>console.log($mailErrorInfo);</script>";  // 
-            echo "Message failed to send to: <strong>$emailRecipientName</strong> --- <strong>$emailRecipient</strong> - ID: <strong>$recipientId</strong><br />";
+            echo "<span>Message failed to send to: <strong>$emailRecipientName</strong> --- <strong>$emailRecipient</strong> - ID: <strong>$recipientId</strong></span>";
             echo "<script>console.log('Message failed to send to: [ " . $emailRecipientName . " - " . $emailRecipient . " - ID: $recipientId ]');</script>";
             // echo "<h3>The conosole.log is niche to have but it should write smth into the php logger</h3>";     // conosole FTW -> niche
             $logMessage = "Message failed to send to: $emailRecipientName --- $emailRecipient - ID: $recipientId";

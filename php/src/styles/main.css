@@ -575,4 +575,29 @@ tbody tr:nth-child(3n+3) {
 }
 #heavyFormSubmission input[type=text]:hover {
   background-color: #FFFFFF;
+}
+
+.batch-job-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 251px;
+  font-size: 0.999rem;
+}
+.batch-job-wrapper * {
+  font-size: 1.251rem;
+}
+.batch-job-wrapper div {
+  background-color: rgba(240, 240, 240, 0.251);
+  text-align: left !important;
+  display: flex;
+  flex-direction: column;
+}
+.batch-job-wrapper div span {
+  font-size: 1.251rem;
+  display: block;
+  margin-left: 0px !important;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+  justify-content: center;
 }/*# sourceMappingURL=main.css.map */

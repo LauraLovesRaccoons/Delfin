@@ -642,4 +642,41 @@ tbody tr:nth-child(3n + 3) {
 }
 
 
+// success msg
+.batch-job-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 251px;
+  font-size: 0.999rem;
+  * {
+    // margin-left: 251px;
+    font-size: 1.251rem;
+    // margin: auto;
+    // margin: 0px !important; //? 
+  }
+  div {
+    background-color: rgba($color: #F0F0F0, $alpha: 0.251);
+    text-align: left !important;
+    // display: block;
+    // justify-content: left;
+    display: flex;
+    flex-direction: column;
+    // margin-left: 0px !important;
+    // margin: 0px;
+    span {
+      // all:unset;  //? 
+      // display: inline-block;
+      font-size: 1.251rem;
+      display: block;
+      margin-left: 0px !important;  //? the previous one already forces a margin
+      // margin-left: 5px;
+      padding: 5px;
+      border-radius: 5px;
+      text-align: center;
+      justify-content: center;
+    }
+  }
+}
+
+
 
