@@ -168,15 +168,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <div class="right-side-form">
                 <form method="POST">
                     <label for="submit"></label>
-                    <input type="hidden" name="selectedList" value="temp">
-                    <button type="submit" class="list-button">List temp</button>
-                    <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
-                </form>
-
-                <!-- <form method="POST">
-                    <label for="submit"></label>
-                    <input type="hidden" name="selectedList" value="temp">
-                    <button type="submit" class="list-button">List temp</button>
+                    <input type="hidden" name="selectedList" value="guerre">
+                    <button type="submit" class="list-button">Guerre</button>
                     <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
                 </form>
 
@@ -185,7 +178,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <input type="hidden" name="selectedList" value="temp">
                     <button type="submit" class="list-button">List temp</button>
                     <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
-                </form> -->
+                </form>
+
+                <form method="POST">
+                    <label for="submit"></label>
+                    <input type="hidden" name="selectedList" value="temp_temp">
+                    <button type="submit" class="list-button">List temp temp</button>
+                    <button type="submit" name="editList" class="edit-button" value="1">Edit</button>
+                </form>
             </div>
 
         </div> <!-- don't comment this one !!! -->
