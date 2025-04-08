@@ -69,22 +69,22 @@ require 'header.html';
                     </td>
 
                     <?php foreach ($allowedColumnsText as $col): ?>
-                        <td data-cell="<?= $col ?>" class="table_text">
+                        <td data-cell="<?= $col ?>" class="table_text_add-form">
                             <input type="text" name="<?= $col ?>" />
                         </td>
                     <?php endforeach; ?>
 
                     <?php foreach ($allowedColumnsTinyint as $col): ?>
-                        <td data-cell="<?= $col ?>" class="table_tinyint">
-                            <input type="checkbox" name="<?= $col ?>" />
+                        <td data-cell="<?= $col ?>" class="table_tinyint_add-form">
+                            <input type="checkbox" name="<?= $col ?>" value="1" />  <!-- value is one if checked! -->
                         </td>
                     <?php endforeach; ?>
 
                     <td data-cell="spacer" class="spacer"></td>
 
                     <?php foreach ($approvedLists as $list): ?>
-                        <td data-cell="<?= $list ?>" class="table_tinyint">
-                            <input type="checkbox" name="<?= $list ?>" />
+                        <td data-cell="<?= $list ?>" class="table_tinyint_add-form">
+                            <input type="checkbox" name="<?= $list ?>" value="1" /> <!-- value is one if checked! -->
                         </td>
                     <?php endforeach; ?>
 
