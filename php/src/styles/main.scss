@@ -642,4 +642,50 @@ tbody tr:nth-child(3n + 3) {
 }
 
 
+// success msg
+.batch-job-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 251px;
+  font-size: 0.999rem;
+  * {
+    font-size: 1.251rem;
+  }
+  h2 {
+    margin-bottom: 12px;
+    font-size: 1.555rem;
+    margin-left: 5px;
+  }
+  a {
+    margin-left: 5px;
+    margin-bottom: 10px;
+  }
+  a:visited {
+    color: #B0B0B0;
+  }
+  a:active {
+    color: #1CAFB4;
+  }
+  div {
+    background-color: rgba($color: #F0F0F0, $alpha: 0.251);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    // display: inline-block;
+    margin-right: auto;   // centeres the flex or inline-block
+    padding: 5px;
+    border-radius: 25px;
+    border: 1px rgba($color: #0F0F0F, $alpha: 0.251);
+    span {
+      font-size: 1.251rem;
+      display: block;
+      // margin-left: 5px;
+      padding: 5px;
+      text-align: left;
+      justify-content: center;
+    }
+  }
+}
+
+
 
