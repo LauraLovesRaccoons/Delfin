@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $db = db_connect_delfin();
 
         // $query = "SELECT id, allocation, nom, nom2, fonction, adresse1, adresse2, allocationSpeciale, email, nomCouponReponse, letter_required FROM Users WHERE $selectedList = ?";
-        $queryResult = query_grab_user_list($selectedList, $db);    // $queryResult is self explanatory
+        $queryResult = query_grab_user_list_delfin($selectedList, $db);    // $queryResult is self explanatory
 
         // 
         $grabbedUsers = turn_fetched_users_into_array_delfin($queryResult);     // the return from the function NEEDS to be saved into a variable

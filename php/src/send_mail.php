@@ -135,7 +135,7 @@ include 'header.html';  //? this code should never cancel
                 $inputDocX = $outputDocX;   // easier to read code
                 $outputPdf = preg_replace('/\.docx$/i', '.pdf', $inputDocX);    // changes .docx to .pdf ; since the tool doesn't dew it
                 $inputDocXDir = $outputDocXDir; // easier to read code
-                convertDocXToPdf($inputDocX, $outputPdf, $inputDocXDir);
+                convertDocXToPdf_delfin($inputDocX, $outputPdf, $inputDocXDir);
                 //? deleting the "temporary" filled in docX files to only have the pdf in the directory
                 if (file_exists($inputDocX)) {
                     unlink($inputDocX);     //? uncomment this if you need to debug smth

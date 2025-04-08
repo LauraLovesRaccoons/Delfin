@@ -442,7 +442,7 @@ function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
 };
 
 // convert docX to pdf (libre office plugin)
-function convertDocXToPdf($inputDocX, $outputPdf, $inputDocXDir)
+function convertDocXToPdf_delfin($inputDocX, $outputPdf, $inputDocXDir)
 {
     // $inputDocXDir;   // 
     // $recipientId = $recipientUser['recipientId'];
@@ -591,7 +591,7 @@ function cleanup_session_vars_delfin()
 
 // query stuff
 
-function query_grab_user_list($selectedList, $db)
+function query_grab_user_list_delfin($selectedList, $db)
 {
     $query = "SELECT * FROM Users WHERE $selectedList = ?";     //? I just grab everything for possible future expansions
     $stmt = $db->prepare($query);

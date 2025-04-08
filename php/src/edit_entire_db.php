@@ -15,7 +15,7 @@ session_checker_delfin();
 
 $db = db_connect_delfin();
 
-// $queryResult = query_grab_user_list($selectedList, $db);
+// $queryResult = query_grab_user_list_delfin($selectedList, $db);
 
 
 require 'header.html';
