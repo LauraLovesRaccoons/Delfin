@@ -679,4 +679,8 @@ tbody tr:nth-child(3n+3) {
   .edit-list-table-wrapper {
     padding-left: 1100px;
   }
+}
+.padding-for-table-bottom-horizontal-scrollbar {
+  display: block;
+  padding-bottom: 5px;
 }/*# sourceMappingURL=main.css.map */

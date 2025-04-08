@@ -7,16 +7,15 @@ session_checker_delfin();
 
 
 // functions
-function deleteUser_delfin($id, $selectedList)
+function deleteUser_delfin($id)
 {
     $db = db_connect_delfin();
-    $fieldValue = 0;    // tinyint 0 means false
 
-    $query = "UPDATE Users SET $selectedList = ? WHERE id = ?";
+    $query = "DELETE FROM Users WHERE id = ?";
     $stmt = $db->prepare($query);
 
 
-    $stmt->bind_param("ii", $fieldValue, $id);
+    $stmt->bind_param("i", $id);
     $result = $stmt->execute();
 
     $stmt->close();
@@ -28,18 +27,13 @@ function deleteUser_delfin($id, $selectedList)
 
 // AJAX
 
-// KICK
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'], $_POST['selectedList'])) {
-    $id = (int) $_POST['id'];   // filters everything and turns it into an integer and if no numbers are found it defaults to 0
-    $selectedList = trim($_POST['selectedList']);
-    if (!in_array($selectedList, approved_lists_delfin())) {
-        exit;
-    };
+// DELETE
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
+    $id = (int) $_POST['id'];   // Sanitize the user ID
+
+    $result = deleteUser_delfin($id);
+
     exit;
-};
-
-
-
+}
 
 ?>
-
