@@ -1,6 +1,9 @@
 const tinyintSelector = tinyintColumns.map(col => `td[data-cell="${col}"]`).join(', '); // this passes the allowed data-cells into an array
+const approvedListsSelector = approvedListsColumns.map(col => `td[data-cell="${col}"]`).join(', '); // this passes the allowed data-cells into an array
+const combinedSelectorTinyInt = `${tinyintSelector}, ${approvedListsSelector}`
+console.log()
 // adds these to the selector
-document.querySelectorAll(tinyintSelector).forEach(td => {
+document.querySelectorAll(combinedSelectorTinyInt).forEach(td => {
     td.addEventListener('dblclick', function() {
         // yes I copied over originalText from the previous function
         let originalText = this.textContent.trim();
@@ -15,6 +18,9 @@ document.querySelectorAll(tinyintSelector).forEach(td => {
             newSymbol = newValue === '1' ? '✅' : '​';
         } else if (columnName === 'duplicate') {
             newSymbol = newValue === '1' ? '⚠' : '​';
+        } else {
+            // symbols for the list selection
+            newSymbol = newValue === '1' ? '✅' : '❌';
         }
 
         // ajax update tinyint

@@ -51,7 +51,7 @@ require 'header.html';
                     <!-- Dynamically add names for the lists -->
                     <?php $approvedLists = approved_lists_delfin(); ?> <!-- calls the function with the list names --> <!-- also used later -->
                     <?php foreach ($approvedLists as $list): ?>
-                        <th><?= htmlspecialchars(str_replace('_', ' ', ucfirst($list))) ?></th>
+                        <th><?= htmlspecialchars(str_replace('_', ' ', ucfirst($list))) ?></th> <!-- replaces the _ with a space abd capitalises the first Letter -->
                     <?php endforeach; ?>
                     <th class="spacer"></th>
                     <th>id</th>
@@ -124,6 +124,7 @@ require 'header.html';
     const textColumns = <?php echo json_encode($allowedColumnsText); ?>; // loads the array from the php global var as json
     // edit tinyint
     const tinyintColumns = <?php echo json_encode($allowedColumnsTinyint); ?>; // loads the array from the php global var as json
+    const approvedListsColumns = <?php echo json_encode($approvedLists); ?>; // loads the array from the php global var as json
     // delete script
     // const selectedList = ; // i need to clean this a bit
 </script>
