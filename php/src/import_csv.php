@@ -17,6 +17,3 @@ exit();
 </div>
 
 <?php require 'footer.html'; ?>
-
-
-

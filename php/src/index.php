@@ -25,27 +25,6 @@
 <?php require 'footer.html'; ?>
 <!--  Import a file -> warning of issue, script continues to run -->
 
-<?php
-
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -65,6 +44,24 @@
 
 
 <!-- scroll down ;) -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

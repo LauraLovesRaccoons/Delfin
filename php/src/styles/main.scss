@@ -688,4 +688,72 @@ tbody tr:nth-child(3n + 3) {
 }
 
 
+// entire db table
+// i inherit some stuff from the other table wrapper
+.entire-db-table-wrapper {
+  // display: block;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+
+// db and list editing for different screen sizes
+@media screen and (min-width: 2550px) {
+  .entire-db-table-wrapper {
+    padding-left: 5px;
+  }
+  .edit-list-table-wrapper {
+    padding-left: 0px;
+  }
+}
+@media screen and (max-width: 2500px) {
+  .entire-db-table-wrapper {
+    padding-left: 10px;
+  }
+  .edit-list-table-wrapper {
+    padding-left: 0px;
+  }
+}
+@media screen and (max-width: 2000px) {
+  .entire-db-table-wrapper {
+    padding-left: 250px;
+  }
+  .edit-list-table-wrapper {
+    padding-left: 0px;
+  }
+}
+@media screen and (max-width: 1600px) {
+  .entire-db-table-wrapper {
+    padding-left: 600px;
+  }
+  .edit-list-table-wrapper {
+    padding-left: 150px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .entire-db-table-wrapper {
+    padding-left: 1100px;
+  }
+  .edit-list-table-wrapper {
+    padding-left: 400px;
+  }
+}
+@media screen and (max-width: 850px) {
+  .entire-db-table-wrapper {
+    padding-left: 1360px;
+  }
+  .edit-list-table-wrapper {
+    padding-left: 650px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .entire-db-table-wrapper {
+    padding-left: 1800px;
+  }
+  .edit-list-table-wrapper {
+    padding-left: 1100px;
+  }
+}
+
+
 

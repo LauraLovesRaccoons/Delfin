@@ -442,7 +442,7 @@ function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
 };
 
 // convert docX to pdf (libre office plugin)
-function convertDocXToPdf($inputDocX, $outputPdf, $inputDocXDir)
+function convertDocXToPdf_delfin($inputDocX, $outputPdf, $inputDocXDir)
 {
     // $inputDocXDir;   // 
     // $recipientId = $recipientUser['recipientId'];
@@ -591,12 +591,17 @@ function cleanup_session_vars_delfin()
 
 // query stuff
 
-function query_grab_user_list($selectedList, $db)
+function query_grab_user_list_delfin($selectedList, $db)
 {
-    $query = "SELECT * FROM Users WHERE $selectedList = ?";     //? I just grab everything for possible future expansions
-    $stmt = $db->prepare($query);
-    $listTrue = 1;
-    $stmt->bind_param("i", $listTrue);
+    if ($selectedList === "ENTIRE DATABASE") {
+        $query = "SELECT * FROM Users";
+        $stmt = $db->prepare($query);
+    } else {
+        $query = "SELECT * FROM Users WHERE $selectedList = ?";     //? I just grab everything for possible future expansions
+        $stmt = $db->prepare($query);
+        $listTrue = 1;
+        $stmt->bind_param("i", $listTrue);
+    }
     $stmt->execute();
     $queryResult = $stmt->get_result();
     $stmt->close();         // yes
@@ -759,5 +764,3 @@ function set_batchJobAlreadyRunning_delfin()
         batchJobAlreadyRunning_delfin();    // and if this fails the page will refresh like usual
     }
 };
-
-

@@ -133,6 +133,4 @@ if (isset($_POST['submit_button'])) {
 </script>
 
 
-<?php
-require 'footer.html';
-?>
+<?php require 'footer.html'; ?>
