@@ -111,5 +111,3 @@ if (isset($_POST['submit_button'])) {
 </div>
 
 <?php require 'footer.html'; ?>
-
-
