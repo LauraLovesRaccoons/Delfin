@@ -629,4 +629,14 @@ tbody tr:nth-child(3n+3) {
 .padding-for-table-bottom-horizontal-scrollbar {
   display: block;
   padding-bottom: 5px;
+}
+
+.addUserRow .addUserForm .add-user .submitAddUser {
+  border-radius: 5px;
+}
+.addUserRow .addUserForm .add-user input[type=text] {
+  border-radius: 5px;
+}
+.addUserRow .addUserForm .add-user input[type=checkbox] {
+  border-radius: 5px;
 }/*# sourceMappingURL=main.css.map */

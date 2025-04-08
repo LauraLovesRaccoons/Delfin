@@ -59,10 +59,14 @@ require 'header.html';
             </thead>
 
             <!--  -->
-            <form class="addUserForm" method="post" action="ajax/create.php" id="addUserForm">
-                <tr class="addUserRow">
+            <tr class="addUserRow">
+                <form class="addUserForm" method="post" id="addUserForm">
 
-                    <td class="spacer" colspan="2"></td>
+                    <td class="spacer" colspan="1"></td>
+                    
+                    <td data-cell="add-user" class="add-user">
+                        <button type="button" id="submitAddUser" class="submitAddUser" title="Add user">✅</button>
+                    </td>
 
                     <?php foreach ($allowedColumnsText as $col): ?>
                         <td data-cell="<?= $col ?>" class="table_text">
@@ -86,10 +90,11 @@ require 'header.html';
 
                     <td class="spacer"></td>
                     <td data-cell="add" class="add-user">
-                        <button type="button" id="submitAddUser" class="submitAddUser" title="Add user">✅</button>
+                        <button type="button" id="submitAddUser_Omega" class="submitAddUser" title="Add user">✅</button>
                     </td>
-                </tr>
-            </form>
+                </form>
+            </tr>
+
 
             <!--  -->
 
@@ -165,6 +170,8 @@ require 'header.html';
 </script>
 
 <script src="scripts/enable_editing.js"></script>
+<!--  -->
+<script src="scripts/add_user.js"></script> <!-- No edit button needed -->
 <!--  -->
 
 
