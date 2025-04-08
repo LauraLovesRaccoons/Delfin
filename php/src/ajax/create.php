@@ -40,21 +40,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = [];
     $types = ""; // For bind_param types
 
-    // Process text fields
+    // 
+
+    // Sanitize text fields (strip tags, trim, limit length, etc.)
     foreach ($allowedColumnsText as $column) {
-        $data[$column] = isset($_POST[$column]) ? trim($_POST[$column]) : null;
+        $value = isset($_POST[$column]) ? trim($_POST[$column]) : null;
+
+        if ($value !== null) {
+            $value = trim($value);
+            $value = substr($value, 0, 250);    // varchar 255 with some wiggle room
+            $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8'); // I'm not messing around ;)
+        }
+        else {
+            $value = null;  // technically not needed since it was null before
+        }
+
+        $data[$column] = $value;
         $types .= "s";
     }
 
-    // Process tinyint fields
+    // Sanitize tinyint fields
     foreach ($allowedColumnsTinyint as $column) {
-        $data[$column] = isset($_POST[$column]) ? (int) $_POST[$column] : 0;
+        $data[$column] = isset($_POST[$column]) && $_POST[$column] === "1" ? 1 : 0;
         $types .= "i";
     }
 
-    // Process approved lists checkboxes
+    // Sanitize approved lists
     foreach (approved_lists_delfin() as $list) {
-        $data[$list] = isset($_POST[$list]) ? 1 : 0;
+        $data[$list] = isset($_POST[$list]) && $_POST[$list] === "1" ? 1 : 0;
         $types .= "i";
     }
 
@@ -62,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (createUser_delfin($data, $types)) {
         echo json_encode(["success" => true]);
     } else {
-        echo json_encode(["success" => false, "message" => "Query failed"]);    // this will be added back in js ...
+        echo json_encode(["success" => false, "message" => "Query failed"]);
     }
 
     exit;
