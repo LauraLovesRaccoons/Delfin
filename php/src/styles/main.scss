@@ -70,14 +70,15 @@ footer {
   // overflow-x: hidden;
   overflow: auto;
   max-height: 90vh;
-  display: flex;
-  justify-content: center;
+  // display: flex;
+  // justify-content: center;
   margin: 5px;
   position: relative;
   padding: 5px;
   // border: 1px solid;
   z-index: 100;
   background-color: rgba($color: #ffffff, $alpha: 0.01);
+  //
 }
 table {
   border: 1px solid;
@@ -445,7 +446,7 @@ tbody tr:nth-child(3n + 3) {
 .index_header {
   font-size: 2rem;
   margin-bottom: -10px;
-  color: #0F0F0F;
+  color: #0f0f0f;
   letter-spacing: 1px;
 }
 
@@ -611,36 +612,37 @@ tbody tr:nth-child(3n + 3) {
   margin-bottom: 5px;
   background-color: rgba($color: #958e8e, $alpha: 0.251);
   padding-left: 10px;
-  // 
-  input[type="file"], input[type="submit"] {
-    background-color: #EBE0EF;
+  //
+  input[type="file"],
+  input[type="submit"] {
+    background-color: #ebe0ef;
     border-radius: 10px;
     padding: 5px;
     margin-top: 6px;
-    border: 1px solid rgba($color: #FFFFFF, $alpha: 0.151);
+    border: 1px solid rgba($color: #ffffff, $alpha: 0.151);
   }
-  input[type="file"]:hover, input[type="submit"]:hover {
+  input[type="file"]:hover,
+  input[type="submit"]:hover {
     cursor: pointer;
-    background-color: #FF553D;
+    background-color: #ff553d;
   }
   input[type="text"] {
-    background-color: #F0F0F0;
+    background-color: #f0f0f0;
     color: #000000;
     padding: 2px;
     border-radius: 5px;
     margin-right: 5px;
     margin-top: 5px;
     padding-left: 5px;
-    border: 1px solid rgba($color: #FFFFFF, $alpha: 0.151);
+    border: 1px solid rgba($color: #ffffff, $alpha: 0.151);
   }
   input[type="submit"]:hover {
-    background-color: #81EC1E;
+    background-color: #81ec1e;
   }
   input[type="text"]:hover {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
   }
 }
-
 
 // success msg
 .batch-job-wrapper {
@@ -661,21 +663,21 @@ tbody tr:nth-child(3n + 3) {
     margin-bottom: 10px;
   }
   a:visited {
-    color: #B0B0B0;
+    color: #b0b0b0;
   }
   a:active {
-    color: #1CAFB4;
+    color: #1cafb4;
   }
   div {
-    background-color: rgba($color: #F0F0F0, $alpha: 0.251);
+    background-color: rgba($color: #f0f0f0, $alpha: 0.251);
     text-align: left;
     display: flex;
     flex-direction: column;
     // display: inline-block;
-    margin-right: auto;   // centeres the flex or inline-block
+    margin-right: auto; // centeres the flex or inline-block
     padding: 5px;
     border-radius: 25px;
-    border: 1px rgba($color: #0F0F0F, $alpha: 0.251);
+    border: 1px rgba($color: #0f0f0f, $alpha: 0.251);
     span {
       font-size: 1.251rem;
       display: block;
@@ -687,76 +689,86 @@ tbody tr:nth-child(3n + 3) {
   }
 }
 
-
 // entire db table
 // i inherit some stuff from the other table wrapper
-.entire-db-table-wrapper {
+.entire-db-table-wrapper,
+.edit-list-table-wrapper {
   // display: block;
   padding-left: 5px;
   padding-right: 5px;
+  display: inline-block;
 }
 
+// // db and list editing for different screen sizes
+// @media screen and (min-width: 2550px) {
+//   .entire-db-table-wrapper {
+//     padding-left: 5px;
+//   }
+//   .edit-list-table-wrapper {
+//     padding-left: 0px;
+//   }
+// }
+// @media screen and (max-width: 2500px) {
+//   .entire-db-table-wrapper {
+//     padding-left: 10px;
+//   }
+//   .edit-list-table-wrapper {
+//     padding-left: 0px;
+//   }
+// }
+// @media screen and (max-width: 2000px) {
+//   .entire-db-table-wrapper {
+//     padding-left: 250px;
+//   }
+//   .edit-list-table-wrapper {
+//     padding-left: 0px;
+//   }
+// }
+// @media screen and (max-width: 1600px) {
+//   .entire-db-table-wrapper {
+//     padding-left: 600px;
+//   }
+//   .edit-list-table-wrapper {
+//     padding-left: 150px;
+//   }
+// }
+// @media screen and (max-width: 1200px) {
+//   .entire-db-table-wrapper {
+//     padding-left: 1100px;
+//   }
+//   .edit-list-table-wrapper {
+//     padding-left: 400px;
+//   }
+// }
+// @media screen and (max-width: 850px) {
+//   .entire-db-table-wrapper {
+//     padding-left: 1360px;
+//   }
+//   .edit-list-table-wrapper {
+//     padding-left: 650px;
+//   }
+// }
+// @media screen and (max-width: 450px) {
+//   .entire-db-table-wrapper {
+//     padding-left: 1800px;
+//   }
+//   .edit-list-table-wrapper {
+//     padding-left: 1100px;
+//   }
+// }
 
-// db and list editing for different screen sizes
-@media screen and (min-width: 2550px) {
-  .entire-db-table-wrapper {
-    padding-left: 5px;
-  }
-  .edit-list-table-wrapper {
-    padding-left: 0px;
-  }
-}
-@media screen and (max-width: 2500px) {
-  .entire-db-table-wrapper {
-    padding-left: 10px;
-  }
-  .edit-list-table-wrapper {
-    padding-left: 0px;
-  }
-}
-@media screen and (max-width: 2000px) {
-  .entire-db-table-wrapper {
-    padding-left: 250px;
-  }
-  .edit-list-table-wrapper {
-    padding-left: 0px;
-  }
-}
-@media screen and (max-width: 1600px) {
-  .entire-db-table-wrapper {
-    padding-left: 600px;
-  }
-  .edit-list-table-wrapper {
-    padding-left: 150px;
-  }
-}
-@media screen and (max-width: 1200px) {
-  .entire-db-table-wrapper {
-    padding-left: 1100px;
-  }
-  .edit-list-table-wrapper {
-    padding-left: 400px;
-  }
-}
-@media screen and (max-width: 850px) {
-  .entire-db-table-wrapper {
-    padding-left: 1360px;
-  }
-  .edit-list-table-wrapper {
-    padding-left: 650px;
-  }
-}
-@media screen and (max-width: 450px) {
-  .entire-db-table-wrapper {
-    padding-left: 1800px;
-  }
-  .edit-list-table-wrapper {
-    padding-left: 1100px;
-  }
-}
-
-// 
+//
 .padding-for-table-bottom-horizontal-scrollbar {
   display: block; // despite the invisible space (​) it's "visible"
-  padding-bottom: 5px;  // this ensure padding between the text and the scrollbar, no risk of them clashing together
+  padding-bottom: 5px; // this ensure padding between the text and the scrollbar, no risk of them clashing together
+}
+
+// add user
+.addUserForm {
+  .addUserRow {
+    //
+    .add-user {
+      //
+    }
+  }
 }

@@ -58,6 +58,41 @@ require 'header.html';
                 </tr>
             </thead>
 
+            <!--  -->
+            <form class="addUserForm" method="post" action="ajax/create.php" id="addUserForm">
+                <tr class="addUserRow">
+
+                    <td class="spacer" colspan="2"></td>
+
+                    <?php foreach ($allowedColumnsText as $col): ?>
+                        <td data-cell="<?= $col ?>" class="table_text">
+                            <input type="text" name="<?= $col ?>" />
+                        </td>
+                    <?php endforeach; ?>
+
+                    <?php foreach ($allowedColumnsTinyint as $col): ?>
+                        <td data-cell="<?= $col ?>" class="table_tinyint">
+                            <input type="checkbox" name="<?= $col ?>" />
+                        </td>
+                    <?php endforeach; ?>
+
+                    <td data-cell="spacer" class="spacer"></td>
+
+                    <?php foreach ($approvedLists as $list): ?>
+                        <td data-cell="<?= $list ?>" class="table_tinyint">
+                            <input type="checkbox" name="<?= $list ?>" />
+                        </td>
+                    <?php endforeach; ?>
+
+                    <td class="spacer"></td>
+                    <td data-cell="add" class="add-user">
+                        <button type="button" id="submitAddUser" class="submitAddUser" title="Add user">✅</button>
+                    </td>
+                </tr>
+            </form>
+
+            <!--  -->
+
             <!-- !data-cell should have the RAW column name from the database! -->
 
             <!-- <tbody>
