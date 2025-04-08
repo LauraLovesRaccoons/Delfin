@@ -671,6 +671,8 @@ tbody tr:nth-child(3n + 3) {
     text-align: left;
     display: flex;
     flex-direction: column;
+    // display: inline-block;
+    margin-right: auto;   // centeres the flex or inline-block
     padding: 5px;
     border-radius: 25px;
     border: 1px rgba($color: #0F0F0F, $alpha: 0.251);
