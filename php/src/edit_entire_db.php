@@ -109,7 +109,7 @@ require 'header.html';
                 <?php endwhile; ?>
             </tbody>
         </table>
-        <span>​</span> <!-- adds a small space before the horizontal scrollbar -->
+        <span class="padding-for-table-bottom-horizontal-scrollbar">​</span> <!-- adds a small space before the horizontal scrollbar -->
     </div>
 </div>
 

@@ -755,5 +755,8 @@ tbody tr:nth-child(3n + 3) {
   }
 }
 
-
-
+// 
+.padding-for-table-bottom-horizontal-scrollbar {
+  display: block; // despite the invisible space (​) it's "visible"
+  padding-bottom: 5px;  // this ensure padding between the text and the scrollbar, no risk of them clashing together
+}
