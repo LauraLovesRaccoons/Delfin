@@ -54,8 +54,6 @@ footer a {
 .table-wrapper {
   overflow: auto;
   max-height: 90vh;
-  display: flex;
-  justify-content: center;
   margin: 5px;
   position: relative;
   padding: 5px;
@@ -392,7 +390,7 @@ tbody tr:nth-child(3n+3) {
 .index_header {
   font-size: 2rem;
   margin-bottom: -10px;
-  color: #0F0F0F;
+  color: #0f0f0f;
   letter-spacing: 1px;
 }
 
@@ -549,19 +547,21 @@ tbody tr:nth-child(3n+3) {
   background-color: rgba(149, 142, 142, 0.251);
   padding-left: 10px;
 }
-#heavyFormSubmission input[type=file], #heavyFormSubmission input[type=submit] {
-  background-color: #EBE0EF;
+#heavyFormSubmission input[type=file],
+#heavyFormSubmission input[type=submit] {
+  background-color: #ebe0ef;
   border-radius: 10px;
   padding: 5px;
   margin-top: 6px;
   border: 1px solid rgba(255, 255, 255, 0.151);
 }
-#heavyFormSubmission input[type=file]:hover, #heavyFormSubmission input[type=submit]:hover {
+#heavyFormSubmission input[type=file]:hover,
+#heavyFormSubmission input[type=submit]:hover {
   cursor: pointer;
-  background-color: #FF553D;
+  background-color: #ff553d;
 }
 #heavyFormSubmission input[type=text] {
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
   color: #000000;
   padding: 2px;
   border-radius: 5px;
@@ -571,10 +571,10 @@ tbody tr:nth-child(3n+3) {
   border: 1px solid rgba(255, 255, 255, 0.151);
 }
 #heavyFormSubmission input[type=submit]:hover {
-  background-color: #81EC1E;
+  background-color: #81ec1e;
 }
 #heavyFormSubmission input[type=text]:hover {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
 .batch-job-wrapper {
@@ -596,10 +596,10 @@ tbody tr:nth-child(3n+3) {
   margin-bottom: 10px;
 }
 .batch-job-wrapper a:visited {
-  color: #B0B0B0;
+  color: #b0b0b0;
 }
 .batch-job-wrapper a:active {
-  color: #1CAFB4;
+  color: #1cafb4;
 }
 .batch-job-wrapper div {
   background-color: rgba(240, 240, 240, 0.251);
@@ -619,68 +619,24 @@ tbody tr:nth-child(3n+3) {
   justify-content: center;
 }
 
-.entire-db-table-wrapper {
+.entire-db-table-wrapper,
+.edit-list-table-wrapper {
   padding-left: 5px;
   padding-right: 5px;
+  display: inline-block;
 }
 
-@media screen and (min-width: 2550px) {
-  .entire-db-table-wrapper {
-    padding-left: 5px;
-  }
-  .edit-list-table-wrapper {
-    padding-left: 0px;
-  }
-}
-@media screen and (max-width: 2500px) {
-  .entire-db-table-wrapper {
-    padding-left: 10px;
-  }
-  .edit-list-table-wrapper {
-    padding-left: 0px;
-  }
-}
-@media screen and (max-width: 2000px) {
-  .entire-db-table-wrapper {
-    padding-left: 250px;
-  }
-  .edit-list-table-wrapper {
-    padding-left: 0px;
-  }
-}
-@media screen and (max-width: 1600px) {
-  .entire-db-table-wrapper {
-    padding-left: 600px;
-  }
-  .edit-list-table-wrapper {
-    padding-left: 150px;
-  }
-}
-@media screen and (max-width: 1200px) {
-  .entire-db-table-wrapper {
-    padding-left: 1100px;
-  }
-  .edit-list-table-wrapper {
-    padding-left: 400px;
-  }
-}
-@media screen and (max-width: 850px) {
-  .entire-db-table-wrapper {
-    padding-left: 1360px;
-  }
-  .edit-list-table-wrapper {
-    padding-left: 650px;
-  }
-}
-@media screen and (max-width: 450px) {
-  .entire-db-table-wrapper {
-    padding-left: 1800px;
-  }
-  .edit-list-table-wrapper {
-    padding-left: 1100px;
-  }
-}
 .padding-for-table-bottom-horizontal-scrollbar {
   display: block;
   padding-bottom: 5px;
+}
+
+.addUserRow .addUserForm .add-user .submitAddUser {
+  border-radius: 5px;
+}
+.addUserRow .addUserForm .add-user input[type=text] {
+  border-radius: 5px;
+}
+.addUserRow .addUserForm .add-user input[type=checkbox] {
+  border-radius: 5px;
 }/*# sourceMappingURL=main.css.map */

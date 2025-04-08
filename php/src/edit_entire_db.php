@@ -58,6 +58,46 @@ require 'header.html';
                 </tr>
             </thead>
 
+            <!--  -->
+            <tr class="addUserRow">
+                <form class="addUserForm" method="post" id="addUserForm">
+
+                    <td class="spacer" colspan="1"></td>
+                    
+                    <td data-cell="add-user" class="add-user">
+                        <button type="button" id="submitAddUser" class="submitAddUser" title="Add user">✅</button>
+                    </td>
+
+                    <?php foreach ($allowedColumnsText as $col): ?>
+                        <td data-cell="<?= $col ?>" class="table_text">
+                            <input type="text" name="<?= $col ?>" />
+                        </td>
+                    <?php endforeach; ?>
+
+                    <?php foreach ($allowedColumnsTinyint as $col): ?>
+                        <td data-cell="<?= $col ?>" class="table_tinyint">
+                            <input type="checkbox" name="<?= $col ?>" />
+                        </td>
+                    <?php endforeach; ?>
+
+                    <td data-cell="spacer" class="spacer"></td>
+
+                    <?php foreach ($approvedLists as $list): ?>
+                        <td data-cell="<?= $list ?>" class="table_tinyint">
+                            <input type="checkbox" name="<?= $list ?>" />
+                        </td>
+                    <?php endforeach; ?>
+
+                    <td class="spacer"></td>
+                    <td data-cell="add" class="add-user">
+                        <button type="button" id="submitAddUser_Omega" class="submitAddUser" title="Add user">✅</button>
+                    </td>
+                </form>
+            </tr>
+
+
+            <!--  -->
+
             <!-- !data-cell should have the RAW column name from the database! -->
 
             <!-- <tbody>
@@ -130,6 +170,8 @@ require 'header.html';
 </script>
 
 <script src="scripts/enable_editing.js"></script>
+<!--  -->
+<script src="scripts/add_user.js"></script> <!-- No edit button needed -->
 <!--  -->
 
 
