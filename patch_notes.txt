@@ -1,0 +1,11 @@
+Version 1.0.1
+
+1) if nom&nom2 are empty it will still send an email but the logger has a better "warning message"
+
+2) Updated README.md
+
+3) (renamed the folders batch files and setup db query)
+(allows cleaner readme file)
+
+---
+
