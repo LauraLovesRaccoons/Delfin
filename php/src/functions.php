@@ -613,14 +613,14 @@ function query_grab_user_list_delfin($selectedList, $db)
 function turn_fetched_users_into_array_delfin($queryResult)
 {
     // i need to return an array
-    $grabbedUsers = [];
+    $grabbedUsers = [];     // this ensures that an array is always returned
     // 
     while ($recipientUser = $queryResult->fetch_assoc()) {
-        // if nom and nom2 are empty it will treat it like the letter flag is set
-        // trim ensures white spaces aren't considered as valid data
-        if (empty(trim($recipientUser['nom'])) && empty(trim($recipientUser['nom2']))) {
-            $recipientUser['letter_required'] = 1;
-        };
+        // // if nom and nom2 are empty it will treat it like the letter flag is set
+        // // trim ensures white spaces aren't considered as valid data
+        // if (empty(trim($recipientUser['nom'])) && empty(trim($recipientUser['nom2']))) {
+        //     $recipientUser['letter_required'] = 1;
+        // };
         $grabbedUsers[] = [
             'recipientId' => intval($recipientUser['id']),
             'emailRecipient' => intval($recipientUser['letter_required']) ? '' : htmlspecialchars(trim($recipientUser['email']), ENT_QUOTES, 'UTF-8'),  // if the person requires a letter, this invalidates the email
@@ -631,7 +631,7 @@ function turn_fetched_users_into_array_delfin($queryResult)
                     (!empty(trim($recipientUser['nom'])) ? $recipientUser['nom'] : '') .                                // if nom is set add append it to the string
                         ((!empty(trim($recipientUser['nom'])) && !empty(trim($recipientUser['nom2']))) ? ' | ' : '') .  // if both nom and nom2 are set add a seperator symbol
                         (!empty(trim($recipientUser['nom2'])) ? $recipientUser['nom2'] : '')                            // if nom 2 is set append it to the string
-                ) ?: "BOTH nom and nom2 ARE MISSING OR FAULTY -> NO EMAIL SENT -> CHECK ID FOR REFERENCE!",             // if both are empty, this will be the string -> the trims before ensures whitespace are considered as empty
+                ) ?: ("FYI: Both nom and nom2 are missing or faulty | ID: " . intval($recipientUser['id']) ),           // if both are empty, this will be the string -> the trims before ensures whitespace are considered as empty
                 ENT_QUOTES,
                 'UTF-8'
             ),
