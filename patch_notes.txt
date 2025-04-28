@@ -1,11 +1,19 @@
 Version 1.0.1
 
 1) if nom&nom2 are empty it will still send an email but the logger has a better "warning message"
+    -> functions.php
 
 2) Updated README.md
+    -> now isn't a jumbled mess of old non updated commands
+    -> also it now has headers
 
 3) (renamed the folders batch files and setup db query)
-(allows cleaner readme file)
+    -> (allows cleaner readme file)
 
 ---
 
+Version 1.0.0
+
+The entire project
+
+---
