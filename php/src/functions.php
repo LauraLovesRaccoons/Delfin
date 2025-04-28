@@ -616,11 +616,14 @@ function turn_fetched_users_into_array_delfin($queryResult)
     $grabbedUsers = [];     // this ensures that an array is always returned
     // 
     while ($recipientUser = $queryResult->fetch_assoc()) {
+
+        //? this disables the email sending part if both nom & nom2 are empty (but this is not appreciated for our specific use cases)
         // // if nom and nom2 are empty it will treat it like the letter flag is set
         // // trim ensures white spaces aren't considered as valid data
         // if (empty(trim($recipientUser['nom'])) && empty(trim($recipientUser['nom2']))) {
         //     $recipientUser['letter_required'] = 1;
         // };
+
         $grabbedUsers[] = [
             'recipientId' => intval($recipientUser['id']),
             'emailRecipient' => intval($recipientUser['letter_required']) ? '' : htmlspecialchars(trim($recipientUser['email']), ENT_QUOTES, 'UTF-8'),  // if the person requires a letter, this invalidates the email
@@ -631,7 +634,7 @@ function turn_fetched_users_into_array_delfin($queryResult)
                     (!empty(trim($recipientUser['nom'])) ? $recipientUser['nom'] : '') .                                // if nom is set add append it to the string
                         ((!empty(trim($recipientUser['nom'])) && !empty(trim($recipientUser['nom2']))) ? ' | ' : '') .  // if both nom and nom2 are set add a seperator symbol
                         (!empty(trim($recipientUser['nom2'])) ? $recipientUser['nom2'] : '')                            // if nom 2 is set append it to the string
-                ) ?: ("FYI: Both nom and nom2 are missing or faulty | ID: " . intval($recipientUser['id']) ),           // if both are empty, this will be the string -> the trims before ensures whitespace are considered as empty
+                ) ?: htmlspecialchars(trim($recipientUser['email']), ENT_QUOTES, 'UTF-8'),  // if both are empty, the name will be the email (and if no email is present, it will be blank - which we don't care about here) -> the trims before ensures whitespace are considered as empty
                 ENT_QUOTES,
                 'UTF-8'
             ),

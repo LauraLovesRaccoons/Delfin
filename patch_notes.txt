@@ -1,3 +1,10 @@
+Version 1.0.2
+
+1) If both nom & nom2 are empty it will default the recipient's name to their email address
+    -> we don't care about the part if no email is present since in that case no email will be sent either way
+
+---
+
 Version 1.0.1
 
 1) if nom&nom2 are empty it will still send an email but the logger has a better "warning message"
