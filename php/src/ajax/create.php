@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($value !== null) {
             $value = trim($value);
             $value = substr($value, 0, 250);    // varchar 255 with some wiggle room
-            $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8'); // I'm not messing around ;)
+            // // $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8'); // I'm not messing around ;)
         }
         else {
             $value = null;  // technically not needed since it was null before
