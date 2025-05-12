@@ -2,7 +2,7 @@
     "name": "laura/delfin",
     "description": "Delfin-Petange",
     "require": {
-        "phpmailer/phpmailer": "^6.9",
+        "phpmailer/phpmailer": "^6.10",
         "fpdf/fpdf": "^1.86",
         "setasign/fpdi": "^2.6",
         "setasign/fpdf": "^1.8",

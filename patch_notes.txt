@@ -1,3 +1,15 @@
+Version 1.1.0
+
+1) Upgraded php apache from 8.2 to 8.4
+2) max-upload env in compose.yaml has whitespaces removed "( = ) (=)" to support newer versions of docker
+    -> refresh_env.bat for example wouldn't run without the fix
+3) force upgraded phpmailer from version 6.9.X to 6.10.X
+4) properly re-installed the container (took a while) and did re-install the composer vendor packages and tested it
+    -> and everything seemed to work seamlessly
+5) since php apache was upgraded to a much newer build, I shall name this version 1.1.0
+
+---
+
 Version 1.0.2
 
 1) If both nom & nom2 are empty it will default the recipient's name to their email address
