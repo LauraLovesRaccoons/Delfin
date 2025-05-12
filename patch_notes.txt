@@ -1,3 +1,13 @@
+Version 1.1.1
+
+1) Fixed entered special symbols like & being stored html encoded inside the db
+    -> & would turn to &amp;
+        -> and since that is a valid string you can imagine what happened...
+2) Finally changed the version number in readme.md
+3) 1.1.1 cool number 🦆
+
+---
+
 Version 1.1.0
 
 1) Upgraded php apache from 8.2 to 8.4
