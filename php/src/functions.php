@@ -757,7 +757,7 @@ function batchJobAlreadyRunning_delfin()
 function clear_batchJobAlreadyRunning_delfin()
 {
     $db = db_connect_delfin();
-    $query = "UPDATE Job_Lock SET `active` = 0";
+    $query = "UPDATE Job_Lock SET `active` = 0 WHERE `id` = 1"; // updated to also target the ID to allow other stuff to use this db table as well
     $stmt = $db->prepare($query);
     if (!$stmt) {
         die("Prepare failed: " . $db->error);

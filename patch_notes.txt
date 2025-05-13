@@ -1,3 +1,11 @@
+Version 1.2.1
+
+1) the job lock clear function now also targets the id as well
+    -> meaning multiple processes can use this db table
+        -> also everything else related to it already specified the id
+
+---
+
 Version 1.2.0
 
 1) in email mode (only) you can now add any file as an attachement (totally optional)
