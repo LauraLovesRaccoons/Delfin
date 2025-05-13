@@ -31,6 +31,16 @@ if (isset($_SESSION['targetFile'])) {
 
     $templateFile = $_SESSION['targetFile'];
     unset($_SESSION['targetFile']); // prevents sending duplicate mails
+
+    // start expansion V1.2.0
+    if (isset($_SESSION['targetSecondAttachement'])) {
+        $secondAttachement = $_SESSION['targetFile'];   // sets the second attachement in a local var
+        unset($_SESSION['targetSecondAttachement']);
+    } else {
+        $secondAttachement = "";    // if there isn't a second attachement, this will be an empty string "path"
+    }
+    // end expansion V1.2.0
+
     // run this before writing to the log file, as the older logs are less likely to be needed
     log_too_big_delfin();
     // the IF is just to be sure no shenanigans are going on
