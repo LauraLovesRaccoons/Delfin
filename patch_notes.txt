@@ -1,3 +1,10 @@
+Version 1.2.2
+
+1) the company division message in index.php is now loaded from the .env file
+    -> allows others to use the same code and personalize the page somewhat
+
+---
+
 Version 1.2.1
 
 1) the job lock clear function now also targets the id as well
