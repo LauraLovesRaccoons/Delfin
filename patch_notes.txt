@@ -1,3 +1,11 @@
+Version 1.2.3
+
+1) composer removed a lot of unused packages
+2) functions.php removed a package from something that wasn't used in any way
+3) Version 1.2.3 such a cool number 🦆
+
+---
+
 Version 1.2.2
 
 1) the company division message in index.php is now loaded from the .env file
