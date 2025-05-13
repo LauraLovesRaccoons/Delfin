@@ -36,7 +36,6 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 use Document\Parser\Word;
-use FontLib\Table\Type\head;
 use setasign\Fpdi\Fpdi;
 
 
