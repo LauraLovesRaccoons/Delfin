@@ -88,15 +88,16 @@ if (isset($_POST['submit_button'])) {
     <em>Select Invitation (.docx):</em><br />
     <label for="file"></label>
     <input type="file" name="fileToUpload" id="fileToUpload" required>
-    <br />
+    <br /><br />
     <!-- start expansion V1.2.0-->
-    <br />
-    <em>Select Attachement (*):</em><br />
-    <label for="file"></label>
-    <input type="file" name="secondAttachementUpload" id="secondAttachementUpload" optional>
-    <br /><em>(optional)</em>
-    <br />
-    <br />
+    <?php if (!isset($_SESSION['letter_required'])): ?>   <!-- attachements for letters are redundant -->
+      <em>Select Attachement (*):</em><br />
+      <label for="file"></label>
+      <input type="file" name="secondAttachementUpload" id="secondAttachementUpload" optional>
+      <!-- <br /><em>(optional)</em> -->
+      <br />
+      <br />
+    <?php endif; ?>
     <!-- end expansion V1.2.0-->
     <label for="submit"></label>
     <?php if (isset($_SESSION['letter_required'])): ?>
