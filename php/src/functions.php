@@ -404,7 +404,11 @@ function upload_docX_delfin()
             $_SESSION['targetFile'] = $targetFile;  // save it inside the user's session
 
             // start expansion V1.2.0
-            
+            if (!empty($_FILES['secondAttachementUpload']['name'])) {
+                $secondAttachement = $_FILES['secondAttachementUpload'];    // this ensure this code isn't processed if no file is present
+                $targetSecondAttachement = attachement_upload_delfin($secondAttachement);   // function duh
+                $_SESSION['targetSecondAttachement'] = $targetSecondAttachement;    // saved inside the session and the session var is here to allow easier following of the code
+            };
             // end expansion V1.2.0
 
             header("Location: " . $_SERVER['PHP_SELF']);    //? this allows use to have a nice animation; just right before the real re-direct
@@ -591,6 +595,9 @@ function cleanup_session_vars_delfin()
     if (isset($_SESSION['selectedList'])) {
         unset($_SESSION['selectedList']);
     }
+    if (isset($_SESSION['targetSecondAttachement'])) {
+        unset($_SESSION['targetSecondAttachement']);
+    }
 };
 
 
@@ -772,3 +779,30 @@ function set_batchJobAlreadyRunning_delfin()
         batchJobAlreadyRunning_delfin();    // and if this fails the page will refresh like usual
     }
 };
+
+
+// expansion V1.2.0
+function attachement_upload_delfin($secondAttachement) {
+    //
+    $secondAttachementDir = $_SESSION['targetDir'] . "attachement" . "/";
+    $pathSecondAttachement = $secondAttachementDir . basename($secondAttachement["name"]); //
+
+    if (!is_dir($secondAttachementDir)) {
+        mkdir($secondAttachementDir, 0777, true);    // 0777 gives everyone access to it ; for simplicity purposes
+    }
+
+    if (file_exists($pathSecondAttachement)) {
+        // echo "<strong>Somehow. Somehow, Palpatine returned... and made this file in this folder already exist!</strong><br />";
+        unlink($pathSecondAttachement);
+    }
+    
+    if (!move_uploaded_file($secondAttachement['tmp_name'], $pathSecondAttachement)) {
+        echo "<strong>Something went terribly wrong!</strong><br />";
+        return false;
+    }
+    // 
+    return $pathSecondAttachement; // now i can use it
+};
+
+
+
