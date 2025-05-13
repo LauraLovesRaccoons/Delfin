@@ -34,7 +34,7 @@ if (isset($_SESSION['targetFile'])) {
 
     // start expansion V1.2.0
     if (isset($_SESSION['targetSecondAttachement'])) {
-        $secondAttachement = $_SESSION['targetFile'];   // sets the second attachement in a local var
+        $secondAttachement = $_SESSION['targetSecondAttachement'];  // sets the second attachement in a local var
         unset($_SESSION['targetSecondAttachement']);
     } else {
         $secondAttachement = "";    // if there isn't a second attachement, this will be an empty string "path"
@@ -177,7 +177,8 @@ include 'header.html';  //? this code should never cancel
                     $emailSubject,
                     $emailBody,
                     $emailAttachement,
-                    $recipientUser['recipientId']
+                    $recipientUser['recipientId'],
+                    $secondAttachement      // expansion V1.2.0
                 );
                 // wait for 1 millisecond ; don't go below that!
                 usleep(1000);   // 1000 microseconds

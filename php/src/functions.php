@@ -121,7 +121,7 @@ function session_checker_delfin()
 };
 
 // HTML ONLY
-function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement, $recipientId)
+function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement, $recipientId, $secondAttachement)
 {
     if (strpos($emailRecipient, '@') === false || strlen($emailRecipient) < 3) {   // just checking if an @ is present to make the code faster ; and absolute minimum possible length
         if (!isset($_SESSION['letter_required'])) {     // no need to display it on the webpage if it's a freakin letter
@@ -176,6 +176,12 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             $mail->addAddress($emailRecipient, $emailRecipientName);
             // Attachments
             $mail->addAttachment($emailAttachement);
+
+            // start expansion V1.2.0
+            if ($secondAttachement !== "") {    // see why i needed the empty string in the send_mail.php session unset ?
+                $mail->addAttachment($secondAttachement);   // only then the second attachement will be added
+            };
+            // end expansion V1.2.0
 
             // embeed images with cid
             global $logoImagePath, $bannerImagePath, $logoImageLink, $bannerImageLink;  // I defined these outside the function
