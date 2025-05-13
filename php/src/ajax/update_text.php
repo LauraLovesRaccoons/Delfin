@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'], $_POST['column'
     }
 
     $value = substr($value, 0, 250);    // varchar 255 with some wiggle room
-    $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8'); // I'm not messing around ;)
+    // // $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8'); // I'm not messing around ;)
 
     $result = editUsersText_delfin($id, $column, $value);       // function handling the db
 

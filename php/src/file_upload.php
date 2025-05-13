@@ -83,12 +83,22 @@ if (isset($_POST['submit_button'])) {
       <br />
       <strong>Email Message: </strong><label for="email_body"></label>
       <input type="text" name="email_body" id="email_body" class="email_body" placeholder=" Default: <?= getenv('DEFAULT_EMAIL_BODY') ?> " value="<?= $_POST['email_body'] ?? getenv('DEFAULT_EMAIL_BODY') ?>">
-      <br />
+      <br /><br />
     <?php endif; ?>
-    <em>Select File:</em><br />
+    <em>Select Invitation (.docx):</em><br />
     <label for="file"></label>
     <input type="file" name="fileToUpload" id="fileToUpload" required>
-    <br />
+    <br /><br />
+    <!-- start expansion V1.2.0-->
+    <?php if (!isset($_SESSION['letter_required'])): ?>   <!-- attachements for letters are redundant -->
+      <em>Select Attachement (*):</em><br />
+      <label for="file"></label>
+      <input type="file" name="secondAttachementUpload" id="secondAttachementUpload" optional>
+      <!-- <br /><em>(optional)</em> -->
+      <br />
+      <br />
+    <?php endif; ?>
+    <!-- end expansion V1.2.0-->
     <label for="submit"></label>
     <?php if (isset($_SESSION['letter_required'])): ?>
       <input type="submit" value=" Upload File & Prepare Letters " name="submit_button" id="">
@@ -100,7 +110,7 @@ if (isset($_POST['submit_button'])) {
   <!-- <br /> -->
   <div>
     <strong>This might take a while...</strong><br />
-    <em>Keep it below 20MB or else!</em><br />
+    <em>Keep it below 20MB (combined) or else!</em><br />
   </div>
   <br />
   <?php

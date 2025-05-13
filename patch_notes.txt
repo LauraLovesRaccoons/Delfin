@@ -1,3 +1,38 @@
+Version 1.2.0
+
+1) in email mode (only) you can now add any file as an attachement (totally optional)
+    -> for people that don't have an email well since you uploaded the attachement you should be able to print it yourself since you uploaded it
+        -> also the attachements aren't added to the letters itself since that might result in weird stuff (formatting)
+2) didn't forget to change the version number in readme.md
+3) 1.2.0 cool number 🦆 roll
+4) this video gave me a lot of inspiration for this project
+    http://www.youtube.com/watch?v=oHg5SJYRHA0
+5) I'm the best coder in this project (I'm also the only one duh)
+
+---
+
+Version 1.1.1
+
+1) Fixed entered special symbols like & being stored html encoded inside the db
+    -> & would turn to &amp;
+        -> and since that is a valid string you can imagine what happened...
+2) Finally changed the version number in readme.md
+3) 1.1.1 cool number 🦆
+
+---
+
+Version 1.1.0
+
+1) Upgraded php apache from 8.2 to 8.4
+2) max-upload env in compose.yaml has whitespaces removed "( = ) (=)" to support newer versions of docker
+    -> refresh_env.bat for example wouldn't run without the fix
+3) force upgraded phpmailer from version 6.9.X to 6.10.X
+4) properly re-installed the container (took a while) and did re-install the composer vendor packages and tested it
+    -> and everything seemed to work seamlessly
+5) since php apache was upgraded to a much newer build, I shall name this version 1.1.0
+
+---
+
 Version 1.0.2
 
 1) If both nom & nom2 are empty it will default the recipient's name to their email address
