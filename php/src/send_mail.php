@@ -98,7 +98,7 @@ include 'header.html';  //? this code should never cancel
 
         <span id="downloadLinkMsg"></span> <!-- the span will be overwritten by outerHTML with JS -->
         <br />
-        <div>
+        <div id="emailNotSendInfoBox">  <!-- the id allows me to completely hide it with javacript -->
 
             <!-- <h1>BE PATIENT ! - MUST DISPLAY ON THE PREVIOUS PAGE </h1>
 <h1>ESPECIALLY IF MAILS ARE FAILING TO SEND</h1> -->
@@ -141,7 +141,7 @@ include 'header.html';  //? this code should never cancel
                 // $outputDocX = $GLOBALS['uploadBasePath'] . "IT-WORKZ.docx"; // proof that it requires the directory to exist
                 // 
                 modify_docX_delfin($templateDocX, $outputDocX, $recipientUser);
-                // conert filled in docX to pdf
+                // con(v)ert filled in docX to pdf
                 $inputDocX = $outputDocX;   // easier to read code
                 $outputPdf = preg_replace('/\.docx$/i', '.pdf', $inputDocX);    // changes .docx to .pdf ; since the tool doesn't dew it
                 $inputDocXDir = $outputDocXDir; // easier to read code
@@ -188,6 +188,10 @@ include 'header.html';  //? this code should never cancel
             // cleans these session variables
             if (isset($_SESSION['letter_required'])) {
                 unset($_SESSION['letter_required']);
+                // I don't want the emailNotSendInfoBox visible in letter mode and this is the last place where I can detect if letter mode was used
+                echo "<script>
+                    document.getElementById('emailNotSendInfoBox').style.display = 'none';
+                </script>";
             }
             //? this was added much later
             if (isset($_SESSION['selectedList'])) {

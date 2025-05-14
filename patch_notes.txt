@@ -1,3 +1,12 @@
+Version 1.3.0
+
+1) the loading screen when processessing your files no adds further measures to disable accidentaly clicking something
+2) the loading screen should now always be fullscreen, also lighter css code
+3) the email info box for those that don't have a (valid) email or those whose email failed to send somehow, finally doesn't load the wrapper div in letter mode
+    -> however if everyone has a (valid) email in email mode the small circle will still load, though it's tiny and well blended in
+
+---
+
 Version 1.2.3.4.5
 
 1) change the send mail and prepare letters buttons to require a double click
