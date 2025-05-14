@@ -163,6 +163,10 @@ tbody tr:nth-child(3n+3) {
   align-items: center;
   font-size: 2rem;
   z-index: 151;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: wait;
 }
 
 #loadingScreenAnimation {
@@ -548,7 +552,8 @@ tbody tr:nth-child(3n+3) {
   padding-left: 10px;
 }
 #heavyFormSubmission input[type=file],
-#heavyFormSubmission input[type=submit] {
+#heavyFormSubmission input[type=submit],
+#heavyFormSubmission #sendMailOrLetterButton {
   background-color: #ebe0ef;
   border-radius: 10px;
   padding: 5px;
@@ -556,7 +561,8 @@ tbody tr:nth-child(3n+3) {
   border: 1px solid rgba(255, 255, 255, 0.151);
 }
 #heavyFormSubmission input[type=file]:hover,
-#heavyFormSubmission input[type=submit]:hover {
+#heavyFormSubmission input[type=submit]:hover,
+#heavyFormSubmission #sendMailOrLetterButton:hover {
   cursor: pointer;
   background-color: #ff553d;
 }
@@ -570,7 +576,8 @@ tbody tr:nth-child(3n+3) {
   padding-left: 5px;
   border: 1px solid rgba(255, 255, 255, 0.151);
 }
-#heavyFormSubmission input[type=submit]:hover {
+#heavyFormSubmission input[type=submit]:hover,
+#heavyFormSubmission #sendMailOrLetterButton:hover {
   background-color: #81ec1e;
 }
 #heavyFormSubmission input[type=text]:hover {

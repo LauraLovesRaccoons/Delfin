@@ -204,6 +204,8 @@ tbody tr:nth-child(3n + 3) {
   align-items: center;
   font-size: 2rem;
   z-index: 151; // this should be above everything;  MEW
+  user-select: none;  // the text from a fullscreen loading screen should probably not be selectable
+  cursor: wait;       // also since I've disabled text selection, the cursor should also probably reflect this in some way
 }
 
 #loadingScreenAnimation {
@@ -614,7 +616,8 @@ tbody tr:nth-child(3n + 3) {
   padding-left: 10px;
   //
   input[type="file"],
-  input[type="submit"] {
+  input[type="submit"],
+  #sendMailOrLetterButton {
     background-color: #ebe0ef;
     border-radius: 10px;
     padding: 5px;
@@ -622,7 +625,8 @@ tbody tr:nth-child(3n + 3) {
     border: 1px solid rgba($color: #ffffff, $alpha: 0.151);
   }
   input[type="file"]:hover,
-  input[type="submit"]:hover {
+  input[type="submit"]:hover,
+  #sendMailOrLetterButton:hover {
     cursor: pointer;
     background-color: #ff553d;
   }
@@ -636,7 +640,8 @@ tbody tr:nth-child(3n + 3) {
     padding-left: 5px;
     border: 1px solid rgba($color: #ffffff, $alpha: 0.151);
   }
-  input[type="submit"]:hover {
+  input[type="submit"]:hover,
+  #sendMailOrLetterButton:hover {
     background-color: #81ec1e;
   }
   input[type="text"]:hover {
