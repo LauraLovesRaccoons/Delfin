@@ -153,10 +153,7 @@ tbody tr:nth-child(3n+3) {
 #loadingScreen {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
   background: rgba(0, 0, 0, 0.5);
   color: white;
   justify-content: center;
@@ -167,6 +164,7 @@ tbody tr:nth-child(3n+3) {
      -moz-user-select: none;
           user-select: none;
   cursor: wait;
+  pointer-events: all;
 }
 
 #loadingScreenAnimation {
