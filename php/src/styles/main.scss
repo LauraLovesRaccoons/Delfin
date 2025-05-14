@@ -680,13 +680,14 @@ tbody tr:nth-child(3n + 3) {
   div, #emailNotSendInfoBox {
     background-color: rgba($color: #f0f0f0, $alpha: 0.251);
     text-align: left;
-    display: flex;
+    // display: flex; // since this is now hidden by default, I'm keeping it here as a reference
     flex-direction: column;
     // display: inline-block;
     margin-right: auto; // centeres the flex or inline-block
     padding: 5px;
     border-radius: 25px;
     border: 1px rgba($color: #0f0f0f, $alpha: 0.251);
+    display: none;  // hidden by default
     span {
       font-size: 1.251rem;
       display: block;

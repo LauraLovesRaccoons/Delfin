@@ -609,12 +609,12 @@ tbody tr:nth-child(3n+3) {
 .batch-job-wrapper div, .batch-job-wrapper #emailNotSendInfoBox {
   background-color: rgba(240, 240, 240, 0.251);
   text-align: left;
-  display: flex;
   flex-direction: column;
   margin-right: auto;
   padding: 5px;
   border-radius: 25px;
   border: 1px rgba(15, 15, 15, 0.251);
+  display: none;
 }
 .batch-job-wrapper div span, .batch-job-wrapper #emailNotSendInfoBox span {
   font-size: 1.251rem;

@@ -538,6 +538,11 @@ function combine_all_letters_into_one_pdf_delfin($baseDir, $templateFile, $times
     // verifiying if there is smth at least
     if ($pdf->PageNo() > 0) {
         $pdf->Output($combinedFile, 'F');
+        // this makes the info box visible (flex!) ; also letter mode will force hide it again at a later point
+        echo "<script>
+            document.getElementById('emailNotSendInfoBox').style.display = 'flex';
+        </script>";
+
     }
     // the end
     unset($_SESSION['letter_id_array']);    // this is needed
