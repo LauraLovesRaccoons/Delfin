@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "499bba7c7bc3bf628e12f3d9e8b1e71e",
+    "content-hash": "f78e25a98bf6201c2cc00f2d039a2e3c",
     "packages": [
         {
             "name": "fpdf/fpdf",
@@ -58,56 +58,6 @@
                 "source": "https://github.com/coreydoughty/Fpdf/tree/1.86.0"
             },
             "time": "2023-07-04T16:41:45+00:00"
-        },
-        {
-            "name": "nisam/doc-parser",
-            "version": "0.0.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mail2nisam/doc-parser.git",
-                "reference": "e30fabc98eac2cc1e31c1a67a0bd1102cf2b5097"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mail2nisam/doc-parser/zipball/e30fabc98eac2cc1e31c1a67a0bd1102cf2b5097",
-                "reference": "e30fabc98eac2cc1e31c1a67a0bd1102cf2b5097",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "6.2.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Document\\Parser\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nisam",
-                    "email": "mail2nisam@gmail.com"
-                }
-            ],
-            "description": "Find and replace text in a word document file. Also can generate new files from templates",
-            "keywords": [
-                "composer",
-                "document",
-                "edit",
-                "package",
-                "word"
-            ],
-            "support": {
-                "issues": "https://github.com/mail2nisam/doc-parser/issues",
-                "source": "https://github.com/mail2nisam/doc-parser/tree/master"
-            },
-            "time": "2018-04-20T06:09:39+00:00"
         },
         {
             "name": "phpmailer/phpmailer",

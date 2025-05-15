@@ -1,3 +1,39 @@
+Version 1.4.0
+
+1) dropped nisam's package and wrote a custom function (with a lot of inspiration from the original code)
+    -> I mean the package could just disappear in the future and then we're screwed basically (when we replace the machine)
+2) composer now targets the working versions (and latest at the time of writting) of the packages as the minimum version
+    -> able to backtrack IF an update breaks something
+
+---
+
+Version 1.3.0
+
+1) the loading screen when processessing your files no adds further measures to disable accidentaly clicking something
+2) the loading screen should now always be fullscreen, also lighter css code
+3) the email info box for those that don't have a (valid) email or those whose email failed to send somehow, finally doesn't load the wrapper div in letter mode
+    -> and if email mode processes everything it will also not display, was almost not included in this release
+
+---
+
+Version 1.2.3.4.5
+
+1) change the send mail and prepare letters buttons to require a double click
+    -> handled by javascript
+        -> since this bypasses the default html form submission the loading screen animation had to have its logic changed a tiny bit
+2) the loading screen now has non selectable text and the cursor changes to a loading icon as well
+3) since this is a bit major (I work at a municipality so the mayor is proud (probably... he's busy)) there now is a fourth and fifth number
+    -> also 1.2.3.4.5 is done on purpose :startrekkin:
+4) Now versions are structed like this V.W.X.Y.Z
+    -> V - almost never changes unless there is like an extremely massive overhaul
+    -> W - never feature is added or major bug fix
+    -> X - bug fixes or optimisations
+    -> Y - small changes mostly irrelevant (you can mostly ignore those releases) - also this number might not always show up
+    -> Z - very minor changes and code/comment cleanup (very irrelevant) - also this number will rarely show up
+5) Next version will be V 1.3.0 - even if an old comment is cleaned up
+
+---
+
 Version 1.2.3
 
 1) composer removed a lot of unused packages

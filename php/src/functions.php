@@ -35,7 +35,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-use Document\Parser\Word;
+// use Document\Parser\Word;
 use setasign\Fpdi\Fpdi;
 
 
@@ -448,11 +448,19 @@ function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
         '«Allocation_Spéciale»' => $recipientUser['allocationSpeciale'] ?: '​',
         '«Nom_coupon-réponse»' => $recipientUser['nomCouponReponse'] ?: '​',        //! verify actual field name! 
     ];
-    ob_start();         // output buffer so it removes the annnoying notification from this extension
-    $word = new Word();
-    $word->findAndReplace($templateDocX, $outputDocX, $replacementsArray);
-    // echo "<br />";  // File written! is always printed :/ 
-    ob_end_clean();     // do i need to explain this ?!?
+
+    // old package, user hasn't logged in in 7 years (unreliable to rely on that link)
+    // ob_start();         // output buffer so it removes the annnoying notification from this extension
+    // $word = new Word();
+    // $word->findAndReplace($templateDocX, $outputDocX, $replacementsArray);
+    // // echo "<br />";  // File written! is always printed :/ 
+    // ob_end_clean();     // do i need to explain this ?!?
+
+    // new custom function
+    // ob_start();
+    docX_find_and_replace_delfin($templateDocX, $outputDocX, $replacementsArray);   // calling the new custom function
+    // ob_end_clean();
+
 };
 
 // convert docX to pdf (libre office plugin)
@@ -538,6 +546,11 @@ function combine_all_letters_into_one_pdf_delfin($baseDir, $templateFile, $times
     // verifiying if there is smth at least
     if ($pdf->PageNo() > 0) {
         $pdf->Output($combinedFile, 'F');
+        // this makes the info box visible (flex!) ; also letter mode will force hide it again at a later point
+        echo "<script>
+            document.getElementById('emailNotSendInfoBox').style.display = 'flex';
+        </script>";
+
     }
     // the end
     unset($_SESSION['letter_id_array']);    // this is needed
@@ -808,6 +821,59 @@ function attachement_upload_delfin($secondAttachement) {
     // 
     return $pathSecondAttachement; // now i can use it
 };
+
+
+// expansion V1.4.0
+// independance
+function docX_find_and_replace_delfin($templateDocX, $outputDocX, array $replacementsArray = []) {
+    // "inspired" heavily by https://github.com/mail2nisam/doc-parser
+    // https://packagist.org/packages/nisam/doc-parser
+
+    
+    $zip = new ZipArchive();
+
+    // Creating an output file by copying the template file
+    if (!copy($templateDocX, $outputDocX)) {
+        die("Copy failed from '$templateDocX' to '$outputDocX'");
+    }
+
+    // Opening the (new) docx file
+    if ($zip->open($outputDocX, ZipArchive::CREATE) !== true) {
+        echo "Could not open $outputDocX ";
+        die;
+    }
+
+    // Extracting document.xml
+    $documentXML = $zip->getFromName("word/document.xml");
+    if ($documentXML === false) {
+        $zip->close();
+        die("Could not find 'word/document.xml' in the archive.");
+    }
+
+    // Replacing placeholder text with the replacement text (all defined inside the array)
+    try {
+        foreach ($replacementsArray as $placeHolder => $actualText) {
+            $documentXML = str_replace($placeHolder, $actualText, $documentXML);
+        }
+    } catch (Exception $e) {
+        echo $e->getMessage();
+        $zip->close();
+        die;
+    }
+
+    // Saving the updated document
+    if ($zip->addFromString("word/document.xml", $documentXML)) {
+        // echo "<span>File successfully written!</span>";
+        // echo "<script>console.log('File successfully written!')</script>";
+    } else {
+        // echo "<span>File could not be written! Folder requires write permissions!</span>";
+        // echo "<script>console.log('File could not be written! Folder requires write permissions!')</script>";
+    }
+
+    $zip->close();
+
+};
+
 
 
 

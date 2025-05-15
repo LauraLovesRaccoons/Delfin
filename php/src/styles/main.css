@@ -153,16 +153,18 @@ tbody tr:nth-child(3n+3) {
 #loadingScreen {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
   background: rgba(0, 0, 0, 0.5);
   color: white;
   justify-content: center;
   align-items: center;
   font-size: 2rem;
   z-index: 151;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: wait;
+  pointer-events: all;
 }
 
 #loadingScreenAnimation {
@@ -548,7 +550,8 @@ tbody tr:nth-child(3n+3) {
   padding-left: 10px;
 }
 #heavyFormSubmission input[type=file],
-#heavyFormSubmission input[type=submit] {
+#heavyFormSubmission input[type=submit],
+#heavyFormSubmission #sendMailOrLetterButton {
   background-color: #ebe0ef;
   border-radius: 10px;
   padding: 5px;
@@ -556,7 +559,8 @@ tbody tr:nth-child(3n+3) {
   border: 1px solid rgba(255, 255, 255, 0.151);
 }
 #heavyFormSubmission input[type=file]:hover,
-#heavyFormSubmission input[type=submit]:hover {
+#heavyFormSubmission input[type=submit]:hover,
+#heavyFormSubmission #sendMailOrLetterButton:hover {
   cursor: pointer;
   background-color: #ff553d;
 }
@@ -570,7 +574,8 @@ tbody tr:nth-child(3n+3) {
   padding-left: 5px;
   border: 1px solid rgba(255, 255, 255, 0.151);
 }
-#heavyFormSubmission input[type=submit]:hover {
+#heavyFormSubmission input[type=submit]:hover,
+#heavyFormSubmission #sendMailOrLetterButton:hover {
   background-color: #81ec1e;
 }
 #heavyFormSubmission input[type=text]:hover {
@@ -601,17 +606,17 @@ tbody tr:nth-child(3n+3) {
 .batch-job-wrapper a:active {
   color: #1cafb4;
 }
-.batch-job-wrapper div {
+.batch-job-wrapper div, .batch-job-wrapper #emailNotSendInfoBox {
   background-color: rgba(240, 240, 240, 0.251);
   text-align: left;
-  display: flex;
   flex-direction: column;
   margin-right: auto;
   padding: 5px;
   border-radius: 25px;
   border: 1px rgba(15, 15, 15, 0.251);
+  display: none;
 }
-.batch-job-wrapper div span {
+.batch-job-wrapper div span, .batch-job-wrapper #emailNotSendInfoBox span {
   font-size: 1.251rem;
   display: block;
   padding: 5px;

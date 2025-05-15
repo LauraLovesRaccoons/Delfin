@@ -194,16 +194,22 @@ tbody tr:nth-child(3n + 3) {
 #loadingScreen {
   display: none; //? is hidden by default ; but i need js to do that some
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  // top: 0;
+  // left: 0;
+  // width: 100vw;
+  // height: 100vh;
+  inset: 0;   // much better than the above, will start at 0 0 in ANY corner even with zoom shenanigans ; position: is needed
+
   background: rgba(0, 0, 0, 0.5);
   color: white;
   justify-content: center;
   align-items: center;
   font-size: 2rem;
   z-index: 151; // this should be above everything;  MEW
+  user-select: none;  // the text from a fullscreen loading screen should probably not be selectable  // also the browser specific ones are handled by the scss compiler
+  cursor: wait;       // also since I've disabled text selection, the cursor should also probably reflect this in some way
+  // pointer-events: none; // don't use this, it will enable everything behind the loading screen (z index)
+  pointer-events: all;  // this will register all pointer events and apply them to the loading screen ; and the 2 previous things do nothing with those inputs which is intended for a loading screen
 }
 
 #loadingScreenAnimation {
@@ -614,7 +620,8 @@ tbody tr:nth-child(3n + 3) {
   padding-left: 10px;
   //
   input[type="file"],
-  input[type="submit"] {
+  input[type="submit"],
+  #sendMailOrLetterButton {
     background-color: #ebe0ef;
     border-radius: 10px;
     padding: 5px;
@@ -622,7 +629,8 @@ tbody tr:nth-child(3n + 3) {
     border: 1px solid rgba($color: #ffffff, $alpha: 0.151);
   }
   input[type="file"]:hover,
-  input[type="submit"]:hover {
+  input[type="submit"]:hover,
+  #sendMailOrLetterButton:hover {
     cursor: pointer;
     background-color: #ff553d;
   }
@@ -636,7 +644,8 @@ tbody tr:nth-child(3n + 3) {
     padding-left: 5px;
     border: 1px solid rgba($color: #ffffff, $alpha: 0.151);
   }
-  input[type="submit"]:hover {
+  input[type="submit"]:hover,
+  #sendMailOrLetterButton:hover {
     background-color: #81ec1e;
   }
   input[type="text"]:hover {
@@ -668,16 +677,17 @@ tbody tr:nth-child(3n + 3) {
   a:active {
     color: #1cafb4;
   }
-  div {
+  div, #emailNotSendInfoBox {
     background-color: rgba($color: #f0f0f0, $alpha: 0.251);
     text-align: left;
-    display: flex;
+    // display: flex; // since this is now hidden by default, I'm keeping it here as a reference
     flex-direction: column;
     // display: inline-block;
     margin-right: auto; // centeres the flex or inline-block
     padding: 5px;
     border-radius: 25px;
     border: 1px rgba($color: #0f0f0f, $alpha: 0.251);
+    display: none;  // hidden by default
     span {
       font-size: 1.251rem;
       display: block;

@@ -101,9 +101,11 @@ if (isset($_POST['submit_button'])) {
     <!-- end expansion V1.2.0-->
     <label for="submit"></label>
     <?php if (isset($_SESSION['letter_required'])): ?>
-      <input type="submit" value=" Upload File & Prepare Letters " name="submit_button" id="">
+      <!-- <input type="submit" value=" Upload File & Prepare Letters " name="submit_button" id=""> -->
+      <input type="button" value=" Upload File & Prepare Letters " name="submit_button" id="sendMailOrLetterButton">
     <?php else: ?>
-      <input type="submit" value=" Upload File & Send Emails " name="submit_button" id="">
+      <!-- <input type="submit" value=" Upload File & Send Emails " name="submit_button" id=""> -->
+      <input type="button" value=" Upload File & Send Emails " name="submit_button" id="sendMailOrLetterButton">
     <?php endif; ?>
     <br />
   </form>
@@ -129,8 +131,9 @@ if (isset($_POST['submit_button'])) {
 </div>
 </div>
 
+
 <!-- loading animation -->
-<!-- yes this can't be in the footer somehow -->
+<!-- yes this can't be in the footer somehow -->  <!-- it might be because of the dom content loaded -->
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     const loadingScreen = document.getElementById("loadingScreen");
@@ -139,6 +142,25 @@ if (isset($_POST['submit_button'])) {
     document.getElementById("heavyFormSubmission").addEventListener("submit", function() {
       loadingScreen.style.display = "flex"; // makes it visible
     });
+    
+    // requires the send mail or letter button to be a double press
+    // also now the php always has to handle the message for no file selected ; no front end help for end users ;(
+    document.querySelectorAll('input[name="submit_button"]').forEach(button => {
+      console.log("query selector active");
+      button.ondblclick = () => {
+        console.log("double click event now processes");
+        // I force the loading screen to show up asap when the buttton is double clicked
+        loadingScreen.style.display = "flex"; // makes it visible
+        // since this bypasses the default html form submission, the old way may no longer work (still keeping it though)
+        const hidden = document.createElement('input');
+        hidden.type = 'hidden';
+        hidden.name = button.name;
+        hidden.value = button.value;
+        button.form.appendChild(hidden);
+        button.form.submit();
+      };
+    });
+
   });
 </script>
 
