@@ -6,6 +6,8 @@ require "functions.php";
 // this must come before the other one
 session_checker_delfin();
 
+cleanup_session_vars_delfin();  // this is probably a good idea if someone uses the back button
+
 ?>
 
 
