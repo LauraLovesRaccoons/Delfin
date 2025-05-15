@@ -1,5 +1,17 @@
 <?php
 
+// handling the 20MB upload limit
+if (
+    $_SERVER['REQUEST_METHOD'] === 'POST' &&
+    empty($_POST) &&
+    empty($_FILES) &&
+    isset($_SERVER['CONTENT_LENGTH']) &&
+    (int)$_SERVER['CONTENT_LENGTH'] > 20000000  // this is a bit under 20MB
+) {
+    header("Location: logout.php");
+    exit;
+}
+
 ob_start();   //? yeah i need this ... 
 
 require "functions.php";
