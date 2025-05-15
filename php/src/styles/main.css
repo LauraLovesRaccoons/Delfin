@@ -606,7 +606,8 @@ tbody tr:nth-child(3n+3) {
 .batch-job-wrapper a:active {
   color: #1cafb4;
 }
-.batch-job-wrapper div, .batch-job-wrapper #emailNotSendInfoBox {
+.batch-job-wrapper div,
+.batch-job-wrapper #emailNotSendInfoBox {
   background-color: rgba(240, 240, 240, 0.251);
   text-align: left;
   flex-direction: column;
@@ -616,7 +617,8 @@ tbody tr:nth-child(3n+3) {
   border: 1px rgba(15, 15, 15, 0.251);
   display: none;
 }
-.batch-job-wrapper div span, .batch-job-wrapper #emailNotSendInfoBox span {
+.batch-job-wrapper div span,
+.batch-job-wrapper #emailNotSendInfoBox span {
   font-size: 1.251rem;
   display: block;
   padding: 5px;
@@ -644,4 +646,13 @@ tbody tr:nth-child(3n+3) {
 }
 .addUserRow .addUserForm .add-user input[type=checkbox] {
   border-radius: 5px;
+}
+
+.above20MB,
+.above20MB:visited,
+.above20MB:hover,
+.above20MB:active {
+  color: rgb(226, 17, 80);
+  -webkit-text-decoration: dotted underline;
+          text-decoration: dotted underline;
 }/*# sourceMappingURL=main.css.map */
