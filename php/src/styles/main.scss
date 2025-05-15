@@ -198,7 +198,7 @@ tbody tr:nth-child(3n + 3) {
   // left: 0;
   // width: 100vw;
   // height: 100vh;
-  inset: 0;   // much better than the above, will start at 0 0 in ANY corner even with zoom shenanigans ; position: is needed
+  inset: 0; // much better than the above, will start at 0 0 in ANY corner even with zoom shenanigans ; position: is needed
 
   background: rgba(0, 0, 0, 0.5);
   color: white;
@@ -206,10 +206,10 @@ tbody tr:nth-child(3n + 3) {
   align-items: center;
   font-size: 2rem;
   z-index: 151; // this should be above everything;  MEW
-  user-select: none;  // the text from a fullscreen loading screen should probably not be selectable  // also the browser specific ones are handled by the scss compiler
-  cursor: wait;       // also since I've disabled text selection, the cursor should also probably reflect this in some way
+  user-select: none; // the text from a fullscreen loading screen should probably not be selectable  // also the browser specific ones are handled by the scss compiler
+  cursor: wait; // also since I've disabled text selection, the cursor should also probably reflect this in some way
   // pointer-events: none; // don't use this, it will enable everything behind the loading screen (z index)
-  pointer-events: all;  // this will register all pointer events and apply them to the loading screen ; and the 2 previous things do nothing with those inputs which is intended for a loading screen
+  pointer-events: all; // this will register all pointer events and apply them to the loading screen ; and the 2 previous things do nothing with those inputs which is intended for a loading screen
 }
 
 #loadingScreenAnimation {
@@ -677,7 +677,8 @@ tbody tr:nth-child(3n + 3) {
   a:active {
     color: #1cafb4;
   }
-  div, #emailNotSendInfoBox {
+  div,
+  #emailNotSendInfoBox {
     background-color: rgba($color: #f0f0f0, $alpha: 0.251);
     text-align: left;
     // display: flex; // since this is now hidden by default, I'm keeping it here as a reference
@@ -687,7 +688,7 @@ tbody tr:nth-child(3n + 3) {
     padding: 5px;
     border-radius: 25px;
     border: 1px rgba($color: #0f0f0f, $alpha: 0.251);
-    display: none;  // hidden by default
+    display: none; // hidden by default
     span {
       font-size: 1.251rem;
       display: block;
@@ -793,3 +794,14 @@ tbody tr:nth-child(3n + 3) {
     }
   }
 }
+
+// styling the above 20MB upload error links in one way
+.above20MB,
+.above20MB:visited,
+.above20MB:hover,
+.above20MB:active {
+  color: rgb(226, 17, 80);
+  text-decoration: dotted underline;
+}
+
+

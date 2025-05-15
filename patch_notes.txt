@@ -1,3 +1,16 @@
+Version 1.5.0
+
+1) tweaked the dockerfile to supress php warnings for users (uploads above 20MB)
+2) removed a typo in a path from the dockerfile
+3) uploads above 20MB are now handled properly
+    -> you just get redirected to a new error /warning page (with stylesheet)
+4) 2 "major" releases in a single day
+    -> WOLOLO 
+        -> the colour blue is now red
+5) be sure to use the shutdown batch file and then run the first run batch file
+
+---
+
 Version 1.4.0
 
 1) dropped nisam's package and wrote a custom function (with a lot of inspiration from the original code)
