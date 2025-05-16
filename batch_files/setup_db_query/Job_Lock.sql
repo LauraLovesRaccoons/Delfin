@@ -5,6 +5,11 @@
 -- --------------------------------------------------------
 
 --
+-- Drop table if it already exists
+DROP TABLE IF EXISTS `Job_Lock`;
+--
+
+--
 -- Table structure for table `Job_Lock`
 --
 
