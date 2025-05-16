@@ -1,3 +1,10 @@
+Version 1.5.2
+
+1) added a guide to the readme.md on how you should handle crashes that happened during an active job
+2) Job_Lock.sql was updated to drop the table if it exists to provide an easy solution to handle the previous line
+
+---
+
 Version 1.5.1
 
 1) added the database name to the .env example file since the setup database querys specifically target that name
