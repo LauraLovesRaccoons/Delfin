@@ -1,3 +1,9 @@
+Version 1.5.1
+
+1) added the database name to the .env example file since the setup database querys specifically target that name
+
+---
+
 Version 1.5.0
 
 1) tweaked the dockerfile to supress php warnings for users (uploads above 20MB)
