@@ -1,3 +1,9 @@
+Version 1.5.7
+
+1) the cookie's name now also respects the container's name
+
+---
+
 Version 1.5.6
 
 1) if the .env file is porperly configured
