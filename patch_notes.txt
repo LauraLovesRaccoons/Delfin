@@ -1,3 +1,9 @@
+Version 1.5.8
+
+1) the session+cookie and index.php now properly handle a buggy .env file
+
+---
+
 Version 1.5.7
 
 1) the cookie's name now also respects the container's name

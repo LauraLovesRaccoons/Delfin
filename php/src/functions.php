@@ -5,7 +5,7 @@
 date_default_timezone_set('Europe/Luxembourg'); //! this isn't meant to change
 
 // Global Variables
-$appName = getenv('APP_NAME') ?: 'Delfin';  // the var name is much shorter and I have to pay less attention to which quotes I use
+$appName = getenv('APP_NAME') ?: 'Delfin-ENV-ERROR';    // the var name is much shorter and I have to pay less attention to which quotes I use
 $logBasePath = "./logs/";       // global makes sense for this specific use case
 $logFile = "log.txt";           // ditto
 $uploadBasePath = "./uploads/"; // global makes sense for this specific use case
