@@ -18,7 +18,7 @@ services:
       #? I could make an auto import if there is a backup and no db exists
 
     networks:
-      - delfin_network
+      - internal_network
 # phpmyadmin
   phpmyadmin:
     image: "phpmyadmin:latest"          #! x64
@@ -36,7 +36,7 @@ services:
     volumes:
       - phpmyadmin_data:/var/lib/pma
     networks:
-      - delfin_network
+      - internal_network
 # php-apache
   php-apache:
     image: "php:8.4-apache"
@@ -54,7 +54,7 @@ services:
     ports:
       - "${PHP_PORT}:80"  # port 80 external -> from .env file
     networks:
-      - delfin_network
+      - internal_network
     build:
       context: "./php"
       dockerfile: "dockerfile"  # extensions install
@@ -84,7 +84,7 @@ services:
     volumes:
       - db_backup:/backup   # docker volume
     networks:
-      - delfin_network
+      - internal_network
 
 # wordpress
   #wordpress:
@@ -111,6 +111,7 @@ volumes:
   #wordpress:
 
 networks:
-  delfin_network:
+  internal_network:
+    name: "${COMPOSE_PROJECT_NAME}_network"
     driver: bridge
 
