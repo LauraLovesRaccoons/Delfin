@@ -40,6 +40,10 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 
+# custom apache config
+RUN a2enmod rewrite
+COPY ./httpd.conf /etc/apache2/conf-enabled/httpd.conf
+
 
 
 # NOTES:

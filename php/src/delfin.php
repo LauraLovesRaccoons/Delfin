@@ -18,11 +18,11 @@ $approvedSelectedList = approved_lists_delfin();    // yes it's a function
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST["importCsv"])) {       // checks if the importCsv button was pressed
-        header("location: import_csv.php"); // FUTURE EXPANSION
+        header("Location: import_csv.php"); // FUTURE EXPANSION
         exit;                               // uncomment this as well
     }
     if (isset($_POST["editEntireDb"])) {        // checks if the editEntireDb button was pressed
-        header("location: edit_entire_db.php");
+        header("Location: edit_entire_db.php");
         exit;
     }
     if (isset($_POST["log"])) {         // if someone wants to open their personal log
@@ -35,25 +35,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $selectedList = $_POST["selectedList"];
         // checking if someone wants to send an example file
         if ($selectedList === "test") {
-            // header("location: test_dummy_user_array.php");  // it still has its debugging name :barry:
+            // header("Location: test_dummy_user_array.php");  // it still has its debugging name :barry:
             // exit;
             if (isset($_SESSION['targetUsersArray'])) {
                 unset($_SESSION['targetUsersArray']);   // just to be sure, even if cleanup_session_vars_delfin already ran
             };
             dummyAccounts_delfin();
-            header("location: file_upload.php");    // redirect
+            header("Location: file_upload.php");    // redirect
             exit;
         }
 
         // if someone inspect element on the hidden value field, we're gonna have a bad time
         if (!in_array($selectedList, $approvedSelectedList)) {
-            header("location: delfin.php"); // redirect
+            header("Location: delfin.php"); // redirect
             exit;
         }
 
         // redirects to the edit_list.php page
         if (isset($_POST["editList"])) {
-            header("location: edit_list.php?selectedList=" . urlencode($selectedList));     // urlencode might make the most sense here
+            header("Location: edit_list.php?selectedList=" . urlencode($selectedList));     // urlencode might make the most sense here
             exit;   // if there is no exit, it will proceed with the remainder of the code
         }
 
@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // 
         $_SESSION['targetUsersArray'] = $grabbedUsers;  // grabbedUsers was returned
         $_SESSION['selectedList'] = $selectedList;      //? added this so I can display it on the file upload page
-        header("location: file_upload.php");    // redirect
+        header("Location: file_upload.php");    // redirect
         exit;   // this is needed
     }
 }

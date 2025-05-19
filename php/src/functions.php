@@ -61,7 +61,7 @@ function logout_delfin($session_name)
     // cookie removal on client
     setcookie($session_name, "", time() - 999999, "/");   // must use the same name as the session name
     // since there is a session start there always is a cookie session present ; unless someone messes with the cookie or the browser blocks them
-    header('Location: index.php');
+    header('Location: /index.php');     // slash always targets the root of the server
     exit();
 };
 
@@ -115,14 +115,14 @@ function session_checker_delfin()
     session_start();    // 
     if (isset($_POST['logout_button'])) {
         unset($_SESSION['id']);
-        header("location: logout.php");
+        header("Location: /logout.php");
     }
 
     if (isset($_SESSION['id'])) {
         // echo "Welcome: $_SESSION[username] <br/>";
         // echo "<script>console.log('" . $_SESSION['username'] . " - " . $_SESSION['email'] . " - " . $_SESSION['id'] . "');</script>";
     } else {
-        header("location: index.php");  // this requires a session from login
+        header("Location: /index.php"); // this requires a session from login
     }
 };
 
