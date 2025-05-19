@@ -5,7 +5,7 @@
 date_default_timezone_set('Europe/Luxembourg'); //! this isn't meant to change
 
 // Global Variables
-$appName = getenv('APP_NAME');  // the var name is much shorter and I have to pay less attention which quotes I use
+$appName = getenv('APP_NAME') ?: 'Delfin';  // the var name is much shorter and I have to pay less attention to which quotes I use
 $logBasePath = "./logs/";       // global makes sense for this specific use case
 $logFile = "log.txt";           // ditto
 $uploadBasePath = "./uploads/"; // global makes sense for this specific use case
@@ -77,24 +77,24 @@ function db_connect_delfin()
     $db = @mysqli_connect($serviceMysql, $username, $password, $dbname);    // @ means surpress error message
     if (!$db) {
         //     // // error_log(mysqli_connect_error());
-        include_once 'header.html';
+        include_once 'header.php';
         echo "<div class='general-wrapper'>";
         echo "<h1 style= 'color: red'>The database has an issue</h1> ";
         echo "<script>console.log('The database has an issue');</script>";
         echo "<br />";
         // echo "</div>";
-        // include 'footer.html';
+        // include 'footer.php';
     } elseif ($db) {
         // echo "Database is active<br>";
         // echo "<script>console.log('Database is active');</script>";
     } else {
-        include_once 'header.html';
+        include_once 'header.php';
         echo "<div class='general-wrapper'>";
         echo "<h1 style= 'color: red'>The Server and Database seem to have a serious Hardware Issue. Please report this.</h1> ";
         echo "<script>console.log('The Server and Database seem to have a serious Hardware Issue. Please report this.');</script>";
         echo "<br />";
         // echo "</div>";
-        // include 'footer.html';
+        // include 'footer.php';
     }
     return $db; // 
 };

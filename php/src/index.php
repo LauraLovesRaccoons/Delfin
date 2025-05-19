@@ -1,5 +1,5 @@
 <!-- Import a file -> stop the script if problem return an error -->
-<?php require 'header.html'; ?>
+<?php require 'header.php'; ?>
 <!--  Import a file -> warning of issue, script continues to run -->
 
 
@@ -7,7 +7,7 @@
     <div class="other-general-wrapper">
 
 
-        <h4 class="index_header"><?= getenv('APP_NAME'); ?></h4> <!-- this one must read from .env since functions.php isn't loaded here -->
+        <h4 class="index_header"><?= getenv('APP_NAME') ?: 'Delfin' ?></h4> <!-- this one must read from .env since functions.php isn't loaded here -->
 
 
         <a href="login.php" class="index_login"><?= getenv('COMPANY_DIVISION'); ?></a>   <!-- this allows the specific company division to be set dynamically; requires reading from the .env file -->
@@ -22,7 +22,7 @@
 </div>
 
 <!-- Import a file -> stop the script if problem return an error -->
-<?php require 'footer.html'; ?>
+<?php require 'footer.php'; ?>
 <!--  Import a file -> warning of issue, script continues to run -->
 
 

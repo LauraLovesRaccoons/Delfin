@@ -2,7 +2,7 @@
 
 ?>
 
-<!DOCTYPE html><html lang="en-lu"><body>
+<!DOCTYPE html><html lang="en-lu"><head><title>Superjhemp</title></head><body>
   <h1>Congratulations!<br /><br />You are now trapped!
       <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
       <br /><br /><br /><br />
@@ -12,8 +12,8 @@
       <ul>
         <li><a href="logout.php">HELP</a></li>
       </ul></h1>
-</body>
-</html>
+<!-- </body>
+</html> -->
 
 
 

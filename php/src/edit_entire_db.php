@@ -18,7 +18,7 @@ $db = db_connect_delfin();
 $queryResult = query_grab_user_list_delfin($selectedList, $db);
 
 
-require 'header.html';
+require 'header.php';
 
 // 
 ?>
@@ -176,4 +176,4 @@ require 'header.html';
 
 
 
-<?php require 'footer.html'; ?>
+<?php require 'footer.php'; ?>

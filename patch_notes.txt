@@ -1,3 +1,16 @@
+Version 1.5.5
+
+1) header and footer are now php files instead of html files
+    -> VSCode's find and replace all helped a lot
+2) the app name is now handled dynamically over the .env file
+3) the ports are now adjustable in the .env file to allow multiple of these docker containers to run simutaniously
+    -> also updated the .env example file
+4) there are now default database logins provided in the .env file
+    -> since the database doesn't expose a port I can kinda provide example credentials
+5) commented out the test cron job for the database backup
+
+---
+
 Version 1.5.4
 
 1) added ERROR 404 redirect

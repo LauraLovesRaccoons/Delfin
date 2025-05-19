@@ -33,7 +33,7 @@ if (isset($_SESSION['selectedList'])) {
   exit;
 }
 
-require 'header.html';
+require 'header.php';
 
 echo '<div class="general-wrapper">';
 echo '<div class="file_upload-wrapper">';
@@ -177,4 +177,4 @@ if (isset($_POST['submit_button'])) {
 </script>
 
 
-<?php require 'footer.html'; ?>
+<?php require 'footer.php'; ?>

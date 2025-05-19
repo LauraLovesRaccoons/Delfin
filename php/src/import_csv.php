@@ -9,11 +9,11 @@ exit();
 
 ?>
 
-<?php require 'header.html'; ?>
+<?php require 'header.php'; ?>
 
 <!-- yes a different div -->
 <div class="general-wrapper">
 
 </div>
 
-<?php require 'footer.html'; ?>
+<?php require 'footer.php'; ?>

@@ -11,11 +11,11 @@ cleanup_session_vars_delfin();  // this is probably a good idea if someone uses 
 ?>
 
 
-<?php require 'header.html'; ?>
+<?php require 'header.php'; ?>
 
 <div class="general-wrapper">
     <br />
     <h1 class="landing-page-h1">Your (Total) Upload was above 20MB, emails can't process this!</h1>
     <h2 class="landing-page-h1"><a class="above20MB" href="delfin.php">Go Back to the Main Page</a></h2>
 </div>
-<?php require 'footer.html'; ?>
+<?php require 'footer.php'; ?>

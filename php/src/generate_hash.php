@@ -1,6 +1,6 @@
 <?php
 
-require 'header.html';
+require 'header.php';
 
 echo '<div class="general-wrapper">';
 echo '<div class="support_page-wrapper">';
@@ -60,4 +60,4 @@ if (isset($_POST['submit_button'])) {
 </div>
 </div>
 
-<?php require 'footer.html'; ?>
+<?php require 'footer.php'; ?>
