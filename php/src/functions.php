@@ -59,7 +59,7 @@ function logout_delfin($session_name)
     session_unset();
     session_destroy();
     // cookie removal on client
-    setcookie($session_name, "", time() - 999999, "/");   //! must use the same name as the session name
+    setcookie($session_name, "", time() - 999999, "/");   // must use the same name as the session name
     // since there is a session start there always is a cookie session present ; unless someone messes with the cookie or the browser blocks them
     header('Location: index.php');
     exit();
@@ -77,25 +77,32 @@ function db_connect_delfin()
     $db = @mysqli_connect($serviceMysql, $username, $password, $dbname);    // @ means surpress error message
     if (!$db) {
         //     // // error_log(mysqli_connect_error());
-        echo "<h1 style= 'color: red'>Datenbank huet een Problem</h1> ";
-        echo "<script>console.log('Datenbank huet een Problem');</script>";
-        echo "<br /><a href='logout.php'Logout</a><br />";
+        include_once 'header.html';
+        echo "<div class='general-wrapper'>";
+        echo "<h1 style= 'color: red'>The database has an issue</h1> ";
+        echo "<script>console.log('The database has an issue');</script>";
+        echo "<br />";
+        // echo "</div>";
+        // include 'footer.html';
     } elseif ($db) {
-        // echo "Datenbank ass aktiv <br>";
-        // echo "<script>console.log('Datenbank ass aktiv');</script>";
+        // echo "Database is active<br>";
+        // echo "<script>console.log('Database is active');</script>";
     } else {
-        echo "<h1 style= 'color: red'>Een Dëcken Hardware Problem mam Server an der Datenbank</h1> ";
-        echo "<script>console.log('Een Dëcken Hardware Problem mam Server an der Datenbank');</script>";
-        echo "<br /><a href='logout.php'>Logout</a><br />";
+        include_once 'header.html';
+        echo "<div class='general-wrapper'>";
+        echo "<h1 style= 'color: red'>The Server and Database seem to have a serious Hardware Issue. Please report this.</h1> ";
+        echo "<script>console.log('The Server and Database seem to have a serious Hardware Issue. Please report this.');</script>";
+        echo "<br />";
+        // echo "</div>";
+        // include 'footer.html';
     }
-    return $db; // this gives me the cannot modify header information warning
+    return $db; // 
 };
 
 function db_close_delfin($db)
 {
     if ($db) {
         mysqli_close($db);  // closes the database connection
-        // echo "Closed the Database Connection";
         // echo "<script>console.log('Closed the Database Connection');</script>";
     } else {
         // echo "There was NO Database Connection";

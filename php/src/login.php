@@ -26,9 +26,9 @@ if (isset($_POST['submit_button'])) {
     // var_dump($password);
     $errors = [];
     if (empty($email)) {
-        $errors['email'] = "<p style class='login-error '>Email ass obligatoresch</p>";
+        $errors['email'] = "<p style class='login-error '>Email mandatory</p>";
     } elseif (empty($password)) {
-        $errors['password'] = "<p style class='login-error '>Passwuert ass obligatoresch</p>";
+        $errors['password'] = "<p style class='login-error '>Password mandatory</p>";
     }
     if (empty($errors)) {
         $db = db_connect_delfin();   // function   // also using the variable $db
@@ -71,11 +71,11 @@ if (isset($_POST['submit_button'])) {
                 header("location: delfin.php");
                 exit();
             } else {
-                echo "<p style class='login-error '>Passwuert falsch</p>";
+                echo "<p style class='login-error '>Password incorrect</p>";
                 // var_dump($user['password']);
             }
         } else {
-            echo "<p style class='login-error' >Email falsch</p>";
+            echo "<p style class='login-error' >Email incorrect</p>";
         }
     }
 }
