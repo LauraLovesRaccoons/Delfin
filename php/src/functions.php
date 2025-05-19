@@ -23,8 +23,8 @@ $docXFields = ['«Allocation»', '«Nom»', '«Nom2»', '«Fonction»', '«Adres
 // those are only used for the table header so you need to add additional table fields in the php table, OR ELSE, everything will break
 
 
-$session_name = "delfin-session-cookie";    // prettier name
-session_name("$session_name");              // now this is the cookie's name
+$session_name = strtolower(preg_replace('/[^a-z0-9]/i', '-', $appName)) . '-session-cookie';    // prettier name
+session_name("$session_name");                                                                  // now this is the cookie's name
 // if function is always called before session_start (which is included in all the functions) ; then this will always be the cookie name
 
 // Load Composer's autoloader
