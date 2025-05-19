@@ -17,7 +17,7 @@ require "./functions/signature_template.php";   //? since a session is required 
 // if (isset($_GET['file'])) {
 //     $targetFile = urldecode($_GET['file']);
 //     if (!file_exists($targetFile)) {
-//         header("Location: delfin.php"); // redirects if the file doesn't exist
+//         header("Location: /delfin.php"); // redirects if the file doesn't exist
 //         exit();
 //     }
 
@@ -48,11 +48,11 @@ if (isset($_SESSION['targetFile'])) {
         $templateDir = $_SESSION['targetDir'];
         unset($_SESSION['targetDir']);
     } else {
-        header("Location: delfin.php");
+        header("Location: /delfin.php");
         exit();
     }
 } else {
-    header("Location: delfin.php");     // I'm not messing around with wannabe hackers
+    header("Location: /delfin.php");     // I'm not messing around with wannabe hackers
     exit();
 }
 // it's better to be sure this hasn't somehow been purged
@@ -60,7 +60,7 @@ if (isset($_SESSION['targetUsersArray'])) {
     $emailRecipientsArray = $_SESSION['targetUsersArray'];
     unset($_SESSION['targetUsersArray']); // prevents having a duplicate Array of Users and potentionally sending duplicate mails
 } else {
-    header("Location: delfin.php");
+    header("Location: /delfin.php");
     exit();
 }
 // sets the Subject and Body and loads the default from the env file if it doesn't exist

@@ -21,7 +21,7 @@ session_checker_delfin();
 if (isset($_SESSION['targetUsersArray'])) {
   $targetUsersArray = $_SESSION['targetUsersArray'];
 } else {
-  header("Location: delfin.php");
+  header("Location: /delfin.php");
   exit();
 }
 

@@ -55,6 +55,8 @@ if (isset($_POST['submit_button'])) {
             $passwordVerify = password_verify($password, $user['password']);    // db password must be hashed
 
             if ($passwordVerify) {
+                session_regenerate_id(true);    // prevents session fixation attacks
+
                 $_SESSION['id'] = (int) $user['id'];
                 $_SESSION['email'] = (trim($user['email']));
                 $_SESSION['username'] = (trim($user['username']));
@@ -68,7 +70,7 @@ if (isset($_POST['submit_button'])) {
                 $_SESSION['signatureGSM'] = (trim($user['signatureGSM']));
                 $_SESSION['signatureFax'] = (trim($user['signatureFax']));
                 // finally
-                header("Location: delfin.php");
+                header("Location: /delfin.php");
                 exit();
             } else {
                 echo "<p style class='login-error '>Password incorrect</p>";

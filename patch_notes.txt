@@ -1,3 +1,16 @@
+Version 1.5.9
+
+1) the login script now has a session fixation prevention
+2) If someone with the exact same id manages to be logged in twice and they manage to upload a file with the exact same name at the exact same second, 
+    -> the slowest one will be redirected to collision.php
+3) created and "designed" collision.php
+4) each redirect to delfin.php now targets the root
+5) The collision prevents also kicks in if the filenames aren't an exact match
+    -> just someone with the same id trying to upload a file at the exact same second
+        -> the attachement folder's file could be overwriten by another file with the exact same name before, so this is now fixed as well
+
+---
+
 Version 1.5.8
 
 1) the session+cookie and index.php now properly handle a buggy .env file

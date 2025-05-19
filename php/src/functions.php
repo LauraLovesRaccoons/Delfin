@@ -281,6 +281,11 @@ function file_upload_delfin($file)
     if (!is_dir($targetUploadDir)) {
         mkdir($targetUploadDir, 0777, true);    // 0777 gives everyone access to it ; for simplicity purposes
     }
+    else {
+        // Collision detector
+        header("Location: /collision.php");
+        exit();
+    }
     $targetFile = $targetUploadDir . basename($file["name"]);   // 
     if (file_exists($targetFile)) {
         // echo "<strong>Somehow. Somehow, Palpatine returned... and made this file in this folder already exist!</strong><br />";
