@@ -68,7 +68,7 @@ if (isset($_POST['submit_button'])) {
                 $_SESSION['signatureGSM'] = (trim($user['signatureGSM']));
                 $_SESSION['signatureFax'] = (trim($user['signatureFax']));
                 // finally
-                header("location: delfin.php");
+                header("Location: delfin.php");
                 exit();
             } else {
                 echo "<p style class='login-error '>Password incorrect</p>";

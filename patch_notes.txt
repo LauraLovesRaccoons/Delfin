@@ -1,3 +1,13 @@
+Version 1.5.4
+
+1) added ERROR 404 redirect
+2) every target Location (redirect to) index;logout;.php are now using the root of the webserver as a base
+3) Capitalised every header('location: ...') to header('Location: ...')
+4) removed all the old custom error pages
+5) keept the index.html just in case someone doesn't realise that this is a php server
+
+---
+
 Version 1.5.3
 
 1) code performance improvements & better readability
