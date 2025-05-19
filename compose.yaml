@@ -32,7 +32,7 @@ services:
       PMA_USER: "root"                        # MUST be root
       PMA_PASSWORD: "${MYSQL_ROOT_PASSWORD}"  # MYSQL_ROOT_PASSWORD
     ports:
-      - "8080:80"   # port 8080 external
+      - "${PMA_PORT}:80"  # port 8080 external -> from .env file
     volumes:
       - phpmyadmin_data:/var/lib/pma
     networks:
@@ -52,7 +52,7 @@ services:
       - ./uploads:/var/www/html/uploads # ./ means local volume and dropping ./ means docker volume
       - ./logs:/var/www/html/logs       # ./ means local volume and dropping ./ means docker volume
     ports:
-      - "80:80"   # port 80 external
+      - "${PHP_PORT}:80"  # port 80 external -> from .env file
     networks:
       - delfin_network
     build:
@@ -78,8 +78,8 @@ services:
       # - CRON_TIME=0 10 * * *    # every day at 10:00
       - CRON_TIME=15 23 * * *   # every day at 23:15
 
-      # workplace test
-      - CRON_TIME=15 13 * * *   # test office hours
+      # # workplace test          #? this is an override
+      # - CRON_TIME=15 13 * * *   # test office hours
 
     volumes:
       - db_backup:/backup   # docker volume

@@ -60,7 +60,7 @@ $dummyAccounts = [
 $_SESSION['selectedList'] = "YOURSELF";         //? this is needed for the next page
 $_SESSION['targetUsersArray'] = $dummyAccounts;
 
-require "header.html";
+require "header.php";
 
 echo '<div class="general-wrapper">';
 
@@ -100,7 +100,7 @@ echo "<br />";
 
 <?php
 
-require "footer.html";
+require "footer.php";
 
 ?>
 

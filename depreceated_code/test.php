@@ -23,7 +23,7 @@ if (isset($_SESSION['targetUsersArray'])) {
 
 
 
-include 'header.html';
+include 'header.php';
 
 $selectedList = "list_A";   // this is usefull
 
@@ -111,5 +111,5 @@ echo "<br />";
 
 
 <?php
-include 'footer.html';
+include 'footer.php';
 ?>

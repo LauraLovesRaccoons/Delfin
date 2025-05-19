@@ -10,7 +10,7 @@ require 'functions.php';
 // echo ini_get("session.gc_maxlifetime");
 session_start([]);
 
-require 'header.html';
+require 'header.php';
 
 echo '<div class="general-wrapper">';
 echo '<div class="other-general-wrapper">';
@@ -108,4 +108,4 @@ if (isset($_POST['submit_button'])) {
 </div>
 </div>
 
-<?php require 'footer.html'; ?>
+<?php require 'footer.php'; ?>

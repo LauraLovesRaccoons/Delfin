@@ -87,7 +87,7 @@ $emailBody = appendSignature_delfin($emailBody);
 
 
 <?php
-include 'header.html';  //? this code should never cancel if there is an issue loading the header
+include 'header.php';  //? this code should never cancel if there is an issue loading the header
 ?>
 
 <div class="general-wrapper">
@@ -210,5 +210,5 @@ include 'header.html';  //? this code should never cancel if there is an issue l
 </div>
 
 <?php
-include 'footer.html';  //? the code above should never cancel
+include 'footer.php';  //? the code above should never cancel
 ?>

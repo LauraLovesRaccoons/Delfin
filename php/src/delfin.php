@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ?>
 
 
-<?php require 'header.html'; ?>
+<?php require 'header.php'; ?>
 
 <div class="general-wrapper">
 
@@ -242,4 +242,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 </div>
 
-<?php require 'footer.html'; ?>
+<?php require 'footer.php'; ?>
