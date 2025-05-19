@@ -7,10 +7,10 @@
     <div class="other-general-wrapper">
 
 
-        <h4 class="index_header"><?= getenv('APP_NAME') ?: 'Delfin' ?></h4> <!-- this one must read from .env since functions.php isn't loaded here -->
+        <h4 class="index_header"><?= getenv('APP_NAME') ?: 'The ENV FILE has issues. Please contact support.' ?></h4> <!-- this one must read from .env since functions.php isn't loaded here -->
 
 
-        <a href="login.php" class="index_login"><?= getenv('COMPANY_DIVISION'); ?></a>   <!-- this allows the specific company division to be set dynamically; requires reading from the .env file -->
+        <a href="login.php" class="index_login"><?= getenv('COMPANY_DIVISION') ?: 'Here Be Dragons' ?></a>   <!-- this allows the specific company division to be set dynamically; requires reading from the .env file -->
 
 
 
