@@ -87,7 +87,7 @@ $emailBody = appendSignature_delfin($emailBody);
 
 
 <?php
-include 'header.html';  //? this code should never cancel
+include 'header.html';  //? this code should never cancel if there is an issue loading the header
 ?>
 
 <div class="general-wrapper">
@@ -98,7 +98,7 @@ include 'header.html';  //? this code should never cancel
 
         <span id="downloadLinkMsg"></span> <!-- the span will be overwritten by outerHTML with JS -->
         <br />
-        <div id="emailNotSendInfoBox">  <!-- the id allows me to completely hide it with javacript -->
+        <div id="emailNotSendInfoBox"> <!-- the id allows me to completely hide it with javacript -->
 
             <!-- <h1>BE PATIENT ! - MUST DISPLAY ON THE PREVIOUS PAGE </h1>
 <h1>ESPECIALLY IF MAILS ARE FAILING TO SEND</h1> -->
@@ -210,10 +210,5 @@ include 'header.html';  //? this code should never cancel
 </div>
 
 <?php
-include 'footer.html';  //? this code should never cancel
-?>
-
-
-<?php
-// debug_test_env_delfin();
+include 'footer.html';  //? the code above should never cancel
 ?>

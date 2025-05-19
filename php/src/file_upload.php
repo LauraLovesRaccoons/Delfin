@@ -2,14 +2,14 @@
 
 // handling the 20MB upload limit
 if (
-    $_SERVER['REQUEST_METHOD'] === 'POST' &&
-    empty($_POST) &&
-    empty($_FILES) &&
-    isset($_SERVER['CONTENT_LENGTH']) &&
-    (int)$_SERVER['CONTENT_LENGTH'] > 20000000  // this is a bit under 20MB
+  $_SERVER['REQUEST_METHOD'] === 'POST' &&
+  empty($_POST) &&
+  empty($_FILES) &&
+  isset($_SERVER['CONTENT_LENGTH']) &&
+  (int)$_SERVER['CONTENT_LENGTH'] > 20000000  // this is a bit under 20MB
 ) {
-    header("Location: upload_too_large.php");
-    exit;
+  header("Location: upload_too_large.php");
+  exit;
 }
 
 ob_start();   //? yeah i need this ... 
@@ -102,7 +102,7 @@ if (isset($_POST['submit_button'])) {
     <input type="file" name="fileToUpload" id="fileToUpload" required>
     <br /><br />
     <!-- start expansion V1.2.0-->
-    <?php if (!isset($_SESSION['letter_required'])): ?>   <!-- attachements for letters are redundant -->
+    <?php if (!isset($_SESSION['letter_required'])): ?> <!-- attachements for letters are redundant -->
       <em>Select Attachement (*):</em><br />
       <label for="file"></label>
       <input type="file" name="secondAttachementUpload" id="secondAttachementUpload" optional>
@@ -145,7 +145,7 @@ if (isset($_POST['submit_button'])) {
 
 
 <!-- loading animation -->
-<!-- yes this can't be in the footer somehow -->  <!-- it might be because of the dom content loaded -->
+<!-- yes this can't be in the footer somehow --> <!-- it might be because of the dom content loaded -->
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     const loadingScreen = document.getElementById("loadingScreen");
@@ -154,7 +154,7 @@ if (isset($_POST['submit_button'])) {
     document.getElementById("heavyFormSubmission").addEventListener("submit", function() {
       loadingScreen.style.display = "flex"; // makes it visible
     });
-    
+
     // requires the send mail or letter button to be a double press
     // also now the php always has to handle the message for no file selected ; no front end help for end users ;(
     document.querySelectorAll('input[name="submit_button"]').forEach(button => {

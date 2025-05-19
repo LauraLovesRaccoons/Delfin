@@ -77,6 +77,4 @@ function appendSignature_delfin($emailBody)
     $emailBody = $emailBody . "<br />" . $template;     //? catenates both strings into one ; with a line break
     return $emailBody;
 };
-
-
 ?>

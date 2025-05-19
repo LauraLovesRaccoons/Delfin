@@ -63,7 +63,7 @@ require 'header.html';
                 <form class="addUserForm" method="post" id="addUserForm">
 
                     <td class="spacer" colspan="1"></td>
-                    
+
                     <td data-cell="add-user" class="add-user">
                         <button type="button" id="submitAddUser" class="submitAddUser" title="Add user">✅</button>
                     </td>
@@ -76,7 +76,7 @@ require 'header.html';
 
                     <?php foreach ($allowedColumnsTinyint as $col): ?>
                         <td data-cell="<?= $col ?>" class="table_tinyint_add-form">
-                            <input type="checkbox" name="<?= $col ?>" value="1" />  <!-- value is one if checked! -->
+                            <input type="checkbox" name="<?= $col ?>" value="1" /> <!-- value is one if checked! -->
                         </td>
                     <?php endforeach; ?>
 

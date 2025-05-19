@@ -550,7 +550,6 @@ function combine_all_letters_into_one_pdf_delfin($baseDir, $templateFile, $times
         echo "<script>
             document.getElementById('emailNotSendInfoBox').style.display = 'flex';
         </script>";
-
     }
     // the end
     unset($_SESSION['letter_id_array']);    // this is needed
@@ -800,7 +799,8 @@ function set_batchJobAlreadyRunning_delfin()
 
 
 // expansion V1.2.0
-function attachement_upload_delfin($secondAttachement) {
+function attachement_upload_delfin($secondAttachement)
+{
     //
     $secondAttachementDir = $_SESSION['targetDir'] . "attachement" . "/";
     $pathSecondAttachement = $secondAttachementDir . basename($secondAttachement["name"]); //
@@ -813,7 +813,7 @@ function attachement_upload_delfin($secondAttachement) {
         // echo "<strong>Somehow. Somehow, Palpatine returned... and made this file in this folder already exist!</strong><br />";
         unlink($pathSecondAttachement);
     }
-    
+
     if (!move_uploaded_file($secondAttachement['tmp_name'], $pathSecondAttachement)) {
         echo "<strong>Something went terribly wrong!</strong><br />";
         return false;
@@ -825,11 +825,12 @@ function attachement_upload_delfin($secondAttachement) {
 
 // expansion V1.4.0
 // independance
-function docX_find_and_replace_delfin($templateDocX, $outputDocX, array $replacementsArray = []) {
+function docX_find_and_replace_delfin($templateDocX, $outputDocX, array $replacementsArray = [])
+{
     // "inspired" heavily by https://github.com/mail2nisam/doc-parser
     // https://packagist.org/packages/nisam/doc-parser
 
-    
+
     $zip = new ZipArchive();
 
     // Creating an output file by copying the template file
@@ -871,9 +872,4 @@ function docX_find_and_replace_delfin($templateDocX, $outputDocX, array $replace
     }
 
     $zip->close();
-
 };
-
-
-
-

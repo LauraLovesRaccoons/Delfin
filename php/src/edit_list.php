@@ -114,7 +114,7 @@ require 'header.html';
     const textColumns = <?php echo json_encode($allowedColumnsText); ?>; // loads the array from the php global var as json
     // edit tinyint
     const tinyintColumns = <?php echo json_encode($allowedColumnsTinyint); ?>; // loads the array from the php global var as json
-    const approvedListsColumns = <?php echo json_encode($allowedColumnsTinyint); ?>;    //? since this is used for entire db and i don't wanna expose this, i'm just copying over the previous value :barry: :startrekkin: 
+    const approvedListsColumns = <?php echo json_encode($allowedColumnsTinyint); ?>; //? since this is used for entire db and i don't wanna expose this, i'm just copying over the previous value :barry: :startrekkin: 
 </script>
 
 <script src="scripts/enable_editing.js"></script>
