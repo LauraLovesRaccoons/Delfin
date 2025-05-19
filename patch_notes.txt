@@ -1,3 +1,11 @@
+Version 1.5.6
+
+1) if the .env file is porperly configured
+    -> each container will be truly independant from each other
+        -> even the docker network
+
+---
+
 Version 1.5.5
 
 1) header and footer are now php files instead of html files
