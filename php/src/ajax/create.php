@@ -50,8 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $value = trim($value);
             $value = substr($value, 0, 250);    // varchar 255 with some wiggle room
             // // $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8'); // I'm not messing around ;)
-        }
-        else {
+        } else {
             $value = null;  // technically not needed since it was null before
         }
 
@@ -80,5 +79,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     exit;
 }
-
 ?>

@@ -1,7 +1,7 @@
 const editButton = document.getElementById("editButton");
 const editButtonAlpha = document.querySelector(".editButtonAlpha");
-editButtonAlpha.addEventListener("click", function() {
-  location.reload();    // I do a page reload, which prevents continous calling of javascript ; also this let you stay on your current scroll position
+editButtonAlpha.addEventListener("click", function () {
+  location.reload(); // I do a page reload, which prevents continous calling of javascript ; also this let you stay on your current scroll position
 });
 //
 editButton.addEventListener("dblclick", function () {
@@ -37,7 +37,7 @@ editButton.addEventListener("dblclick", function () {
   script_edit_tinyint.src = "./scripts/edit_tinyint.js";
   script_edit_tinyint.type = "text/javascript";
   document.head.appendChild(script_edit_tinyint);
-  // 
+  //
   document.querySelectorAll(".delete-symbol").forEach((element) => {
     element.classList.add("delete-symbol_edit");
   });

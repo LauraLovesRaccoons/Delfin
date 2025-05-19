@@ -1,3 +1,13 @@
+Version 1.5.3
+
+1) code performance improvements & better readability
+2) quirks layout in the easteregg page fixed
+3) removed luxembourgish from login.php (everything) and functions.php (database status)
+4) applied a bit of uniform design if the database has an issue
+5) login.php provides a nice error box and it's less likely that the database has an issue after successfully login in (since it connects to the same database)
+
+---
+
 Version 1.5.2
 
 1) added a guide to the readme.md on how you should handle crashes that happened during an active job
