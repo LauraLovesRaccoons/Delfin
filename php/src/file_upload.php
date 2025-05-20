@@ -8,7 +8,7 @@ if (
   isset($_SERVER['CONTENT_LENGTH']) &&
   (int)$_SERVER['CONTENT_LENGTH'] > 20000000  // this is a bit under 20MB
 ) {
-  header("Location: upload_too_large.php");
+  header("Location: /upload_too_large.php");
   exit;
 }
 
@@ -21,7 +21,7 @@ session_checker_delfin();
 if (isset($_SESSION['targetUsersArray'])) {
   $targetUsersArray = $_SESSION['targetUsersArray'];
 } else {
-  header("Location: delfin.php");
+  header("Location: /delfin.php");
   exit();
 }
 

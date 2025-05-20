@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // if someone inspect element on the hidden value field, we're gonna have a bad time
         if (!in_array($selectedList, $approvedSelectedList)) {
-            header("Location: delfin.php"); // redirect
+            header("Location: /delfin.php"); // redirect
             exit;
         }
 
