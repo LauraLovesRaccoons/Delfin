@@ -28,7 +28,7 @@ CREATE TABLE `Accounts` (
 --
 
 INSERT INTO `Accounts` (`id`, `username`, `password`, `email`, `signatureName`, `signaturePhone`, `signatureService`, `signatureTitle`, `signatureOffice`, `signatureGSM`, `signatureFax`) VALUES
-(1, 'Hornick Laura', '$2y$10$Lcxu.ACsR17dQof5hiHT7OpJmU8c6MDnS2KqxXX6/miNNdhA9TsQm', 'laura.hornick@petange.lu', 'Laura HORNICK', '(+352) 50 12 51-2069', 'Service informatique', '/', '/', '/', '/');
+(1, 'Hornick Laura', '$2y$10$Lcxu.ACsR17dQof5hiHT7OpJmU8c6MDnS2KqxXX6/miNNdhA9TsQm', 'Laura.Hornick@petange.lu', 'Laura HORNICK', '(+352) 50 12 51-2069', 'Service informatique', '/', '/', '/', '/');
 
 --
 
