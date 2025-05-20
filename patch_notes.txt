@@ -1,3 +1,9 @@
+Version 1.6.0
+
+1) Nom Coupon Réponse now uses the real field name
+
+---
+
 Version 1.5.10
 
 1) the name of the CID images are now dynamically adjusted

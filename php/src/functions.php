@@ -22,7 +22,7 @@ $bannerImageLink = "https://web.petange.lu/signature/banner/banner.RPLtv.440.jpg
 $logoImageMime = "image/jpeg";      // This is the mime type and is required to be set correctly for trusted attachements
 $bannerImageMime = "image/jpeg";    // ditto
 // 
-$docXFields = ['«Allocation»', '«Nom»', '«Nom2»', '«Fonction»', '«Adresse1»', '«Adresse2»', '«Allocation_Spéciale»', '«Nom_coupon-réponse»',];  //! the docX modify function doesn't use this and has hardcoded fields (left-side)
+$docXFields = ['«Allocation»', '«Nom»', '«Nom2»', '«Fonction»', '«Adresse1»', '«Adresse2»', '«Allocation_Spéciale»', '«Nom_Couponréponse»',];  //! the docX modify function doesn't use this and has hardcoded fields (left-side)
 // those are only used for the table header so you need to add additional table fields in the php table, OR ELSE, everything will break
 
 
@@ -467,7 +467,7 @@ function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
         '«Adresse1»' => $recipientUser['adresse1'] ?: '​',
         '«Adresse2»' => $recipientUser['adresse2'] ?: '​',
         '«Allocation_Spéciale»' => $recipientUser['allocationSpeciale'] ?: '​',
-        '«Nom_coupon-réponse»' => $recipientUser['nomCouponReponse'] ?: '​',        //! verify actual field name! 
+        '«Nom_Couponréponse»' => $recipientUser['nomCouponReponse'] ?: '​',
     ];
 
     // old package, user hasn't logged in in 7 years (unreliable to rely on that link)
