@@ -1,3 +1,12 @@
+Version 1.5.10
+
+1) the name of the CID images are now dynamically adjusted
+    -> you still have to manually declare the mime type but at least you can do it at the top of functions.php
+2) cleaned up the code a teeny tiny bit
+3) the Accounts.sql table now adds a sessionId entry for future use
+
+---
+
 Version 1.5.9
 
 1) the login script now has a session fixation prevention
