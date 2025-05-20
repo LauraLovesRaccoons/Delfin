@@ -14,10 +14,13 @@ $uploadBasePath = "./uploads/"; // global makes sense for this specific use case
 $allowedColumnsText = ['allocation', 'nom', 'nom2', 'fonction', 'adresse1', 'adresse2', 'allocationSpeciale', 'nomCouponReponse', 'email',];
 $allowedColumnsTinyint = ['letter_required', 'duplicate',];
 //? image paths
-$logoImagePath = __DIR__ . "/images/email.logo.jpg";    // ensures it's exectued from the current directory
+$logoImagePath = __DIR__ . "/images/email.logo.jpg";            // ensures it's exectued from the current directory
 $bannerImagePath = __DIR__ . "/images/banner.RPLtv.440.jpg";    // ditto
-$logoImageLink = "https://web.petange.lu/signature/email.logo.jpg"; // backup-link
+$logoImageLink = "https://web.petange.lu/signature/email.logo.jpg";                 // backup-link
 $bannerImageLink = "https://web.petange.lu/signature/banner/banner.RPLtv.440.jpg";  // backup-link
+//? you have to set these correctly based on your file
+$logoImageMime = "image/jpeg";      // This is the mime type and is required to be set correctly for trusted attachements
+$bannerImageMime = "image/jpeg";    // ditto
 // 
 $docXFields = ['«Allocation»', '«Nom»', '«Nom2»', '«Fonction»', '«Adresse1»', '«Adresse2»', '«Allocation_Spéciale»', '«Nom_coupon-réponse»',];  //! the docX modify function doesn't use this and has hardcoded fields (left-side)
 // those are only used for the table header so you need to add additional table fields in the php table, OR ELSE, everything will break
@@ -53,6 +56,7 @@ function debug_test_env_delfin()
     echo "<br /><br />";
 };
 
+
 function logout_delfin($session_name)
 {
     session_start();
@@ -64,6 +68,7 @@ function logout_delfin($session_name)
     header('Location: /index.php');     // slash always targets the root of the server
     exit();
 };
+
 
 function db_connect_delfin()
 {
@@ -99,6 +104,7 @@ function db_connect_delfin()
     return $db; // 
 };
 
+
 function db_close_delfin($db)
 {
     if ($db) {
@@ -109,6 +115,7 @@ function db_close_delfin($db)
         echo "<script>console.log('There was NO Database Connection');</script>";
     }
 };
+
 
 function session_checker_delfin()
 {
@@ -125,6 +132,7 @@ function session_checker_delfin()
         header("Location: /index.php"); // this requires a session from login
     }
 };
+
 
 // HTML ONLY
 function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement, $recipientId, $secondAttachement)
@@ -190,10 +198,12 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             // end expansion V1.2.0
 
             // embeed images with cid
-            global $logoImagePath, $bannerImagePath, $logoImageLink, $bannerImageLink;  // I defined these outside the function
+            global $logoImagePath, $bannerImagePath, $logoImageLink, $bannerImageLink, $logoImageMime, $bannerImageMime;    // I defined these outside the function
             if (file_exists($logoImagePath) && file_exists($bannerImagePath)) {
-                $mail->addEmbeddedImage($logoImagePath, 'logo_cid', 'email.logo.jpg', 'base64', 'image/jpeg');  // inline embedded image with Content-ID
-                $mail->addEmbeddedImage($bannerImagePath, 'banner_cid', 'banner.RPLtv.440.jpg', 'base64', 'image/jpeg');    // inline embedded image with Content-ID
+                $logoImageFileName = basename($logoImagePath);      // dynamically adjusts the CID
+                $bannerImageFileName = basename($bannerImagePath);  // ditto
+                $mail->addEmbeddedImage($logoImagePath, 'logo_cid', $logoImageFileName, 'base64', $logoImageMime);          // inline embedded image with Content-ID
+                $mail->addEmbeddedImage($bannerImagePath, 'banner_cid', $bannerImageFileName, 'base64', $bannerImageMime);  // inline embedded image with Content-ID
                 // Replace placeholders in the email body with the CID
                 $emailBodyCID = str_replace(
                     ['{logo}', '{banner}'], // Placeholders in the email body
@@ -239,6 +249,7 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
     }
 };
 
+
 function write_log_delfin($logMessage)
 {
     $timestamp = date("H:i:s d.m.Y");   // i want to create the timestamp at the closest possible time of the logging process
@@ -257,6 +268,7 @@ function write_log_delfin($logMessage)
     fclose($logToFile); // yes
 };
 
+
 function log_too_big_delfin()
 {
     // used since the append thingy in the write_log function requires memory and the bigger the file the more memory it needs; which means the time until it explodes is getting shorter
@@ -271,6 +283,7 @@ function log_too_big_delfin()
     }
 };
 
+
 // requires a session to be set
 function file_upload_delfin($file)
 {
@@ -280,8 +293,7 @@ function file_upload_delfin($file)
     $targetUploadDir = $baseUploadDir . $_SESSION['id'] . "/" . $timestamp . "/"; // ensures each upload folder is unique, user id is unique and timestamp is unique ; and if not I'm gonna play the lottery (since the filename would also have to be an exact match)
     if (!is_dir($targetUploadDir)) {
         mkdir($targetUploadDir, 0777, true);    // 0777 gives everyone access to it ; for simplicity purposes
-    }
-    else {
+    } else {
         // Collision detector
         header("Location: /collision.php");
         exit();
@@ -330,7 +342,6 @@ function delete_uploads_dir_delfin()
 };
 
 
-
 // pdf upload
 function upload_pdf_delfin()
 {
@@ -374,14 +385,12 @@ function upload_pdf_delfin()
         }
         // }
 
-
     } else {
         echo $generealErrorMessage;
         echo "<p class='specific-error-msg-file-upload'><strong>Unknown Error Occured</strong></p>";
     }
     echo '</div>';  // closes the div for the css styling
 };
-
 
 
 // docX upload
@@ -437,13 +446,13 @@ function upload_docX_delfin()
         }
         // }
 
-
     } else {
         echo $generealErrorMessage;
         echo "<p class='specific-error-msg-file-upload'><strong>Unknown Error Occured</strong></p>";
     }
     echo '</div>';  // closes the div for the css styling
 };
+
 
 // docX fill data {hard coded fields!}
 function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
@@ -474,6 +483,7 @@ function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
     // ob_end_clean();
 
 };
+
 
 // convert docX to pdf (libre office plugin)
 function convertDocXToPdf_delfin($inputDocX, $outputPdf, $inputDocXDir)
@@ -508,6 +518,7 @@ function convertDocXToPdf_delfin($inputDocX, $outputPdf, $inputDocXDir)
     return file_exists($outputPdf) ? $outputPdf : false;    // black magic / witchcraft prevention
 };
 
+
 // ! UNUSED
 function digitally_sign_pdf_delfin($pdfToSign)
 {
@@ -517,13 +528,13 @@ function digitally_sign_pdf_delfin($pdfToSign)
 };
 
 
-
 function letter_required_delfin($recipientId)
 {
     $_SESSION['letter_id_array'][] = $recipientId;  // this needs to be an array
     // var_dump($_SESSION['letter_id_array']);
     // echo "<br />";
 };
+
 
 function combine_all_letters_into_one_pdf_delfin($baseDir, $templateFile, $timestamp)
 {
@@ -885,3 +896,5 @@ function docX_find_and_replace_delfin($templateDocX, $outputDocX, array $replace
 
     $zip->close();
 };
+
+

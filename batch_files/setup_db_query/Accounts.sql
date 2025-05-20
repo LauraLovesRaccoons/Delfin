@@ -20,6 +20,7 @@ CREATE TABLE `Accounts` (
   `signatureOffice` varchar(255) NOT NULL,
   `signatureGSM` varchar(255) NOT NULL,
   `signatureFax` varchar(255) NOT NULL,
+  `sessionId` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -27,8 +28,8 @@ CREATE TABLE `Accounts` (
 -- Dumping data for table `Accounts`
 --
 
-INSERT INTO `Accounts` (`id`, `username`, `password`, `email`, `signatureName`, `signaturePhone`, `signatureService`, `signatureTitle`, `signatureOffice`, `signatureGSM`, `signatureFax`) VALUES
-(1, 'Hornick Laura', '$2y$10$Lcxu.ACsR17dQof5hiHT7OpJmU8c6MDnS2KqxXX6/miNNdhA9TsQm', 'laura.hornick@petange.lu', 'Laura HORNICK', '(+352) 50 12 51-2069', 'Service informatique', '/', '/', '/', '/');
+INSERT INTO `Accounts` (`id`, `username`, `password`, `email`, `signatureName`, `signaturePhone`, `signatureService`, `signatureTitle`, `signatureOffice`, `signatureGSM`, `signatureFax`, `sessionId`) VALUES
+(1, 'Hornick Laura', '$2y$10$Lcxu.ACsR17dQof5hiHT7OpJmU8c6MDnS2KqxXX6/miNNdhA9TsQm', 'Laura.Hornick@petange.lu', 'Laura HORNICK', '(+352) 50 12 51-2069', 'Service informatique', '/', '/', '/', '/', NULL);
 
 --
 
