@@ -6,7 +6,7 @@ Version 1.5.9
 3) created and "designed" collision.php
 4) each redirect to delfin.php and upload_too_large.php now targets the root
 5) The collision prevention also kicks in if the filenames aren't an exact match and the uploader targeted users with different ids
-    -> just someone with the same id trying to upload a file at the exact same second
+    -> just someone with the same id trying to upload a file at the exact same second triggers the collision prevention
         -> the attachement folder's file could be overwriten by another file with the exact same name before, so this is now fixed as well
 
 ---
