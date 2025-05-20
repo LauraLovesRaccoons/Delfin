@@ -276,7 +276,7 @@ function file_upload_delfin($file)
 {
     $baseUploadDir = $GLOBALS['uploadBasePath'];    // global var
     $timestamp = time();
-    // $timestamp = "_DEBUG_";
+    // $timestamp = "_DEBUG_"; // can be temporarily enabled to force a collision
     $targetUploadDir = $baseUploadDir . $_SESSION['id'] . "/" . $timestamp . "/"; // ensures each upload folder is unique, user id is unique and timestamp is unique ; and if not I'm gonna play the lottery (since the filename would also have to be an exact match)
     if (!is_dir($targetUploadDir)) {
         mkdir($targetUploadDir, 0777, true);    // 0777 gives everyone access to it ; for simplicity purposes
