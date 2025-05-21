@@ -1,16 +1,14 @@
 <?php
 
-// $db= false;     // setup
-
 date_default_timezone_set('Europe/Luxembourg'); //! this isn't meant to change
 
 // Global Variables
-$appName = getenv('APP_NAME') ?: 'Delfin-ENV-ERROR';    // the var name is much shorter and I have to pay less attention to which quotes I use
+$appName = getenv('APP_NAME') ?: 'Delfin-ENV-ERROR';    // a variable is much easier to use (and shorter) and no messy quote shenanigans
 $logBasePath = "./logs/";       // global makes sense for this specific use case
 $logFile = "log.txt";           // ditto
 $uploadBasePath = "./uploads/"; // global makes sense for this specific use case
-// // removed the ./ from in front of the path
-//! these must be the exact same in the db and data-cell
+
+//! these must be the exact same as in the db and in the data-cell table (hardcoded)
 $allowedColumnsText = ['allocation', 'nom', 'nom2', 'fonction', 'adresse1', 'adresse2', 'allocationSpeciale', 'nomCouponReponse', 'email',];
 $allowedColumnsTinyint = ['letter_required', 'duplicate',];
 //? image paths
@@ -28,7 +26,7 @@ $docXFields = ['«Allocation»', '«Nom»', '«Nom2»', '«Fonction»', '«Adres
 
 $session_name = strtolower(preg_replace('/[^a-z0-9]/i', '-', $appName)) . '-session-cookie';    // prettier name
 session_name("$session_name");                                                                  // now this is the cookie's name
-// if function is always called before session_start (which is included in all the functions) ; then this will always be the cookie name
+// if function is always called before session_start (which is included in all the functions) ; then this will always be the cookie's name
 
 // Load Composer's autoloader
 require 'vendor/autoload.php';
@@ -137,7 +135,8 @@ function session_checker_delfin()
 // HTML ONLY
 function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement, $recipientId, $secondAttachement)
 {
-    if (strpos($emailRecipient, '@') === false || strlen($emailRecipient) < 3) {   // just checking if an @ is present to make the code faster ; and absolute minimum possible length
+    // if (strpos($emailRecipient, '@') === false || strlen($emailRecipient) < 3) {   // just checking if an @ is present to make the code faster ; and absolute minimum possible length
+    if (filter_var($emailRecipient, FILTER_VALIDATE_EMAIL) === false) {         // the actual php checker (much more reliable)
         if (!isset($_SESSION['letter_required'])) {     // no need to display it on the webpage if it's a freakin letter
             echo "<span>NO EMAIL: <strong>$emailRecipientName</strong> - ID: <strong>$recipientId</strong></span>";
             echo "<script>console.log('NO EMAIL: [ " . $emailRecipientName . " - ID: $recipientId ]');</script>";
@@ -185,9 +184,18 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             $mail->Port = intval(getenv('SMTP_PORT'));  // needs to be an integer
             // echo "<script>console.log('Debug: [ $mail->Host ]');</script>";
             // // var_dump($mail);
-            // Recipients
-            $mail->setFrom($emailSender, $emailSenderName);
-            $mail->addAddress($emailRecipient, $emailRecipientName);
+
+            // Sender
+            $mail->setFrom($emailSender, $emailSenderName);     // no decode thingy since I pull it straight from the session
+
+            // Recipient(s)
+            // $mail->addAddress($emailRecipient, $emailRecipientName);
+            // I have to decode this since it was previously encoded for code processing ; though these lines are usually hidden from the client
+            $mail->addAddress(
+                html_entity_decode($emailRecipient, ENT_QUOTES | ENT_HTML5, 'UTF-8'),
+                html_entity_decode($emailRecipientName, ENT_QUOTES | ENT_HTML5, 'UTF-8')
+            );
+
             // Attachments
             $mail->addAttachment($emailAttachement);
 
@@ -237,8 +245,12 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             write_log_delfin($logMessage);
         } catch (Exception $e) {
             // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}<br />";
-            $mailErrorInfo = json_encode($mail->ErrorInfo);         // made it a proper string for console logging
-            echo "<script>console.log($mailErrorInfo);</script>";  // 
+            // $mailErrorInfo = json_encode($mail->ErrorInfo);         // made it a proper string for console logging   // this didn't use the $e variable for backwards compatibility
+            $mailErrorInfo = json_encode(([
+                'exception' => $e->getMessage(),
+                'mailer' => $mail->ErrorInfo,       // made it a proper string for console logging
+            ]));
+            echo "<script>console.log(" . $mailErrorInfo . ");</script>";   // properly enforces it in being a string
             echo "<span>Message failed to send to: <strong>$emailRecipientName</strong> --- <strong>$emailRecipient</strong> - ID: <strong>$recipientId</strong></span>";
             echo "<script>console.log('Message failed to send to: [ " . $emailRecipientName . " - " . $emailRecipient . " - ID: $recipientId ]');</script>";
             // echo "<h3>The conosole.log is niche to have but it should write smth into the php logger</h3>";     // conosole FTW -> niche
@@ -502,18 +514,19 @@ function convertDocXToPdf_delfin($inputDocX, $outputPdf, $inputDocXDir)
     //? basic one
     // $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir $outDir $inputDocX 2>&1";     //! basic one ; no additional pdf settings
     // $output = shell_exec($command);     //? the $output variable can be used for logging purposes
-    //? fine tuned one
+    //? fine tuned docX to odt conversion
     $command = "HOME=/tmp libreoffice --headless --infilter='Microsoft Word 2007/2010/2013 XML' --convert-to 'odt:writer8' --outdir $outDir $inputDocX 2>&1";
-    $output = shell_exec($command);
+    $outputShellCommand = shell_exec($command);
+    // // echo "<pre>$outputShellCommand</pre>";  // visible on the webpage
+    //? enable the following line to see the reply of the shell command
+    // echo "<script>console.log(" . json_encode($outputShellCommand) . ");</script>";
     // 
     $odtFile = str_replace(".docx", ".odt", $inputDocX);
     $command = "HOME=/tmp libreoffice --headless --convert-to 'pdf:writer_pdf_Export' --outdir $outDir $odtFile 2>&1";
-    $output = shell_exec($command);
-    //? 
-
-    // file_put_contents('/var/www/html/uploads/convert_log.txt', $output);    // logging file
-    // echo "<pre>$output</pre>";  // visible on the webpage
-    // echo "<br />";  // 
+    $outputShellCommand = shell_exec($command);
+    // // echo "<pre>$outputShellCommand</pre>";  // visible on the webpage
+    //? enable the following line to see the reply of the shell command
+    // echo "<script>console.log(" . json_encode($outputShellCommand) . ");</script>";
 
     return file_exists($outputPdf) ? $outputPdf : false;    // black magic / witchcraft prevention
 };
@@ -896,5 +909,3 @@ function docX_find_and_replace_delfin($templateDocX, $outputDocX, array $replace
 
     $zip->close();
 };
-
-

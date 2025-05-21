@@ -1,3 +1,17 @@
+Version 1.6.1
+
+1) the mail error handler now uses the $e variable (allows you to use part of this code for pre- php:8.0 projects)
+    -> $e variable was previously assigned but went unused
+2) the shell command outputs now have a clearer variable
+    -> $outputShellCommand variable is unused but can be uncommented for console output (debugging reasons)
+        -> $outputShellCommand is also the only variable,parameter,global that remains unused (unless you uncomment it ;)
+3) the mail send function now decodes the receiver's email and name before sending, since those have been previously encoded
+    -> though the receiver usually doesn't see these lines and it's mostly for replies from mail could not be delivered
+4) the email is now validated by php's internal email validate function
+5) general code improvements in functions.php
+
+---
+
 Version 1.6.0
 
 1) Nom Coupon Réponse now uses the real field name
