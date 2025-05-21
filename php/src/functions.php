@@ -35,9 +35,10 @@ require 'vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-
 // use Document\Parser\Word;
 use setasign\Fpdi\Fpdi;
+use Egulias\EmailValidator\EmailValidator;
+use Egulias\EmailValidator\Validation\RFCValidation;
 
 
 //! related to selecting lists
@@ -136,7 +137,11 @@ function session_checker_delfin()
 function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emailRecipientName, $emailSubject, $emailBody, $emailAttachement, $recipientId, $secondAttachement)
 {
     // if (strpos($emailRecipient, '@') === false || strlen($emailRecipient) < 3) {   // just checking if an @ is present to make the code faster ; and absolute minimum possible length
-    if (filter_var($emailRecipient, FILTER_VALIDATE_EMAIL) === false) {         // the actual php checker (much more reliable)
+    // if (filter_var($emailRecipient, FILTER_VALIDATE_EMAIL) === false) {         // the actual php checker (much more reliable)
+    // rfc compliant email checker
+    $validator = new EmailValidator();
+    if (!$validator->isValid($emailRecipient, new RFCValidation())) {       // checks if the email is valid and rfc compliant ; and the ! means if that condition is false
+    // 
         if (!isset($_SESSION['letter_required'])) {     // no need to display it on the webpage if it's a freakin letter
             echo "<span>NO EMAIL: <strong>$emailRecipientName</strong> - ID: <strong>$recipientId</strong></span>";
             echo "<script>console.log('NO EMAIL: [ " . $emailRecipientName . " - ID: $recipientId ]');</script>";

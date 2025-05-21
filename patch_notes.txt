@@ -1,3 +1,9 @@
+Version 1.6.2
+
+1) The email validator now uses egulias's rfc email validator package to be able to send to rfc compliant emails
+
+---
+
 Version 1.6.1
 
 1) the mail error handler now uses the $e variable (allows you to use part of this code for pre- php:8.0 projects)
