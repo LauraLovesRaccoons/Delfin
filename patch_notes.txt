@@ -1,3 +1,10 @@
+Version 1.6.4
+
+1) removed a double encoding of the recipient's name for the case that both nom & nom2 are empty in which case the email is used instead
+    -> I decode the recipient's email and name only once (for reference)
+
+---
+
 Version 1.6.3
 
 1) clearer comments

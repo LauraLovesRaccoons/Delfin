@@ -704,7 +704,7 @@ function turn_fetched_users_into_array_delfin($queryResult)
                     (!empty(trim($recipientUser['nom'])) ? $recipientUser['nom'] : '') .                                // if nom is set add append it to the string
                         ((!empty(trim($recipientUser['nom'])) && !empty(trim($recipientUser['nom2']))) ? ' | ' : '') .  // if both nom and nom2 are set add a seperator symbol
                         (!empty(trim($recipientUser['nom2'])) ? $recipientUser['nom2'] : '')                            // if nom 2 is set append it to the string
-                ) ?: htmlspecialchars(trim($recipientUser['email']), ENT_QUOTES, 'UTF-8'),  // if both are empty, the name will be the email (and if no email is present, it will be blank - which we don't care about here) -> the trims before ensures whitespace are considered as empty
+                ) ?: (trim($recipientUser['email'])),   // if both are empty, the name will be the email (and if no email is present, it will be blank - which we don't care about here) -> the trims before ensures whitespace are considered as empty
                 ENT_QUOTES,
                 'UTF-8'
             ),
