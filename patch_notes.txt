@@ -2,6 +2,10 @@ Version 1.6.4
 
 1) removed a double encoding of the recipient's name for the case that both nom & nom2 are empty in which case the email is used instead
     -> I decode the recipient's email and name only once (for reference)
+2) better comments (and removed old ones) from send_mail.php and in functions.php
+3) added a comment why  use PHPMailer\PHPMailer\SMTP;  is marked as not used
+    ->  it's for a php mailer debugging purpose that is commented out
+        -> no performance hit since the code isn't called
 
 ---
 

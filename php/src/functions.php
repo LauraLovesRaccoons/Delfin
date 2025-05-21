@@ -33,7 +33,7 @@ require 'vendor/autoload.php';
 
 // required for composer "plugins"
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\SMTP;       // use this if you need to debug: example:  $mail->SMTPDebug = SMTP::DEBUG_SERVER;  // no perfomance impact in leaving it enabled anyway
 use PHPMailer\PHPMailer\Exception;
 // use Document\Parser\Word;
 use setasign\Fpdi\Fpdi;
@@ -141,7 +141,7 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
     // rfc compliant email checker
     $validator = new EmailValidator();
     if (!$validator->isValid($emailRecipient, new RFCValidation())) {       // checks if the email is valid and rfc compliant ; and the ! means if that condition is false
-    // 
+        // 
         if (!isset($_SESSION['letter_required'])) {     // no need to display it on the webpage if it's a freakin letter
             echo "<span>NO EMAIL: <strong>$emailRecipientName</strong> - ID: <strong>$recipientId</strong></span>";
             echo "<script>console.log('NO EMAIL: [ " . $emailRecipientName . " - ID: $recipientId ]');</script>";
@@ -154,6 +154,7 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
         usleep(1000);   // 1000 microseconds    // hardcoded 1ms delay ; I'm not removing it!
         $mail = new PHPMailer(true);    // true enables exceptions
         try {
+            //? this requires enabling: use PHPMailer\PHPMailer\SMTP;
             // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                  //Enable verbose debug output
             $mail->isSMTP();                                        //Send using SMTP
             $encryptionType = strtolower(getenv('SMTP_SECURE'));    // forces lowercase
@@ -487,7 +488,7 @@ function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
         '«Nom_Couponréponse»' => $recipientUser['nomCouponReponse'] ?: '​',
     ];
 
-    // old package, user hasn't logged in in 7 years (unreliable to rely on that link)
+    // old package, user hasn't updated it in 7 years (unreliable to rely on that link)
     // ob_start();         // output buffer so it removes the annnoying notification from this extension
     // $word = new Word();
     // $word->findAndReplace($templateDocX, $outputDocX, $replacementsArray);
@@ -604,6 +605,7 @@ function combine_all_letters_into_one_pdf_delfin($baseDir, $templateFile, $times
         });
     </script>";     // yes this allows me to overwrite a span and let it appear before the "error" list
 };
+
 
 function email_or_letter_mode_delfin()
 {

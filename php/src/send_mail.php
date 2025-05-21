@@ -100,20 +100,8 @@ include 'header.php';  //? this code should never cancel if there is an issue lo
         <br />
         <div id="emailNotSendInfoBox"> <!-- the id allows me to completely hide it with javacript -->
 
-            <!-- <h1>BE PATIENT ! - MUST DISPLAY ON THE PREVIOUS PAGE </h1>
-<h1>ESPECIALLY IF MAILS ARE FAILING TO SEND</h1> -->
-            <!-- <br />
-<h1> </h1> -->
             <?php
 
-
-
-            // preparing this for use inside the loop
-            // this is all the way at the top!
-            // // $templateFile = $_SESSION['targetFile'];
-            // // unset($_SESSION['targetFile']);
-            // // $templateDir = $_SESSION['targetDir'];
-            // // unset($_SESSION['targetDir']);
             // removing the full path from the file or else it will get too compilcated
             $templateFileName = str_replace($templateDir, '', $templateFile);
             // $templateFileName = ltrim($templateFile, '/');  // this would remove the / in front of the filename ,but it's already contained in the full path (dir)
@@ -136,7 +124,7 @@ include 'header.php';  //? this code should never cancel if there is an issue lo
                 if (!is_dir($outputDocXDir)) {
                     mkdir($outputDocXDir, 0777, true);  // Create directory; but everyone can access it :/
                 } else {
-                    system("rm -rf " . escapeshellarg($outputDocXDir)); // witchcraft ; libre office would force overwrite it though ; but Document\Parser\Word doesn't
+                    system("rm -rf " . escapeshellarg($outputDocXDir)); // witchcraft ; libre office would force overwrite it though ; but my docX editor doesn't
                 };
                 // $outputDocX = $GLOBALS['uploadBasePath'] . "IT-WORKZ.docx"; // proof that it requires the directory to exist
                 // 
@@ -150,12 +138,12 @@ include 'header.php';  //? this code should never cancel if there is an issue lo
                 if (file_exists($inputDocX)) {
                     unlink($inputDocX);     //? uncomment this if you need to debug smth
                 }
-                //! this is currently only .odt
+                //? this is currently only .odt
                 $otherFormatDocX = str_replace('.docx', '.odt', $inputDocX);
                 if (file_exists($otherFormatDocX)) {
                     unlink($otherFormatDocX);   //? uncomment this if you need to debug smth
                 }
-                //! copy the if above for other formats
+                //? copy the if above for other formats
 
                 //! Future
                 $signedPdf = digitally_sign_pdf_delfin($outputPdf);
@@ -198,11 +186,8 @@ include 'header.php';  //? this code should never cancel if there is an issue lo
                 unset($_SESSION['selectedList']);
             }
             delete_uploads_dir_delfin();    // cleanup
-            // // temporarily disabled for debugging reasons
             //?
             clear_batchJobAlreadyRunning_delfin();
-
-
 
             ?>
         </div>
