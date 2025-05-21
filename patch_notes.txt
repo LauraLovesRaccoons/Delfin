@@ -1,3 +1,12 @@
+Version 1.6.3
+
+1) clearer comments
+2) the edit tiny integer ajax now forces the console.log to use a string instead of being empty
+    -> also it now writes to the log if someone toggles a tinyint instead of just the moment the javascript file is being loaded
+        -> and it now has a message
+
+---
+
 Version 1.6.2
 
 1) The email validator now uses egulias's rfc email validator package to be able to send to rfc compliant emails

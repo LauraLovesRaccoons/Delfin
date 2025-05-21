@@ -5,10 +5,11 @@ const approvedListsSelector = approvedListsColumns
   .map((col) => `td[data-cell="${col}"]`)
   .join(", "); // this passes the allowed data-cells into an array
 const combinedSelectorTinyInt = `${tinyintSelector}, ${approvedListsSelector}`;
-console.log();
+
 // adds these to the selector
 document.querySelectorAll(combinedSelectorTinyInt).forEach((td) => {
   td.addEventListener("dblclick", function () {
+    console.log("Tiny Integer Edit being processed"); // much better comment
     // yes I copied over originalText from the previous function
     let originalText = this.textContent.trim();
     let userId =

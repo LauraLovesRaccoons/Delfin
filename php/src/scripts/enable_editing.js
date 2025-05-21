@@ -9,7 +9,7 @@ editButton.addEventListener("dblclick", function () {
   editButtonAlpha.style.display = "block";
   console.log("Running the scripts to allow editing the fields");
 
-  // I'm append a new class but keep the old one as well for stylesheet reasons
+  // I'm appending a new class but keep the old one as well for stylesheet reasons
 
   document.querySelectorAll(".kick-symbol").forEach((element) => {
     element.classList.add("kick-symbol_edit");

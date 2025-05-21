@@ -250,7 +250,7 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             write_log_delfin($logMessage);
         } catch (Exception $e) {
             // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}<br />";
-            // $mailErrorInfo = json_encode($mail->ErrorInfo);         // made it a proper string for console logging   // this didn't use the $e variable for backwards compatibility
+            // $mailErrorInfo = json_encode($mail->ErrorInfo);         // made it a proper string for console logging   // this didn't use the $e variable which is needed for backwards compatibility
             $mailErrorInfo = json_encode(([
                 'exception' => $e->getMessage(),
                 'mailer' => $mail->ErrorInfo,       // made it a proper string for console logging
