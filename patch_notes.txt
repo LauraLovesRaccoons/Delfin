@@ -1,3 +1,10 @@
+Version 1.6.5
+
+1) the letters that are provided as a downloadable pdf now have a more standout name and it feels more machine generated
+    -> yes that WAS the only remaining luxembourgish line
+
+---
+
 Version 1.6.4
 
 1) removed a double encoding of the recipient's name for the case that both nom & nom2 are empty in which case the email is used instead
