@@ -1,3 +1,10 @@
+Version 1.6.6
+
+1) the template for the signature now redirect to the server's root delfin.php (landing page)
+    -> and added clearer comments on why it redirects you even if you have a proper session, if you visit it manually
+
+---
+
 Version 1.6.5
 
 1) the letters that are provided as a downloadable pdf now have a more standout name and it feels more machine generated

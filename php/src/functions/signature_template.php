@@ -1,15 +1,11 @@
 <?php
 
-// include_once "../functions.php";    //? yes
-
-
-// // I'm not messing around with wannabe hackerz
-// session_checker_delfin();
-
+// since this is only intended to be called during another php page, there is no session set
+// meaning this will always redirect if manually typed into the browser
 
 // actually checks if someone does have permissions ; why these specifically? Well since these were added later into my DB
 if (!isset($_SESSION['signatureName'], $_SESSION['signaturePhone'], $_SESSION['signatureService'], $_SESSION['signatureTitle'], $_SESSION['signatureOffice'], $_SESSION['signatureGSM'], $_SESSION['signatureFax'])) {
-    header("Location: ../delfin.php");  //? since this doesn't call the session, i just redirect to the landing page which handles unauthorized access
+    header("Location: /delfin.php");    //? since this doesn't call the session, i just redirect to the landing page which handles unauthorized access  // also targets the root of the server
                                         //? also I need to move into the previous directory
     exit();     //? this will never execute if the function below is called from another page that has a proper session set
 };
