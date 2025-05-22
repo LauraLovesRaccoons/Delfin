@@ -313,6 +313,7 @@ function file_upload_delfin($file)
         mkdir($targetUploadDir, 0777, true);    // 0777 gives everyone access to it ; for simplicity purposes
     } else {
         // Collision detector
+        // if the cmos battery of the server fails, a timestamp collision is possible   // or automated scripts that happen to submit at the exact same second
         header("Location: /collision.php");
         exit();
     }
@@ -568,7 +569,7 @@ function combine_all_letters_into_one_pdf_delfin($baseDir, $templateFile, $times
     $targetFName = str_replace($baseDir, '', $templateFile);    // gets just the reference file with extension
     $targetFName = str_replace('.docx', '.pdf', $targetFName);  // this still has the .docx file extension
     $outputRefName = str_replace('.pdf', '', $targetFName);     // this is for the line just below
-    $combinedFile = $baseDir . "Nëmmen Bréiwer!" . " - " . $outputRefName . " - " . $timestamp . ".pdf";    // fancy name ; and a filestamp to prevent duplicates on the user's side
+    $combinedFile = $baseDir . "[ONLY_LETTERS]" . " - " . $outputRefName . " - " . $timestamp . ".pdf";     // fancy name ; and a timestamp to prevent duplicates on the user's side
     // var_dump($combinedFile);
     // echo "<br />";
     $pdf = new Fpdi();  // I need to initiliaze the fpdi plugin
