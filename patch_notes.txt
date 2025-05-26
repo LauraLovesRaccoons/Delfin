@@ -4,6 +4,8 @@ Version 1.6.7
     -> the job lock flag will become unlocked, allowing other users to process batch jobs instead of being stuck in an infinite loop
 2) httpd.conf - better comment
 3) the dummy user array now also uses the trim function to unify the code a bit
+4) obvious invalid emails will not run through the in comparison slow rfc email validator (performance hit before that part is negligible)
+    -> since letter mode or letter required db entry turns the email into an empty string; the code will process much faster, since these emails will be aborted before the rfc validator
 
 ---
 

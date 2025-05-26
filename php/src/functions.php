@@ -140,7 +140,12 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
     // if (filter_var($emailRecipient, FILTER_VALIDATE_EMAIL) === false) {         // the actual php checker (much more reliable)
     // rfc compliant email checker
     $validator = new EmailValidator();
-    if (!$validator->isValid($emailRecipient, new RFCValidation())) {       // checks if the email is valid and rfc compliant ; and the ! means if that condition is false
+    // if (!$validator->isValid($emailRecipient, new RFCValidation())) {       // checks if the email is valid and rfc compliant ; and the ! means if that condition is false
+    if (
+        strlen($emailRecipient) < 3 ||                              // absolute minium possible length of an email address (extremly fast processing)
+        strpos($emailRecipient, '@') === false ||                   // checks if an @ present (extremly fast processing, but not as fast as the previous one)
+        !$validator->isValid($emailRecipient, new RFCValidation())  // checks if the email is valid and rfc compliant ; and the ! means if that condition is false  (this is slow compared to the previous two checks, but this saves time by not trying to send an email to an invalid address)
+    ) {
         // 
         if (!isset($_SESSION['letter_required'])) {     // no need to display it on the webpage if it's a freakin letter
             echo "<span>NO EMAIL: <strong>$emailRecipientName</strong> - ID: <strong>$recipientId</strong></span>";
@@ -745,20 +750,20 @@ function dummyAccounts_delfin()
 {
     $dummyAccounts = [
         [
-            'emailRecipient' => htmlspecialchars(trim($_SESSION['email'], ENT_QUOTES, 'UTF-8')),
-            'emailRecipientName' => htmlspecialchars(trim($_SESSION['username'], ENT_QUOTES, 'UTF-8')),
+            'emailRecipient' => htmlspecialchars(trim($_SESSION['email']), ENT_QUOTES, 'UTF-8'),
+            'emailRecipientName' => htmlspecialchars(trim($_SESSION['username']), ENT_QUOTES, 'UTF-8'),
             // 'emailRecipientName' => "<em><u>This is YOUR account and your personal ID:</u></em> " . $_SESSION['username'] . " - " . $_SESSION['email'],     //? makes it more obvious
             'recipientId' => intval(0),     // normally from database ; but since this is testing it has id=0
             // 'recipientId' => $_SESSION['id'],   //? manual override
             // filling it with test data
-            'allocation' => htmlspecialchars(trim('!allocation!', ENT_QUOTES, 'UTF-8')),
-            'nom' => htmlspecialchars(trim('!nom!', ENT_QUOTES, 'UTF-8')),
-            'nom2' => htmlspecialchars(trim('!nom2!', ENT_QUOTES, 'UTF-8')),
-            'fonction' => htmlspecialchars(trim('!fonction!', ENT_QUOTES, 'UTF-8')),
-            'adresse1' => htmlspecialchars(trim('!adresse1!', ENT_QUOTES, 'UTF-8')),
-            'adresse2' => htmlspecialchars(trim('!adresse2!', ENT_QUOTES, 'UTF-8')),
-            'allocationSpeciale' => htmlspecialchars(trim('!allocationSpeciale!', ENT_QUOTES, 'UTF-8')),
-            'nomCouponReponse' => htmlspecialchars(trim('!nomCouponReponse!', ENT_QUOTES, 'UTF-8')),        //? always verify your field names
+            'allocation' => htmlspecialchars(trim('!allocation!'), ENT_QUOTES, 'UTF-8'),
+            'nom' => htmlspecialchars(trim('!nom!'), ENT_QUOTES, 'UTF-8'),
+            'nom2' => htmlspecialchars(trim('!nom2!'), ENT_QUOTES, 'UTF-8'),
+            'fonction' => htmlspecialchars(trim('!fonction!'), ENT_QUOTES, 'UTF-8'),
+            'adresse1' => htmlspecialchars(trim('!adresse1!'), ENT_QUOTES, 'UTF-8'),
+            'adresse2' => htmlspecialchars(trim('!adresse2!'), ENT_QUOTES, 'UTF-8'),
+            'allocationSpeciale' => htmlspecialchars(trim('!allocationSpeciale!'), ENT_QUOTES, 'UTF-8'),
+            'nomCouponReponse' => htmlspecialchars(trim('!nomCouponReponse!'), ENT_QUOTES, 'UTF-8'),        //? always verify your field names
 
             // ],
             // [
