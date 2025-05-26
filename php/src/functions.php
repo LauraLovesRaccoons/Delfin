@@ -750,8 +750,9 @@ function dummyAccounts_delfin()
 {
     $dummyAccounts = [
         [
-            'emailRecipient' => htmlspecialchars(trim($_SESSION['email']), ENT_QUOTES, 'UTF-8'),
-            'emailRecipientName' => htmlspecialchars(trim($_SESSION['username']), ENT_QUOTES, 'UTF-8'),
+            //? don't apply trim on the session (email and username)
+            'emailRecipient' => htmlspecialchars(($_SESSION['email']), ENT_QUOTES, 'UTF-8'),
+            'emailRecipientName' => htmlspecialchars(($_SESSION['username']), ENT_QUOTES, 'UTF-8'),
             // 'emailRecipientName' => "<em><u>This is YOUR account and your personal ID:</u></em> " . $_SESSION['username'] . " - " . $_SESSION['email'],     //? makes it more obvious
             'recipientId' => intval(0),     // normally from database ; but since this is testing it has id=0
             // 'recipientId' => $_SESSION['id'],   //? manual override
