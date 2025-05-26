@@ -64,7 +64,7 @@ function logout_delfin($session_name)
     // cookie removal on client
     setcookie($session_name, "", time() - 999999, "/");   // must use the same name as the session name
     // since there is a session start there always is a cookie session present ; unless someone messes with the cookie or the browser blocks them
-    header('Location: /index.php');     // slash always targets the root of the server
+    header("Location: /index.php");     // slash always targets the root of the server
     exit();
 };
 
@@ -394,9 +394,9 @@ function upload_pdf_delfin()
             $targetFile = file_upload_delfin($file);  // now i can use the returned variable from the function
             // var_dump($targetFile);
             // next part:
-            // header('Location: send_mail.php?file=' . urlencode($targetFile));
+            // header("Location: send_mail.php?file=" . urlencode($targetFile));
             $_SESSION['targetFile'] = $targetFile;  // save it inside the user's session
-            header('Location: send_mail.php');
+            header("Location: send_mail.php");
             exit();
         } else {
             echo $generealErrorMessage;
@@ -445,7 +445,7 @@ function upload_docX_delfin()
             $targetFile = file_upload_delfin($file);  // now i can use the returned variable from the function
             // var_dump($targetFile);
             // next part:
-            // header('Location: send_mail.php?file=' . urlencode($targetFile));
+            // header("Location: send_mail.php?file=" . urlencode($targetFile));
             $_SESSION['targetFile'] = $targetFile;  // save it inside the user's session
 
             // start expansion V1.2.0
@@ -457,7 +457,7 @@ function upload_docX_delfin()
             // end expansion V1.2.0
 
             header("Location: " . $_SERVER['PHP_SELF']);    //? this allows use to have a nice animation; just right before the real re-direct
-            header('Location: send_mail.php');
+            header("Location: send_mail.php");
             exit();
         } else {
             echo $generealErrorMessage;
@@ -736,7 +736,7 @@ function list_url_decode_delfin()
         }
     }
     // if nothing is valid -> 
-    header('Location: delfin.php');
+    header("Location: /delfin.php");
     exit();
 };
 

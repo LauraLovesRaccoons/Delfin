@@ -1,3 +1,13 @@
+Version 1.6.6.6
+
+1) made every header("Location: ") use double quotes instead of single quotes
+    -> double quotes allow better flexability with variables
+2) also found a stray non root redirect to the landing page
+3) added an additional line to the collision page that there is a small chance that the cmos battery (for the rtc) is failing
+    -> since in that case timestamp collisions are much more likely
+
+---
+
 Version 1.6.6
 
 1) the template for the signature now redirect to the server's root delfin.php (landing page)
