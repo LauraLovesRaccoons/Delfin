@@ -1,3 +1,14 @@
+Version 1.7.0
+
+1) fixed lettermode (and the odt conversion) being broken IF the uploaded file's extension doesn't use .docx in lowercase
+    -> it would still send emails since in that case it would directly convert from .docX to .pdf ; but the .docX file would be converted into .odt but saved as a .docX file (not sure if it the og .docX got overwritten though)
+    -> str_replace() got changed to str_ireplace() on 3 occasions
+2) -> also added it to a .pdf re-naming just in case (even if i forced .pdf previously)
+3) re-added trims to the session for the dummy user array
+    -> since that wasn't the issue of letter mode being broken
+
+---
+
 Version 1.6.7
 
 1) send_mail.php : if the target directory or target user array is somehow cleared from the session
@@ -9,7 +20,6 @@ Version 1.6.7
     -> since letter mode or letter required db entry turns the email into an empty string; the code will process much faster, since these emails will be aborted before the rfc validator
 
 ---
-
 
 Version 1.6.6.6
 

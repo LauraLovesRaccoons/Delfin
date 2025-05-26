@@ -145,7 +145,7 @@ include 'header.php';  //? this code should never cancel if there is an issue lo
                     unlink($inputDocX);     //? uncomment this if you need to debug smth
                 }
                 //? this is currently only .odt
-                $otherFormatDocX = str_replace('.docx', '.odt', $inputDocX);
+                $otherFormatDocX = str_ireplace('.docx', '.odt', $inputDocX);   //? .docx is case insensitive
                 if (file_exists($otherFormatDocX)) {
                     unlink($otherFormatDocX);   //? uncomment this if you need to debug smth
                 }
