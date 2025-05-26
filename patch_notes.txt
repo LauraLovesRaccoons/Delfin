@@ -6,6 +6,10 @@ Version 1.7.0
 2) -> also added it to a .pdf re-naming just in case (even if i forced .pdf previously)
 3) re-added trims to the session for the dummy user array
     -> since that wasn't the issue of letter mode being broken
+4) "file.docx.docx" and ".docx" are treated as invalid uploads
+    -> same for the unused pdf upload except .docx is changed to .pdf
+5) if the docX upload contains .pdf or .odt (case insensitive) in any part of its name, it's also rejected
+    -> the unused pdf upload checks for .docx and .odt (case insensitive) instead
 
 ---
 

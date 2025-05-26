@@ -391,6 +391,23 @@ function upload_pdf_delfin()
             echo $generealErrorMessage;
             echo "<p class='specific-error-msg-file-upload'><strong>.PDF is mandatory</strong></p>";
         }
+        elseif (substr_count(strtolower($fileNAME), '.pdf') > 1) {
+            echo $generealErrorMessage;
+            echo "<p class='specific-error-msg-file-upload'><strong>Your file contains multiple .pdf</strong></p>";
+        }
+        elseif (strtolower($fileNAME) === '.pdf') {
+            echo $generealErrorMessage;
+            echo "<p class='specific-error-msg-file-upload'><strong>File can not just be named .pdf</strong></p>";
+        }
+        elseif (strpos(strtolower($fileNAME), '.odt') !== false) {
+            echo $generealErrorMessage;
+            echo "<p class='specific-error-msg-file-upload'><strong>File cannot contain .odt in its name</strong></p>";
+        }
+        elseif (strpos(strtolower($fileNAME), '.docx') !== false) {
+            echo $generealErrorMessage;
+            echo "<p class='specific-error-msg-file-upload'><strong>File cannot contain .docx in its name</strong></p>";
+        }
+
         // checks the file's mime type
         elseif ($fileMIME === 'application/pdf') {
             // and continues if valid
@@ -442,6 +459,23 @@ function upload_docX_delfin()
             echo $generealErrorMessage;
             echo "<p class='specific-error-msg-file-upload'><strong>.DOXC is mandatory</strong></p>";
         }
+        elseif (substr_count(strtolower($fileNAME), '.docx') > 1) {
+            echo $generealErrorMessage;
+            echo "<p class='specific-error-msg-file-upload'><strong>Your file contains multiple .docx</strong></p>";
+        }
+        elseif (strtolower($fileNAME) === '.docx') {
+            echo $generealErrorMessage;
+            echo "<p class='specific-error-msg-file-upload'><strong>File can not just be named .docx</strong></p>";
+        }
+        elseif (strpos(strtolower($fileNAME), '.pdf') !== false) {
+            echo $generealErrorMessage;
+            echo "<p class='specific-error-msg-file-upload'><strong>File cannot contain .pdf in its name</strong></p>";
+        }
+        elseif (strpos(strtolower($fileNAME), '.odt') !== false) {
+            echo $generealErrorMessage;
+            echo "<p class='specific-error-msg-file-upload'><strong>File cannot contain .odt in its name</strong></p>";
+        }
+        
         // checks the file's mime type
         elseif ($fileMIME === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {  // yes this is docX
             // and continues if valid
