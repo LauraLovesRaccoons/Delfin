@@ -3,6 +3,7 @@ Version 1.6.7
 1) send_mail.php : if the target directory or target user array is somehow cleared from the session
     -> the job lock flag will become unlocked, allowing other users to process batch jobs instead of being stuck in an infinite loop
 2) httpd.conf - better comment
+3) the dummy user array now also uses the trim function to unify the code a bit
 
 ---
 
