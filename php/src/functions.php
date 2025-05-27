@@ -389,8 +389,25 @@ function upload_pdf_delfin()
         // checks the file extension
         if (!preg_match("/\.pdf$/i", $fileNAME)) {
             echo $generealErrorMessage;
-            echo "<p class='specific-error-msg-file-upload'><strong>.PDF is mandatory</strong></p>";
+            echo "<p class='specific-error-msg-file-upload'><strong>.pdf is mandatory</strong></p>";
         }
+        elseif (substr_count(strtolower($fileNAME), '.pdf') > 1) {
+            echo $generealErrorMessage;
+            echo "<p class='specific-error-msg-file-upload'><strong>Your file contains multiple .pdf</strong></p>";
+        }
+        elseif (strtolower($fileNAME) === '.pdf') {
+            echo $generealErrorMessage;
+            echo "<p class='specific-error-msg-file-upload'><strong>File can not just be named .pdf</strong></p>";
+        }
+        elseif (strpos(strtolower($fileNAME), '.odt') !== false) {
+            echo $generealErrorMessage;
+            echo "<p class='specific-error-msg-file-upload'><strong>File cannot contain .odt in its name</strong></p>";
+        }
+        elseif (strpos(strtolower($fileNAME), '.docx') !== false) {
+            echo $generealErrorMessage;
+            echo "<p class='specific-error-msg-file-upload'><strong>File cannot contain .docx in its name</strong></p>";
+        }
+
         // checks the file's mime type
         elseif ($fileMIME === 'application/pdf') {
             // and continues if valid
@@ -405,7 +422,7 @@ function upload_pdf_delfin()
             exit();
         } else {
             echo $generealErrorMessage;
-            echo "<p class='specific-error-msg-file-upload'><strong>Must be a properly formated PDF file</strong></p>";
+            echo "<p class='specific-error-msg-file-upload'><strong>Must be a properly formated .pdf file</strong></p>";
         }
         // }
 
@@ -440,8 +457,25 @@ function upload_docX_delfin()
         // checks the file extension
         if (!preg_match("/\.docx$/i", $fileNAME)) {
             echo $generealErrorMessage;
-            echo "<p class='specific-error-msg-file-upload'><strong>.DOXC is mandatory</strong></p>";
+            echo "<p class='specific-error-msg-file-upload'><strong>.docx is mandatory</strong></p>";
         }
+        elseif (substr_count(strtolower($fileNAME), '.docx') > 1) {
+            echo $generealErrorMessage;
+            echo "<p class='specific-error-msg-file-upload'><strong>Your file contains multiple .docx</strong></p>";
+        }
+        elseif (strtolower($fileNAME) === '.docx') {
+            echo $generealErrorMessage;
+            echo "<p class='specific-error-msg-file-upload'><strong>File can not just be named .docx</strong></p>";
+        }
+        elseif (strpos(strtolower($fileNAME), '.pdf') !== false) {
+            echo $generealErrorMessage;
+            echo "<p class='specific-error-msg-file-upload'><strong>File cannot contain .pdf in its name</strong></p>";
+        }
+        elseif (strpos(strtolower($fileNAME), '.odt') !== false) {
+            echo $generealErrorMessage;
+            echo "<p class='specific-error-msg-file-upload'><strong>File cannot contain .odt in its name</strong></p>";
+        }
+        
         // checks the file's mime type
         elseif ($fileMIME === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {  // yes this is docX
             // and continues if valid
@@ -466,7 +500,7 @@ function upload_docX_delfin()
             exit();
         } else {
             echo $generealErrorMessage;
-            echo "<p class='specific-error-msg-file-upload'><strong>Must be a properly formated DOCX file</strong></p>";
+            echo "<p class='specific-error-msg-file-upload'><strong>Must be a properly formated .docx file</strong></p>";
         }
         // }
 
@@ -533,7 +567,7 @@ function convertDocXToPdf_delfin($inputDocX, $outputPdf, $inputDocXDir)
     //? enable the following line to see the reply of the shell command
     // echo "<script>console.log(" . json_encode($outputShellCommand) . ");</script>";
     // 
-    $odtFile = str_replace(".docx", ".odt", $inputDocX);
+    $odtFile = str_ireplace(".docx", ".odt", $inputDocX);   //? .docx is case insensitive
     $command = "HOME=/tmp libreoffice --headless --convert-to 'pdf:writer_pdf_Export' --outdir $outDir $odtFile 2>&1";
     $outputShellCommand = shell_exec($command);
     // // echo "<pre>$outputShellCommand</pre>";  // visible on the webpage
@@ -572,8 +606,8 @@ function combine_all_letters_into_one_pdf_delfin($baseDir, $templateFile, $times
     }
     // go on
     $targetFName = str_replace($baseDir, '', $templateFile);    // gets just the reference file with extension
-    $targetFName = str_replace('.docx', '.pdf', $targetFName);  // this still has the .docx file extension
-    $outputRefName = str_replace('.pdf', '', $targetFName);     // this is for the line just below
+    $targetFName = str_ireplace('.docx', '.pdf', $targetFName);  // this still has the .docx file extension     //? .docx is case insensitive
+    $outputRefName = str_ireplace('.pdf', '', $targetFName);     // this is for the line just below     //? .pdf is case insensitive
     $combinedFile = $baseDir . "[ONLY_LETTERS]" . " - " . $outputRefName . " - " . $timestamp . ".pdf";     // fancy name ; and a timestamp to prevent duplicates on the user's side
     // var_dump($combinedFile);
     // echo "<br />";
@@ -750,12 +784,12 @@ function dummyAccounts_delfin()
 {
     $dummyAccounts = [
         [
-            //? don't apply trim on the session (email and username)
-            'emailRecipient' => htmlspecialchars(($_SESSION['email']), ENT_QUOTES, 'UTF-8'),
-            'emailRecipientName' => htmlspecialchars(($_SESSION['username']), ENT_QUOTES, 'UTF-8'),
-            // 'emailRecipientName' => "<em><u>This is YOUR account and your personal ID:</u></em> " . $_SESSION['username'] . " - " . $_SESSION['email'],     //? makes it more obvious
             'recipientId' => intval(0),     // normally from database ; but since this is testing it has id=0
             // 'recipientId' => $_SESSION['id'],   //? manual override
+            'emailRecipient' => htmlspecialchars(trim($_SESSION['email']), ENT_QUOTES, 'UTF-8'),
+            'emailRecipientName' => htmlspecialchars(trim($_SESSION['username']), ENT_QUOTES, 'UTF-8'),
+            // 'emailRecipientName' => "<em><u>This is YOUR account and your personal ID:</u></em> " . $_SESSION['username'] . " - " . $_SESSION['email'],     //? makes it more obvious
+            
             // filling it with test data
             'allocation' => htmlspecialchars(trim('!allocation!'), ENT_QUOTES, 'UTF-8'),
             'nom' => htmlspecialchars(trim('!nom!'), ENT_QUOTES, 'UTF-8'),
