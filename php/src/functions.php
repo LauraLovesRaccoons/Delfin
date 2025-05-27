@@ -605,9 +605,9 @@ function combine_all_letters_into_one_pdf_delfin($baseDir, $templateFile, $times
         return; // 
     }
     // go on
-    $targetFName = str_replace($baseDir, '', $templateFile);    // gets just the reference file with extension
-    $targetFName = str_ireplace('.docx', '.pdf', $targetFName);  // this still has the .docx file extension     //? .docx is case insensitive
-    $outputRefName = str_ireplace('.pdf', '', $targetFName);     // this is for the line just below     //? .pdf is case insensitive
+    $targetFName = str_replace($baseDir, "", $templateFile);    // gets just the reference file with extension
+    $targetFName = str_ireplace(".docx", ".pdf", $targetFName);  // this still has the .docx file extension     //? .docx is case insensitive
+    $outputRefName = str_ireplace(".pdf", "", $targetFName);     // this is for the line just below     //? .pdf is case insensitive
     $combinedFile = $baseDir . "[ONLY_LETTERS]" . " - " . $outputRefName . " - " . $timestamp . ".pdf";     // fancy name ; and a timestamp to prevent duplicates on the user's side
     // var_dump($combinedFile);
     // echo "<br />";
@@ -637,13 +637,20 @@ function combine_all_letters_into_one_pdf_delfin($baseDir, $templateFile, $times
     unset($_SESSION['letter_id_array']);    // this is needed
     // echo "<br /><a href='" . $combinedFile . "' download>Download PDF for printing for those who require a letter or for those whose email failed to send</a><br />";
     //? outerHTML overwrites the span ; innerHTML would keep it
-    echo "<script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('downloadLinkMsg').outerHTML = ` 
-                <a href='" . $combinedFile . "' download>Download PDF for printing for those who require a letter or for those whose email failed to send</a>
-             `
+    // echo "<script>
+    //     document.addEventListener('DOMContentLoaded', function() {
+    //         document.getElementById('downloadLinkMsg').outerHTML = ` 
+    //             <a href=" . json_encode($combinedFile) . " download>Download PDF for printing for those who require a letter or for those whose email failed to send</a>
+    //          `
+    //     });
+    // </script>";     // yes this allows me to overwrite a span and let it appear before the "error" list
+    echo '<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("downloadLinkMsg").outerHTML = ' . 
+            json_encode('<a href="' . htmlspecialchars($combinedFile, ENT_QUOTES) . '" download>Download PDF for printing for those who require a letter or for those whose email failed to send</a>')
+             . ';
         });
-    </script>";     // yes this allows me to overwrite a span and let it appear before the "error" list
+    </script>';
 };
 
 
