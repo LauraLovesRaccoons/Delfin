@@ -422,7 +422,7 @@ function upload_pdf_delfin()
             exit();
         } else {
             echo $generealErrorMessage;
-            echo "<p class='specific-error-msg-file-upload'><strong>Must be a properly formated PDF file</strong></p>";
+            echo "<p class='specific-error-msg-file-upload'><strong>Must be a properly formated .pdf file</strong></p>";
         }
         // }
 
@@ -500,7 +500,7 @@ function upload_docX_delfin()
             exit();
         } else {
             echo $generealErrorMessage;
-            echo "<p class='specific-error-msg-file-upload'><strong>Must be a properly formated DOCX file</strong></p>";
+            echo "<p class='specific-error-msg-file-upload'><strong>Must be a properly formated .docx file</strong></p>";
         }
         // }
 
