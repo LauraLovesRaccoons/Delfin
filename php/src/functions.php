@@ -389,7 +389,7 @@ function upload_pdf_delfin()
         // checks the file extension
         if (!preg_match("/\.pdf$/i", $fileNAME)) {
             echo $generealErrorMessage;
-            echo "<p class='specific-error-msg-file-upload'><strong>.PDF is mandatory</strong></p>";
+            echo "<p class='specific-error-msg-file-upload'><strong>.pdf is mandatory</strong></p>";
         }
         elseif (substr_count(strtolower($fileNAME), '.pdf') > 1) {
             echo $generealErrorMessage;
@@ -457,7 +457,7 @@ function upload_docX_delfin()
         // checks the file extension
         if (!preg_match("/\.docx$/i", $fileNAME)) {
             echo $generealErrorMessage;
-            echo "<p class='specific-error-msg-file-upload'><strong>.DOXC is mandatory</strong></p>";
+            echo "<p class='specific-error-msg-file-upload'><strong>.docx is mandatory</strong></p>";
         }
         elseif (substr_count(strtolower($fileNAME), '.docx') > 1) {
             echo $generealErrorMessage;
