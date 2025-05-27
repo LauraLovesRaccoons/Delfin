@@ -109,7 +109,7 @@ include 'header.php';  //? this code should never cancel if there is an issue lo
             <?php
 
             // removing the full path from the file or else it will get too compilcated
-            $templateFileName = str_replace($templateDir, '', $templateFile);
+            $templateFileName = str_replace($templateDir, "", $templateFile);
             // $templateFileName = ltrim($templateFile, '/');  // this would remove the / in front of the filename ,but it's already contained in the full path (dir)
             // 
             // Loop through the array and send emails
@@ -145,7 +145,7 @@ include 'header.php';  //? this code should never cancel if there is an issue lo
                     unlink($inputDocX);     //? uncomment this if you need to debug smth
                 }
                 //? this is currently only .odt
-                $otherFormatDocX = str_ireplace('.docx', '.odt', $inputDocX);   //? .docx is case insensitive
+                $otherFormatDocX = str_ireplace(".docx", ".odt", $inputDocX);   //? .docx is case insensitive
                 if (file_exists($otherFormatDocX)) {
                     unlink($otherFormatDocX);   //? uncomment this if you need to debug smth
                 }

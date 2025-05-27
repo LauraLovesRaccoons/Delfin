@@ -1,3 +1,12 @@
+Version 1.7.1
+
+1) patched the download link for letters being broken if the filename contained single quotes ' 
+    -> in Luxembourg these are used pretty often
+2) also patched these quotes ` causing issues
+    -> and the letter download link should also be able to handle more exotic symbols
+
+---
+
 Version 1.7.0
 
 1) fixed lettermode (and the odt conversion) being broken IF the uploaded file's extension doesn't use .docx in lowercase
