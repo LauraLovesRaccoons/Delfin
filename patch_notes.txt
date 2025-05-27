@@ -10,6 +10,7 @@ Version 1.7.0
     -> same for the unused pdf upload except .docx is changed to .pdf
 5) if the docX upload contains .pdf or .odt (case insensitive) in any part of its name, it's also rejected
     -> the unused pdf upload checks for .docx and .odt (case insensitive) instead
+6) other minor changes
 
 ---
 
