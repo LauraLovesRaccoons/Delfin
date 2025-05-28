@@ -3,7 +3,7 @@ name: "${APP_NAME}"
 services:
 # mysql
   mysql:
-    image: "mysql"
+    image: "mysql:8.0.42"
     container_name: "${COMPOSE_PROJECT_NAME}_MYSQL"
     restart: "always"
     environment:
@@ -21,8 +21,8 @@ services:
       - internal_network
 # phpmyadmin
   phpmyadmin:
-    image: "phpmyadmin:latest"          #! x64
-    # image: "arm64v8/phpmyadmin:latest"  #! ARM
+    image: "phpmyadmin:5.2.2"
+    # image: "arm64v8/phpmyadmin:latest"  #! ARM 64
     container_name: "${COMPOSE_PROJECT_NAME}_PMA"
     restart: "no"   # more infos at profile
     profiles:
@@ -39,7 +39,7 @@ services:
       - internal_network
 # php-apache
   php-apache:
-    image: "php:8.4-apache"
+    image: "php:8.4.7-apache"   #! also change this in the dockerfile
     container_name: "${COMPOSE_PROJECT_NAME}_PHP-APACHE"
     restart: "always"
     environment:

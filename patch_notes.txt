@@ -1,3 +1,16 @@
+Version 1.7.2
+
+1) composer.json -> the 2 unused packages are now the last ones in the list
+2) compose.yaml -> upgraded from php 8.4(.0) to 8.4.7       -> with a new comment ;)
+3) dockerfile -> now also targets the newest php version    -> ditto ;)
+4) also enabled pdo in the dockerfile
+    -> I might not be the only person working on this anymore
+5) compose.yaml -> the images for mysql and phpmyadmin now target a specific version
+    -> in case a future update breaks smth
+6) rebuild everything correctly and it workz
+
+---
+
 Version 1.7.1
 
 1) patched the download link for letters being broken if the filename contained single quotes ' 
