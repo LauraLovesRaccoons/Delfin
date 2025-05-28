@@ -1,3 +1,9 @@
+Version 1.7.3
+
+1) the dummy user array now uses more obvious fields
+
+---
+
 Version 1.7.2
 
 1) composer.json -> the 2 unused packages are now the last ones in the list

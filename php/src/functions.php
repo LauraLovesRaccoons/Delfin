@@ -797,15 +797,25 @@ function dummyAccounts_delfin()
             'emailRecipientName' => htmlspecialchars(trim($_SESSION['username']), ENT_QUOTES, 'UTF-8'),
             // 'emailRecipientName' => "<em><u>This is YOUR account and your personal ID:</u></em> " . $_SESSION['username'] . " - " . $_SESSION['email'],     //? makes it more obvious
             
-            // filling it with test data
-            'allocation' => htmlspecialchars(trim('!allocation!'), ENT_QUOTES, 'UTF-8'),
-            'nom' => htmlspecialchars(trim('!nom!'), ENT_QUOTES, 'UTF-8'),
-            'nom2' => htmlspecialchars(trim('!nom2!'), ENT_QUOTES, 'UTF-8'),
-            'fonction' => htmlspecialchars(trim('!fonction!'), ENT_QUOTES, 'UTF-8'),
-            'adresse1' => htmlspecialchars(trim('!adresse1!'), ENT_QUOTES, 'UTF-8'),
-            'adresse2' => htmlspecialchars(trim('!adresse2!'), ENT_QUOTES, 'UTF-8'),
-            'allocationSpeciale' => htmlspecialchars(trim('!allocationSpeciale!'), ENT_QUOTES, 'UTF-8'),
-            'nomCouponReponse' => htmlspecialchars(trim('!nomCouponReponse!'), ENT_QUOTES, 'UTF-8'),        //? always verify your field names
+            // // filling it with test data
+            // 'allocation' => htmlspecialchars(trim('!allocation!'), ENT_QUOTES, 'UTF-8'),
+            // 'nom' => htmlspecialchars(trim('!nom!'), ENT_QUOTES, 'UTF-8'),
+            // 'nom2' => htmlspecialchars(trim('!nom2!'), ENT_QUOTES, 'UTF-8'),
+            // 'fonction' => htmlspecialchars(trim('!fonction!'), ENT_QUOTES, 'UTF-8'),
+            // 'adresse1' => htmlspecialchars(trim('!adresse1!'), ENT_QUOTES, 'UTF-8'),
+            // 'adresse2' => htmlspecialchars(trim('!adresse2!'), ENT_QUOTES, 'UTF-8'),
+            // 'allocationSpeciale' => htmlspecialchars(trim('!allocationSpeciale!'), ENT_QUOTES, 'UTF-8'),
+            // 'nomCouponReponse' => htmlspecialchars(trim('!nomCouponReponse!'), ENT_QUOTES, 'UTF-8'),        //? always verify your field names
+
+            // filling it with simulated real test data
+            'allocation' => htmlspecialchars(trim("!Monsieur!"), ENT_QUOTES, 'UTF-8'),
+            'nom' => htmlspecialchars(trim("!Ministère vun den ongeléiste Problemer!"), ENT_QUOTES, 'UTF-8'),
+            'nom2' => htmlspecialchars(trim("!Charel Kuddel!"), ENT_QUOTES, 'UTF-8'),
+            'fonction' => htmlspecialchars(trim("!Conseiller de Gouvernement!"), ENT_QUOTES, 'UTF-8'),
+            'adresse1' => htmlspecialchars(trim("!Place JFK!"), ENT_QUOTES, 'UTF-8'),
+            'adresse2' => htmlspecialchars(trim("!L-0000 Pétange!"), ENT_QUOTES, 'UTF-8'),
+            'allocationSpeciale' => htmlspecialchars(trim("!Monsieur le conseiller!"), ENT_QUOTES, 'UTF-8'),
+            'nomCouponReponse' => htmlspecialchars(trim("!nomCouponReponse-OK!"), ENT_QUOTES, 'UTF-8'),         //? always verify your field names
 
             // ],
             // [
