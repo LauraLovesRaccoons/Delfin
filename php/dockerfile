@@ -17,7 +17,7 @@ RUN echo "display_startup_errors=Off" > /usr/local/etc/php/conf.d/custom.ini && 
 
 
 
-#! composer is handled with the batch file since we're in Windows
+# composer is currently handled with the batch file since we're in Windows
 # RUN composer install
 
 
