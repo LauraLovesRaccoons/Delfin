@@ -1,3 +1,16 @@
+Version 1.7.3.0.2
+
+1) dockerfile critical typo
+
+---
+
+
+Version 1.7.3.0.1
+
+1) dockerfile better comments related to composer
+
+---
+
 Version 1.7.3
 
 1) the dummy user array now uses more obvious fields
