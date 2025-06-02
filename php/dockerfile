@@ -47,24 +47,19 @@ RUN a2enmod rewrite
 COPY ./httpd.conf /etc/apache2/conf-enabled/httpd.conf
 
 
+#? yeah I struggle with getting composer to work properly while using a docker volume (also in that case compose.json and .lock should be in this directory)
+
+# # install composer
+
+# RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
+#     php composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
+#     php -r "unlink('composer-setup.php');"
+# # RUN mv composer.phar /usr/local/bin/composer
+
+
+
 
 # NOTES:
 
-# https://www.youtube.com/watch?v=1eH43qVMCOU
-
 # https://packagist.org/
-
-
-
-# RUN composer init
-
-
-
-# install the docker packages from composer.json
-# doesn't work in windows
-# 
-
-# # in existing project or changes
-# RUN composer update
-
 
