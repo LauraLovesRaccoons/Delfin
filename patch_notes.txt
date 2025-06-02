@@ -1,3 +1,11 @@
+Version 1.7.4
+
+1) compose.yaml -> php volumes now uses slashes to denouce that these are folders
+2) dockerfile -> changed a comment
+
+---
+
+
 Version 1.7.3.0.2
 
 1) dockerfile critical typo

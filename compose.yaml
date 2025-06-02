@@ -47,10 +47,10 @@ services:
     env_file:
       - .env                          # those are used in php with getenv('varNameHere')
     volumes:
-      - ./php/src:/var/www/html/        # Path to folder in windows : Path to folder in Linux
-      - ./vendor:/var/www/html/vendor   # composer -> vendor folder
-      - ./uploads:/var/www/html/uploads # ./ means local volume and dropping ./ means docker volume
-      - ./logs:/var/www/html/logs       # ./ means local volume and dropping ./ means docker volume
+      - ./php/src/:/var/www/html/         # Path to folder in windows : Path to folder in Linux
+      - ./vendor/:/var/www/html/vendor/   # composer -> vendor folder
+      - ./uploads/:/var/www/html/uploads/ # ./ means local volume and dropping ./ means docker volume
+      - ./logs/:/var/www/html/logs/       # ./ means local volume and dropping ./ means docker volume
     ports:
       - "${PHP_PORT}:80"  # port 80 external -> from .env file
     networks:
