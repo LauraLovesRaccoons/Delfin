@@ -47,7 +47,7 @@ RUN a2enmod rewrite
 COPY ./httpd.conf /etc/apache2/conf-enabled/httpd.conf
 
 
-#? yeah I struggle with getting composer to work properly while using a docker volume (also in that case compose.json and .lock should be in this directory)
+#? yeah I struggle with getting composer to work properly while using a docker volume (also in that case composer.json and .lock should be in this directory)
 
 # # install composer
 
