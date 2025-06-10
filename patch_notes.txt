@@ -1,3 +1,13 @@
+Version 1.8.0
+
+1) upgraded from php apache 8.4.7 to 8.4.8
+    -> as this requires re-building your image, the semi-major version number has been bumped as well
+2) upgraded mysql from 8.0.X to 9.3.0
+    -> this also requires re-building your image
+        -> btw this is major change, not just a security/bugfix update
+
+---
+
 Version 1.7.4
 
 1) compose.yaml -> php volumes now uses slashes to denouce that these are folders
@@ -5,13 +15,11 @@ Version 1.7.4
 
 ---
 
-
 Version 1.7.3.0.2
 
 1) dockerfile critical typo
 
 ---
-
 
 Version 1.7.3.0.1
 

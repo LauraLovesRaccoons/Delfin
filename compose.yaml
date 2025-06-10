@@ -3,7 +3,7 @@ name: "${APP_NAME}"
 services:
 # mysql
   mysql:
-    image: "mysql:8.0.42"
+    image: "mysql:9.3.0"
     container_name: "${COMPOSE_PROJECT_NAME}_MYSQL"
     restart: "always"
     environment:
@@ -39,7 +39,7 @@ services:
       - internal_network
 # php-apache
   php-apache:
-    image: "php:8.4.7-apache"   #! also change this in the dockerfile
+    image: "php:8.4.8-apache"   #! also change this in the dockerfile
     container_name: "${COMPOSE_PROJECT_NAME}_PHP-APACHE"
     restart: "always"
     environment:
