@@ -2,6 +2,7 @@ Version 1.8.0.1
 
 1) updated readme with volumes under WSL (Windows) in Rancher Desktop
     -> use Rancher Desktop and uninstall Docker Desktop and then restart if you don't want to deal with licensing for {Docker Desktop}
+2) added more Rancher Desktop notes to the readme file
 
 ---
 
