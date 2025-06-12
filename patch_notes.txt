@@ -1,3 +1,10 @@
+Version 1.8.1
+
+1) forced UTC+0 timezone for the the mysql backup
+    -> since migrating to Rancher Desktop  it had an offset of 8 hours compared to UTC+0
+
+---
+
 Version 1.8.0.1
 
 1) updated readme with volumes under WSL (Windows) in Rancher Desktop

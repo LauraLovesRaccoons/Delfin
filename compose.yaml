@@ -73,6 +73,7 @@ services:
       - INIT_BACKUPS=0    # self explanatory
       - GZIP_LEVEL=9      # zip it a bit
       - MYSQLDUMP_OPTS=--no-tablespaces   # As of MySQL 8.0.21 this is needed
+      - TZ=UTC            #? forcing UTC+0
       #! CRON IS IN UTC+0
       # - CRON_TIME=*/5 * * * *   # every 5 minutes
       # - CRON_TIME=0 10 * * *    # every day at 10:00
