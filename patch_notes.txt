@@ -2,7 +2,7 @@ Version 1.8.2
 
 1) lowered the upload limit from 20MB to 15MB
     -> shut down the container and use first_run.bat !
-2) the upload limit now uses true Bytes (exact same as the php apache config)
+2) the upload limit now uses true MBytes (exact same as the php apache config)
 3) since upload size now matches the file size checker in file_upload.php
     -> files between these limits are no longer a concern
 
