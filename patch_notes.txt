@@ -1,7 +1,11 @@
 Version 1.8.3
 
 1) signature_template.php now uses a paragraph for the original message (before the signature)
-    -> linebreaks aren't that accessible
+    -> linebreaks aren't that accessible  (outside a paragraph)
+    -> the signature itself also drops the starting and ending <br /> tags
+    -> the paragraph has a bottom margin of 12 pixels
+2) alt text is now also added to the email instead of it being html only
+    -> a function that handles linebreaks and html tags for this was also added
 
 
 ---

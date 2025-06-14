@@ -244,6 +244,8 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             $mail->Subject = $emailSubject;
             // $mail->Body = $emailBody;    // working body
             $mail->Body = $emailBodyCID;    // this has the CID (or not if the images are missing)
+            //? V1.8.3 -> Accessibility
+            $mail->AltBody = generateAltBody_delfin($emailBodyCID);     // function to handle the alt body
 
             //             // echo "<br /><pre>";
             //             // var_dump($mail);
@@ -973,4 +975,26 @@ function docX_find_and_replace_delfin($templateDocX, $outputDocX, array $replace
     }
 
     $zip->close();
+};
+
+
+// expansion V1.8.3
+function generateAltBody_delfin($emailBody_html) {
+
+    // Replaces <br> and <br /> with new line + carriage return
+    $emailBody_alt_text = preg_replace('/<br\s*\/?>/i', "\r\n", $emailBody_html);       // replaces <br> and <br /> with \r\n
+    // same thing for </p> but twice
+    $emailBody_alt_text = preg_replace('/<\/p\s*>/i', "\r\n\r\n", $emailBody_alt_text); // replaces </p> with \r\n\r\n
+
+    // stripping all other html tags
+    $emailBody_alt_text = strip_tags($emailBody_alt_text);      // removes every other html tag
+
+    // decoding it just the be sure
+    $emailBody_alt_text = html_entity_decode($emailBody_alt_text, ENT_QUOTES | ENT_HTML5, 'UTF-8');     // smort
+
+    // trimming unnecessary whitespace
+    $emailBody_alt_text = trim($emailBody_alt_text);    // just in case
+
+    //return
+    return ($emailBody_alt_text);
 };
