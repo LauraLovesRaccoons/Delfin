@@ -1,3 +1,11 @@
+Version 1.8.3
+
+1) signature_template.php now uses a paragraph for the original message (before the signature)
+    -> linebreaks aren't that accessible
+
+
+---
+
 Version 1.8.2
 
 1) lowered the upload limit from 20MB to 15MB
