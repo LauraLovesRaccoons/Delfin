@@ -246,7 +246,7 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             $mail->Body = $emailBodyCID;    // this has the CID (or not if the images are missing)
             //? V1.8.3 -> Accessibility
             $mail->AltBody = generateAltBody_delfin($emailBodyCID);     // function to handle the alt body
-            // $mail->AddStringAttachment($mail->AltBody, 'message.txt', 'base64', 'text/plain');
+            // $mail->AddStringAttachment($mail->AltBody, 'message.txt', 'base64', 'text/plain');      //? can be used to check the alt body in html only clients
 
             //             // echo "<br /><pre>";
             //             // var_dump($mail);
