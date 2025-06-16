@@ -35,7 +35,6 @@ $banner =
 
 //! template
 $template = 
-    // '<br />' . 
     '<table border=1 cellspacing=0 cellpadding=0 style="border-collapse:collapse;border:none;"><tr>' . 
     '<td width="110" valign=top align=center style="border:solid black 1.0pt;border-right:none;padding:15px 8px 15px 8px;">' . 
     '<p><img width=94 height=58 src="{logo}" alt="Logo P&eacute;tange"></p></td>' . 
@@ -53,8 +52,7 @@ $template =
     '<br><i>Web&nbsp;:&nbsp;</i><a href="https://www.petange.lu"><i>https://www.petange.lu</i></a>' . 
     '</span></td></tr>' . 
     $banner . 
-    '</table>' // . 
-    // '<br />'
+    '</table>' 
     ;
 
 
