@@ -69,7 +69,7 @@ function appendSignature_delfin($emailBody)
 {
     global $template;   //? i need to call it with global
     // $emailBody = $emailBody . "<br />" . $template;     //? catenates both strings into one ; with a line break
-    $emailBody = '<p style="margin-bottom:12px;">' . $emailBody . '</p>' . $template;   //? catenates both strings into one ; and the message is its own paragraph
+    $emailBody = '<p style="margin-bottom:16px;">' . $emailBody . '</p>' . $template;   //? catenates both strings into one ; and the message is its own paragraph
     return $emailBody;
 };
 ?>
