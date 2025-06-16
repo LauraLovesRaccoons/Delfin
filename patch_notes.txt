@@ -1,7 +1,7 @@
 Version 1.8.3.1
 
 1) added 2 linebreaks into the .env and .env.example file
-    -> use refresh_env.bat (and update)
+    -> use refresh_env.bat (and update your .env file before)
 2) bottom margin for the paragraph is now in pixels (outlook ignores rem)
 
 ---
