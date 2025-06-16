@@ -519,7 +519,7 @@ function upload_docX_delfin()
 // docX fill data {hard coded fields!}
 function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
 {
-    //! $recipientUser used inside the array as variables
+    // $recipientUser used inside the array as variables
     //? htmlspecialchars('replyFromDb', ENT_QUOTES, 'UTF-8'),   // -> was used before since symbols like & will crash it
     $replacementsArray = [
         '«Allocation»' => $recipientUser['allocation'] ?: '​',
@@ -562,7 +562,7 @@ function convertDocXToPdf_delfin($inputDocX, $outputPdf, $inputDocXDir)
     // $outDir = "/var/www/html/" . $GLOBALS['uploadBasePath'];
     $outDir = "/var/www/html/" . $inputDocXDir;
     //? basic one
-    // $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir $outDir $inputDocX 2>&1";     //! basic one ; no additional pdf settings
+    // $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir $outDir $inputDocX 2>&1";     // basic one ; no additional pdf settings
     // $output = shell_exec($command);     //? the $output variable can be used for logging purposes
     //? fine tuned docX to odt conversion
     $command = "HOME=/tmp libreoffice --headless --infilter='Microsoft Word 2007/2010/2013 XML' --convert-to 'odt:writer8' --outdir $outDir $inputDocX 2>&1";
@@ -582,7 +582,7 @@ function convertDocXToPdf_delfin($inputDocX, $outputPdf, $inputDocXDir)
 };
 
 
-// ! UNUSED
+//! UNUSED
 function digitally_sign_pdf_delfin($pdfToSign)
 {
     // new filename or directory or force overwrite required; PERHAPS ?
