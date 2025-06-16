@@ -6,6 +6,7 @@ Version 1.8.3
     -> the paragraph has a bottom margin of 12 pixels
 2) alt text is now also added to the email instead of it being html only
     -> a function that handles linebreaks and html tags for this was also added
+3) Various Stuff
 
 
 ---
