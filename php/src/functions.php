@@ -251,7 +251,7 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             //             // var_dump($mail);
             //             // echo "</pre><br />";
 
-            //! FUTURE: If we have a certificate, this would be handled here ; $mail-sign()
+            //! FUTURE: If we have a certificate, this would be handled here ; $mail->sign()
 
             $mail->send();
             // echo 'Message has been sent<br />';
