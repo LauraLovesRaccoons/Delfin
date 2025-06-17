@@ -255,6 +255,7 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             //             // echo "</pre><br />";
 
             //! FUTURE: If we have a certificate, this would be handled here ; $mail->sign()
+            //? I let my MS Exchange Server handle that
 
             //! you might need this to correctly set up your mail server
             //? debugging       // gives you the eml file before it's being sent (MS Exchange Server might need adjustements to allow Content-Type: multipart/mixed;)

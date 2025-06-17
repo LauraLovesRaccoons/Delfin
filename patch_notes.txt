@@ -1,3 +1,11 @@
+Version 1.8.4
+
+1) added debugging lines that generate a debug_email.eml before the email is being sent
+2) comments related to message.text (email)
+3) comments related to signing (email)
+
+---
+
 Version 1.8.3.1
 
 1) added 2 linebreaks into the .env and .env.example file
