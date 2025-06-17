@@ -246,6 +246,8 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             $mail->Body = $emailBodyCID;    // this has the CID (or not if the images are missing)
             //? V1.8.3 -> Accessibility
             $mail->AltBody = generateAltBody_delfin($emailBodyCID);     // function to handle the alt body
+
+            //! only enable the following line if you require this
             // $mail->AddStringAttachment($mail->AltBody, 'message.txt', 'base64', 'text/plain');      //? can be used to check the alt body in html only clients
 
             //             // echo "<br /><pre>";
@@ -253,6 +255,15 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             //             // echo "</pre><br />";
 
             //! FUTURE: If we have a certificate, this would be handled here ; $mail->sign()
+
+            //! you might need this to correctly set up your mail server
+            //? debugging       // gives you the eml file before it's being sent (MS Exchange Server might need adjustements to allow Content-Type: multipart/mixed;)
+            // $debugEmailFile = $GLOBALS['logBasePath'] . "debug_email.eml";
+            // $mail->preSend();
+            // if (file_exists($debugEmailFile)) {
+            //     unlink($debugEmailFile);
+            // };
+            // file_put_contents($debugEmailFile, $mail->getSentMIMEMessage());
 
             $mail->send();
             // echo 'Message has been sent<br />';
