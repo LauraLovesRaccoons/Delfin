@@ -3,6 +3,7 @@ Version 1.8.5
 1) functions.php
     -> the "[BLANK].docx" filename detector now covers more edge cases
         -> " .docx" even this one
+        -> same for the pdf one
 2) cleaned up old comments
 
 ---

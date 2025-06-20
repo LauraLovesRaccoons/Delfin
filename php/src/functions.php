@@ -412,10 +412,18 @@ function upload_pdf_delfin()
             echo $generealErrorMessage;
             echo "<p class='specific-error-msg-file-upload'><strong>Your file contains multiple .pdf</strong></p>";
         }
+
+        // prepare for trouble
         elseif (strtolower($fileNAME) === '.pdf') {
             echo $generealErrorMessage;
             echo "<p class='specific-error-msg-file-upload'><strong>File can not just be named .pdf</strong></p>";
         }
+        // and make it double
+        elseif ( (trim(strtolower(pathinfo($fileNAME, PATHINFO_FILENAME))) === '' && strtolower(pathinfo($fileNAME, PATHINFO_EXTENSION)) === 'pdf') || (strlen(trim($fileNAME)) <= 4 ) ) {
+            echo $generealErrorMessage;
+            echo "<p class='specific-error-msg-file-upload'><strong>File can not just be named .pdf</strong></p>";
+        }
+
         elseif (strpos(strtolower($fileNAME), '.odt') !== false) {
             echo $generealErrorMessage;
             echo "<p class='specific-error-msg-file-upload'><strong>File cannot contain .odt in its name</strong></p>";
@@ -480,10 +488,18 @@ function upload_docX_delfin()
             echo $generealErrorMessage;
             echo "<p class='specific-error-msg-file-upload'><strong>Your file contains multiple .docx</strong></p>";
         }
+
+        // prepare for trouble
         elseif (strtolower($fileNAME) === '.docx') {
             echo $generealErrorMessage;
             echo "<p class='specific-error-msg-file-upload'><strong>File can not just be named .docx</strong></p>";
         }
+        // and make it double
+        elseif ( (trim(strtolower(pathinfo($fileNAME, PATHINFO_FILENAME))) === '' && strtolower(pathinfo($fileNAME, PATHINFO_EXTENSION)) === 'docx') || (strlen(trim($fileNAME)) <= 5 ) ) {
+            echo $generealErrorMessage;
+            echo "<p class='specific-error-msg-file-upload'><strong>File can not just be named .docx</strong></p>";
+        }
+
         elseif (strpos(strtolower($fileNAME), '.pdf') !== false) {
             echo $generealErrorMessage;
             echo "<p class='specific-error-msg-file-upload'><strong>File cannot contain .pdf in its name</strong></p>";
