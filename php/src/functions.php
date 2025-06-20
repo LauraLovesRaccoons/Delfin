@@ -420,9 +420,10 @@ function upload_pdf_delfin()
             echo $generealErrorMessage;
             echo "<p class='specific-error-msg-file-upload'><strong>File cannot contain .odt in its name</strong></p>";
         }
-        elseif (strpos(strtolower($fileNAME), '.docx') !== false) {
+        // elseif ( (strpos(strtolower($fileNAME), '.docx') !== false) || (strlen(pathinfo($fileNAME, PATHINFO_FILENAME) < 0 )) || (strlen(trim($fileNAME) <= 5 )) ) {
+        elseif ( (trim(strtolower(pathinfo($fileNAME, PATHINFO_FILENAME))) === '' && strtolower(pathinfo($fileNAME, PATHINFO_EXTENSION)) === 'docx') || (strlen(trim($fileNAME)) <= 5 ) ) {
             echo $generealErrorMessage;
-            echo "<p class='specific-error-msg-file-upload'><strong>File cannot contain .docx in its name</strong></p>";
+            echo "<p class='specific-error-msg-file-upload'><strong>File can not just be named .docx</strong></p>";
         }
 
         // checks the file's mime type
@@ -812,18 +813,8 @@ function dummyAccounts_delfin()
             // 'recipientId' => $_SESSION['id'],   //? manual override
             'emailRecipient' => htmlspecialchars(trim($_SESSION['email']), ENT_QUOTES, 'UTF-8'),
             'emailRecipientName' => htmlspecialchars(trim($_SESSION['username']), ENT_QUOTES, 'UTF-8'),
-            // 'emailRecipientName' => "<em><u>This is YOUR account and your personal ID:</u></em> " . $_SESSION['username'] . " - " . $_SESSION['email'],     //? makes it more obvious
+            // // 'emailRecipientName' => "<em><u>This is YOUR account and your personal ID:</u></em> " . $_SESSION['username'] . " - " . $_SESSION['email'],     //? makes it more obvious
             
-            // // filling it with test data
-            // 'allocation' => htmlspecialchars(trim('!allocation!'), ENT_QUOTES, 'UTF-8'),
-            // 'nom' => htmlspecialchars(trim('!nom!'), ENT_QUOTES, 'UTF-8'),
-            // 'nom2' => htmlspecialchars(trim('!nom2!'), ENT_QUOTES, 'UTF-8'),
-            // 'fonction' => htmlspecialchars(trim('!fonction!'), ENT_QUOTES, 'UTF-8'),
-            // 'adresse1' => htmlspecialchars(trim('!adresse1!'), ENT_QUOTES, 'UTF-8'),
-            // 'adresse2' => htmlspecialchars(trim('!adresse2!'), ENT_QUOTES, 'UTF-8'),
-            // 'allocationSpeciale' => htmlspecialchars(trim('!allocationSpeciale!'), ENT_QUOTES, 'UTF-8'),
-            // 'nomCouponReponse' => htmlspecialchars(trim('!nomCouponReponse!'), ENT_QUOTES, 'UTF-8'),        //? always verify your field names
-
             // filling it with simulated real test data
             'allocation' => htmlspecialchars(trim("!Monsieur!"), ENT_QUOTES, 'UTF-8'),
             'nom' => htmlspecialchars(trim("!Ministère vun den ongeléiste Problemer!"), ENT_QUOTES, 'UTF-8'),
@@ -840,11 +831,7 @@ function dummyAccounts_delfin()
             //     'emailRecipientName' => 'LOSER Dummy Recipient',
             //     'recipientId' => 00
             // ],
-            // [
-            //     'emailRecipient' => 'holaura@protonmail.com',
-            //     'emailRecipientName' => 'LOSER Dummy Recipient',
-            //     'recipientId' => 000
-            //     ],
+
             // [
             //     'emailRecipient' => 'NO-EMAIL',
             //     'emailRecipientName' => 'i do not have an email',

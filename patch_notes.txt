@@ -1,3 +1,12 @@
+Version 1.8.5
+
+1) functions.php
+    -> the "[BLANK].docx" filename detector now covers more edge cases
+        -> " .docx" even this one
+2) cleaned up old comments
+
+---
+
 Version 1.8.4
 
 1) added debugging lines that generate a debug_email.eml before the email is being sent
