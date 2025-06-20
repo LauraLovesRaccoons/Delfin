@@ -420,10 +420,9 @@ function upload_pdf_delfin()
             echo $generealErrorMessage;
             echo "<p class='specific-error-msg-file-upload'><strong>File cannot contain .odt in its name</strong></p>";
         }
-        // elseif ( (strpos(strtolower($fileNAME), '.docx') !== false) || (strlen(pathinfo($fileNAME, PATHINFO_FILENAME) < 0 )) || (strlen(trim($fileNAME) <= 5 )) ) {
-        elseif ( (trim(strtolower(pathinfo($fileNAME, PATHINFO_FILENAME))) === '' && strtolower(pathinfo($fileNAME, PATHINFO_EXTENSION)) === 'docx') || (strlen(trim($fileNAME)) <= 5 ) ) {
+        elseif (strpos(strtolower($fileNAME), '.docx') !== false) {
             echo $generealErrorMessage;
-            echo "<p class='specific-error-msg-file-upload'><strong>File can not just be named .docx</strong></p>";
+            echo "<p class='specific-error-msg-file-upload'><strong>File cannot contain .docx in its name</strong></p>";
         }
 
         // checks the file's mime type
