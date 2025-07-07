@@ -1,3 +1,88 @@
+Version 1.8.6
+
+1) send_mail.php
+    -> at the end of the batch process an empty folder named after the selected list is created
+        -> makes it easier (for sysadmins) to check which list was used
+2) added open_issues file
+3) added just a very basic prototype documentation
+4) upgraded php apache from 8.4.8 to 8.4.10 -> critical security patches
+    -> rebuilt your container and have some patience
+
+---
+
+Version 1.8.5
+
+1) functions.php
+    -> the "[BLANK].docx" filename detector now covers more edge cases
+        -> " .docx" even this one
+        -> same for the pdf one
+2) cleaned up old comments
+
+---
+
+Version 1.8.4
+
+1) added debugging lines that generate a debug_email.eml before the email is being sent
+2) comments related to message.text (email)
+3) comments related to signing (email)
+
+---
+
+Version 1.8.3.1
+
+1) added 2 linebreaks into the .env and .env.example file
+    -> use refresh_env.bat (and update your .env file before)
+2) bottom margin for the paragraph is now in pixels (outlook ignores rem)
+
+---
+
+Version 1.8.3
+
+1) signature_template.php now uses a paragraph for the original message (before the signature)
+    -> linebreaks aren't that accessible  (outside a paragraph)
+    -> the signature itself also drops the starting and ending <br /> tags
+    -> the paragraph has a bottom margin of 1.5 rem
+2) alt text is now also added to the email instead of it being html only
+    -> a function that handles linebreaks and html tags for this was also added
+3) Various Stuff
+
+---
+
+Version 1.8.2
+
+1) lowered the upload limit from 20MB to 15MB
+    -> shut down the container and use first_run.bat !
+2) the upload limit now uses true MBytes (exact same as the php apache config)
+3) since upload size now matches the file size checker in file_upload.php
+    -> files between these limits are no longer a concern
+
+---
+
+Version 1.8.1
+
+1) forced UTC+0 timezone for the the mysql backup
+    -> since migrating to Rancher Desktop  it had an offset of 8 hours compared to UTC+0
+
+---
+
+Version 1.8.0.1
+
+1) updated readme with volumes under WSL (Windows) in Rancher Desktop
+    -> use Rancher Desktop and uninstall Docker Desktop and then restart if you don't want to deal with licensing for {Docker Desktop}
+2) added more Rancher Desktop notes to the readme file
+
+---
+
+Version 1.8.0
+
+1) upgraded from php apache 8.4.7 to 8.4.8
+    -> as this requires re-building your image, the semi-major version number has been bumped as well
+2) upgraded mysql from 8.0.X to 9.3.0
+    -> this also requires re-building your image
+        -> btw this is major change, not just a security/bugfix update
+
+---
+
 Version 1.7.4
 
 1) compose.yaml -> php volumes now uses slashes to denouce that these are folders
@@ -5,13 +90,11 @@ Version 1.7.4
 
 ---
 
-
 Version 1.7.3.0.2
 
 1) dockerfile critical typo
 
 ---
-
 
 Version 1.7.3.0.1
 

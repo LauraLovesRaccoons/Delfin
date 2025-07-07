@@ -3,7 +3,7 @@ name: "${APP_NAME}"
 services:
 # mysql
   mysql:
-    image: "mysql:8.0.42"
+    image: "mysql:9.3.0"
     container_name: "${COMPOSE_PROJECT_NAME}_MYSQL"
     restart: "always"
     environment:
@@ -39,11 +39,11 @@ services:
       - internal_network
 # php-apache
   php-apache:
-    image: "php:8.4.7-apache"   #! also change this in the dockerfile
+    image: "php:8.4.10-apache"    #! also change this in the dockerfile
     container_name: "${COMPOSE_PROJECT_NAME}_PHP-APACHE"
     restart: "always"
     environment:
-      - max_upload=20M                # refer to the dockerfile
+      - max_upload=15M                # refer to the dockerfile
     env_file:
       - .env                          # those are used in php with getenv('varNameHere')
     volumes:
@@ -73,6 +73,7 @@ services:
       - INIT_BACKUPS=0    # self explanatory
       - GZIP_LEVEL=9      # zip it a bit
       - MYSQLDUMP_OPTS=--no-tablespaces   # As of MySQL 8.0.21 this is needed
+      - TZ=UTC            #? forcing UTC+0
       #! CRON IS IN UTC+0
       # - CRON_TIME=*/5 * * * *   # every 5 minutes
       # - CRON_TIME=0 10 * * *    # every day at 10:00

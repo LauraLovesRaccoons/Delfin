@@ -15,7 +15,8 @@ cleanup_session_vars_delfin();  // this is probably a good idea if someone uses 
 
 <div class="general-wrapper">
     <br />
-    <h1 class="landing-page-h1">Your (Total) Upload was above 20MB, emails can't process this!</h1>
+    <!-- <h1 class="landing-page-h1">Your (Total) Upload was above 20MB, emails can't process this!</h1> -->
+    <h1 class="landing-page-h1">Your (Total) Upload was above 15MB, which is close to the 20MB email limit!</h1>
     <h2 class="landing-page-h1"><a class="above20MB" href="delfin.php">Go Back to the Main Page</a></h2>
 </div>
 <?php require 'footer.php'; ?>

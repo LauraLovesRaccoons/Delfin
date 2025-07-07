@@ -9,3 +9,6 @@
 /uploads/
 /logs/
 /db_backup/
+
+# ms word
+~$cumentation.docx

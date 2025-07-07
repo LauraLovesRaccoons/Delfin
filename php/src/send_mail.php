@@ -189,6 +189,14 @@ include 'header.php';  //? this code should never cancel if there is an issue lo
             }
             //? this was added much later
             if (isset($_SESSION['selectedList'])) {
+                //? creates an empty directory named after the selected list
+                // just to be able to easily check which list was selected
+                $stringSelectedList = (string)$_SESSION['selectedList'];
+                $directoryNamedAfterSelectedList = $templateDir . $stringSelectedList . "/";
+                if (!is_dir($directoryNamedAfterSelectedList)) {
+                    mkdir($directoryNamedAfterSelectedList, 0777, true);
+                };
+                // happy
                 unset($_SESSION['selectedList']);
             }
             delete_uploads_dir_delfin();    // cleanup

@@ -1,0 +1,45 @@
+# ah yes
+
+- HIGH PRIORITY:
+    -> create a dummy excel database to allow you to properly create the database fields inside your docx file
+!!!
+
+- There is no storage space limiter implemented
+
+- There is no memory limiter implemented
+
+- Signature is slightly broken in outlook web under WebKit browsers.
+    -> Suspect: Outlook probably has a default "hidden" stylesheet
+
+- pdf combiner doesn't have a limiter
+    -> out of memory errors (and out of storage) are possible
+
+- there is no protection against a .docx document containing a zip bomb
+    -> out of memory and out of storage errors possible
+
+- manipulated .docx documents can cause the pdf file to become really really large
+    -> out of memory, out of storage, mails failing to send, pdf combiner failing
+
+- the Users table has a login id that is unused
+    -> dual login possible; due to job lock flag, no crashes are possible
+
+- job lock flag doesn't clear on full container restart if it has been set
+    -> usually related to crashes
+
+- the uploads and logs folders aren't protected against CRUD
+    -> tons of crashes possible
+
+- the database and the assossciated php grabbing function don't have any limiter
+    -> out of memory errors are possible, if you have a pretty large database
+
+- if the selected list var is manipulated or uses path/reserved symbols
+    -> a directory named after this exact var is created; and this can be ugly
+
+- no warning message if the list you've used is empty
+    -> ...
+
+- composer needs to be installed on the host machine
+    -> should be part of the dockerfile, though I struggle with that part
+
+
+-

@@ -1,4 +1,4 @@
-FROM php:8.4.7-apache
+FROM php:8.4.10-apache
                             #! must match the exact version as specified in compose.yaml
 
 # # install docker's php extension : mysqli
@@ -7,9 +7,9 @@ FROM php:8.4.7-apache
 # install docker's php extension : mysqli & pdo_mysql
 RUN docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable pdo_mysql
 
-# Increase max upload size to 20MB
-RUN echo "upload_max_filesize=20M" > /usr/local/etc/php/conf.d/upload_large_dumps.ini && \
-    echo "post_max_size=20M" >> /usr/local/etc/php/conf.d/upload_large_dumps.ini
+# Increase max upload size to 15MB
+RUN echo "upload_max_filesize=15M" > /usr/local/etc/php/conf.d/upload_large_dumps.ini && \
+    echo "post_max_size=15M" >> /usr/local/etc/php/conf.d/upload_large_dumps.ini
 
 RUN echo "display_startup_errors=Off" > /usr/local/etc/php/conf.d/custom.ini && \
     echo "log_errors=On" >> /usr/local/etc/php/conf.d/custom.ini && \

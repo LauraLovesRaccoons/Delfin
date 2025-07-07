@@ -244,10 +244,27 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             $mail->Subject = $emailSubject;
             // $mail->Body = $emailBody;    // working body
             $mail->Body = $emailBodyCID;    // this has the CID (or not if the images are missing)
+            //? V1.8.3 -> Accessibility
+            $mail->AltBody = generateAltBody_delfin($emailBodyCID);     // function to handle the alt body
+
+            //! only enable the following line if you require this
+            // $mail->AddStringAttachment($mail->AltBody, 'message.txt', 'base64', 'text/plain');      //? can be used to check the alt body in html only clients
 
             //             // echo "<br /><pre>";
             //             // var_dump($mail);
             //             // echo "</pre><br />";
+
+            //! FUTURE: If we have a certificate, this would be handled here ; $mail->sign()
+            //? I let my MS Exchange Server handle that
+
+            //! you might need this to correctly set up your mail server
+            //? debugging       // gives you the eml file before it's being sent (MS Exchange Server might need adjustements to allow Content-Type: multipart/mixed;)
+            // $debugEmailFile = $GLOBALS['logBasePath'] . "debug_email.eml";
+            // $mail->preSend();
+            // if (file_exists($debugEmailFile)) {
+            //     unlink($debugEmailFile);
+            // };
+            // file_put_contents($debugEmailFile, $mail->getSentMIMEMessage());
 
             $mail->send();
             // echo 'Message has been sent<br />';
@@ -395,10 +412,18 @@ function upload_pdf_delfin()
             echo $generealErrorMessage;
             echo "<p class='specific-error-msg-file-upload'><strong>Your file contains multiple .pdf</strong></p>";
         }
+
+        // prepare for trouble
         elseif (strtolower($fileNAME) === '.pdf') {
             echo $generealErrorMessage;
             echo "<p class='specific-error-msg-file-upload'><strong>File can not just be named .pdf</strong></p>";
         }
+        // and make it double
+        elseif ( (trim(strtolower(pathinfo($fileNAME, PATHINFO_FILENAME))) === '' && strtolower(pathinfo($fileNAME, PATHINFO_EXTENSION)) === 'pdf') || (strlen(trim($fileNAME)) <= 4 ) ) {
+            echo $generealErrorMessage;
+            echo "<p class='specific-error-msg-file-upload'><strong>File can not just be named .pdf</strong></p>";
+        }
+
         elseif (strpos(strtolower($fileNAME), '.odt') !== false) {
             echo $generealErrorMessage;
             echo "<p class='specific-error-msg-file-upload'><strong>File cannot contain .odt in its name</strong></p>";
@@ -463,10 +488,18 @@ function upload_docX_delfin()
             echo $generealErrorMessage;
             echo "<p class='specific-error-msg-file-upload'><strong>Your file contains multiple .docx</strong></p>";
         }
+
+        // prepare for trouble
         elseif (strtolower($fileNAME) === '.docx') {
             echo $generealErrorMessage;
             echo "<p class='specific-error-msg-file-upload'><strong>File can not just be named .docx</strong></p>";
         }
+        // and make it double
+        elseif ( (trim(strtolower(pathinfo($fileNAME, PATHINFO_FILENAME))) === '' && strtolower(pathinfo($fileNAME, PATHINFO_EXTENSION)) === 'docx') || (strlen(trim($fileNAME)) <= 5 ) ) {
+            echo $generealErrorMessage;
+            echo "<p class='specific-error-msg-file-upload'><strong>File can not just be named .docx</strong></p>";
+        }
+
         elseif (strpos(strtolower($fileNAME), '.pdf') !== false) {
             echo $generealErrorMessage;
             echo "<p class='specific-error-msg-file-upload'><strong>File cannot contain .pdf in its name</strong></p>";
@@ -515,7 +548,7 @@ function upload_docX_delfin()
 // docX fill data {hard coded fields!}
 function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
 {
-    //! $recipientUser used inside the array as variables
+    // $recipientUser used inside the array as variables
     //? htmlspecialchars('replyFromDb', ENT_QUOTES, 'UTF-8'),   // -> was used before since symbols like & will crash it
     $replacementsArray = [
         '«Allocation»' => $recipientUser['allocation'] ?: '​',
@@ -558,7 +591,7 @@ function convertDocXToPdf_delfin($inputDocX, $outputPdf, $inputDocXDir)
     // $outDir = "/var/www/html/" . $GLOBALS['uploadBasePath'];
     $outDir = "/var/www/html/" . $inputDocXDir;
     //? basic one
-    // $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir $outDir $inputDocX 2>&1";     //! basic one ; no additional pdf settings
+    // $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir $outDir $inputDocX 2>&1";     // basic one ; no additional pdf settings
     // $output = shell_exec($command);     //? the $output variable can be used for logging purposes
     //? fine tuned docX to odt conversion
     $command = "HOME=/tmp libreoffice --headless --infilter='Microsoft Word 2007/2010/2013 XML' --convert-to 'odt:writer8' --outdir $outDir $inputDocX 2>&1";
@@ -578,7 +611,7 @@ function convertDocXToPdf_delfin($inputDocX, $outputPdf, $inputDocXDir)
 };
 
 
-// ! UNUSED
+//! UNUSED
 function digitally_sign_pdf_delfin($pdfToSign)
 {
     // new filename or directory or force overwrite required; PERHAPS ?
@@ -795,18 +828,8 @@ function dummyAccounts_delfin()
             // 'recipientId' => $_SESSION['id'],   //? manual override
             'emailRecipient' => htmlspecialchars(trim($_SESSION['email']), ENT_QUOTES, 'UTF-8'),
             'emailRecipientName' => htmlspecialchars(trim($_SESSION['username']), ENT_QUOTES, 'UTF-8'),
-            // 'emailRecipientName' => "<em><u>This is YOUR account and your personal ID:</u></em> " . $_SESSION['username'] . " - " . $_SESSION['email'],     //? makes it more obvious
+            // // 'emailRecipientName' => "<em><u>This is YOUR account and your personal ID:</u></em> " . $_SESSION['username'] . " - " . $_SESSION['email'],     //? makes it more obvious
             
-            // // filling it with test data
-            // 'allocation' => htmlspecialchars(trim('!allocation!'), ENT_QUOTES, 'UTF-8'),
-            // 'nom' => htmlspecialchars(trim('!nom!'), ENT_QUOTES, 'UTF-8'),
-            // 'nom2' => htmlspecialchars(trim('!nom2!'), ENT_QUOTES, 'UTF-8'),
-            // 'fonction' => htmlspecialchars(trim('!fonction!'), ENT_QUOTES, 'UTF-8'),
-            // 'adresse1' => htmlspecialchars(trim('!adresse1!'), ENT_QUOTES, 'UTF-8'),
-            // 'adresse2' => htmlspecialchars(trim('!adresse2!'), ENT_QUOTES, 'UTF-8'),
-            // 'allocationSpeciale' => htmlspecialchars(trim('!allocationSpeciale!'), ENT_QUOTES, 'UTF-8'),
-            // 'nomCouponReponse' => htmlspecialchars(trim('!nomCouponReponse!'), ENT_QUOTES, 'UTF-8'),        //? always verify your field names
-
             // filling it with simulated real test data
             'allocation' => htmlspecialchars(trim("!Monsieur!"), ENT_QUOTES, 'UTF-8'),
             'nom' => htmlspecialchars(trim("!Ministère vun den ongeléiste Problemer!"), ENT_QUOTES, 'UTF-8'),
@@ -823,11 +846,7 @@ function dummyAccounts_delfin()
             //     'emailRecipientName' => 'LOSER Dummy Recipient',
             //     'recipientId' => 00
             // ],
-            // [
-            //     'emailRecipient' => 'holaura@protonmail.com',
-            //     'emailRecipientName' => 'LOSER Dummy Recipient',
-            //     'recipientId' => 000
-            //     ],
+
             // [
             //     'emailRecipient' => 'NO-EMAIL',
             //     'emailRecipientName' => 'i do not have an email',
@@ -973,4 +992,26 @@ function docX_find_and_replace_delfin($templateDocX, $outputDocX, array $replace
     }
 
     $zip->close();
+};
+
+
+// expansion V1.8.3
+function generateAltBody_delfin($emailBody_html) {
+
+    // Replaces <br> and <br /> with new line + carriage return
+    $emailBody_alt_text = preg_replace('/<br\s*\/?>/i', "\r\n", $emailBody_html);       // replaces <br> and <br /> with \r\n
+    // same thing for </p> but twice
+    $emailBody_alt_text = preg_replace('/<\/p\s*>/i', "\r\n\r\n", $emailBody_alt_text); // replaces </p> with \r\n\r\n
+
+    // stripping all other html tags
+    $emailBody_alt_text = strip_tags($emailBody_alt_text);      // removes every other html tag
+
+    // decoding it just the be sure
+    $emailBody_alt_text = html_entity_decode($emailBody_alt_text, ENT_QUOTES | ENT_HTML5, 'UTF-8');     // smort
+
+    // trimming unnecessary whitespace
+    $emailBody_alt_text = trim($emailBody_alt_text);    // just in case
+
+    //return
+    return ($emailBody_alt_text);
 };

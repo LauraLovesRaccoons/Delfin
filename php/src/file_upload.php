@@ -1,12 +1,15 @@
 <?php
 
-// handling the 20MB upload limit
+// // handling the 20MB upload limit
+// handling the 15MB upload limit
 if (
   $_SERVER['REQUEST_METHOD'] === 'POST' &&
   empty($_POST) &&
   empty($_FILES) &&
   isset($_SERVER['CONTENT_LENGTH']) &&
-  (int)$_SERVER['CONTENT_LENGTH'] > 20000000  // this is a bit under 20MB
+  // (int)$_SERVER['CONTENT_LENGTH'] > 20000000  // this is a bit under 20MB  //? this was really bad with the true 20MB limit set, since it would still accept files in between 20 million Bytes and 20MB and then give you a batch job finished message, despite never doing it
+  (int)$_SERVER['CONTENT_LENGTH'] > 15728640  //? (true) 15MB limit (more obvious to resize your files)
+  // common email limit is 20MB, so I'm setting this to 15MB since emails also have other stuff and the pdf can be larger than the docX file in rare cases, especially since odt is used between docX and pdf
 ) {
   header("Location: /upload_too_large.php");
   exit;
@@ -124,7 +127,8 @@ if (isset($_POST['submit_button'])) {
   <!-- <br /> -->
   <div>
     <strong>This might take a while...</strong><br />
-    <em>Keep it below 20MB (combined) or else!</em><br />
+    <!-- <em>Keep it below 20MB (combined) or else!</em><br /> -->
+    <em>Keep it below 15MB (combined) or else!</em><br />
   </div>
   <br />
   <?php
