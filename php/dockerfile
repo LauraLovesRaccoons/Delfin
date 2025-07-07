@@ -1,4 +1,4 @@
-FROM php:8.4.8-apache
+FROM php:8.4.10-apache
                             #! must match the exact version as specified in compose.yaml
 
 # # install docker's php extension : mysqli

@@ -5,6 +5,8 @@ Version 1.8.6
         -> makes it easier (for sysadmins) to check which list was used
 2) added open_issues file
 3) added just a very basic prototype documentation
+4) upgraded php apache from 8.4.8 to 8.4.10 -> critical security patches
+    -> rebuilt your container and have some patience
 
 ---
 
