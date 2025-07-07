@@ -2,7 +2,9 @@
 
 - There is no storage space limiter implemented
 
-- Signature is slightly boken in outlook web under WebKit browsers.
+- There is no memory limiter implemented
+
+- Signature is slightly broken in outlook web under WebKit browsers.
     -> Suspect: Outlook probably has a default "hidden" stylesheet
 
 - pdf combiner doesn't have a limiter
@@ -22,6 +24,9 @@
 
 - the uploads and logs folders aren't protected against CRUD
     -> tons of crashes possible
+
+- the database and the assossciated php grabbing function don't have any limiter
+    -> out of memory errors are possible, if you have a pretty large database
 
 - composer needs to be installed on the host machine
     -> should be part of the dockerfile, though I struggle with that part
