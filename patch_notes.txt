@@ -1,3 +1,13 @@
+Version 1.8.6
+
+1) send_mail.php
+    -> at the end of the batch process an empty folder named after the selected list is created
+        -> makes it easier (for sysadmins) to check which list was used
+2) added open_issues file
+3) added just a very basic prototype documentation
+
+---
+
 Version 1.8.5
 
 1) functions.php

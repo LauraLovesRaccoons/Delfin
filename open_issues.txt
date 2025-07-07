@@ -1,5 +1,9 @@
 # ah yes
 
+- HIGH PRIORITY:
+    -> create a dummy excel database to allow you to properly create the database fields inside your docx file
+!!!
+
 - There is no storage space limiter implemented
 
 - There is no memory limiter implemented
@@ -27,6 +31,12 @@
 
 - the database and the assossciated php grabbing function don't have any limiter
     -> out of memory errors are possible, if you have a pretty large database
+
+- if the selected list var is manipulated or uses path/reserved symbols
+    -> a directory named after this exact var is created; and this can be ugly
+
+- no warning message if the list you've used is empty
+    -> ...
 
 - composer needs to be installed on the host machine
     -> should be part of the dockerfile, though I struggle with that part
