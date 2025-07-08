@@ -38,6 +38,9 @@
 - no warning message if the list you've used is empty
     -> ...
 
+- the email subject and email body forms don't have a size limit and isn't santized
+    -> out of memory is possible (1MB text isn't enough) and you need specialized code to perhaps cause other damage
+
 - composer needs to be installed on the host machine
     -> should be part of the dockerfile, though I struggle with that part
 
