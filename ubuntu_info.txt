@@ -1,0 +1,49 @@
+Ubuntu 24.04 LTS
+
+you might wanna install openssh (you should know how to do that)
+
+download Docker from Canonical from the Ubuntu "App Store"
+
+install composer
+https://getcomposer.org/download/
+there are some terminal commands on that page that you need to install it properly
+...
+and after that you need to run this (allows you to run composer from anywhere)
+    sudo mv composer.phar /usr/local/bin/composer
+
+
+set up your .env file correctly
+change ports if necessary
+
+as the docker commands don't have sudo rights by default you might wanna use sudo for now
+
+(you have to be in the root of the project folder)
+- sudo composer install
+- sudo docker compose --profile pma up -d --build
+    (phpmyadmin is enabled to allow you to manage the database)
+-- restart your machine to ensure it auto starts
+-- phpmyadmin stuff
+- sudo docker compose --profile pma up -d
+- sudo docker compose stop phpmyadmin
+
+    (to stop the entire container)
+- sudo docker compose --profile pma stop
+
+    (to refresh the .env file)
+- sudo docker compose --profile pma down
+- docker compose up -d
+
+…
+
+Important:
+AFTER building the project for the first time
+You need to terminal move into the root directory of the project (usually /Delfin/) {case sensitive!}
+in that folder run
+- sudo chmod 777 logs
+- sudo chmod 777 uploads
+if you don't, after uploading a file, you will be send straight back to the landing page with no error message
+
+and of course set up the database tables in phpmyadmin!!!
+    /batch_files/setup_db_query/
+
+    -> also README.md might contain additional information

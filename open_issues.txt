@@ -28,6 +28,7 @@
 
 - the uploads and logs folders aren't protected against CRUD
     -> tons of crashes possible
+-> also as it isn't a docker volume, you have to grant these 2 folders in the root of the project directory CRUD permissions on an actual Linux machine (case sensitive)
 
 - the database and the assossciated php grabbing function don't have any limiter
     -> out of memory errors are possible, if you have a pretty large database
@@ -40,6 +41,9 @@
 
 - the email subject and email body forms don't have a size limit and isn't santized
     -> out of memory is possible (1MB text isn't enough) and you need specialized code to perhaps cause other damage
+
+- the database tables have to be set up manually
+    -> no proper error message when trying to log in
 
 - composer needs to be installed on the host machine
     -> should be part of the dockerfile, though I struggle with that part
