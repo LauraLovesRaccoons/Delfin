@@ -15,7 +15,7 @@ if (!isset($_SESSION['signatureName'], $_SESSION['signaturePhone'], $_SESSION['s
 $signatureName = $_SESSION['signatureName'];
 $signaturePhone = $_SESSION['signaturePhone'];
 $signatureService = $_SESSION['signatureService'];
-$signatureEmail = $_SESSION['email'];   // the email is universal
+$signatureEmail = strtolower($_SESSION['email']);   // the email is universal, but for readability reasons, I force it to be in lowercase
 $signatureTitle = $_SESSION['signatureTitle'];
 $signatureOffice = $_SESSION['signatureOffice'];
 $signatureGSM = $_SESSION['signatureGSM'];
