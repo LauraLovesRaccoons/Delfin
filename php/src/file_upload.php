@@ -63,9 +63,9 @@ email_or_letter_mode_delfin();  // this shows the current mode
 
 if (isset($_POST['submit_button'])) {
   // store entered text or set default one from the env file  // overkill since the default env message is also set on the next page
-  $emailSubject = isset($_POST['email_subject']) && $_POST['email_subject'] !== '' ? $_POST['email_subject'] : getenv('DEFAULT_EMAIL_SUBJECT');
+  $emailSubject = isset($_POST['email_subject']) && $_POST['email_subject'] !== '' ? $_POST['email_subject'] : (getenv('DEFAULT_EMAIL_SUBJECT') ?: 'Subject');
   $_SESSION['emailSubject'] = $emailSubject;
-  $emailBody = isset($_POST['email_body']) && $_POST['email_body'] !== '' ? $_POST['email_body'] : getenv('DEFAULT_EMAIL_BODY');
+  $emailBody = isset($_POST['email_body']) && $_POST['email_body'] !== '' ? $_POST['email_body'] : (getenv('DEFAULT_EMAIL_BODY') ?: 'Body');
   $_SESSION['emailBody'] = $emailBody;
   upload_docX_delfin();
   // the animation is handled much letter   // much letter ftw 
@@ -94,10 +94,10 @@ if (isset($_POST['submit_button'])) {
       <!-- maxlength="" removed -->
 
       <label for="email_subject"></label>
-      <strong>Email Subject: </strong><input type="text" name="email_subject" id="email_subject" class="email_subject" placeholder=" Default: <?= getenv('DEFAULT_EMAIL_SUBJECT') ?> " value="<?= $_POST['email_subject'] ?? getenv('DEFAULT_EMAIL_SUBJECT') ?>"> <!-- . -->
+      <strong>Email Subject: </strong><input type="text" name="email_subject" id="email_subject" class="email_subject" placeholder=" Default: <?= (getenv('DEFAULT_EMAIL_SUBJECT') ?: 'Subject') ?> " value="<?= $_POST['email_subject'] ?? (getenv('DEFAULT_EMAIL_SUBJECT') ?: 'Subject') ?>"> <!-- . -->
       <br />
       <strong>Email Message: </strong><label for="email_body"></label>
-      <input type="text" name="email_body" id="email_body" class="email_body" placeholder=" Default: <?= getenv('DEFAULT_EMAIL_BODY') ?> " value="<?= $_POST['email_body'] ?? getenv('DEFAULT_EMAIL_BODY') ?>">
+      <input type="text" name="email_body" id="email_body" class="email_body" placeholder=" Default: <?= (getenv('DEFAULT_EMAIL_BODY') ?: 'Body') ?> " value="<?= $_POST['email_body'] ?? (getenv('DEFAULT_EMAIL_BODY') ?: 'Body') ?>">
       <br /><br />
     <?php endif; ?>
     <em>Select Invitation (.docx):</em><br />

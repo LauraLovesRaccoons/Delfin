@@ -72,14 +72,14 @@ if (isset($_SESSION['emailSubject'])) {
     $emailSubject = $_SESSION['emailSubject'];
     unset($_SESSION['emailSubject']);   // wipe it ditto
 } else {
-    $emailSubject = getenv('DEFAULT_EMAIL_SUBJECT');
+    $emailSubject = (getenv('DEFAULT_EMAIL_SUBJECT') ?: 'Subject');
 };
 
 if (isset($_SESSION['emailBody'])) {
     $emailBody = $_SESSION['emailBody'];
     unset($_SESSION['emailBody']);  // wipe it ditto
 } else {
-    $emailBody = getenv('DEFAULT_EMAIL_BODY');
+    $emailBody = (getenv('DEFAULT_EMAIL_BODY') ?: 'Body');
 };
 
 // append signature to the email body
@@ -195,6 +195,7 @@ include 'header.php';  //? this code should never cancel if there is an issue lo
                 $directoryNamedAfterSelectedList = $templateDir . $stringSelectedList . "/";
                 if (!is_dir($directoryNamedAfterSelectedList)) {
                     mkdir($directoryNamedAfterSelectedList, 0777, true);
+                    // FYI: if you named your list attachement, a number, _timestamp_ , well !is_dir prevents overwritting it, also this directory is created at the trail end
                 };
                 // happy
                 unset($_SESSION['selectedList']);

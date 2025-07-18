@@ -51,7 +51,7 @@ function approved_lists_delfin()
 function debug_test_env_delfin()
 {
     echo "<br /><br />";
-    var_dump(getenv());     // shows all environment variables
+    var_dump(getenv() ?: '.ENV ERROR');     // shows all environment variables
     echo "<br /><br />";
 };
 
@@ -71,10 +71,10 @@ function logout_delfin($session_name)
 
 function db_connect_delfin()
 {
-    $serviceMysql = getenv('MYSQL_SERVICE_NAME');   // (from compose.yaml) -> .env
-    $username = getenv('MYSQL_USER');
-    $password = getenv('MYSQL_PASSWORD');
-    $dbname = getenv('MYSQL_DATABASE');
+    $serviceMysql = (getenv('MYSQL_SERVICE_NAME') ?: '.ENV ERROR');     // (from compose.yaml) -> .env
+    $username = (getenv('MYSQL_USER') ?: '.ENV ERROR');
+    $password = (getenv('MYSQL_PASSWORD') ?: '.ENV ERROR');
+    $dbname = (getenv('MYSQL_DATABASE') ?: '.ENV ERROR');
 
     // Create connection to DB
     mysqli_report(MYSQLI_REPORT_OFF);           // this allows the upcoming @ to supress warnings from the user
@@ -162,7 +162,7 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             //? this requires enabling: use PHPMailer\PHPMailer\SMTP;
             // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                  //Enable verbose debug output
             $mail->isSMTP();                                        //Send using SMTP
-            $encryptionType = strtolower(getenv('SMTP_SECURE'));    // forces lowercase
+            $encryptionType = strtolower(getenv('SMTP_SECURE') ?: '.ENV ERROR');    // forces lowercase
             // echo "<script>console.log('.env encryption type in lower case: [ $encryptionType ]');</script>";
             if ($encryptionType == 'tls') {
                 $mail->SMTPAuth = true;
@@ -189,10 +189,10 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             $mail->Encoding = 'base64';     // not exactly sure but it might help with the character set
             $mail->CharSet = "UTF-8";       // this makes symbols commonly used in Luxembourg work
 
-            $mail->Host = getenv('SMTP_SERVER');        // Internal Company Mail Server might need ip address instead of domain name
-            $mail->Username = getenv('SMTP_USERNAME');  // this doesn't do anything if SMTPAuth is false
-            $mail->Password = getenv('SMTP_PASSWORD');  // ditto
-            $mail->Port = intval(getenv('SMTP_PORT'));  // needs to be an integer
+            $mail->Host = (getenv('SMTP_SERVER') ?: '.ENV ERROR');          // Internal Company Mail Server might need ip address instead of domain name
+            $mail->Username = (getenv('SMTP_USERNAME') ?: '.ENV ERROR');    // this doesn't do anything if SMTPAuth is false
+            $mail->Password = (getenv('SMTP_PASSWORD') ?: '.ENV ERROR');    // ditto
+            $mail->Port = intval(getenv('SMTP_PORT') ?: '.ENV ERROR');      // needs to be an integer
             // echo "<script>console.log('Debug: [ $mail->Host ]');</script>";
             // // var_dump($mail);
 
