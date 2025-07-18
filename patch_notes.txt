@@ -1,3 +1,13 @@
+Version 1.8.6.3
+
+1) the email in the signature will be forced to be lowercase
+2) every getenv() now has an error handler
+    -> if the variable doesn't exist
+        -> though you will have other issues then
+3) the directory that is created at the end of a batch job should be sanatised now
+
+---
+
 Version 1.8.6.2
 
 1) added more to open issues

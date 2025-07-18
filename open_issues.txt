@@ -33,11 +33,12 @@
 - the database and the assossciated php grabbing function don't have any limiter
     -> out of memory errors are possible, if you have a pretty large database
 
-- if the selected list var is manipulated or uses path/reserved symbols
-    -> a directory named after this exact var is created; and this can be ugly
-
 - no warning message if the list you've used is empty
     -> ...
+
+- the db table header might be able to receive a really really long name
+    -> out of memory errors ; file paths too long
+        -> though you need db and code access to even change those values
 
 - the email subject and email body forms don't have a size limit and isn't santized
     -> out of memory is possible (1MB text isn't enough) and you need specialized code to perhaps cause other damage
@@ -50,3 +51,18 @@
 
 
 -
+
+
+
+
+
+
+###
+
+Patched Isses:
+
+- if the selected list var is manipulated or uses path/reserved symbols
+    -> a directory named after this exact var is created; and this can be ugly
+
+-
+

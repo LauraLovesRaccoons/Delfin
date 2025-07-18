@@ -192,10 +192,11 @@ include 'header.php';  //? this code should never cancel if there is an issue lo
                 //? creates an empty directory named after the selected list
                 // just to be able to easily check which list was selected
                 $stringSelectedList = (string)$_SESSION['selectedList'];
-                $directoryNamedAfterSelectedList = $templateDir . $stringSelectedList . "/";
+                $stringSelectedList = (preg_replace("/[^a-zA-Z0-9_-]/", "", $stringSelectedList));
+                $directoryNamedAfterSelectedList = $templateDir . "_selected_list_" . $stringSelectedList . "/";
                 if (!is_dir($directoryNamedAfterSelectedList)) {
                     mkdir($directoryNamedAfterSelectedList, 0777, true);
-                    // FYI: if you named your list attachement, a number, _timestamp_ , well !is_dir prevents overwritting it, also this directory is created at the trail end
+                    // if you happen to somehow have this exact directroy name, well !is_dir will prevent trying to create it
                 };
                 // happy
                 unset($_SESSION['selectedList']);
