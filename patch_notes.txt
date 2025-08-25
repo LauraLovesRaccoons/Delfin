@@ -1,3 +1,9 @@
+Version 1.8.6.3.1
+
+1) added an additional issues (technically 2) to open_issues.txt
+
+---
+
 Version 1.8.6.3
 
 1) the email in the signature will be forced to be lowercase
