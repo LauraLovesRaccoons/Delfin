@@ -1,5 +1,7 @@
 Version 1.8.7
 
+0) wait for V1.8.7.1
+    -> php will be upgraded to 8.4.12 ; which means you can save yourself a rebuilt
 1) upgraded php to 8.4.11
     -> needs a rebuilt
 2) upgrade mysql to 9.4.0
