@@ -3,7 +3,7 @@ name: "${APP_NAME}"
 services:
 # mysql
   mysql:
-    image: "mysql:9.3.0"
+    image: "mysql:9.4.0"
     container_name: "${COMPOSE_PROJECT_NAME}_MYSQL"
     restart: "always"
     environment:
