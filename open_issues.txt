@@ -52,6 +52,9 @@
 - the logs & uploads directory can be viewed by anyone (even non logged in strangers)
     -> someone who has the direct link (by sheer determination) can spy on the logs and even the personalized pdf documents
 
+- the uploads and logs directory in functions.php may not run from root if functions.php is called with an include in a sub-directory
+    -> yes you! that wants to add stuff! read this!
+
 -
 
 

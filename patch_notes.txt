@@ -8,6 +8,7 @@ Version 1.8.7
     -> makes it harder to bruteforce a valid filepath (to spy on files) since 403 doesn't show an error anymore
         -> FYI: this will require a rebuilt as well and that's why it's bundled with a php upgrade, so you only have to do it once
 4) Updated README.md for some specifics about the logs and uploads folders
+5) Updated open issues
 
 ---
 
