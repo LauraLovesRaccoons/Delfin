@@ -4,6 +4,10 @@
     -> create a dummy excel database to allow you to properly create the database fields inside your docx file
 !!!
 
+- docx files with (ex. text boxes) with behind text floating anchors might format weirdly if the document spreads across multiple pages
+    -> tricky to fix
+    -> just because it converted properly once, doesn't mean it will always work
+
 - There is no storage space limiter implemented
 
 - There is no memory limiter implemented

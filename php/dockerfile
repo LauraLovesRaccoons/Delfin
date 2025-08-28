@@ -1,4 +1,4 @@
-FROM php:8.4.12RC1-apache-trixie
+FROM php:8.4.12-apache-trixie
                                     #! must match the exact version as specified in compose.yaml
 
 # # install docker's php extension : mysqli
