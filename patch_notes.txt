@@ -1,8 +1,10 @@
 Version 1.8.8
 
 1) everything from 1.8.7 and 1.8.7.1 but stable build
-    php 8.4.12 apache trixe (Debian 13)
+    -> php 8.4.12 apache trixe (Debian 13)
+    -> be sure to also run composer install
 2) updated open issues
+3) updated README.MD
 
 ---
 
