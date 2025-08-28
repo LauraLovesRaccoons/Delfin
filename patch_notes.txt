@@ -4,6 +4,7 @@ Version 1.8.7.1
     -> composer install to deploy the package(s)
 2) upgraded php to 8.4.12
     -> rebuilt image
+3) apache is now based on debian 13 (trixie)
 
 ---
 

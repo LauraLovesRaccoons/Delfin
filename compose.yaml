@@ -39,7 +39,7 @@ services:
       - internal_network
 # php-apache
   php-apache:
-    image: "php:8.4.12-apache"    #! also change this in the dockerfile
+    image: "php:8.4.12RC1-apache-trixie"    #! also change this in the dockerfile
     container_name: "${COMPOSE_PROJECT_NAME}_PHP-APACHE"
     restart: "always"
     environment:
