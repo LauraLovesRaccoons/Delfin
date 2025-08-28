@@ -1,6 +1,6 @@
 Version 1.8.7.1
 
-0) I still recommend for the next version since this uses a release candidate image
+0) I still recommend waiting for the next version since this uses a release candidate image
     -> saves you a pretty pointless rebuilt
 1) upgraded the minimum composer package version of setasign/fpdi to 2.6.4 (also any composer dependencies have been updated) | composer update 
     -> composer install to deploy the package(s)
