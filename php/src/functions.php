@@ -8,7 +8,7 @@ $logBasePath = "./logs/";       // global makes sense for this specific use case
 $logFile = "log.txt";           // ditto
 $uploadBasePath = "./uploads/"; // global makes sense for this specific use case
 
-$disableDotODTstep = true;      //? true or false; true skips the docX to odt to pdf conversion and instead uses docX to pdf directly ; false or invalid does the longer version
+$bypassDotODTstep = true;       //? true or false; true skips the docX to odt to pdf conversion and instead uses docX to pdf directly ; false or invalid does the longer version
 
 //! these must be the exact same as in the db and in the data-cell table (hardcoded)
 $allowedColumnsText = ['allocation', 'nom', 'nom2', 'fonction', 'adresse1', 'adresse2', 'allocationSpeciale', 'nomCouponReponse', 'email',];
