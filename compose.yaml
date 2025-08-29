@@ -87,19 +87,6 @@ services:
     networks:
       - internal_network
 
-# wordpress
-  #wordpress:
-    #image: wordpress:latest
-    #restart: always
-    #ports:
-      #- 80:80
-    #environment:
-      #WORDPRESS_DB_HOST: db
-      #WORDPRESS_DB_USER: root
-      #WORDPRESS_DB_PASSWORD: root
-      #WORDPRESS_DB_NAME: wordpress
-    #volumes:
-      #- wordpress:/var/www/html
 
 volumes:
   mysql_data:
@@ -109,7 +96,6 @@ volumes:
   # logs:
   # mysql-cron-backup
   db_backup:
-  #wordpress:
 
 networks:
   internal_network:
