@@ -4,6 +4,17 @@
     -> create a dummy excel database to allow you to properly create the database fields inside your docx file
 !!!
 
+- multi-page docX documents might text shift onto a different page if $bypassDotODTstep uses its default true state
+    -> the .docX file should use proper page breaks
+        -> just use "clean and properly formatted" documents and common fonts
+            -> also you should always test the document on yourself first  you dummy
+- docx files with (ex. text boxes) with behind text floating anchors might format weirdly if the document spreads across multiple pages
+    -> only happens if you disable the $bypassDotODTstep in functions.php
+        -> just because it converted properly once, doesn't mean it will always work
+- "big" images might break in the .pdf file
+    -> use the attachement upload instead
+        -> won't fix
+
 - There is no storage space limiter implemented
 
 - There is no memory limiter implemented
@@ -51,6 +62,9 @@
 
 - the logs & uploads directory can be viewed by anyone (even non logged in strangers)
     -> someone who has the direct link (by sheer determination) can spy on the logs and even the personalized pdf documents
+
+- the uploads and logs directory in functions.php may not run from root if functions.php is called with an include in a sub-directory
+    -> yes you! that wants to add stuff! read this!
 
 -
 
