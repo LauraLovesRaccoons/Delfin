@@ -8,7 +8,7 @@ $logBasePath = "./logs/";       // global makes sense for this specific use case
 $logFile = "log.txt";           // ditto
 $uploadBasePath = "./uploads/"; // global makes sense for this specific use case
 
-$bypassDotODTstep = true;       //? true or false; true skips the docX to odt to pdf conversion and instead uses docX to pdf directly ; false or invalid does the longer version
+$bypassDotODTstep = true;       //? true or false; true skips the docX to odt to pdf conversion and instead uses docX to pdf directly ; false does the longer version ; invalid equals default [true]
 if ((!isset($bypassDotODTstep)) || (!is_bool($bypassDotODTstep))) {
     $bypassDotODTstep = true;   // default value
 };

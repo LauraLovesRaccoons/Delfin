@@ -1,3 +1,10 @@
+Version 1.8.8.1.1
+
+1) cleaned up a comment in functions.php
+2) removed comments not related to this project in compose.yml
+
+---
+
 Version 1.8.8.1
 
 1) the error handler now redirects to error.php
