@@ -9,6 +9,9 @@ $logFile = "log.txt";           // ditto
 $uploadBasePath = "./uploads/"; // global makes sense for this specific use case
 
 $bypassDotODTstep = true;       //? true or false; true skips the docX to odt to pdf conversion and instead uses docX to pdf directly ; false or invalid does the longer version
+if ((!isset($bypassDotODTstep)) || (!is_bool($bypassDotODTstep))) {
+    $bypassDotODTstep = true;   // default value
+};
 
 //! these must be the exact same as in the db and in the data-cell table (hardcoded)
 $allowedColumnsText = ['allocation', 'nom', 'nom2', 'fonction', 'adresse1', 'adresse2', 'allocationSpeciale', 'nomCouponReponse', 'email',];
