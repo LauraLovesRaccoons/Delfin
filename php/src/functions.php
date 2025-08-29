@@ -584,6 +584,9 @@ function modify_docX_delfin($templateDocX, $outputDocX, $recipientUser)
 // convert docX to pdf (libre office plugin)
 function convertDocXToPdf_delfin($inputDocX, $outputPdf, $inputDocXDir)
 {
+    // var imports
+    global $bypassDotODTstep;
+
     // $inputDocXDir;   // 
     // $recipientId = $recipientUser['recipientId'];
     $inputDocX = escapeshellarg($inputDocX);    // requires real path
@@ -595,22 +598,30 @@ function convertDocXToPdf_delfin($inputDocX, $outputPdf, $inputDocXDir)
     // $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir /var/www/html/uploads $inputDocX 2>&1";  // this one works
     // $outDir = "/var/www/html/" . $GLOBALS['uploadBasePath'];
     $outDir = "/var/www/html/" . $inputDocXDir;
-    //? basic one
-    // $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir $outDir $inputDocX 2>&1";     // basic one ; no additional pdf settings
-    // $output = shell_exec($command);     //? the $output variable can be used for logging purposes
-    //? fine tuned docX to odt conversion
-    $command = "HOME=/tmp libreoffice --headless --infilter='Microsoft Word 2007/2010/2013 XML' --convert-to 'odt:writer8' --outdir $outDir $inputDocX 2>&1";
-    $outputShellCommand = shell_exec($command);
-    // // echo "<pre>$outputShellCommand</pre>";  // visible on the webpage
-    //? enable the following line to see the reply of the shell command
-    // echo "<script>console.log(" . json_encode($outputShellCommand) . ");</script>";
-    // 
-    $odtFile = str_ireplace(".docx", ".odt", $inputDocX);   //? .docx is case insensitive
-    $command = "HOME=/tmp libreoffice --headless --convert-to 'pdf:writer_pdf_Export' --outdir $outDir $odtFile 2>&1";
-    $outputShellCommand = shell_exec($command);
-    // // echo "<pre>$outputShellCommand</pre>";  // visible on the webpage
-    //? enable the following line to see the reply of the shell command
-    // echo "<script>console.log(" . json_encode($outputShellCommand) . ");</script>";
+
+    if ($bypassDotODTstep) {
+        //? basic one
+        $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir $outDir $inputDocX 2>&1";     // basic one ; no additional pdf settings
+        $outputShellCommand = shell_exec($command);     //? the $output variable can be used for logging purposes
+        //? enable the following line to see the reply of the shell command
+        // echo "<script>console.log(" . json_encode($outputShellCommand) . ");</script>";
+    }
+    
+    else {
+        //? fine tuned docX to odt conversion
+        $command = "HOME=/tmp libreoffice --headless --infilter='Microsoft Word 2007/2010/2013 XML' --convert-to 'odt:writer8' --outdir $outDir $inputDocX 2>&1";
+        $outputShellCommand = shell_exec($command);
+        // // echo "<pre>$outputShellCommand</pre>";  // visible on the webpage
+        //? enable the following line to see the reply of the shell command
+        // echo "<script>console.log(" . json_encode($outputShellCommand) . ");</script>";
+        // 
+        $odtFile = str_ireplace(".docx", ".odt", $inputDocX);   //? .docx is case insensitive
+        $command = "HOME=/tmp libreoffice --headless --convert-to 'pdf:writer_pdf_Export' --outdir $outDir $odtFile 2>&1";
+        $outputShellCommand = shell_exec($command);
+        // // echo "<pre>$outputShellCommand</pre>";  // visible on the webpage
+        //? enable the following line to see the reply of the shell command
+        // echo "<script>console.log(" . json_encode($outputShellCommand) . ");</script>";
+    }
 
     return file_exists($outputPdf) ? $outputPdf : false;    // black magic / witchcraft prevention
 };
