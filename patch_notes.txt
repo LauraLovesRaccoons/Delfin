@@ -1,6 +1,6 @@
 Version 1.8.8.1
 
-1) the error handler now redirect to error.php
+1) the error handler now redirects to error.php
 2) created error.php
 
 ---
