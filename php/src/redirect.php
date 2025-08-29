@@ -1,4 +1,4 @@
 <?php
-header("Location: /delfin.php");    // slash always redirects to the root of the server
+header("Location: /error.php");    // slash always redirects to the root of the server
 exit();
 ?>
