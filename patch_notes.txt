@@ -3,6 +3,7 @@ Version 1.8.9
 1) composer.json upgraded setasign fpdf
 2) composer.json locked specific version numbers
 3) composer.json added 3 depency packages to it (for version locking purposes)
+4) file_upload.php translated a commented out luxembourgish line into english
 
 
 ---

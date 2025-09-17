@@ -90,7 +90,7 @@ if (isset($_POST['submit_button'])) {
   <form id="heavyFormSubmission" action="" method="POST" enctype="multipart/form-data"> <!-- id is needed for the animation part -->
     <?php if (!isset($_SESSION['letter_required'])): ?>
       <em>Personalize Email?</em><br />
-      <!-- <em>Limitt: 500 & 2000 Zeechen</em><br /> -->
+      <!-- <em>Limit: 500 & 2000 Symbols</em><br /> -->
       <!-- maxlength="" removed -->
 
       <label for="email_subject"></label>
