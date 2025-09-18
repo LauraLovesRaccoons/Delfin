@@ -60,6 +60,12 @@
 - composer needs to be installed on the host machine
     -> should be part of the dockerfile, though I struggle with that part
 
+- "setasign/fpdf" is stuck on 1.8.2 in composer.json
+    (1.8.3 1.8.4 1.8.5 1.8.6 at the time of writing are incompatible)
+    -> those versions require a php extension to run and as composer is installed on the host machine...
+        (-> a mess)
+    (setasign fpdi requires setasign/fpdf and not fpdf/fpdf)
+
 - the logs & uploads directory can be viewed by anyone (even non logged in strangers)
     -> someone who has the direct link (by sheer determination) can spy on the logs and even the personalized pdf documents
 
