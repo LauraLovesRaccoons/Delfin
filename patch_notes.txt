@@ -4,7 +4,7 @@ Version 1.8.9
 2) composer.json: added 3 depency packages to it (for version locking purposes)
 3) file_upload.php: translated a commented out luxembourgish line into english
 4) open issues: added a note why "setasign/fpdf" is locked to 1.8.2 and not on 1.8.6
-
+5) dropped fpdf/fpdf from composer.json as it's not used anywhere
 
 ---
 
