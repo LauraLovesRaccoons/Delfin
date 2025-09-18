@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "19f4edc382530256df0b0f0bcb5f5556",
+    "content-hash": "1c0946aa5b2a222052f9cd12cd1fcbe8",
     "packages": [
         {
             "name": "doctrine/lexer",
@@ -286,21 +286,17 @@
         },
         {
             "name": "setasign/fpdf",
-            "version": "1.8.6",
+            "version": "1.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Setasign/FPDF.git",
-                "reference": "0838e0ee4925716fcbbc50ad9e1799b5edfae0a0"
+                "reference": "d77904018090c17dc9f3ab6e944679a7a47e710a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Setasign/FPDF/zipball/0838e0ee4925716fcbbc50ad9e1799b5edfae0a0",
-                "reference": "0838e0ee4925716fcbbc50ad9e1799b5edfae0a0",
+                "url": "https://api.github.com/repos/Setasign/FPDF/zipball/d77904018090c17dc9f3ab6e944679a7a47e710a",
+                "reference": "d77904018090c17dc9f3ab6e944679a7a47e710a",
                 "shasum": ""
-            },
-            "require": {
-                "ext-gd": "*",
-                "ext-zlib": "*"
             },
             "type": "library",
             "autoload": {
@@ -326,9 +322,9 @@
                 "pdf"
             ],
             "support": {
-                "source": "https://github.com/Setasign/FPDF/tree/1.8.6"
+                "source": "https://github.com/Setasign/FPDF/tree/1.8.2"
             },
-            "time": "2023-06-26T14:44:25+00:00"
+            "time": "2019-12-08T10:32:10+00:00"
         },
         {
             "name": "setasign/fpdi",
@@ -578,10 +574,10 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": [],
+    "platform": {},
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }
