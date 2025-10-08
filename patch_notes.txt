@@ -1,3 +1,15 @@
+Version 1.8.10
+
+1) upgraded php-apache from 8.4.12 to 8.4.13
+    -> requires a rebuilt
+2) upgraded php mailer from 6.10.1 to 6.11.1
+    -> be sure you update composer (and backup the new vendor folder for tough times)
+3) logs/debug_email.eml is now a toggable function with a global variable
+4) httpd.conf refuses access to that file, even if it doesn't exist
+    -> redirects to smth :evil:
+
+---
+
 Version 1.8.9
 
 1) composer.json: locked specific version numbers
