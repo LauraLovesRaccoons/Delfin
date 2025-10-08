@@ -13,6 +13,13 @@ if ((!isset($bypassDotODTstep)) || (!is_bool($bypassDotODTstep))) {
     $bypassDotODTstep = true;   // default value
 };
 
+$emlFileDebug = false;          //? true or false; true always generates an eml file called debug_email.eml in the root of the logs folder ; this is blocked from access through the web browser    // and is overwritten with each new email FYI
+if ((!isset($emlFileDebug)) || (!is_bool($emlFileDebug))) {
+    $emlFileDebug = false;      // default value
+};
+// also if you change $logBasePath be sure to update it in httpd.conf
+
+
 //! these must be the exact same as in the db and in the data-cell table (hardcoded)
 $allowedColumnsText = ['allocation', 'nom', 'nom2', 'fonction', 'adresse1', 'adresse2', 'allocationSpeciale', 'nomCouponReponse', 'email',];
 $allowedColumnsTinyint = ['letter_required', 'duplicate',];
@@ -262,14 +269,8 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             //! FUTURE: If we have a certificate, this would be handled here ; $mail->sign()
             //? I let my MS Exchange Server handle that
 
-            //! you might need this to correctly set up your mail server
-            //? debugging       // gives you the eml file before it's being sent (MS Exchange Server might need adjustements to allow Content-Type: multipart/mixed;)
-            // $debugEmailFile = $GLOBALS['logBasePath'] . "debug_email.eml";
-            // $mail->preSend();
-            // if (file_exists($debugEmailFile)) {
-            //     unlink($debugEmailFile);
-            // };
-            // file_put_contents($debugEmailFile, $mail->getSentMIMEMessage());
+
+            debug_eml_file($mail);  // this is now a function and handled enabled over a global var
 
             $mail->send();
             // echo 'Message has been sent<br />';
@@ -1031,3 +1032,23 @@ function generateAltBody_delfin($emailBody_html) {
     //return
     return ($emailBody_alt_text);
 };
+
+
+function debug_eml_file($mail) {
+    //! you might need this to correctly set up your mail server
+    //? debugging       // gives you the eml file before it's being sent (MS Exchange Server might need adjustements to allow Content-Type: multipart/mixed;)
+
+    global $emlFileDebug;
+
+    if ($emlFileDebug) {
+        $debugEmailFile = $GLOBALS['logBasePath'] . "debug_email.eml";
+        $mail->preSend();
+        if (file_exists($debugEmailFile)) {
+            unlink($debugEmailFile);
+        };
+        file_put_contents($debugEmailFile, $mail->getSentMIMEMessage());
+}
+// 
+};
+
+
