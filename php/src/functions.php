@@ -967,17 +967,19 @@ function docX_find_and_replace_delfin($templateDocX, $outputDocX, array $replace
     // "inspired" heavily by https://github.com/mail2nisam/doc-parser
     // https://packagist.org/packages/nisam/doc-parser
 
+    //! this code is obviously not tested with "complex" formated docX files (and it also has security issues)
 
     $zip = new ZipArchive();
 
     // Creating an output file by copying the template file
     if (!copy($templateDocX, $outputDocX)) {
-        die("Copy failed from '$templateDocX' to '$outputDocX'");
+        echo "<span>Copy failed from '$templateDocX' to '$outputDocX'.</span>";
+        die;
     }
 
     // Opening the (new) docx file
     if ($zip->open($outputDocX, ZipArchive::CREATE) !== true) {
-        echo "Could not open $outputDocX ";
+        echo "<span>Could not open '$outputDocX'.</span>";
         die;
     }
 
@@ -985,10 +987,14 @@ function docX_find_and_replace_delfin($templateDocX, $outputDocX, array $replace
     $documentXML = $zip->getFromName("word/document.xml");
     if ($documentXML === false) {
         $zip->close();
-        die("Could not find 'word/document.xml' in the archive.");
+        echo "<span>Could not find 'word/document.xml' in the archive.</span>";
+        die;
     }
 
     // Replacing placeholder text with the replacement text (all defined inside the array)
+        //? the data in the array was previously html specialchar encoded, which is very important, yes you! you blind copypasta h4ckerzzz
+        //? also use this symbol '​' (the one between the quotes; U+200B) as this will prevent text shifting if some replacement data is empty or if it is an empty string
+        //? I'm gonna give you a hint  ?: '​',
     try {
         foreach ($replacementsArray as $placeHolder => $actualText) {
             $documentXML = str_replace($placeHolder, $actualText, $documentXML);
@@ -1004,8 +1010,9 @@ function docX_find_and_replace_delfin($templateDocX, $outputDocX, array $replace
         // echo "<span>File successfully written!</span>";
         // echo "<script>console.log('File successfully written!')</script>";
     } else {
-        // echo "<span>File could not be written! Folder requires write permissions!</span>";
-        // echo "<script>console.log('File could not be written! Folder requires write permissions!')</script>";
+        echo "<span>File could not be written! Directory (Folder) requires proper write permissions!</span>";
+        echo "<script>console.log('File could not be written! Directory (Folder) requires proper write permissions!')</script>";
+        die;
     }
 
     $zip->close();

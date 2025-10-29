@@ -1,3 +1,15 @@
+Version 1.8.10.1
+
+1) made the docX function a bit cleaner
+    -> also added a couple of comments
+2) upgraded php-apache from 8.4.13 to 8.4.14
+3) upgraded mysql from 9.4.0 to 9.5.0
+4) upgraded phpmailer (composer) from 6.11.1 to 7.0.0
+    -> it's exactly the same thing, just a different version number
+        -> composer install
+
+---
+
 Version 1.8.10
 
 1) upgraded php-apache from 8.4.12 to 8.4.13
