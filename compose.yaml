@@ -21,7 +21,7 @@ services:
       - internal_network
 # phpmyadmin
   phpmyadmin:
-    image: "phpmyadmin:5.2.2"
+    image: "phpmyadmin:5.2.3"
     # image: "arm64v8/phpmyadmin:latest"  #! ARM 64
     container_name: "${COMPOSE_PROJECT_NAME}_PMA"
     restart: "no"   # more infos at profile
