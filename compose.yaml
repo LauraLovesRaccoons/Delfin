@@ -60,7 +60,7 @@ services:
       dockerfile: "dockerfile"  # extensions install
 # mysql-cron-backup
   mysql-cron-backup:
-    image: fradelg/mysql-cron-backup  # https://github.com/fradelg/docker-mysql-cron-backup
+    image: fradelg/mysql-cron-backup:1.14.1     # https://github.com/fradelg/docker-mysql-cron-backup
     container_name: "${COMPOSE_PROJECT_NAME}_MYSQL-CRON-BACKUP"
     restart: "always"
     depends_on:
