@@ -764,8 +764,10 @@ function cleanup_session_vars_delfin()
 
 function query_grab_user_list_delfin($selectedList, $db)
 {
+    global $sortingQueryPart;
+
     if ($selectedList === "ENTIRE DATABASE") {
-        $query = "SELECT * FROM Users";
+        $query = "SELECT * FROM Users $sortingQueryPart";
         $stmt = $db->prepare($query);
     } else {
         $query = "SELECT * FROM Users WHERE $selectedList = ?";     //? I just grab everything for possible future expansions
