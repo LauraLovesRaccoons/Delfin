@@ -770,7 +770,7 @@ function query_grab_user_list_delfin($selectedList, $db)
         $query = "SELECT * FROM Users $sortingQueryPart";
         $stmt = $db->prepare($query);
     } else {
-        $query = "SELECT * FROM Users WHERE $selectedList = ?";     //? I just grab everything for possible future expansions
+        $query = "SELECT * FROM Users WHERE $selectedList = ? $sortingQueryPart";   //? I just grab everything for possible future expansions
         $stmt = $db->prepare($query);
         $listTrue = 1;
         $stmt->bind_param("i", $listTrue);
