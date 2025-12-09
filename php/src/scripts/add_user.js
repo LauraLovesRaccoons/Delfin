@@ -26,8 +26,8 @@
           if (data.success) {
             // alert("User successfully added to the bottom");
             // console.log("User successfully added to the bottom");
-            alert("User successfully and sorted");
-            console.log("User successfully and sorted");
+            alert("User successfully added and sorted");
+            console.log("User successfully added and sorted");
             location.reload(); // Reload the page to show the new user
           } else {
             // not very likely to show up
