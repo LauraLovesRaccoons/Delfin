@@ -24,11 +24,13 @@
         })
         .then((data) => {
           if (data.success) {
-            alert("User successfully added to the bottom");
-            console.log("User successfully added to the bottom");
+            // alert("User successfully added to the bottom");
+            // console.log("User successfully added to the bottom");
+            alert("User successfully and sorted");
+            console.log("User successfully and sorted");
             location.reload(); // Reload the page to show the new user
           } else {
-            // not sure when this is shows
+            // not very likely to show up
             alert("Failed to add user: " + data.message); // ... create.php -> here
           }
         })
