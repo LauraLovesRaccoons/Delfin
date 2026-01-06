@@ -1,3 +1,9 @@
+Version 1.8.11.1
+
+1) upgraded php-apache from 8.4.15 to 8.4.16
+
+---
+
 Version 1.8.11
 
 1) every time the user database (or part of it) is loaded, it's also sorted "alphabetically" (global $sortingQueryPart in functions.php)
