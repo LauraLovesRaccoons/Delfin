@@ -2,7 +2,7 @@
     "name": "laura/delfin",
     "description": "Delfin-Petange",
     "require": {
-        "phpmailer/phpmailer": "7.0.0",
+        "phpmailer/phpmailer": "7.0.1",
         "setasign/fpdi": "2.6.4",
         "egulias/email-validator": "4.0.4",
         "setasign/fpdf": "1.8.2",

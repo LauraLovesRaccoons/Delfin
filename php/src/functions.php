@@ -8,6 +8,8 @@ $logBasePath = "./logs/";       // global makes sense for this specific use case
 $logFile = "log.txt";           // ditto
 $uploadBasePath = "./uploads/"; // global makes sense for this specific use case
 
+$sortingQueryPart = "Order BY CASE WHEN fonction is NULL or fonction = '' THEN 1 ELSE 0 END, fonction ASC, nom2 ASC, nom ASC";  // here you can adjust the sorting query to your liking; FYI: the db names must be manually adjusted here if you change smth
+
 $bypassDotODTstep = true;       //? true or false; true skips the docX to odt to pdf conversion and instead uses docX to pdf directly ; false does the longer version ; invalid equals default [true]
 if ((!isset($bypassDotODTstep)) || (!is_bool($bypassDotODTstep))) {
     $bypassDotODTstep = true;   // default value
@@ -762,11 +764,13 @@ function cleanup_session_vars_delfin()
 
 function query_grab_user_list_delfin($selectedList, $db)
 {
+    global $sortingQueryPart;
+
     if ($selectedList === "ENTIRE DATABASE") {
-        $query = "SELECT * FROM Users";
+        $query = "SELECT * FROM Users $sortingQueryPart";
         $stmt = $db->prepare($query);
     } else {
-        $query = "SELECT * FROM Users WHERE $selectedList = ?";     //? I just grab everything for possible future expansions
+        $query = "SELECT * FROM Users WHERE $selectedList = ? $sortingQueryPart";   //? I just grab everything for possible future expansions
         $stmt = $db->prepare($query);
         $listTrue = 1;
         $stmt->bind_param("i", $listTrue);

@@ -1,3 +1,28 @@
+Version 1.8.12
+
+1) updated README
+2) updated ubuntu_info.txt
+3) updated open_issues.txt
+
+---
+
+Version 1.8.11.1
+
+1) upgraded php-apache from 8.4.15 to 8.4.16
+
+---
+
+Version 1.8.11
+
+1) every time the user database (or part of it) is loaded, it's also sorted "alphabetically" (global $sortingQueryPart in functions.php)
+    -> this is also the order in which the recipients are treated when sending
+2) the add_user script's message also reflects these changes
+3) upgraded php-apache from 8.4.14 to 8.4.15
+4) upgraded phpmailer (composer) from 7.0.0 to 7.0.1
+    -> composer install
+
+---
+
 Version 1.8.10.1
 
 1) made the docX function a bit cleaner
