@@ -47,3 +47,64 @@ and of course set up the database tables in phpmyadmin!!!
     /batch_files/setup_db_query/
 
     -> also README.md might contain additional information
+
+
+Linux (Ubuntu) Helpful tips:
+- to install composer locally you might need php-cli (command line interface) ; there might be a notification when trying to run sudo composer install or installing it in general
+- inside the directory you can edit the .env file with:
+    nano .env
+- ls -a   lists ALL files inside a directory
+
+- BE SURE YOUR MAIL SERVER ALLOWS A CONNECTION FROM YOUR MACHINE/VM
+    (if not only letter mode can be used, or a list with invalid emails or letter required flags)
+
+- you might need to install docker compose addon for your docker, in case that profile might give you errors
+
+- in case docker compose down won't work you might need to run 
+    READ THIS CAREFULLY!
+    -> sudo aa-remove-unknown
+    -> do your stuff with docker compose down (no sudo needed if the user is in the docker group)
+    -> sudo reboot
+    -> the entire machine will restart and be protected by AppArmor again
+
+-> LINUX IS CASE SENSITIVE WITH PATHS AND FILES!!!
+
+
+- to add yourself to the docker group (so that no sudo is needed):
+    -> sudo groupadd docker
+    -> sudo usermod -aG docker $USER
+    -> sudo reboot
+            -> a reboot is acceptable as i don't assume you're in a production enviornment
+                -> also do these steps after having docker installed
+
+
+- i recommend installing the htop package to view resources (i run it on a vm (cli-only) with 4 threads, 60gb ssd, 4gb ram, 4gb swap and it's still overkill, even while running a searxng container instance simutaniously)
+    (obviously constantly updating/upgrading the php version will bloat it and will need a removal of those unused images at one point)
+
+- if you use putty on windows to connect, you can right-click on the mouse to paste your clipboard (replacement for ctrl+v)
+    (very handy for passwords)
+    (and yes it's normal that typed in passwords in linux always look blank)
+
+
+To access backups for linux noobs (my username is hola) (replace it on 2 lines)
+-> you might need to install ACL package (Access Control Lists)
+        sudo setfacl -R -m hola:rwx /var/snap/docker/common/var-lib-docker
+        ln -s /var/snap/docker/common/var-lib-docker/ /home/hola/
+with ftp or sftp you should now have a shortcut in YOUR home directory (refresh ftp if needed)
+inside there (shortcut): visit the volumes directory and it should have smth like delfin db backup and copy those over
+they are compressed and you can check the dates for the latest one (and uncompress it) and restore it with phpmyamin (it auto-drops existing tables)
+    sudo reboot     afterwards to clear these dangerous permissions (the shortcut can stay, but requires setfacl to be reactivated)
+
+(you can always manually do a database dump/backup inside phpmyadmin)
+
+
+
+
+!!! SYSADMIN ONLY !!!
+! BE SURE YOU CAN ACCESS YOUR DAILY BACKUPS FIRST!
+Useful unintened mode (software):
+in phpmayadmin you can re-name the Users table to smth like Users_Stable or Users_Production and then import a table like it and use it as a temporary sending lists
+    -> you can set each id field to NULL and you need every field except for the lists (you obviously need at least one, temp and temp_temp recommened)  (i still highly recommend having letter_required and duplicate_user)  , also just edit those lists directly (if needed) and don't call any other list or entire databse
+        -> be sure to change it back to the production one afterwards in phpmayadmin
+        
+

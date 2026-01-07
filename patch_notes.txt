@@ -1,3 +1,11 @@
+Version 1.8.12
+
+1) updated README
+2) updated ubuntu_info.txt
+3) updated open_issues.txt
+
+---
+
 Version 1.8.11.1
 
 1) upgraded php-apache from 8.4.15 to 8.4.16

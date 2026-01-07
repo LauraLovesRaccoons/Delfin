@@ -4,6 +4,14 @@
     -> create a dummy excel database to allow you to properly create the database fields inside your docx file
 !!!
 
+- if email (default) mode is selected and a user has a valid email, it will constantly try to connect to the mail server
+    -> only solution is to manually clear the job_lock flag with phpmyadmin and reboot the machine or docker container!
+!!
+
+- if someone is logged in and there are changes to that person's profile (phpmyadmin)
+    -> changes will only be reflected once the 
+!
+
 - multi-page docX documents might text shift onto a different page if $bypassDotODTstep uses its default true state
     -> the .docX file should use proper page breaks
         -> just use "clean and properly formatted" documents and common fonts
@@ -71,6 +79,27 @@
 
 - the uploads and logs directory in functions.php may not run from root if functions.php is called with an include in a sub-directory
     -> yes you! that wants to add stuff! read this!
+
+- not intiutive to use with the lynx web browser
+    -> yes that one, command line only, supported since 1992
+
+- mostly intended to be used with QHD 16:9 or FHD 16:9 displays
+    -> optimised for QHD (2560x1440p)   ;   16:10 should also work
+
+- no mention that sending mails/letters or enabling/disabling database editing requires a (quick) double-click
+    -> and also no mention that you can abort editing a field by pressing ESC (ENTER is accept)
+
+- double spaces don't show up visually inside the database view, only editing does
+
+- no mention that database entries are cut off at 250 symbols (can be increased to 255 if you edit it inside phpmayadmin)
+
+- if a user's (the sender) data is changed while they're logged in:
+    -> those changes won't be reflected until after they logged in against
+
+- if someone's (recipient) data is changed while someone is on the send_mail part, these changes won't be actively updated
+    -> to fix just press the home or logout button
+        -> and just don't squat on that screen for days or even weeks
+
 
 -
 
