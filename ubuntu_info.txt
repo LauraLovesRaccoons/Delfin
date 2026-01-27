@@ -17,7 +17,7 @@ be sure you're in the project's directory
         cd Docker/Delfin
 
 set up your .env file correctly
-    ( duplicate .env.example and re-name the new file to .env )
+    ( duplicate .env.example and re-name the new file to .env if you don't have it already)
 change ports if necessary
     touch .env
     nano .env
