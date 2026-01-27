@@ -17,10 +17,6 @@ RUN echo "display_startup_errors=Off" > /usr/local/etc/php/conf.d/custom.ini && 
 
 
 
-# composer is currently handled with the batch file since we're in Windows
-# RUN composer install
-
-
 # other stuff
 
 RUN apt-get update && apt-get upgrade -y
@@ -56,7 +52,9 @@ COPY ./httpd.conf /etc/apache2/conf-enabled/httpd.conf
 #     php -r "unlink('composer-setup.php');"
 # # RUN mv composer.phar /usr/local/bin/composer
 
-
+# # install composer packages
+# # composer is currently handled on the host system (even though it's not exactly recommended)
+# RUN composer install
 
 
 # NOTES:

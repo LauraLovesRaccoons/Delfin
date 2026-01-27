@@ -12,25 +12,35 @@ and after that you need to run this (allows you to run composer from anywhere)
     sudo mv composer.phar /usr/local/bin/composer
 
 
-set up your .env file correctly
-change ports if necessary
+be sure you're in the project's directory
+    my structure after login as my user:
+        cd Docker/Delfin
 
-as the docker commands don't have sudo rights by default you might wanna use sudo for now
+set up your .env file correctly
+    ( duplicate .env.example and re-name the new file to .env )
+change ports if necessary
+    touch .env
+    nano .env
+        CTRL + X to escape (will ask you to save changes)
+            (you can use vim .env if you know how to use vim and have vim installed)
+
+
+as the docker commands don't have sudo rights by default you might wanna use sudo for now   (sudo the_dommand_here)
 
 (you have to be in the root of the project folder)
 - sudo composer install
-- sudo docker compose --profile pma up -d --build
+- docker compose --profile pma up -d --build
     (phpmyadmin is enabled to allow you to manage the database)
--- restart your machine to ensure it auto starts
+-- restart your machine to ensure it auto starts        (sudo reboot)
 -- phpmyadmin stuff
-- sudo docker compose --profile pma up -d
-- sudo docker compose stop phpmyadmin
+- docker compose --profile pma up -d
+- docker compose stop phpmyadmin
 
     (to stop the entire container)
-- sudo docker compose --profile pma stop
+- docker compose --profile pma stop
 
     (to refresh the .env file)
-- sudo docker compose --profile pma down
+- docker compose --profile pma down
 - docker compose up -d
 
 …
@@ -92,7 +102,7 @@ To access backups for linux noobs (my username is hola) (replace it on 2 lines)
         ln -s /var/snap/docker/common/var-lib-docker/ /home/hola/
 with ftp or sftp you should now have a shortcut in YOUR home directory (refresh ftp if needed)
 inside there (shortcut): visit the volumes directory and it should have smth like delfin db backup and copy those over
-they are compressed and you can check the dates for the latest one (and uncompress it) and restore it with phpmyamin (it auto-drops existing tables)
+they are compressed and you can check the dates for the latest one (and uncompress it) and restore it with phpmyadmin (it auto-drops existing tables)
     sudo reboot     afterwards to clear these dangerous permissions (the shortcut can stay, but requires setfacl to be reactivated)
 
 (you can always manually do a database dump/backup inside phpmyadmin)
@@ -103,8 +113,9 @@ they are compressed and you can check the dates for the latest one (and uncompre
 !!! SYSADMIN ONLY !!!
 ! BE SURE YOU CAN ACCESS YOUR DAILY BACKUPS FIRST!
 Useful unintened mode (software):
-in phpmayadmin you can re-name the Users table to smth like Users_Stable or Users_Production and then import a table like it and use it as a temporary sending lists
-    -> you can set each id field to NULL and you need every field except for the lists (you obviously need at least one, temp and temp_temp recommened)  (i still highly recommend having letter_required and duplicate_user)  , also just edit those lists directly (if needed) and don't call any other list or entire databse
+in phpmayadmin you can re-name the Users table to smth like Users_Stable or Users_Production and then import a table (.csv file with ; as a seperator) like it and use it as a temporary sending list(s)
+    -> you should set each id field to NULL and you need every field except for the lists (you obviously need at least one, temp and temp_temp recommened)  (i still highly recommend having letter_required and duplicate_user)  , also just edit those lists directly (if needed) and don't call any other list or entire databse
         -> be sure to change it back to the production one afterwards in phpmayadmin
         
+    (be sure you try to evade having ; in your excel or csv files)
 

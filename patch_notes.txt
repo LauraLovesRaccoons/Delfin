@@ -1,3 +1,15 @@
+Version 1.8.12.1.0
+
+1) updated open_issues.txt
+2) updated ubuntu_info.txt
+3) updated dockerfile
+4) upgraded phpmailer from 7.0.1 to 7.0.2
+    -> composer install
+        -> now uses less memory (ram) for attachements
+5) in theory this project should work with php:8.5.2-apache-trixie, though i can't stress-test it atm and there might not be a Version 1.9.0
+
+---
+
 Version 1.8.12
 
 1) updated README

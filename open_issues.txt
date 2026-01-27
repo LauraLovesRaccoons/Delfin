@@ -100,6 +100,11 @@
     -> to fix just press the home or logout button
         -> and just don't squat on that screen for days or even weeks
 
+- ajax: updating fields assumes the information was successfully added to the database
+    -> clicking on the disable editing box does an onsite refresh and grabs the database anew
+- ajax removing someone from a list or toggling, also assumes the database successfully updated it's entries
+    -> same fix as the issue just above
+
 
 -
 
