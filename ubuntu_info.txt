@@ -2,7 +2,7 @@ Ubuntu 24.04 LTS
 
 you might wanna install openssh (you should know how to do that)
 
-download Docker from Canonical from the Ubuntu "App Store"
+download Docker from Canonical from the Ubuntu "App Store"  or snap package for command line online server
 
 install composer
 https://getcomposer.org/download/
@@ -57,6 +57,7 @@ and of course set up the database tables in phpmyadmin!!!
     /batch_files/setup_db_query/
 
     -> also README.md might contain additional information
+
 
 
 Linux (Ubuntu) Helpful tips:

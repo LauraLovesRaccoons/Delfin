@@ -9,7 +9,7 @@
 !!
 
 - if someone is logged in and there are changes to that person's profile (phpmyadmin)
-    -> changes will only be reflected once the 
+    -> changes will only be reflected once the person logs out and logs back in again
 !
 
 - multi-page docX documents might text shift onto a different page if $bypassDotODTstep uses its default true state
