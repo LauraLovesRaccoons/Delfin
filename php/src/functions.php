@@ -15,7 +15,7 @@ if ((!isset($bypassDotODTstep)) || (!is_bool($bypassDotODTstep))) {
     $bypassDotODTstep = true;   // default value
 };
 
-$legacyWarnings = true;         //? true or false; true enables visual warnings for legacy fields in docX_find_and_replace_delfin (this part: $legacyWarningsArray) ; false ignores it ; invalid equals default [true]
+$legacyWarnings = true;         //? true or false; true enables visual warnings for legacy fields in docX_find_and_replace_delfin (this part: $legacyFields) ; false ignores it ; invalid equals default [true]
 if ((!isset($legacyWarnings)) || (!is_bool($legacyWarnings))) {
     $legacyWarnings = true;     // default value
 };
@@ -1006,30 +1006,43 @@ function docX_find_and_replace_delfin($templateDocX, $outputDocX, array $replace
         //? also use this symbol '​' (the one between the quotes; U+200B) as this will prevent text shifting if some replacement data is empty or if it is an empty string
         //? I'm gonna give you a hint  ?: '​',
 
-    //? legacy field detection with warnings
-    $legacyWarningsArray = [
-        '«Société»' => 'XXX!!!XXX___Société___LEGACY___XXX!!!XXX',
-        '«Titre»' => 'XXX!!!XXX___Titre___LEGACY___XXX!!!XXX',
-        '«Adresse»' => 'XXX!!!XXX___Adresse___LEGACY___XXX!!!XXX',
-        '«Localité»' => 'XXX!!!XXX___Localité___LEGACY___XXX!!!XXX',
-        '«Prénom»' => 'XXX!!!XXX___Prénom___LEGACY___XXX!!!XXX',
-        '«Nom1»' => 'XXX!!!XXX___Nom1___LEGACY___XXX!!!XXX',
-        //? add more here if you find more legacy fields
-    ];
+
 
     try {
-        //? legacy replacements
+
         global $legacyWarnings;
+
         if ($legacyWarnings) {
+            //? legacy field detection with warnings
+
+            $legacyFields = [
+                '«Société»',
+                '«Titre»',
+                '«Adresse»',
+                '«Localité»',
+                '«Prénom»',
+                '«Nom1»',
+                //? add more here if you find more legacy fields
+            ];
+            $legacyWarningsArray = array_combine(
+                array_map(fn($field) => $field, $legacyFields),
+                array_map(fn($field) => "!!!WARNING: LEGACY FIELD DETECTED: {$field} PLEASE UPDATE YOUR TEMPLATE!!!", $legacyFields)
+                // // 'XXX!!!XXX___Adresse___LEGACY___XXX!!!XXX'
+            );
+
+            //? legacy replacements
             foreach ($legacyWarningsArray as $placeHolder => $actualText) {
                 $documentXML = str_replace($placeHolder, $actualText, $documentXML);
             }
-        }
+        };
 
         // 
+
+        //? the normal text replacement
         foreach ($replacementsArray as $placeHolder => $actualText) {
             $documentXML = str_replace($placeHolder, $actualText, $documentXML);
         }
+
     } catch (Exception $e) {
         echo $e->getMessage();
         $zip->close();
