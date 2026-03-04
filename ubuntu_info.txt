@@ -80,6 +80,9 @@ Linux (Ubuntu) Helpful tips:
 
 -> LINUX IS CASE SENSITIVE WITH PATHS AND FILES!!!
 
+-> in LINUX when importing files, the files's permissions MUST be properly set!!!
+    DON'T DO    sudo chmod -R 777 /home/$USER
+
 
 - to add yourself to the docker group (so that no sudo is needed):
     -> sudo groupadd docker

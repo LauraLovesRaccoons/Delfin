@@ -1,3 +1,15 @@
+Version 1.8.13
+
+1) functions.php added new global variable ($legacyWarnings)
+    -> targets legacy fields in documents and throws a big warning
+        -> setting it to false will completely disable that part
+2) updated open_issues.txt
+3) updated ubuntu_info.txt
+4) next version is probably upgrading to php 8.5.X
+    -> and probably upgrading mysql to 9.5.X
+
+---
+
 Version 1.8.12.1.1
 
 1) updated open_issues.txt

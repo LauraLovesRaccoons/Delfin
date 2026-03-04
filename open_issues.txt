@@ -80,8 +80,11 @@
 - the uploads and logs directory in functions.php may not run from root if functions.php is called with an include in a sub-directory
     -> yes you! that wants to add stuff! read this!
 
-- not intiutive to use with the lynx web browser
+- not intiutive to use with the Lynx web browser
     -> yes that one, command line only, supported since 1992
+
+- didn't test it with the Links web browser
+    -> Links is not Lynx, but both are command line only
 
 - mostly intended to be used with QHD 16:9 or FHD 16:9 displays
     -> optimised for QHD (2560x1440p)   ;   16:10 should also work
