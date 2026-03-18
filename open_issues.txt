@@ -7,6 +7,7 @@
 - if email (default) mode is selected and a user has a valid email, it will constantly try to connect to the mail server
     -> only solution is to manually clear the job_lock flag with phpmyadmin and reboot the machine or docker container!
 !!
+    --> this issue is dependant on how your host vm is set up
 
 - if someone is logged in and there are changes to that person's profile (phpmyadmin)
     -> changes will only be reflected once the person logs out and logs back in again
@@ -76,6 +77,7 @@
 
 - the logs & uploads directory can be viewed by anyone (even non logged in strangers)
     -> someone who has the direct link (by sheer determination) can spy on the logs and even the personalized pdf documents
+        -> finding the personalized pdf documents requires a bit more than determination as i added some measures to mitigate the issue a bit
 
 - the uploads and logs directory in functions.php may not run from root if functions.php is called with an include in a sub-directory
     -> yes you! that wants to add stuff! read this!
@@ -92,7 +94,7 @@
 - no mention that sending mails/letters or enabling/disabling database editing requires a (quick) double-click
     -> and also no mention that you can abort editing a field by pressing ESC (ENTER is accept)
 
-- double spaces don't show up visually inside the database view, only editing does
+- double spaces don't show up visually inside the database view, only editing does   (ESC to abort, ENTER to accept)
 
 - no mention that database entries are cut off at 250 symbols (can be increased to 255 if you edit it inside phpmayadmin)
 
@@ -107,6 +109,14 @@
     -> clicking on the disable editing box does an onsite refresh and grabs the database anew
 - ajax removing someone from a list or toggling, also assumes the database successfully updated its entries
     -> same fix as the issue just above
+
+- the database's gui doesn't show double spaces unless you start manually editing the fields
+    -> phpmyadmin shows it raw, but that one is not meant to make small changes  (and it's dangerous to enable it for the average user)
+
+- naming for example the «Fonction» field's database entry FOR A USER to «Allocation_Spéciale» will cause the information that is written in «Allocation_Spéciale» to be used instead
+    -> it's not recursive as it first treats the legacy fields and then the "modern" fields one by one (so you can use «Nom2» as a valid entry for «Nom_Couponréponse» as «Nom_Couponréponse» is the last field that is treated)
+        -> WHY ?!?
+            -> WON'T FIX !!!
 
 
 -
