@@ -1098,7 +1098,7 @@ function debug_eml_file($mail) {
             unlink($debugEmailFile);
         };
         file_put_contents($debugEmailFile, $mail->getSentMIMEMessage());
-}
+    }
 // 
 };
 
