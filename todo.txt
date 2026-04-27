@@ -4,7 +4,7 @@ highly recommended to add a mention to use ; instead of commas in the csv file a
 
 add legacy fields to the docX example file
 
-upgrade mysql and php to the new semi-major version
+
 
 add docker prune into documentation (when upgrading container-images we don't wanna carry along a bunch of unused gigabytes)
 
