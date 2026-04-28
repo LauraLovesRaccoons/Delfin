@@ -15,6 +15,9 @@ Version 1.8.14
         -> lines 171 & 296
 8) generate_hash.php & .env.example
     -> added .env fields for the helpdesk page
+9) made proper excel fields for the example word document (including legacy fields)
+    -> including an excel field so that you can restore it
+10) added new stuff to gitignore
 
 ---
 

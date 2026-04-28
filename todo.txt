@@ -2,8 +2,6 @@ add an example csv/xlsx file with all database fields
 highly recommended to add a mention to use ; instead of commas in the csv file and in phpmyadmin to set seperator as ; and skip the first line
     (normal commas , are surprisingly common in addresses)
 
-add legacy fields to the docX example file
-
 
 
 add docker prune into documentation (when upgrading container-images we don't wanna carry along a bunch of unused gigabytes)
