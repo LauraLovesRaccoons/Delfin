@@ -1,8 +1,12 @@
 Version 1.8.14
 
 1) upgraded mysql cron backup to the latest version
-2) upgraded mysql to 9.6.X
-3) upgraded php apache to 8.5.X
+    -> untested
+2) upgraded mysql to 9.6.0
+    -> mysql 9.7.0 is currently incompatible (apart from login)
+3) upgraded php apache to 8.5.5
+    -> the host machine might need some changes after upgrading
+        -> php8.4.20-apache-trixie is hasel free (don't forget to adjust the dockerfile as well)
 4) function convertDocXToPdf_delfin
     -> added shellescapes and the if file exists stuff now works properly
 5) functions.php
