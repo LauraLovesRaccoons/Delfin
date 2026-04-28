@@ -598,15 +598,16 @@ function convertDocXToPdf_delfin($inputDocX, $outputPdf, $inputDocXDir)
 
     // $inputDocXDir;   // 
     // $recipientId = $recipientUser['recipientId'];
+    $outputPdfPath = $outputPdf;                //? is needed w/o shellescapes for if file exists (twice)
     $inputDocX = escapeshellarg($inputDocX);    // requires real path
     $outputPdf = escapeshellarg($outputPdf);    // ditto
-    if (file_exists($outputPdf)) {
-        unlink($outputPdf);         // it can't overwrite exisiting files
+    if (file_exists($outputPdfPath)) {
+        unlink($outputPdfPath);         // it can't overwrite exisiting files
     }
     // /var/www/html/ is from compose.yaml
     // $command = "HOME=/tmp libreoffice --headless --convert-to pdf --outdir /var/www/html/uploads $inputDocX 2>&1";  // this one works
     // $outDir = "/var/www/html/" . $GLOBALS['uploadBasePath'];
-    $outDir = "/var/www/html/" . $inputDocXDir;
+    $outDir = escapeshellarg("/var/www/html/" . $inputDocXDir);
 
     if ($bypassDotODTstep) {
         //? basic one
@@ -632,7 +633,7 @@ function convertDocXToPdf_delfin($inputDocX, $outputPdf, $inputDocXDir)
         // echo "<script>console.log(" . json_encode($outputShellCommand) . ");</script>";
     }
 
-    return file_exists($outputPdf) ? $outputPdf : false;    // black magic / witchcraft prevention
+    return file_exists($outputPdfPath) ? $outputPdfPath : false;    // black magic / witchcraft prevention
 };
 
 

@@ -3,6 +3,8 @@ Version 1.8.14
 1) upgraded mysql cron backup to the latest version
 2) upgraded mysql to 9.6.X
 3) upgraded php apache to 8.5.X
+4) function convertDocXToPdf_delfin
+    -> added shellescapes and the if file exists stuff now works properly
 
 ---
 
