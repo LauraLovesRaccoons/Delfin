@@ -5,6 +5,9 @@ Version 1.8.14
 3) upgraded php apache to 8.5.X
 4) function convertDocXToPdf_delfin
     -> added shellescapes and the if file exists stuff now works properly
+5) functions.php
+    -> added XSS prevention to console.log scripts
+            -> lines 172 & 297
 
 ---
 
