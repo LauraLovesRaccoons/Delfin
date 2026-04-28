@@ -9,8 +9,6 @@ add legacy fields to the docX example file
 add docker prune into documentation (when upgrading container-images we don't wanna carry along a bunch of unused gigabytes)
 
 
-migrate the data on the support page to the .env file
-
 
 perhaps allow attaching another attachement
 
