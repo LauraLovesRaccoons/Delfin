@@ -68,12 +68,12 @@ function approved_lists_delfin()
 };
 
 
-// function debug_test_env_delfin()
-// {
-//     echo "<br /><br />";
-//     var_dump(getenv() ?: '.ENV ERROR');     // shows all environment variables
-//     echo "<br /><br />";
-// };
+// // function debug_test_env_delfin()
+// // {
+// //     echo "<br /><br />";
+// //     var_dump(getenv() ?: '.ENV ERROR');     // shows all environment variables
+// //     echo "<br /><br />";
+// // };
 
 
 function logout_delfin($session_name)
