@@ -8,6 +8,8 @@ Version 1.8.14
 5) functions.php
     -> added XSS prevention to console.log scripts
             -> lines 172 & 297
+6) function debug_test_env_delfin is now a comment
+    -> this is dangerous to leave in
 
 ---
 
