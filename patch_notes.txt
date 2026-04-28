@@ -10,6 +10,9 @@ Version 1.8.14
             -> lines 172 & 297
 6) function debug_test_env_delfin is now a comment
     -> this is dangerous to leave in
+7) functions.php
+    -> made echo to html safer against XSS
+        -> lines 171 & 296
 
 ---
 

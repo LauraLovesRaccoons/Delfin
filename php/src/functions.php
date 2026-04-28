@@ -168,7 +168,7 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
     ) {
         // 
         if (!isset($_SESSION['letter_required'])) {     // no need to display it on the webpage if it's a freakin letter
-            echo "<span>NO EMAIL: <strong>$emailRecipientName</strong> - ID: <strong>$recipientId</strong></span>";
+            echo "<span>NO EMAIL: <strong>" . htmlspecialchars($emailRecipientName, ENT_QUOTES, 'UTF-8') . "</strong> - ID: <strong>" . intval($recipientId) . "</strong></span>";
             echo "<script>console.log(" . json_encode("NO EMAIL: [ $emailRecipientName - ID: $recipientId ]") . ");</script>";
             $logMessage = "NO EMAIL: $emailRecipientName - ID: $recipientId";
             write_log_delfin($logMessage);
@@ -293,7 +293,7 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
                 'mailer' => $mail->ErrorInfo,       // made it a proper string for console logging
             ]));
             echo "<script>console.log(" . $mailErrorInfo . ");</script>";   // properly enforces it in being a string
-            echo "<span>Message failed to send to: <strong>$emailRecipientName</strong> --- <strong>$emailRecipient</strong> - ID: <strong>$recipientId</strong></span>";
+            echo "<span>Message failed to send to: <strong>" . htmlspecialchars($emailRecipientName, ENT_QUOTES, 'UTF-8') . "</strong> --- <strong>" . htmlspecialchars($emailRecipient, ENT_QUOTES, 'UTF-8') . "</strong> - ID: <strong>" . intval($recipientId) . "</strong></span>";
             echo "<script>console.log(" . json_encode("Message failed to send to: [ $emailRecipientName - $emailRecipient - ID: $recipientId ]") . ");</script>";
             // echo "<h3>The conosole.log is niche to have but it should write smth into the php logger</h3>";     // conosole FTW -> niche
             $logMessage = "Message failed to send to: $emailRecipientName --- $emailRecipient - ID: $recipientId";
