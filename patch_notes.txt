@@ -2,8 +2,9 @@ Version 1.8.14
 
 1) upgraded mysql cron backup to the latest version
     -> untested
-2) upgraded mysql to 9.6.0
-    -> mysql 9.7.0 is currently incompatible (apart from login)
+2) upgraded mysql to 9.7.0
+    -> if you're on 9.5.0, you might wanna launch through 9.6.0 first
+        -> if 9.7.0 gives you issues; export database through phpmyadmin and then clear the volume for it (DANGEROUS)
 3) upgraded php apache to 8.5.5
     -> the host machine might need some changes after upgrading
         -> php8.4.20-apache-trixie is hasel free (don't forget to adjust the dockerfile as well)
