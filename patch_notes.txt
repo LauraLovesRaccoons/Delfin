@@ -13,6 +13,8 @@ Version 1.8.14
 7) functions.php
     -> made echo to html safer against XSS
         -> lines 171 & 296
+8) generate_hash.php & .env.example
+    -> added .env fields for the helpdesk page
 
 ---
 
