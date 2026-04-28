@@ -15,6 +15,12 @@ if ((!isset($bypassDotODTstep)) || (!is_bool($bypassDotODTstep))) {
     $bypassDotODTstep = true;   // default value
 };
 
+$legacyWarnings = true;         //? true or false; true enables visual warnings for legacy fields in docX_find_and_replace_delfin (this part: $legacyFields) ; false ignores it ; invalid equals default [true]
+if ((!isset($legacyWarnings)) || (!is_bool($legacyWarnings))) {
+    $legacyWarnings = true;     // default value
+};
+
+
 $emlFileDebug = false;          //? true or false; true always generates an eml file called debug_email.eml in the root of the logs folder ; this is blocked from access through the web browser    // and is overwritten with each new email FYI
 if ((!isset($emlFileDebug)) || (!is_bool($emlFileDebug))) {
     $emlFileDebug = false;      // default value
@@ -999,10 +1005,44 @@ function docX_find_and_replace_delfin($templateDocX, $outputDocX, array $replace
         //? the data in the array was previously html specialchar encoded, which is very important, yes you! you blind copypasta h4ckerzzz
         //? also use this symbol '​' (the one between the quotes; U+200B) as this will prevent text shifting if some replacement data is empty or if it is an empty string
         //? I'm gonna give you a hint  ?: '​',
+
+
+
     try {
+
+        global $legacyWarnings;
+
+        if ($legacyWarnings) {
+            //? legacy field detection with warnings
+
+            $legacyFields = [
+                '«Société»',
+                '«Titre»',
+                '«Adresse»',
+                '«Localité»',
+                '«Prénom»',
+                '«Nom1»',
+                //? add more here if you find more legacy fields
+            ];
+            $legacyWarningsArray = array_combine(
+                array_map(fn($field) => $field, $legacyFields),
+                array_map(fn($field) => "!!!WARNING: LEGACY FIELD DETECTED: {$field} PLEASE UPDATE YOUR TEMPLATE!!!", $legacyFields)
+                // // 'XXX!!!XXX___Adresse___LEGACY___XXX!!!XXX'
+            );
+
+            //? legacy replacements
+            foreach ($legacyWarningsArray as $placeHolder => $actualText) {
+                $documentXML = str_replace($placeHolder, $actualText, $documentXML);
+            }
+        };
+
+        // 
+
+        //? the normal text replacement
         foreach ($replacementsArray as $placeHolder => $actualText) {
             $documentXML = str_replace($placeHolder, $actualText, $documentXML);
         }
+
     } catch (Exception $e) {
         echo $e->getMessage();
         $zip->close();
