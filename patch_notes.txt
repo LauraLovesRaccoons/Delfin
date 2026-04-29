@@ -1,7 +1,10 @@
-Version 1.8.14
+Version 1.9
 
+0) When upgrading make sure you export a database update FIRST!
+    -> you might need to use docker prune for the images, volumes and build caches IF you experience after deploying the upgrade
+        -> ensure that after upgrading, a new database backup is added! (you might need to wait a day)
 1) upgraded mysql cron backup to the latest version
-    -> untested
+    -> works with mysql 9.7.0
 2) upgraded mysql to 9.7.0
     -> if you're on 9.5.0, you might wanna launch through 9.6.0 first
         -> if 9.7.0 gives you issues; export database through phpmyadmin and then clear the volume for it (DANGEROUS)
