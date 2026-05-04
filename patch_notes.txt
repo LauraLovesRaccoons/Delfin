@@ -26,6 +26,9 @@ Version 1.9
 9) made proper excel fields for the example word document (including legacy fields)
     -> including an excel field so that you can restore it
 10) added new excel/word temp stuff to gitignore
+11) the self signing mail certificate is now an env file toggle
+    -> be sure to update your .env file  CAUTIOUSLY  !!!
+12) the self signing mail certificate now supports encryption as well
 
 ---
 

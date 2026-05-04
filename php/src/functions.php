@@ -195,9 +195,25 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
             } else {
                 // Internal Company Mail Server
                 $mail->SMTPAuth = false;    // password authentication DISABELD
-                $mail->SMTPSecure = '';     // which means unencrypted
+                $mail->SMTPSecure = '';     // this means unencrypted
                 // echo "<script>console.log('encryption type: NONE');</script>";
-                // Disable SSL certificate verification
+            }
+
+
+            //? Disable SSL certificate verification
+            $RAWselfSignedSMTPCertificate = getenv('SMTP_SELF_SIGNED_CERTIFICATE');
+            if ($RAWselfSignedSMTPCertificate === false) {
+                $selfSignedSMTPCertificate = false;         // disabled by default
+                echo "<script>console.log('FYI:  SMTP_SELF_SIGNED_CERTIFICATE  is ourtight missing in your .env file');</script>";
+                echo "<script>console.log('Disabling It!');</script>";
+            }
+            elseif (trim($RAWselfSignedSMTPCertificate) === '') {
+                $selfSignedSMTPCertificate = false;         // the env file states that blank means disabled
+            }
+            else {
+                $selfSignedSMTPCertificate = filter_var($RAWselfSignedSMTPCertificate, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) ?? false;       // treats everything 'weird' as false (even NULL)
+            }
+            if ($selfSignedSMTPCertificate) {
                 $mail->SMTPOptions = array(
                     'ssl' => array(
                         'verify_peer' => false,
@@ -205,7 +221,10 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
                         'allow_self_signed' => true
                     )
                 );
+                // echo "<script>console.log('Self-signed SMTP certificate bypass is enabled');</script>";
             }
+
+
             $mail->Encoding = 'base64';     // not exactly sure but it might help with the character set
             $mail->CharSet = "UTF-8";       // this makes symbols commonly used in Luxembourg work
 
