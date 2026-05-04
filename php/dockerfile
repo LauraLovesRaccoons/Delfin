@@ -43,6 +43,7 @@ RUN a2enmod rewrite
 COPY ./httpd.conf /etc/apache2/conf-enabled/httpd.conf
 
 
+
 #? yeah I struggle with getting composer to work properly while using a docker volume (also in that case composer.json and .lock should be in this directory)
 
 # # install composer
@@ -61,3 +62,15 @@ COPY ./httpd.conf /etc/apache2/conf-enabled/httpd.conf
 
 # https://packagist.org/
 
+
+
+
+
+#! must be last
+
+#? Fix permissions at build time for any COPY'd files
+RUN chown -R www-data:www-data /var/www/html
+# 
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]

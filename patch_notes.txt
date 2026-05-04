@@ -11,6 +11,12 @@ Version 1.9
 3) upgraded php apache to 8.5.5
     -> the host machine might need some changes after upgrading
         -> php8.4.20-apache-trixie is hasel free (don't forget to adjust the dockerfile as well)
+            -> this helped me during dev'ing
+                docker compose --profile pma down
+                docker rmi -f php:8.5.5-apache-trixie
+                docker compose --profile pma up -d --build
+    -> dockerfile received some updates
+    -> entrypoint.sh was also added to fix some stuff
 4) function convertDocXToPdf_delfin
     -> added shellescapes and the if file exists stuff now works properly
 5) functions.php
