@@ -1,7 +1,7 @@
 # ah yes
 
 - HIGH PRIORITY:
-    -> create a dummy excel database to allow you to properly create the database fields inside your docx file
+    -> THERE IS NO VERSION LOCKING INSIDE THE DOCKERFILE
 !!!
 
 - if email (default) mode is selected and a user has a valid email, it will constantly try to connect to the mail server

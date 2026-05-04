@@ -29,6 +29,7 @@ Version 1.9
 11) the self signing mail certificate is now an env file toggle
     -> be sure to update your .env file  CAUTIOUSLY  !!!
 12) the self signing mail certificate now supports encryption as well
+13) updated open_issues and README
 
 ---
 
