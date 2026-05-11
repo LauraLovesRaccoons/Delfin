@@ -8,12 +8,12 @@ Version 1.9
 2) upgraded mysql to 9.7.0
     -> if you're on 9.5.0, you might wanna launch through 9.6.0 first
         -> if 9.7.0 gives you issues; export database through phpmyadmin and then clear the volume for it (DANGEROUS)
-3) upgraded php apache to 8.5.5
+3) upgraded php apache to 8.5.6
     -> the host machine might need some changes after upgrading
         -> php8.4.20-apache-trixie is hasel free (don't forget to adjust the dockerfile as well)
             -> this helped me during dev'ing
                 docker compose --profile pma down
-                docker rmi -f php:8.5.5-apache-trixie
+                docker rmi -f php:8.5.6-apache-trixie
                 docker compose --profile pma up -d --build
     -> dockerfile received some updates
     -> entrypoint.sh was also added to fix some stuff
