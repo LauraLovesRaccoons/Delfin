@@ -1,7 +1,14 @@
 # ah yes
 
 - HIGH PRIORITY:
-    -> THERE IS NO VERSION LOCKING INSIDE THE DOCKERFILE
+    -> THERE IS NO VERSION LOCKING INSIDE THE DOCKERFILE    (meaning we have a potential malware attack vector and potential "buggy" future packages)
+    -> the uploads and logs directory using chmod 777 is very very stupid       (the whole non-docker volume thingy for those and composer is pretty convuluted anyway)
+    -> there is no target for the exact docker, docker compose and php cli version      (meaning some things can be incompatible in the future)
+    -> phpmyadmin being exposed w/o a password needs firewall based blockage
+    -> the user uplaoded docx files could contain malware
+    -> this wasn't security audited, so only use this in an internal network on a vm with a rollback option
+        -> everyone is able to see everyone's log file with noob link editing skills
+        -> every uploaded and edited file is public, though blind guessing the link is difficult but not impossible
 !!!
 
 - if email (default) mode is selected and a user has a valid email, it will constantly try to connect to the mail server

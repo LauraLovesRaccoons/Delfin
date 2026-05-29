@@ -1,6 +1,6 @@
 Version 1.9
 
-0) When upgrading make sure you export a database update FIRST!
+0) When upgrading make sure you export the database in phpmyadmin FIRST!
     -> you might need to use docker prune for the images, volumes and build caches IF you experience after deploying the upgrade
         -> ensure that after upgrading, a new database backup is added! (you might need to wait a day)
 1) upgraded mysql cron backup to the latest version
@@ -22,11 +22,11 @@ Version 1.9
 5) functions.php
     -> added XSS prevention to console.log scripts
             -> lines 172 & 297
-6) function debug_test_env_delfin is now a comment
-    -> this is dangerous to leave in
-7) functions.php
+6) functions.php
     -> made echo to html safer against XSS
         -> lines 171 & 296
+7) function debug_test_env_delfin is now a comment
+    -> this is dangerous to leave in
 8) generate_hash.php & .env.example
     -> added .env fields for the helpdesk page
 9) made proper excel fields for the example word document (including legacy fields)
@@ -35,7 +35,10 @@ Version 1.9
 11) the self signing mail certificate is now an env file toggle
     -> be sure to update your .env file  CAUTIOUSLY  !!!
 12) the self signing mail certificate now supports encryption as well
-13) updated open_issues and README
+13) updated open_issues (a lot)
+14) updated README
+15) upgraded phpmailer to 7.1.1
+    -> composer install
 
 ---
 
