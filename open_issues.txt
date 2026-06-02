@@ -4,7 +4,6 @@
     -> THERE IS NO VERSION LOCKING INSIDE THE DOCKERFILE    (meaning we have a potential malware attack vector and potential "buggy" future packages)
     -> the uploads and logs directory using chmod 777 is very very stupid       (the whole non-docker volume thingy for those and composer is pretty convuluted anyway)
     -> there is no target for the exact docker, docker compose and php cli version      (meaning some things can be incompatible in the future)
-    -> phpmyadmin being exposed w/o a password needs firewall based blockage
     -> the user uplaoded docx files could contain malware
     -> this wasn't security audited, so only use this in an internal network on a vm with a rollback option
         -> everyone is able to see everyone's log file with noob link editing skills
@@ -139,6 +138,9 @@ Patched Isses:
 
 - if the selected list var is manipulated or uses path/reserved symbols
     -> a directory named after this exact var is created; and this can be ugly
+
+- phpmyadmin being exposed w/o a password needs firewall based blockage
+    -> login is no mandatory and no longer supplied with the compose.yaml file
 
 -
 

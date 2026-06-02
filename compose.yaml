@@ -24,13 +24,14 @@ services:
     image: "phpmyadmin:5.2.3"
     # image: "arm64v8/phpmyadmin:latest"  #! ARM 64
     container_name: "${COMPOSE_PROJECT_NAME}_PMA"
-    restart: "no"   # more infos at profile
-    profiles:
-      - "pma"       # docker compose --profile pma up ; to enable the service
+    restart: "always" #? 
+    #? restart: "no"   # more infos at profile
+    #? profiles:
+      #? - "pma"       # docker compose --profile pma up ; to enable the service
     environment:
       PMA_HOST: "${MYSQL_SERVICE_NAME}"       # must be named after the service
-      PMA_USER: "root"                        # MUST be root
-      PMA_PASSWORD: "${MYSQL_ROOT_PASSWORD}"  # MYSQL_ROOT_PASSWORD
+      #? PMA_USER: "root"                        # MUST be root
+      #? PMA_PASSWORD: "${MYSQL_ROOT_PASSWORD}"  # MYSQL_ROOT_PASSWORD
     ports:
       - "${PMA_PORT}:80"  # port 8080 external -> from .env file
     volumes:

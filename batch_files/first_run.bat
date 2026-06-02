@@ -3,7 +3,8 @@ ECHO First Startup
 ECHO This Will Take A While
 ECHO --------------------------------
 cd ../
-docker compose --profile pma up -d --build
+:: docker compose --profile pma up -d --build
+docker compose up -d --build
 
 start cmd /c "composer install && pause"
 

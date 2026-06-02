@@ -1,3 +1,21 @@
+Version 1.9.1
+1) changed entrypoint.sh from CRLF to LF
+    -> linux/unix doesn't like windows (or Macintosh) linebreaks
+        -> IF you make changes to it, ensure you use LF linebreaks
+2) dropped the whole phpmyadmin profile shenanigans
+    -> the old references got commented
+3) phpmyadmin now requires a user and password
+    -> you could use root + root password from the database
+    -> BUT
+    -> use the user and password from the .env file
+    -> i hoped you changed those values before running the container for the first time!
+4) updated README
+5) update ubuntu_info
+6) fixed an open_issues.txt
+    -> the phpmayadmin root user being exposed
+
+---
+
 Version 1.9
 
 0) When upgrading make sure you export the database in phpmyadmin FIRST!

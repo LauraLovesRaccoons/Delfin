@@ -100,6 +100,12 @@ Linux (Ubuntu) Helpful tips:
     (and yes it's normal that typed in passwords in linux always look blank)
 
 
+- if you make ANY changes to entrypoint.sh
+    -> ensure you set the linebreaks to LF
+        -> CRLF or CR will cause issues
+            -> and don't use \r and/or \n
+
+
 To access backups for linux noobs (my username is hola) (replace it on 2 lines)
 -> you might need to install ACL package (Access Control Lists)
         sudo setfacl -R -m hola:rwx /var/snap/docker/common/var-lib-docker
