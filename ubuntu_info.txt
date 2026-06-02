@@ -29,18 +29,21 @@ as the docker commands don't have sudo rights by default you might wanna use sud
 
 (you have to be in the root of the project folder)
 - sudo composer install
-- docker compose --profile pma up -d --build
+###### - docker compose --profile pma up -d --build
+- docker compose up -d --build
     (phpmyadmin is enabled to allow you to manage the database)
 -- restart your machine to ensure it auto starts        (sudo reboot)
--- phpmyadmin stuff
-- docker compose --profile pma up -d
-- docker compose stop phpmyadmin
+###### -- phpmyadmin stuff
+###### - docker compose --profile pma up -d
+###### - docker compose stop phpmyadmin
 
     (to stop the entire container)
-- docker compose --profile pma stop
+###### - docker compose --profile pma stop
+- docker compose stop
 
     (to refresh the .env file)
-- docker compose --profile pma down
+###### - docker compose --profile pma down
+- docker compose down
 - docker compose up -d
 
 …
