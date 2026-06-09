@@ -160,11 +160,12 @@ function send_mail_delfin($emailSender, $emailSenderName, $emailRecipient, $emai
     // if (filter_var($emailRecipient, FILTER_VALIDATE_EMAIL) === false) {         // the actual php checker (much more reliable)
     // rfc compliant email checker
     $validator = new EmailValidator();
+    $decodedEmailForValidation = html_entity_decode($emailRecipient, ENT_QUOTES | ENT_HTML5, 'UTF-8');      //? the RFC Validator NEEDS a raw string (html encoded includes `;` for symbols, which is very naughty)
     // if (!$validator->isValid($emailRecipient, new RFCValidation())) {       // checks if the email is valid and rfc compliant ; and the ! means if that condition is false
     if (
-        strlen($emailRecipient) < 3 ||                              // absolute minium possible length of an email address (extremly fast processing)
-        strpos($emailRecipient, '@') === false ||                   // checks if an @ present (extremly fast processing, but not as fast as the previous one)
-        !$validator->isValid($emailRecipient, new RFCValidation())  // checks if the email is valid and rfc compliant ; and the ! means if that condition is false  (this is slow compared to the previous two checks, but this saves time by not trying to send an email to an invalid address)
+        strlen($decodedEmailForValidation) < 3 ||                           // absolute minium possible length of an email address (extremly fast processing)
+        strpos($decodedEmailForValidation, '@') === false ||    // checks if an @ present (extremly fast processing, but not as fast as the previous one)
+        !$validator->isValid($decodedEmailForValidation, new RFCValidation())   // checks if the email is valid and rfc compliant ; and the ! means if that condition is false  (this is slow compared to the previous two checks, but this saves time by not trying to send an email to an invalid address)
     ) {
         // 
         if (!isset($_SESSION['letter_required'])) {     // no need to display it on the webpage if it's a freakin letter

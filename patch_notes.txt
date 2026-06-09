@@ -1,3 +1,11 @@
+Version 1.9.2
+
+1) fixed the rfc email validator using an html encoded mail address
+    -> symbols like ' have an ; in their html encoded version which is not even allowed in SMTPUTF8 emails
+2) upgraded php apached to 8.5.7 (from 8.5.6)
+
+---
+
 Version 1.9.1
 
 1) changed entrypoint.sh from CRLF to LF
