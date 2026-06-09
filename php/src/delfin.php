@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit;
     }
     if (isset($_POST["log"])) {         // if someone wants to open their personal log
-        $logUrlId = $logBasePath . $_SESSION['id'] . '/' . $logFile;    // these are globals
+        $logUrlId = $logBasePath . intval($_SESSION['id']) . '/' . $logFile;    // these are globals
         echo "<script>window.open('$logUrlId', '_blank');</script>";    // javascript
         // exit;    // no exit allowed
     }
@@ -238,7 +238,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
     <!-- opens your personal logging file in a new tab -->
-    <!-- <a href="<?= $logBasePath . $_SESSION['id'] . '/' . $logFile ?>" target="_blank">Check out your log 🪵 </a><br /> -->
+    <!-- <a href="<?= $logBasePath . intval($_SESSION['id']) . '/' . $logFile ?>" target="_blank">Check out your log 🪵 </a><br /> -->
 
 </div>
 

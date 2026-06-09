@@ -2,7 +2,11 @@ Version 1.9.2
 
 1) fixed the rfc email validator using an html encoded mail address
     -> symbols like ' have an ; in their html encoded version which is not even allowed in SMTPUTF8 emails
+        -> also fixes the display of it displaying the html encoded version
 2) upgraded php apached to 8.5.7 (from 8.5.6)
+3) write to log and log too big now use an intval for the session id    (functions.php)
+4) the link to the log file now contains an intval for the session id   (delfin.php)
+5) the logMessage now fixes a security vulnerabiulity   (functions.php)
 
 ---
 
