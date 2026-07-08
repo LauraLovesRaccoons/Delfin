@@ -70,6 +70,7 @@ services:
       - MYSQL_HOST=${MYSQL_SERVICE_NAME}  # !!!!
       - MYSQL_USER=root
       - MYSQL_PASS=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_SSL_OPTS=--skip-ssl         #? fixes an issue with 1.15+ when using docker networks
       - MAX_BACKUPS=35    # 1 month if daily, with a small reserve
       - INIT_BACKUPS=0    # self explanatory
       - GZIP_LEVEL=9      # zip it a bit

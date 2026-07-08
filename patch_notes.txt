@@ -1,3 +1,11 @@
+Version 1.9.4
+
+1) compose.yaml: fixed mysql cron backup not working under v1.15+
+    -> for docker networks you specifically have to disable ssl
+        -> the technical explanation: Alpine 3.23 defaults to ssl and docker networks don't usally have certificates
+
+---
+
 Version 1.9.3
 
 1) upgraded php apache from 8.5.7 to 8.5.8
