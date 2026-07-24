@@ -30,6 +30,11 @@
     -> use the attachement upload instead
         -> won't fix
 
+- using {logo} and/or {banner} with these parathensis `{}` inside the email object will convert them to cid:logo_cid and cid:banner_cid
+- also avoid using cid:logo_cid and cid:banner_cid
+    -> those are used to attach the images in the signature and it's highly unlikely this will ever be used in an email's message (the email's subject itself is safe against that)
+        -> also you should always send an exact copy of it to yourself first to test the document and everything else
+
 - There is no storage space limiter implemented
 
 - There is no memory limiter implemented

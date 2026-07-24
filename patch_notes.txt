@@ -1,3 +1,10 @@
+Version 1.9.5
+
+1) added a very specific highly unlikely text replacement issue with the email's object to open_issues
+    -> if you use one of these {logo} {banner} cid:logo_cid cid:banner_cid inside the email's message I will ensure that both sides of your pillow will always be warm
+
+---
+
 Version 1.9.4
 
 1) compose.yaml: fixed mysql cron backup not working under v1.15+
